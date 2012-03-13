@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>route</key>
+	<string></string>
+	<key>transport</key>
+	<string>socketio</string>
+	<key>gateway</key>
+	<dict>
+		<key>socketio</key>
+		<dict>
+			<key>endpoint</key>
+			<string>localhost</string>
+			<key>ports</key>
+			<array>
+				<string>8080</string>
+			</array>
+		</dict>
+	</dict>
+</dict>
+</plist>
