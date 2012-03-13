@@ -9,11 +9,12 @@ gateways.
 ## Dependency
 All dependency are included in the vendors directory.
 This library works thanks to : 
+
 * [Socket.IO](https://github.com/pkyeck/socket.IO-objc)
-** [Cocoa-websocket](https://github.com/samlown/cocoa-websocket)
-** [RegexKitLite](http://regexkit.sourceforge.net/RegexKitLite/)
-** [json-framework](https://github.com/stig/json-framework/)
-** [ASIHttpRequest](http://allseeing-i.com/ASIHTTPRequest/)
+    * [Cocoa-websocket](https://github.com/samlown/cocoa-websocket)
+    * [RegexKitLite](http://regexkit.sourceforge.net/RegexKitLite/)
+    * [json-framework](https://github.com/stig/json-framework/)
+    * [ASIHttpRequest](http://allseeing-i.com/ASIHTTPRequest/)
 
 ## Version
 This is an implementation of the version pre 0.2 of the hubiquitus client api
