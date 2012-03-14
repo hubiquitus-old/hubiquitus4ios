@@ -19,6 +19,11 @@
 
 #import "HCSocketIO.h"
 #import "HCUtils.h"
+#import "HCMessage.h"
+
+/**
+ *  @todo update to follow new hubiquitus node server protocol
+ */
 
 /**
  * @internal
@@ -107,27 +112,32 @@
 /**
  * see HCTransport protocol
  */
-- (void)subscribeToNode:(NSString*)node {
+- (NSString*)subscribeToNode:(NSString*)node {
     NSDictionary * data = [NSDictionary dictionaryWithObjectsAndKeys:node, @"nodeName", nil];
     [socketio sendEvent:@"subscribe" withData:data];
+    
+    return @"";
 }
 
 /**
  * see HCTransport protocol
  */
-- (void)unsubscribeFromNode:(NSString*)node withSubID:(NSString*)subID {
-    NSDictionary * data = [NSDictionary dictionaryWithObjectsAndKeys:node, @"nodeName",
-                                                                    subID, @"subID", nil];
+- (NSString*)unsubscribeFromNode:(NSString*)node {
+    NSDictionary * data = [NSDictionary dictionaryWithObjectsAndKeys:node, @"nodeName", nil];
     [socketio sendEvent:@"unsubscribe" withData:data];
+    
+    return @"";
 }
 
 /**
  * see HCTransport protocol
  */
-- (void)publishToNode:(NSString*)node items:(NSArray*)items {
+- (NSString*)publishToNode:(NSString*)node item:(HCMessage*)item {
     NSDictionary * data = [NSDictionary dictionaryWithObjectsAndKeys:node, @"nodeName",
-                                                                    items, @"items", nil];
+                                                                    [NSArray arrayWithObject:[item dataToDict]], @"items", nil];
     [socketio sendEvent:@"publish" withData:data];
+    
+    return @"";
 }
 
 #pragma mark - socketio delegate protocol
@@ -148,17 +158,13 @@
 }
 
 - (void) socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet {
-    //NSLog(@"did receive event from the gateway : name %@, args %@", packet.name, packet.args);
-    if ([packet.name compare:@"status"] == NSOrderedSame) {
-        if ([delegate respondsToSelector:@selector(notifyStatusUpdate:)]) {
-             [delegate notifyStatusUpdate:[packet.args objectAtIndex:0]];
-        }
-    } else if ([packet.name compare:@"item"] == NSOrderedSame) {
-        if ([delegate respondsToSelector:@selector(notifyIncomingItem:)]) {
-            for (id object in packet.args) {
-                [delegate notifyIncomingItem:object];
-            }
-        }
+    NSLog(@"did receive event from the gateway : name %@, args %@", packet.name, packet.args);
+    NSString * tmpName = @"link";
+    NSDictionary * object = [NSDictionary dictionaryWithObjectsAndKeys:@"test1", @"status", @"test2", @"message", nil];
+    if ([delegate respondsToSelector:@selector(notifyIncomingMessage:context:)]) {
+        //for (id object in packet.args) {
+            [delegate notifyIncomingMessage:object context:tmpName];
+        //}
     }
 }
 

@@ -18,6 +18,7 @@
  */
 
 #import "ViewController.h"
+#import "HCMessage.h"
 
 @implementation ViewController
 @synthesize username;
@@ -40,7 +41,7 @@
     
     NSString * optionPath = [[NSBundle mainBundle] pathForResource:@"options" ofType:@"plist"];
     options = [HCOptions optionsWithPlist:optionPath];
-    client = [HCClient clientWithUsername:@"" password:@"" options:options delegate:self];
+    client = [HCClient clientWithUsername:TEST_USERNAME password:TEST_PASSWORD delegate:self options:options];
     
     //callback version
     /*client = [HubiquitusClient clientWithUsername:@"" password:@"" options:options callbackBlock:^(NSDictionary * content) {
@@ -92,31 +93,28 @@
     }
 }
 
-- (void)notifyIncomingItem:(id)item {
-    NSLog(@"Incoming item %@ \n", item);
+- (void)notifyResultWithType:(NSString *)type node:(NSString *)node request_id:(NSString *)request_id {
+}
+
+- (void)notifyLinkStatusUpdate:(NSString *)status message:(NSString *)message {
+    NSLog(@"Link update : status %@, message %@ \n", status, message);
     
     //fill the satus text field
-    NSString * itemString = [item objectAtIndex:0];
     NSString * contentToAdd = @"";
     
-    NSDictionary * item_data = [NSJSONSerialization JSONObjectWithData:[itemString dataUsingEncoding:NSASCIIStringEncoding] options:0 error:nil];
+    //NSDictionary * item_data = [NSJSONSerialization JSONObjectWithData:[itemString dataUsingEncoding:NSASCIIStringEncoding] options:0 error:nil];
     
-    contentToAdd = [NSString stringWithFormat:@"%@ \n\n\n\n ********************************* \n\n\n\n %@",contentToAdd, item_data];
+    contentToAdd = [NSString stringWithFormat:@"%@ \n\n\n\n ********************************* \n\n\n\n %@",contentToAdd, message];
     
     items.text = [NSString stringWithFormat:@"%@\n%@", items.text, contentToAdd];
 }
 
-- (void)notifyStatusUpdate:(NSString *)status {
-    //fill the satus text field
-    NSString * contentToAdd = status;
-    statuses.text = [NSString stringWithFormat:@"%@\n%@", statuses.text, contentToAdd];
+- (void)notifyItems:(NSArray *)entries FromNode:(NSString *)node_identifier {
     
-    NSLog(@"status update : %@", status);
-    
-    //make some test with the api
-    /*if ([status compare:@"Connected"] == NSOrderedSame) {
+}
 
-    }*/
+- (void)notifyErrorOfType:(NSString *)type code:(HCErrors)code node:(NSString *)node_identifier request_id:(NSString *)id {
+    
 }
 
 - (IBAction)connect:(id)sender {
@@ -128,18 +126,19 @@
 }
 
 - (IBAction)publish:(id)sender {
-    NSLog(@"Trying to publish");
     NSDictionary * publishMsg = [NSDictionary dictionaryWithObjectsAndKeys:@"it works !", @"msg", nil];
-    [client publishToNode:@"" items:[NSArray arrayWithObjects:publishMsg, nil]];
+    HCMessage * message = [[HCMessage alloc] initWithDictionnary:publishMsg];
+    NSString * request_id = [client publishToNode:TEST_NODE item:message];
+    NSLog(@"Trying to publish with request_id : %@", request_id);
 }
 
 - (IBAction)subscribe:(id)sender {
-    NSLog(@"Trying to subscribe");
-    [client subscribeToNode:@""];
+    NSString * request_id = [client subscribeToNode:TEST_NODE];
+    NSLog(@"Trying to subscribe with request_id : %@", request_id);
 }
 
 - (IBAction)unsubscribe:(id)sender {
-    NSLog(@"Trying to unsubscribe");
-    [client unsubscribeFromNode:@"" withSubID:nil];
+    NSString * request_id = [client unsubscribeFromNode:TEST_NODE];
+    NSLog(@"Trying to unsubscribe with request_id : %@", request_id);
 }
 @end

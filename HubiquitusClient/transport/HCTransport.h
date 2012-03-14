@@ -19,6 +19,7 @@
 
 #import <Foundation/Foundation.h>
 #import "HCOptions.h"
+#import "HCMessage.h"
 
 /**
  * @internal
@@ -26,8 +27,7 @@
  */
 @protocol HCTransportDelegate <NSObject>
 
-- (void)notifyStatusUpdate:(NSString*)status;
-- (void)notifyIncomingItem:(id)item;
+- (void)notifyIncomingMessage:(NSDictionary*)data context:(NSString*)context;
 
 @end
 
@@ -59,22 +59,24 @@
  * Requests a subscription to a node to the server
  * The answer of the server is treated by the delegate or block
  * @param nodeName - Name of the node to subscribe
+ * @return id - a request id that can be used to check if subscribe was successful (id returned through callback result)
  */
-- (void)subscribeToNode:(NSString*)node;
+- (NSString*)subscribeToNode:(NSString*)node;
 
 /**
  * Requests to unsubscribe from an node
  * The answer of the server is treated by the delegate or block
  * @param nodeName - Name of the node to unsubscribe
- * @param subID - Subscription ID of the node to unsubscribe (needed *only* if multiple subscriptions to the same node)
+ * @return id - a request id that can be used to check if unsubscribe was successful (id returned through callback result)
  */
-- (void)unsubscribeFromNode:(NSString*)node withSubID:(NSString*)subID;
+- (NSString*)unsubscribeFromNode:(NSString*)node;
 
 /**
  * Requests to publish entries to a node
- * @param nodeName - Node to publish the items
- * @param items - Array of elements to publish in the node
+ * @param node - Node to publish the items
+ * @param item - An hubiquitus message
+ * @return id - a request id that can be used to check if publish was successful (id returned through callback result)
  */
-- (void)publishToNode:(NSString*)node items:(NSArray*)items;
+- (NSString*)publishToNode:(NSString*)node item:(HCMessage*)item;
 
 @end

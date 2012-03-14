@@ -19,6 +19,10 @@
 
 #import <UIKit/UIKit.h>
 
+#define TEST_NODE @""
+#define TEST_USERNAME @""
+#define TEST_PASSWORD @""
+
 @class ViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>

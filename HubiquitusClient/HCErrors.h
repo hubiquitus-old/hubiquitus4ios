@@ -17,21 +17,6 @@
  *     along with Hubiquitus.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <UIKit/UIKit.h>
-#import "HCClient.h"
-#import "AppDelegate.h"
-
-@interface ViewController : UIViewController <HCClientDelegate>
-@property (strong, nonatomic) HCOptions * options;
-@property (strong, nonatomic) HCClient * client;
-@property (strong, nonatomic) IBOutlet UILabel *username;
-@property (weak, nonatomic) IBOutlet UITextView *statuses;
-@property (weak, nonatomic) IBOutlet UITextView *items;
-
-- (IBAction)connect:(id)sender;
-- (IBAction)disconnect:(id)sender;
-- (IBAction)publish:(id)sender;
-- (IBAction)subscribe:(id)sender;
-- (IBAction)unsubscribe:(id)sender;
-
-@end
+typedef enum {
+    EConnectError
+} HCErrors;

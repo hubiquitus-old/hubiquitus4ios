@@ -25,11 +25,11 @@
 #import "transport/socketio/HCSocketIO.h"
 
 /**
- *  @todo add bosh transport layer support
+ *  @todo add xmpp transport layer support
  */
 
 @interface HCClient () {
-    void (^_callback)(NSDictionary * content);
+    void (^_callback)(NSString * context, NSArray * data);
     HCOptions * _options;
 }
 @property (strong, nonatomic) id<HCTransport> transport;
@@ -42,20 +42,20 @@
 
 /**
  * Convenient constructor 
- * see initWithUsername:password:options:delegate:
+ * see initWithUsername:password:delegate:options:
  */
-+ (id)clientWithUsername:(NSString*)username password:(NSString*)password options:(HCOptions*)options delegate:(id<HCClientDelegate>)delegate {
++ (id)clientWithUsername:(NSString*)username password:(NSString*)password delegate:(id<HCClientDelegate>)delegate options:(HCOptions*)options {
     
-    return [[HCClient alloc] initWithUsername:username password:password options:options delegate:delegate];
+    return [[HCClient alloc] initWithUsername:username password:password delegate:delegate options:options];
 }
 
 /**
  * Convenient constructor 
- * see initWithUsername:password:options:callbackBlock:
+ * see initWithUsername:password:callbackBlock:options:
  */
-+ (id)clientWithUsername:(NSString *)username password:(NSString *)password options:(HCOptions*)options callbackBlock:(void (^)(NSDictionary * content))callback {
++ (id)clientWithUsername:(NSString *)username password:(NSString *)password callbackBlock:(void (^)(NSString * context, NSArray * data))callback options:(HCOptions*)options {
     
-    return [[HCClient alloc] initWithUsername:username password:password options:options callbackBlock:callback];
+    return [[HCClient alloc] initWithUsername:username password:password callbackBlock:callback options:options];
 }
 
 /**
@@ -65,7 +65,7 @@
  * @param options - client options. For more information see HCOptions
  * @param delegate - delegate to receive callback and items from the server. For more informations on messages received by the delegate visit : https://github.com/hubiquitus/hubiquitusjs/wiki/Callback
  */
-- (id)initWithUsername:(NSString*)username password:(NSString*)password options:(HCOptions*)options delegate:(id<HCClientDelegate>)aDelegate {
+- (id)initWithUsername:(NSString*)username password:(NSString*)password delegate:(id<HCClientDelegate>)aDelegate options:(HCOptions*)options {
     
     self = [super init];
     if (self) {
@@ -92,9 +92,9 @@
  * @param username - server login (ak: me@xmppServer.com)
  * @param password - user password
  * @param options - client options. For more information see HCOptions
- * @param callbackBlock - Block called on message from the server. For more informations on messages received by the delegate visit : https://github.com/hubiquitus/hubiquitusjs/wiki/Callback
+ * @param callbackBlock - Block called on message from the server. For more informations on messages received by the callback visit : https://github.com/hubiquitus/hubiquitusjs/wiki/Callback
  */
-- (id)initWithUsername:(NSString *)username password:(NSString *)password options:(HCOptions*)options callbackBlock:(void (^)(NSDictionary * content))callback {
+- (id)initWithUsername:(NSString *)username password:(NSString *)password callbackBlock:(void (^)(NSString * context, NSArray * data))callback options:(HCOptions*)options {
     if (self) {
         if (!options) {
             _options = [HCOptions optionsWithDict:nil];
@@ -134,61 +134,73 @@
  * Requests a subscription to a node to the server
  * The answer of the server is treated by the delegate or block
  * @param nodeName - Name of the node to subscribe
+ * @return id - a request id that can be used to check if subscribe was successful (id returned through callback result)
  */
-- (void)subscribeToNode:(NSString*)node {
-    [transport subscribeToNode:node];
+- (NSString*)subscribeToNode:(NSString*)node {
+    return [transport subscribeToNode:node];
 }
 
 /**
  * Requests to unsubscribe from an node
  * The answer of the server is treated by the delegate or block
  * @param nodeName - Name of the node to unsubscribe
- * @param subID - Subscription ID of the node to unsubscribe (needed *only* if multiple subscriptions to the same node)
+ * @return id - a request id that can be used to check if unsubscribe was successful (id returned through callback result)
  */
-- (void)unsubscribeFromNode:(NSString*)node withSubID:(NSString*)subID {
-    [transport unsubscribeFromNode:node withSubID:subID];
+- (NSString*)unsubscribeFromNode:(NSString*)node {
+    return [transport unsubscribeFromNode:node];
 }
 
 /**
  * Requests to publish entries to a node
  * @param nodeName - Node to publish the items
- * @param items - Array of elements to publish in the node
+ * @param item - An hubiquitus message to publish
+ * @return id - a request id that can be used to check if publish was successful (id returned through callback result)
  */
-- (void)publishToNode:(NSString*)node items:(NSArray*)items {
-    [transport publishToNode:node items:items];
+- (NSString*)publishToNode:(NSString*)node item:(HCMessage*)item {
+    return [transport publishToNode:node item:item];
 }
 
 #pragma mark - internal - transport delegate 
-/**
- * @internal
- * Receive status from the server through the transport layer and notify the client delegate
- * see HCTransportDelegate
- */
-- (void)notifyStatusUpdate:(NSString *)status {
-    if (_callback != nil) {
-        _callback([NSDictionary dictionaryWithObjectsAndKeys:@"status", @"type",
-                                                            status, @"data", nil]);
-    }
-    
-    if (delegate != nil && [delegate respondsToSelector:@selector(notifyStatusUpdate:)]) {
-        [delegate notifyStatusUpdate:status];
-    }
-}
 
 /**
  * @internal
- * Receive an item from the server through the transport layer and notify the client delegate
+ * Receive callback message from the server through the transport layer and notify the client delegate
  * see HCTransportDelegate
  */
-- (void)notifyIncomingItem:(id)item {
+- (void)notifyIncomingMessage:(NSDictionary*)data context:(NSString *)context {
     if (_callback != nil) {
-        _callback([NSDictionary dictionaryWithObjectsAndKeys:@"data", @"type",
-                                                            item, @"data", nil]);
+        _callback(context, [data objectForKey:@"data"]);
     }
     
-    if (delegate != nil && [delegate respondsToSelector:@selector(notifyIncomingItem:)]) {
-        [delegate notifyIncomingItem:item];
+    //call the right delegate from the context
+    if (delegate != nil) {
+        if ([context compare:@"link"] == NSOrderedSame && [delegate respondsToSelector:@selector(notifyLinkStatusUpdate:message:)]) {
+            
+            NSString * status = [data objectForKey:@"status"];
+            NSString * message = [data objectForKey:@"message"];
+            [delegate notifyLinkStatusUpdate:status message:message];
+            
+        }/* else if ([context compare:@"result"] == NSOrderedSame && [delegate respondsToSelector:@selector(notifyResultWithType:node:request_id:)]) {
+            
+            NSString * type = [data objectForKey:@"type"];
+            NSString * node = [data objectForKey:@"node"];
+            NSString * request_id = [data objectForKey:@"id"];
+            [delegate notifyResultWithType:type node:node request_id:request_id];
+            
+        } else if ([context compare:@"items"] == NSOrderedSame && [delegate respondsToSelector:@selector(notifyItems:FromNode:)]) {
+            
+            NSArray * items = [data objectForKey:@"entries"];
+            NSString * node = [data objectForKey:@"node"];
+            [delegate notifyItems:items FromNode:node];
+            
+        } else if ([context compare:@"error"] == NSOrderedSame && [delegate respondsToSelector:@selector(notifyErrorOfType:code:node:request_id:)]) {
+            
+            NSString * type = [data objectForKey:@"type"];
+            NSNumber * code = [data objectForKey:@"code"];
+            NSString * node = [data objectForKey:@"node"];
+            NSString * request_id = [data objectForKey:@"id"];
+            [delegate notifyErrorOfType:type code:[code intValue] node:node request_id:request_id];
+        }*/
     }
-    
 }
 @end

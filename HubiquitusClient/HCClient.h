@@ -20,31 +20,38 @@
 #import <Foundation/Foundation.h>
 #import "transport/HCTransport.h"
 #import "options/HCOptions.h"
+#import "HCMessage.h"
+#import "HCErrors.h"
+
 
 
 @protocol HCClientDelegate <NSObject>
-- (void)notifyStatusUpdate:(NSString*)status;
-- (void)notifyIncomingItem:(id)item;
+- (void)notifyLinkStatusUpdate:(NSString*)status message:(NSString*)message;
+- (void)notifyResultWithType:(NSString*)type node:(NSString*)node request_id:(NSString*)request_id;
+- (void)notifyItems:(NSArray*)entries FromNode:(NSString*)node_identifier;
+- (void)notifyErrorOfType:(NSString*)type code:(HCErrors)code node:(NSString*)node_identifier request_id:(NSString*)id;
 @end
+
+
 
 @interface HCClient : NSObject <HCTransportDelegate>
 
 @property (strong) id<HCClientDelegate> delegate;
 @property (strong, nonatomic, readonly) HCOptions * options;
 
-+ (id)clientWithUsername:(NSString*)username password:(NSString*)password options:(HCOptions*)options delegate:(id<HCClientDelegate>)delegate;
++ (id)clientWithUsername:(NSString*)username password:(NSString*)password delegate:(id<HCClientDelegate>)delegate options:(HCOptions*)options;
 
-+ (id)clientWithUsername:(NSString *)username password:(NSString *)password options:(HCOptions*)options callbackBlock:( void (^)(NSDictionary * content) )callback;
++ (id)clientWithUsername:(NSString *)username password:(NSString *)password callbackBlock:( void (^)(NSString * context, NSArray * data) )callback options:(HCOptions*)options;
 
-- (id)initWithUsername:(NSString*)username password:(NSString*)password options:(HCOptions*)options delegate:(id<HCClientDelegate>)delegate;
+- (id)initWithUsername:(NSString*)username password:(NSString*)password delegate:(id<HCClientDelegate>)delegate options:(HCOptions*)options;
 
-- (id)initWithUsername:(NSString *)username password:(NSString *)password options:(HCOptions*)options callbackBlock:( void (^)(NSDictionary * content) )callback;
+- (id)initWithUsername:(NSString *)username password:(NSString *)password callbackBlock:( void (^)(NSString * context, NSArray * data) )callback options:(HCOptions*)options;
 
 - (void)connect;
 - (void)disconnect;
-- (void)subscribeToNode:(NSString*)node;
-- (void)unsubscribeFromNode:(NSString*)node withSubID:(NSString*)subID;
-- (void)publishToNode:(NSString*)node items:(NSArray*)items;
+- (NSString*)subscribeToNode:(NSString*)node_identifier;
+- (NSString*)unsubscribeFromNode:(NSString*)node_identifier;
+- (NSString*)publishToNode:(NSString*)node_identifier item:(HCMessage*)item;
 
 
 @end

@@ -53,6 +53,8 @@
 		1131A24D150FA08100A61449 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1131A24B150FA07600A61449 /* SystemConfiguration.framework */; };
 		1131A250150FA10000A61449 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1131A24E150FA0F200A61449 /* libicucore.dylib */; };
 		1131A253150FA12D00A61449 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1131A251150FA12600A61449 /* MobileCoreServices.framework */; };
+		11452E061510D39400B94B34 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11452E041510D39400B94B34 /* ViewController_iPhone.xib */; };
+		11F532CA15109D2300038043 /* HCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F532C915109D2300038043 /* HCMessage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -146,6 +148,10 @@
 		1131A24B150FA07600A61449 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		1131A24E150FA0F200A61449 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		1131A251150FA12600A61449 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		11452DFF1510AC4600B94B34 /* HCErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCErrors.h; sourceTree = "<group>"; };
+		11452E051510D39400B94B34 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
+		11F532C815109D2300038043 /* HCMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMessage.h; sourceTree = "<group>"; };
+		11F532C915109D2300038043 /* HCMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMessage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +222,7 @@
 		1131A191150F9DDE00A61449 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				11452E041510D39400B94B34 /* ViewController_iPhone.xib */,
 				1131A192150F9DDE00A61449 /* SimpleClient-Info.plist */,
 				1131A193150F9DDE00A61449 /* InfoPlist.strings */,
 				1131A196150F9DDE00A61449 /* main.m */,
@@ -229,6 +236,9 @@
 			children = (
 				1131A1B0150F9E9500A61449 /* HCClient.h */,
 				1131A1B1150F9E9500A61449 /* HCClient.m */,
+				11F532C815109D2300038043 /* HCMessage.h */,
+				11F532C915109D2300038043 /* HCMessage.m */,
+				11452DFF1510AC4600B94B34 /* HCErrors.h */,
 				1131A1B2150F9E9500A61449 /* options */,
 				1131A1BB150F9E9500A61449 /* transport */,
 				1131A1C0150F9E9500A61449 /* utils */,
@@ -476,6 +486,7 @@
 			files = (
 				1131A195150F9DDE00A61449 /* InfoPlist.strings in Resources */,
 				1131A1AD150F9E6400A61449 /* options.plist in Resources */,
+				11452E061510D39400B94B34 /* ViewController_iPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,6 +533,7 @@
 				1131A23B150F9E9500A61449 /* SBJsonWriter.m in Sources */,
 				1131A242150F9E9500A61449 /* RegexKitLite.m in Sources */,
 				1131A245150F9E9500A61449 /* SocketIO.m in Sources */,
+				11F532CA15109D2300038043 /* HCMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,6 +546,14 @@
 				1131A194150F9DDE00A61449 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		11452E041510D39400B94B34 /* ViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				11452E051510D39400B94B34 /* en */,
+			);
+			name = ViewController_iPhone.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -625,6 +645,7 @@
 				1131A1A6150F9DDE00A61449 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
