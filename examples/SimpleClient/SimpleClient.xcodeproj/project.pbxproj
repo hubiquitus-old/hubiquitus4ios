@@ -474,7 +474,6 @@
 		1131A17B150F9DDE00A61449 = {
 			isa = PBXGroup;
 			children = (
-				11DA19161510EFCA00483F4C /* CoreLocation.framework */,
 				1131A190150F9DDE00A61449 /* SimpleClient */,
 				1131A189150F9DDE00A61449 /* Frameworks */,
 				1131A187150F9DDE00A61449 /* Products */,
@@ -497,6 +496,7 @@
 				11DA17FC1510EDA500483F4C /* libidn.a */,
 				1131A248150FA05C00A61449 /* libz.dylib */,
 				1131A24E150FA0F200A61449 /* libicucore.dylib */,
+				11DA19161510EFCA00483F4C /* CoreLocation.framework */,
 				11DA19131510EF7900483F4C /* CoreData.framework */,
 				1131A251150FA12600A61449 /* MobileCoreServices.framework */,
 				1131A24B150FA07600A61449 /* SystemConfiguration.framework */,
