@@ -119,4 +119,36 @@
     }
 }
 
+/**
+ * @internal
+ * Convinient function. Return the domain part of the route
+ * @return - domain part of the route
+ */
+- (NSString *)routeDomain {
+    NSArray * routeComponents = [route componentsSeparatedByString:@":"];
+    if ([routeComponents count] > 0) {
+        return [routeComponents objectAtIndex:0];
+    }
+    
+    return nil;
+}
+
+/**
+ * @internal
+ * Convinient function. Return the port part of the route
+ * @return - port part of the route
+ */
+- (NSNumber *)routePort {
+    NSArray * routeComponents = [route componentsSeparatedByString:@":"];
+    if ([routeComponents count] > 1) {
+        NSString * portAsString = [routeComponents objectAtIndex:1];
+        NSNumber * port = [NSNumber numberWithInt:[portAsString intValue]];
+        return port;
+    }
+    
+    return nil;
+}
+
+
+
 @end

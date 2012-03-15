@@ -93,7 +93,9 @@
     }
 }
 
-- (void)notifyResultWithType:(NSString *)type node:(NSString *)node request_id:(NSString *)request_id {
+#pragma mark - HCCLient delegate
+
+- (void)notifyResultWithType:(NSString *)type channel:(NSString *)channel_identifier request_id:(NSString *)request_id {
 }
 
 - (void)notifyLinkStatusUpdate:(NSString *)status message:(NSString *)message {
@@ -109,11 +111,11 @@
     items.text = [NSString stringWithFormat:@"%@\n%@", items.text, contentToAdd];
 }
 
-- (void)notifyItems:(NSArray *)entries FromNode:(NSString *)node_identifier {
+- (void)notifyItems:(NSArray *)entries FromChannel:(NSString *)channel_identifier {
     
 }
 
-- (void)notifyErrorOfType:(NSString *)type code:(HCErrors)code node:(NSString *)node_identifier request_id:(NSString *)id {
+- (void)notifyErrorOfType:(NSString *)type code:(HCErrors)code channel:(NSString *)channel_identifier request_id:(NSString *)id {
     
 }
 
@@ -128,17 +130,17 @@
 - (IBAction)publish:(id)sender {
     NSDictionary * publishMsg = [NSDictionary dictionaryWithObjectsAndKeys:@"it works !", @"msg", nil];
     HCMessage * message = [[HCMessage alloc] initWithDictionnary:publishMsg];
-    NSString * request_id = [client publishToNode:TEST_NODE item:message];
+    NSString * request_id = [client publishToChannel:TEST_CHANNEL item:message];
     NSLog(@"Trying to publish with request_id : %@", request_id);
 }
 
 - (IBAction)subscribe:(id)sender {
-    NSString * request_id = [client subscribeToNode:TEST_NODE];
+    NSString * request_id = [client subscribeToChannel:TEST_CHANNEL];
     NSLog(@"Trying to subscribe with request_id : %@", request_id);
 }
 
 - (IBAction)unsubscribe:(id)sender {
-    NSString * request_id = [client unsubscribeFromNode:TEST_NODE];
+    NSString * request_id = [client unsubscribeFromChannel:TEST_CHANNEL];
     NSLog(@"Trying to unsubscribe with request_id : %@", request_id);
 }
 @end

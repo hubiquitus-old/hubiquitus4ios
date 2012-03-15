@@ -27,9 +27,9 @@
 
 @protocol HCClientDelegate <NSObject>
 - (void)notifyLinkStatusUpdate:(NSString*)status message:(NSString*)message;
-- (void)notifyResultWithType:(NSString*)type node:(NSString*)node request_id:(NSString*)request_id;
-- (void)notifyItems:(NSArray*)entries FromNode:(NSString*)node_identifier;
-- (void)notifyErrorOfType:(NSString*)type code:(HCErrors)code node:(NSString*)node_identifier request_id:(NSString*)id;
+- (void)notifyResultWithType:(NSString*)type channel:(NSString*)channel_identifier request_id:(NSString*)request_id;
+- (void)notifyItems:(NSArray*)entries FromChannel:(NSString*)channel_identifier;
+- (void)notifyErrorOfType:(NSString*)type code:(HCErrors)code channel:(NSString*)channel_identifier request_id:(NSString*)id;
 @end
 
 
@@ -49,9 +49,9 @@
 
 - (void)connect;
 - (void)disconnect;
-- (NSString*)subscribeToNode:(NSString*)node_identifier;
-- (NSString*)unsubscribeFromNode:(NSString*)node_identifier;
-- (NSString*)publishToNode:(NSString*)node_identifier item:(HCMessage*)item;
+- (NSString*)subscribeToChannel:(NSString*)channel_identifier;
+- (NSString*)unsubscribeFromChannel:(NSString*)channel_identifier;
+- (NSString*)publishToChannel:(NSString*)channel_identifier item:(HCMessage*)item;
 
 
 @end

@@ -19,7 +19,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define TEST_NODE @""
+#define TEST_CHANNEL @""
 #define TEST_USERNAME @""
 #define TEST_PASSWORD @""
 

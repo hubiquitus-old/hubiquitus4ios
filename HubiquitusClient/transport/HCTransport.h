@@ -58,25 +58,25 @@
 /**
  * Requests a subscription to a node to the server
  * The answer of the server is treated by the delegate or block
- * @param nodeName - Name of the node to subscribe
+ * @param channel_identifier - Name of the channel to subscribe
  * @return id - a request id that can be used to check if subscribe was successful (id returned through callback result)
  */
-- (NSString*)subscribeToNode:(NSString*)node;
+- (NSString*)subscribeToChannel:(NSString*)channel_identifier;
 
 /**
  * Requests to unsubscribe from an node
  * The answer of the server is treated by the delegate or block
- * @param nodeName - Name of the node to unsubscribe
+ * @param channel_identifier - Name of the channel to unsubscribe from
  * @return id - a request id that can be used to check if unsubscribe was successful (id returned through callback result)
  */
-- (NSString*)unsubscribeFromNode:(NSString*)node;
+- (NSString*)unsubscribeFromChannel:(NSString*)channel_identifier;
 
 /**
  * Requests to publish entries to a node
- * @param node - Node to publish the items
+ * @param channel_identifier - channel to publish the items
  * @param item - An hubiquitus message
  * @return id - a request id that can be used to check if publish was successful (id returned through callback result)
  */
-- (NSString*)publishToNode:(NSString*)node item:(HCMessage*)item;
+- (NSString*)publishToChannel:(NSString*)channel_identifier item:(HCMessage*)item;
 
 @end

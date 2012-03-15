@@ -133,31 +133,31 @@
 /**
  * Requests a subscription to a node to the server
  * The answer of the server is treated by the delegate or block
- * @param nodeName - Name of the node to subscribe
+ * @param channel_identifier - Name of the channel to subscribe
  * @return id - a request id that can be used to check if subscribe was successful (id returned through callback result)
  */
-- (NSString*)subscribeToNode:(NSString*)node {
-    return [transport subscribeToNode:node];
+- (NSString*)subscribeToChannel:(NSString*)channel_identifier {
+    return [transport subscribeToChannel:channel_identifier];
 }
 
 /**
  * Requests to unsubscribe from an node
  * The answer of the server is treated by the delegate or block
- * @param nodeName - Name of the node to unsubscribe
+ * @param channel_identifier - Name of the channel to unsubscribe from
  * @return id - a request id that can be used to check if unsubscribe was successful (id returned through callback result)
  */
-- (NSString*)unsubscribeFromNode:(NSString*)node {
-    return [transport unsubscribeFromNode:node];
+- (NSString*)unsubscribeFromChannel:(NSString*)channel_identifier {
+    return [transport unsubscribeFromChannel:channel_identifier];
 }
 
 /**
  * Requests to publish entries to a node
- * @param nodeName - Node to publish the items
+ * @param channel_identifer - channel to publish the items
  * @param item - An hubiquitus message to publish
  * @return id - a request id that can be used to check if publish was successful (id returned through callback result)
  */
-- (NSString*)publishToNode:(NSString*)node item:(HCMessage*)item {
-    return [transport publishToNode:node item:item];
+- (NSString*)publishToChannel:(NSString*)channel_identifier item:(HCMessage*)item {
+    return [transport publishToChannel:channel_identifier item:item];
 }
 
 #pragma mark - internal - transport delegate 

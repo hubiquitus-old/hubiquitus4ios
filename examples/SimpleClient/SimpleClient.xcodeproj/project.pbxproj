@@ -148,6 +148,7 @@
 		11DA19151510EFC500483F4C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11DA19131510EF7900483F4C /* CoreData.framework */; };
 		11DA19171510EFCA00483F4C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11DA19161510EFCA00483F4C /* CoreLocation.framework */; };
 		11DA19191510F04100483F4C /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 11DA19181510F04100483F4C /* libresolv.dylib */; };
+		11DA191D1510F64900483F4C /* HCXmpp.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DA191C1510F64900483F4C /* HCXmpp.m */; };
 		11F532CA15109D2300038043 /* HCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F532C915109D2300038043 /* HCMessage.m */; };
 /* End PBXBuildFile section */
 
@@ -439,6 +440,9 @@
 		11DA19131510EF7900483F4C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		11DA19161510EFCA00483F4C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		11DA19181510F04100483F4C /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
+		11DA191B1510F64900483F4C /* HCXmpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HCXmpp.h; path = xmpp/HCXmpp.h; sourceTree = "<group>"; };
+		11DA191C1510F64900483F4C /* HCXmpp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HCXmpp.m; path = xmpp/HCXmpp.m; sourceTree = "<group>"; };
+		11DA191E1510F6DD00483F4C /* XMPPFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMPPFramework.h; path = xmpp/XMPPFramework.h; sourceTree = "<group>"; };
 		11F532C815109D2300038043 /* HCMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMessage.h; sourceTree = "<group>"; };
 		11F532C915109D2300038043 /* HCMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMessage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -566,6 +570,7 @@
 			isa = PBXGroup;
 			children = (
 				1131A1BC150F9E9500A61449 /* HCTransport.h */,
+				11DA191A1510F61C00483F4C /* xmpp */,
 				1131A1BD150F9E9500A61449 /* socketio */,
 			);
 			path = transport;
@@ -1195,6 +1200,16 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		11DA191A1510F61C00483F4C /* xmpp */ = {
+			isa = PBXGroup;
+			children = (
+				11DA191B1510F64900483F4C /* HCXmpp.h */,
+				11DA191C1510F64900483F4C /* HCXmpp.m */,
+				11DA191E1510F6DD00483F4C /* XMPPFramework.h */,
+			);
+			name = xmpp;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1384,6 +1399,7 @@
 				11DA190D1510EDAE00483F4C /* XMPPIDTracker.m in Sources */,
 				11DA190E1510EDAE00483F4C /* XMPPSRVResolver.m in Sources */,
 				11DA190F1510EDAE00483F4C /* XMPPXFacebookPlatformAuthentication.m in Sources */,
+				11DA191D1510F64900483F4C /* HCXmpp.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

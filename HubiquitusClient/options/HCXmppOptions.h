@@ -20,6 +20,10 @@
 #import <Foundation/Foundation.h>
 
 @interface HCXmppOptions : NSObject
+
+@property (nonatomic) BOOL runInBackground;
+
+
 //@property (copy, nonatomic) NSString * endpoint;
 //@property (copy, nonatomic) NSArray * ports;
 

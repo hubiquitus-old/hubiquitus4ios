@@ -8,6 +8,11 @@
 	<string>socketio</string>
 	<key>gateway</key>
 	<dict>
+		<key>xmpp</key>
+		<dict>
+			<key>runInBackground</key>
+			<true/>
+		</dict>
 		<key>socketio</key>
 		<dict>
 			<key>endpoint</key>

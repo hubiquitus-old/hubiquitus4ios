@@ -112,8 +112,8 @@
 /**
  * see HCTransport protocol
  */
-- (NSString*)subscribeToNode:(NSString*)node {
-    NSDictionary * data = [NSDictionary dictionaryWithObjectsAndKeys:node, @"nodeName", nil];
+- (NSString*)subscribeToChannel:(NSString*)channel_identifier {
+    NSDictionary * data = [NSDictionary dictionaryWithObjectsAndKeys:channel_identifier, @"nodeName", nil];
     [socketio sendEvent:@"subscribe" withData:data];
     
     return @"";
@@ -122,8 +122,8 @@
 /**
  * see HCTransport protocol
  */
-- (NSString*)unsubscribeFromNode:(NSString*)node {
-    NSDictionary * data = [NSDictionary dictionaryWithObjectsAndKeys:node, @"nodeName", nil];
+- (NSString*)unsubscribeFromChannel:(NSString*)channel_identifier {
+    NSDictionary * data = [NSDictionary dictionaryWithObjectsAndKeys:channel_identifier, @"nodeName", nil];
     [socketio sendEvent:@"unsubscribe" withData:data];
     
     return @"";
@@ -132,8 +132,8 @@
 /**
  * see HCTransport protocol
  */
-- (NSString*)publishToNode:(NSString*)node item:(HCMessage*)item {
-    NSDictionary * data = [NSDictionary dictionaryWithObjectsAndKeys:node, @"nodeName",
+- (NSString*)publishToChannel:(NSString*)channel_identifier item:(HCMessage*)item {
+    NSDictionary * data = [NSDictionary dictionaryWithObjectsAndKeys:channel_identifier, @"nodeName",
                                                                     [NSArray arrayWithObject:[item dataToDict]], @"items", nil];
     [socketio sendEvent:@"publish" withData:data];
     

@@ -26,6 +26,8 @@
 @property (copy, nonatomic) NSString * password;
 @property (readonly, nonatomic) NSString * domain;
 @property (copy, nonatomic) NSString * route;
+@property (readonly, nonatomic) NSString * routeDomain;
+@property (readonly, nonatomic) NSNumber * routePort;
 
 @property (readonly, nonatomic) HCGatewayOptions * gateway;
 

@@ -27,6 +27,7 @@
  * @internal
  */
 @implementation HCXmppOptions
+@synthesize runInBackground;
 //@synthesize endpoint, ports;
 
 /**
@@ -47,6 +48,8 @@
 - (id)initWithDict:(NSDictionary *)dict {
     self = [super init];
     if (self) {
+        runInBackground = NO;
+        
      /*   endpoint = @"http://localhost/";
         ports = [NSArray arrayWithObject:[NSNumber numberWithInt:5280]];
         

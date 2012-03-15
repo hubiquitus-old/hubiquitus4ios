@@ -18,5 +18,6 @@
  */
 
 typedef enum {
-    EConnectError
+    EConnectError,
+    UnknownError
 } HCErrors;
