@@ -20,14 +20,20 @@
 #import <Foundation/Foundation.h>
 #import "HCTransport.h"
 #import "XMPPFramework.h"
+#import "XMPPPubSub.h"
 
-@interface HCXmpp : NSObject<HCTransport, XMPPStreamDelegate>
+@interface HCXmpp : NSObject<HCTransport, XMPPStreamDelegate, XMPPPubSubDelegate>
 
 @property (nonatomic, strong) id<HCTransportDelegate> delegate;
 @property (nonatomic, strong) HCOptions * options;
 
 @property (nonatomic, strong) XMPPStream * xmppStream;
 @property (nonatomic, strong) XMPPReconnect * xmppReconnect;
+@property (nonatomic, strong) XMPPPubSub * xmppPubSub;
+
+@property (nonatomic, strong) XMPPJID * service;
+@property (nonatomic) BOOL isXmppConnected;
+@property (nonatomic) BOOL isAuthenticated;
 
 - (void)setupStream;
 - (void)teardownStream;

@@ -22,7 +22,8 @@
 @interface HCXmppOptions : NSObject
 
 @property (nonatomic) BOOL runInBackground;
-
+@property (nonatomic) BOOL allowSelfSignedCertificates;
+@property (nonatomic) BOOL allowSSLHostnameMismatch;
 
 //@property (copy, nonatomic) NSString * endpoint;
 //@property (copy, nonatomic) NSArray * ports;

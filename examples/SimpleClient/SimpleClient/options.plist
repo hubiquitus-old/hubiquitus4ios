@@ -4,14 +4,18 @@
 <dict>
 	<key>route</key>
 	<string></string>
-	<key>transport</key>
-	<string>socketio</string>
 	<key>gateway</key>
 	<dict>
+		<key>transport</key>
+		<string>xmpp</string>
 		<key>xmpp</key>
 		<dict>
-			<key>runInBackground</key>
+			<key>allowSelfSignedCertificates</key>
+			<string>YES</string>
+			<key>allowSSLHostnameMismatch</key>
 			<true/>
+			<key>runInBackground</key>
+			<false/>
 		</dict>
 		<key>socketio</key>
 		<dict>

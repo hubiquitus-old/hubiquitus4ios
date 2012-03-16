@@ -28,6 +28,8 @@
  */
 @implementation HCXmppOptions
 @synthesize runInBackground;
+@synthesize allowSSLHostnameMismatch;
+@synthesize allowSelfSignedCertificates;
 //@synthesize endpoint, ports;
 
 /**
@@ -49,6 +51,23 @@
     self = [super init];
     if (self) {
         runInBackground = NO;
+        allowSSLHostnameMismatch = NO;
+        allowSelfSignedCertificates = NO;
+        
+        if (dict != nil && [dict objectForKey:@"runInBackground"]) {
+            NSNumber * runInBackgroundNumber = [dict objectForKey:@"runInBackground"];
+            runInBackground = [runInBackgroundNumber boolValue];
+        }
+        
+        if (dict != nil  && [dict objectForKey:@"allowSelfSignedCertificates"]) {
+            NSNumber * allowSelfSignedCertificatesNumber = [dict objectForKey:@"allowSelfSignedCertificates"];
+            allowSelfSignedCertificates = [allowSelfSignedCertificatesNumber boolValue];
+        }
+        
+        if (dict != nil && [dict objectForKey:@"allowSSLHostnameMismatch"]) {
+            NSNumber * allowSSLHostnameMismatchNumber = [dict objectForKey:@"allowSSLHostnameMismatch"];
+            allowSSLHostnameMismatch = [allowSSLHostnameMismatchNumber boolValue];
+        }
         
      /*   endpoint = @"http://localhost/";
         ports = [NSArray arrayWithObject:[NSNumber numberWithInt:5280]];

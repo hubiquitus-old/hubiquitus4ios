@@ -49,9 +49,7 @@
 		1131A242150F9E9500A61449 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 1131A210150F9E9500A61449 /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1131A245150F9E9500A61449 /* SocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 1131A215150F9E9500A61449 /* SocketIO.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1131A247150FA01500A61449 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1131A246150FA01500A61449 /* CFNetwork.framework */; };
-		1131A24A150FA07100A61449 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1131A248150FA05C00A61449 /* libz.dylib */; };
 		1131A24D150FA08100A61449 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1131A24B150FA07600A61449 /* SystemConfiguration.framework */; };
-		1131A250150FA10000A61449 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1131A24E150FA0F200A61449 /* libicucore.dylib */; };
 		1131A253150FA12D00A61449 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1131A251150FA12600A61449 /* MobileCoreServices.framework */; };
 		11452E061510D39400B94B34 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11452E041510D39400B94B34 /* ViewController_iPhone.xib */; };
 		11DA17C81510ED8900483F4C /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DA17C61510ED8900483F4C /* GCDAsyncSocket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -67,7 +65,6 @@
 		11DA17F51510ED9C00483F4C /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DA17EC1510ED9C00483F4C /* DDXMLDocument.m */; };
 		11DA17F61510ED9C00483F4C /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DA17EE1510ED9C00483F4C /* DDXMLElement.m */; };
 		11DA17F71510ED9C00483F4C /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DA17F01510ED9C00483F4C /* DDXMLNode.m */; };
-		11DA18001510EDA500483F4C /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11DA17FC1510EDA500483F4C /* libidn.a */; };
 		11DA18C21510EDAE00483F4C /* NSData+XMPP.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DA18041510EDAD00483F4C /* NSData+XMPP.m */; };
 		11DA18C31510EDAE00483F4C /* NSNumber+XMPP.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DA18061510EDAD00483F4C /* NSNumber+XMPP.m */; };
 		11DA18C41510EDAE00483F4C /* NSXMLElement+XMPP.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DA18081510EDAD00483F4C /* NSXMLElement+XMPP.m */; };
@@ -144,11 +141,14 @@
 		11DA190D1510EDAE00483F4C /* XMPPIDTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DA18BC1510EDAD00483F4C /* XMPPIDTracker.m */; };
 		11DA190E1510EDAE00483F4C /* XMPPSRVResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DA18BF1510EDAD00483F4C /* XMPPSRVResolver.m */; };
 		11DA190F1510EDAE00483F4C /* XMPPXFacebookPlatformAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DA18C11510EDAD00483F4C /* XMPPXFacebookPlatformAuthentication.m */; };
-		11DA19121510EEA800483F4C /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 11DA19101510EE8D00483F4C /* libxml2.dylib */; };
 		11DA19151510EFC500483F4C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11DA19131510EF7900483F4C /* CoreData.framework */; };
 		11DA19171510EFCA00483F4C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11DA19161510EFCA00483F4C /* CoreLocation.framework */; };
-		11DA19191510F04100483F4C /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 11DA19181510F04100483F4C /* libresolv.dylib */; };
 		11DA191D1510F64900483F4C /* HCXmpp.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DA191C1510F64900483F4C /* HCXmpp.m */; };
+		11E663251511FFA200095274 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 11DA19181510F04100483F4C /* libresolv.dylib */; };
+		11E663261511FFA400095274 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 11DA19101510EE8D00483F4C /* libxml2.dylib */; };
+		11E663271511FFA600095274 /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11DA17FC1510EDA500483F4C /* libidn.a */; };
+		11E663281511FFA900095274 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1131A248150FA05C00A61449 /* libz.dylib */; };
+		11E663291511FFAA00095274 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1131A24E150FA0F200A61449 /* libicucore.dylib */; };
 		11F532CA15109D2300038043 /* HCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F532C915109D2300038043 /* HCMessage.m */; };
 /* End PBXBuildFile section */
 
@@ -452,19 +452,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11DA19191510F04100483F4C /* libresolv.dylib in Frameworks */,
 				11DA19171510EFCA00483F4C /* CoreLocation.framework in Frameworks */,
 				11DA19151510EFC500483F4C /* CoreData.framework in Frameworks */,
-				1131A250150FA10000A61449 /* libicucore.dylib in Frameworks */,
-				11DA19121510EEA800483F4C /* libxml2.dylib in Frameworks */,
+				11E663261511FFA400095274 /* libxml2.dylib in Frameworks */,
 				1131A253150FA12D00A61449 /* MobileCoreServices.framework in Frameworks */,
+				11E663251511FFA200095274 /* libresolv.dylib in Frameworks */,
 				1131A24D150FA08100A61449 /* SystemConfiguration.framework in Frameworks */,
-				1131A24A150FA07100A61449 /* libz.dylib in Frameworks */,
+				11E663281511FFA900095274 /* libz.dylib in Frameworks */,
 				1131A247150FA01500A61449 /* CFNetwork.framework in Frameworks */,
+				11E663291511FFAA00095274 /* libicucore.dylib in Frameworks */,
+				11E663271511FFA600095274 /* libidn.a in Frameworks */,
 				1131A18B150F9DDE00A61449 /* UIKit.framework in Frameworks */,
 				1131A18D150F9DDE00A61449 /* Foundation.framework in Frameworks */,
 				1131A18F150F9DDE00A61449 /* CoreGraphics.framework in Frameworks */,
-				11DA18001510EDA500483F4C /* libidn.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

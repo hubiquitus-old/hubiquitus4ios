@@ -23,6 +23,7 @@
 
 #import "HCClient.h"
 #import "transport/socketio/HCSocketIO.h"
+#import "transport/xmpp/HCXmpp.h"
 
 /**
  *  @todo add xmpp transport layer support
@@ -80,8 +81,12 @@
         self.delegate = aDelegate;
         _callback = nil;
         
-        //should be changed when bosh support added
-        transport = [[HCSocketIO alloc] initWithOptions:_options delegate:self];
+        if ([options.gateway.transport compare:@"xmpp"] == NSOrderedSame) {
+            transport = [[HCXmpp alloc] initWithOptions:_options delegate:self];
+        } else {
+            transport = [[HCSocketIO alloc] initWithOptions:_options delegate:self];
+        }
+        
     }
     
     return self;
@@ -108,8 +113,11 @@
         _callback = callback;
         self.delegate = nil;
         
-        //should be changed when bosh support added
-        transport = [[HCSocketIO alloc] initWithOptions:_options delegate:self];
+        if ([options.gateway.transport compare:@"xmpp"] == NSOrderedSame) {
+            transport = [[HCXmpp alloc] initWithOptions:_options delegate:self];
+        } else {
+            transport = [[HCSocketIO alloc] initWithOptions:_options delegate:self];
+        }
     }
     
     return self;
