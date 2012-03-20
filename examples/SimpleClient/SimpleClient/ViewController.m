@@ -95,28 +95,20 @@
 
 #pragma mark - HCCLient delegate
 
-- (void)notifyResultWithType:(NSString *)type channel:(NSString *)channel_identifier request_id:(NSString *)request_id {
+- (void)notifyResultWithType:(NSString *)type channel:(NSString *)channel_identifier msgid:(NSString *)msgid {
+    NSLog(@"Getting a result : Type %@, channel %@, msgid %@", type, channel_identifier, msgid);
 }
 
-- (void)notifyLinkStatusUpdate:(NSString *)status message:(NSString *)message {
-    NSLog(@"Link update : status %@, message %@ \n", status, message);
-    
-    //fill the satus text field
-    NSString * contentToAdd = @"";
-    
-    //NSDictionary * item_data = [NSJSONSerialization JSONObjectWithData:[itemString dataUsingEncoding:NSASCIIStringEncoding] options:0 error:nil];
-    
-    contentToAdd = [NSString stringWithFormat:@"%@ \n\n\n\n ********************************* \n\n\n\n %@",contentToAdd, message];
-    
-    items.text = [NSString stringWithFormat:@"%@\n%@", items.text, contentToAdd];
+- (void)notifyLinkStatusUpdate:(NSString *)status code:(NSNumber *)code {
+    NSLog(@"Link update : status %@, code %@ \n", status, code);
 }
 
-- (void)notifyItems:(NSArray *)entries FromChannel:(NSString *)channel_identifier {
-    
+- (void)notifyMessage:(HCMessage *)message FromChannel:(NSString *)channel_identifier {
+    NSLog(@"Getting a message : message %@, channel %@", message, channel_identifier);
 }
 
-- (void)notifyErrorOfType:(NSString *)type code:(HCErrors)code channel:(NSString *)channel_identifier request_id:(NSString *)id {
-    
+- (void)notifyErrorOfType:(NSString *)type code:(NSNumber*)code channel:(NSString *)channel_identifier msgid:(NSString *)msgid {
+    NSLog(@"Error notification : type %@, code %@, channel %@, msgid %@", type, code, channel_identifier, msgid);
 }
 
 - (IBAction)connect:(id)sender {
@@ -130,17 +122,22 @@
 - (IBAction)publish:(id)sender {
     NSDictionary * publishMsg = [NSDictionary dictionaryWithObjectsAndKeys:@"it works !", @"msg", nil];
     HCMessage * message = [[HCMessage alloc] initWithDictionnary:publishMsg];
-    NSString * request_id = [client publishToChannel:TEST_CHANNEL item:message];
-    NSLog(@"Trying to publish with request_id : %@", request_id);
+    NSString * msgid = [client publishToChannel:TEST_CHANNEL message:message];
+    NSLog(@"Trying to publish with msgid : %@", msgid);
 }
 
 - (IBAction)subscribe:(id)sender {
-    NSString * request_id = [client subscribeToChannel:TEST_CHANNEL];
-    NSLog(@"Trying to subscribe with request_id : %@", request_id);
+    NSString * msgid = [client subscribeToChannel:TEST_CHANNEL];
+    NSLog(@"Trying to subscribe with msgid : %@", msgid);
 }
 
 - (IBAction)unsubscribe:(id)sender {
-    NSString * request_id = [client unsubscribeFromChannel:TEST_CHANNEL];
-    NSLog(@"Trying to unsubscribe with request_id : %@", request_id);
+    NSString * msgid = [client unsubscribeFromChannel:TEST_CHANNEL];
+    NSLog(@"Trying to unsubscribe with msgid : %@", msgid);
+}
+
+- (IBAction)getAllMessages:(id)sender {
+    NSString * msgid = [client getMessagesFromChannel:TEST_CHANNEL2];
+    NSLog(@"Trying to get all messages from channel with msgid : %@", msgid);
 }
 @end

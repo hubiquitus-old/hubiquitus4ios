@@ -35,6 +35,8 @@
 @property (nonatomic) BOOL isXmppConnected;
 @property (nonatomic) BOOL isAuthenticated;
 
+@property (nonatomic, strong) NSMutableDictionary * msgidChannel; //used to link a msgid and channel request. Needed for did unsubscribe;
+
 - (void)setupStream;
 - (void)teardownStream;
 

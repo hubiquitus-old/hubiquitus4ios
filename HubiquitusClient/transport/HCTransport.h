@@ -56,10 +56,10 @@
 - (void)disconnect;
 
 /**
- * Requests a subscription to a node to the server
+ * Requests a subscription to a channel to the server
  * The answer of the server is treated by the delegate or block
  * @param channel_identifier - Name of the channel to subscribe
- * @return id - a request id that can be used to check if subscribe was successful (id returned through callback result)
+ * @return msgid - a message id that can be used to check if subscribe was successful (id returned through callback result)
  */
 - (NSString*)subscribeToChannel:(NSString*)channel_identifier;
 
@@ -67,7 +67,7 @@
  * Requests to unsubscribe from an node
  * The answer of the server is treated by the delegate or block
  * @param channel_identifier - Name of the channel to unsubscribe from
- * @return id - a request id that can be used to check if unsubscribe was successful (id returned through callback result)
+ * @return msgid - a message id that can be used to check if unsubscribe was successful (id returned through callback result)
  */
 - (NSString*)unsubscribeFromChannel:(NSString*)channel_identifier;
 
@@ -75,8 +75,15 @@
  * Requests to publish entries to a node
  * @param channel_identifier - channel to publish the items
  * @param item - An hubiquitus message
- * @return id - a request id that can be used to check if publish was successful (id returned through callback result)
+ * @return msgid - a message id that can be used to check if publish was successful (id returned through callback result)
  */
-- (NSString*)publishToChannel:(NSString*)channel_identifier item:(HCMessage*)item;
+- (NSString*)publishToChannel:(NSString*)channel_identifier message:(HCMessage*)message;
+
+/**
+ * Request to get messages stored in the channel history
+ * @param channel_identifier - channel were messages are stores
+ * @return msgid - a msgid that represents a unique identifier for the message sent
+ */
+- (NSString*)getMessagesFromChannel:(NSString*)channel_identifier;
 
 @end

@@ -18,6 +18,12 @@
  */
 
 typedef enum {
-    EConnectError,
-    UnknownError
+    NO_ERROR = 0,
+    ALREADY_SUBSCRIBED = 1,
+    GET_SUBS_FAILED = 2,
+    FAILED_ATTACH = 3,
+    CONNECTION_FAILED = 4, 
+    CONNECTION_TIMEOUT = 5, 
+    AUTH_FAILED = 6,
+    UNKNOWN_ERROR = 7
 } HCErrors;

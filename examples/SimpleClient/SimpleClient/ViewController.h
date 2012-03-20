@@ -33,5 +33,6 @@
 - (IBAction)publish:(id)sender;
 - (IBAction)subscribe:(id)sender;
 - (IBAction)unsubscribe:(id)sender;
+- (IBAction)getAllMessages:(id)sender;
 
 @end

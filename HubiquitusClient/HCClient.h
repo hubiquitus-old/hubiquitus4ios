@@ -26,10 +26,10 @@
 
 
 @protocol HCClientDelegate <NSObject>
-- (void)notifyLinkStatusUpdate:(NSString*)status message:(NSString*)message;
-- (void)notifyResultWithType:(NSString*)type channel:(NSString*)channel_identifier request_id:(NSString*)request_id;
-- (void)notifyItems:(NSArray*)entries FromChannel:(NSString*)channel_identifier;
-- (void)notifyErrorOfType:(NSString*)type code:(HCErrors)code channel:(NSString*)channel_identifier request_id:(NSString*)id;
+- (void)notifyLinkStatusUpdate:(NSString*)status code:(NSNumber*)code;
+- (void)notifyResultWithType:(NSString*)type channel:(NSString*)channel_identifier msgid:(NSString*)msgid;
+- (void)notifyMessage:(HCMessage*)message FromChannel:(NSString*)channel_identifier;
+- (void)notifyErrorOfType:(NSString*)type code:(NSNumber*)code channel:(NSString*)channel_identifier msgid:(NSString*)id;
 @end
 
 
@@ -41,17 +41,17 @@
 
 + (id)clientWithUsername:(NSString*)username password:(NSString*)password delegate:(id<HCClientDelegate>)delegate options:(HCOptions*)options;
 
-+ (id)clientWithUsername:(NSString *)username password:(NSString *)password callbackBlock:( void (^)(NSString * context, NSArray * data) )callback options:(HCOptions*)options;
++ (id)clientWithUsername:(NSString *)username password:(NSString *)password callbackBlock:( void (^)(NSString * context, NSDictionary * data) )callback options:(HCOptions*)options;
 
 - (id)initWithUsername:(NSString*)username password:(NSString*)password delegate:(id<HCClientDelegate>)delegate options:(HCOptions*)options;
 
-- (id)initWithUsername:(NSString *)username password:(NSString *)password callbackBlock:( void (^)(NSString * context, NSArray * data) )callback options:(HCOptions*)options;
+- (id)initWithUsername:(NSString *)username password:(NSString *)password callbackBlock:( void (^)(NSString * context, NSDictionary * data) )callback options:(HCOptions*)options;
 
 - (void)connect;
 - (void)disconnect;
 - (NSString*)subscribeToChannel:(NSString*)channel_identifier;
 - (NSString*)unsubscribeFromChannel:(NSString*)channel_identifier;
-- (NSString*)publishToChannel:(NSString*)channel_identifier item:(HCMessage*)item;
-
+- (NSString*)publishToChannel:(NSString*)channel_identifier message:(HCMessage*)message;
+- (NSString*)getMessagesFromChannel:(NSString*)channel_identifier;
 
 @end

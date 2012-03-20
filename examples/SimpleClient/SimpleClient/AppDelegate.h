@@ -20,6 +20,7 @@
 #import <UIKit/UIKit.h>
 
 #define TEST_CHANNEL @""
+#define TEST_CHANNEL2 @""
 #define TEST_USERNAME @""
 #define TEST_PASSWORD @""
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		110A3F281518F387007E0CEE /* XMPPPubSub+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 110A3F271518F387007E0CEE /* XMPPPubSub+Utils.m */; };
+		110A3F311518F9B0007E0CEE /* XMPPPubSub.m in Sources */ = {isa = PBXBuildFile; fileRef = 110A3F301518F9B0007E0CEE /* XMPPPubSub.m */; };
 		1131A18B150F9DDE00A61449 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1131A18A150F9DDE00A61449 /* UIKit.framework */; };
 		1131A18D150F9DDE00A61449 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1131A18C150F9DDE00A61449 /* Foundation.framework */; };
 		1131A18F150F9DDE00A61449 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1131A18E150F9DDE00A61449 /* CoreGraphics.framework */; };
@@ -117,7 +119,6 @@
 		11DA18F41510EDAE00483F4C /* XMPPvCardTempLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DA18811510EDAD00483F4C /* XMPPvCardTempLabel.m */; };
 		11DA18F51510EDAE00483F4C /* XMPPvCardTempModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DA18831510EDAD00483F4C /* XMPPvCardTempModule.m */; };
 		11DA18F61510EDAE00483F4C /* XMPPvCardTempTel.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DA18851510EDAD00483F4C /* XMPPvCardTempTel.m */; };
-		11DA18F71510EDAE00483F4C /* XMPPPubSub.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DA18881510EDAD00483F4C /* XMPPPubSub.m */; };
 		11DA18F81510EDAE00483F4C /* TURNSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DA188B1510EDAD00483F4C /* TURNSocket.m */; };
 		11DA18F91510EDAE00483F4C /* NSDate+XMPPDateTimeProfiles.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DA188E1510EDAD00483F4C /* NSDate+XMPPDateTimeProfiles.m */; };
 		11DA18FA1510EDAE00483F4C /* XMPPDateTimeProfiles.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DA18901510EDAD00483F4C /* XMPPDateTimeProfiles.m */; };
@@ -153,6 +154,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		110A3F261518F386007E0CEE /* XMPPPubSub+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "XMPPPubSub+Utils.h"; path = "xmpp/XMPPPubSub+Utils.h"; sourceTree = "<group>"; };
+		110A3F271518F387007E0CEE /* XMPPPubSub+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "XMPPPubSub+Utils.m"; path = "xmpp/XMPPPubSub+Utils.m"; sourceTree = "<group>"; };
+		110A3F2F1518F9B0007E0CEE /* XMPPPubSub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPPubSub.h; sourceTree = "<group>"; };
+		110A3F301518F9B0007E0CEE /* XMPPPubSub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPPubSub.m; sourceTree = "<group>"; };
 		1131A186150F9DDE00A61449 /* SimpleClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1131A18A150F9DDE00A61449 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1131A18C150F9DDE00A61449 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -388,8 +393,6 @@
 		11DA18831510EDAD00483F4C /* XMPPvCardTempModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPvCardTempModule.m; sourceTree = "<group>"; };
 		11DA18841510EDAD00483F4C /* XMPPvCardTempTel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPvCardTempTel.h; sourceTree = "<group>"; };
 		11DA18851510EDAD00483F4C /* XMPPvCardTempTel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPvCardTempTel.m; sourceTree = "<group>"; };
-		11DA18871510EDAD00483F4C /* XMPPPubSub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPPubSub.h; sourceTree = "<group>"; };
-		11DA18881510EDAD00483F4C /* XMPPPubSub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPPubSub.m; sourceTree = "<group>"; };
 		11DA188A1510EDAD00483F4C /* TURNSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TURNSocket.h; sourceTree = "<group>"; };
 		11DA188B1510EDAD00483F4C /* TURNSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TURNSocket.m; sourceTree = "<group>"; };
 		11DA188D1510EDAD00483F4C /* NSDate+XMPPDateTimeProfiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+XMPPDateTimeProfiles.h"; sourceTree = "<group>"; };
@@ -1077,8 +1080,8 @@
 		11DA18861510EDAD00483F4C /* XEP-0060 */ = {
 			isa = PBXGroup;
 			children = (
-				11DA18871510EDAD00483F4C /* XMPPPubSub.h */,
-				11DA18881510EDAD00483F4C /* XMPPPubSub.m */,
+				110A3F2F1518F9B0007E0CEE /* XMPPPubSub.h */,
+				110A3F301518F9B0007E0CEE /* XMPPPubSub.m */,
 			);
 			path = "XEP-0060";
 			sourceTree = "<group>";
@@ -1206,6 +1209,8 @@
 				11DA191B1510F64900483F4C /* HCXmpp.h */,
 				11DA191C1510F64900483F4C /* HCXmpp.m */,
 				11DA191E1510F6DD00483F4C /* XMPPFramework.h */,
+				110A3F261518F386007E0CEE /* XMPPPubSub+Utils.h */,
+				110A3F271518F387007E0CEE /* XMPPPubSub+Utils.m */,
 			);
 			name = xmpp;
 			sourceTree = "<group>";
@@ -1375,7 +1380,6 @@
 				11DA18F41510EDAE00483F4C /* XMPPvCardTempLabel.m in Sources */,
 				11DA18F51510EDAE00483F4C /* XMPPvCardTempModule.m in Sources */,
 				11DA18F61510EDAE00483F4C /* XMPPvCardTempTel.m in Sources */,
-				11DA18F71510EDAE00483F4C /* XMPPPubSub.m in Sources */,
 				11DA18F81510EDAE00483F4C /* TURNSocket.m in Sources */,
 				11DA18F91510EDAE00483F4C /* NSDate+XMPPDateTimeProfiles.m in Sources */,
 				11DA18FA1510EDAE00483F4C /* XMPPDateTimeProfiles.m in Sources */,
@@ -1400,6 +1404,8 @@
 				11DA190E1510EDAE00483F4C /* XMPPSRVResolver.m in Sources */,
 				11DA190F1510EDAE00483F4C /* XMPPXFacebookPlatformAuthentication.m in Sources */,
 				11DA191D1510F64900483F4C /* HCXmpp.m in Sources */,
+				110A3F281518F387007E0CEE /* XMPPPubSub+Utils.m in Sources */,
+				110A3F311518F9B0007E0CEE /* XMPPPubSub.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

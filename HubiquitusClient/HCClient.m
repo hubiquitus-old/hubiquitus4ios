@@ -24,16 +24,20 @@
 #import "HCClient.h"
 #import "transport/socketio/HCSocketIO.h"
 #import "transport/xmpp/HCXmpp.h"
+#import "SBJson.h"
 
 /**
  *  @todo add xmpp transport layer support
  */
 
 @interface HCClient () {
-    void (^_callback)(NSString * context, NSArray * data);
+    void (^_callback)(NSString * context, NSDictionary * data);
     HCOptions * _options;
 }
 @property (strong, nonatomic) id<HCTransport> transport;
+
+- (HCMessage*)hmessageFromJSonString:(NSString*)jsonMessage;
+
 @end
 
 @implementation HCClient
@@ -54,7 +58,7 @@
  * Convenient constructor 
  * see initWithUsername:password:callbackBlock:options:
  */
-+ (id)clientWithUsername:(NSString *)username password:(NSString *)password callbackBlock:(void (^)(NSString * context, NSArray * data))callback options:(HCOptions*)options {
++ (id)clientWithUsername:(NSString *)username password:(NSString *)password callbackBlock:(void (^)(NSString * context, NSDictionary * data))callback options:(HCOptions*)options {
     
     return [[HCClient alloc] initWithUsername:username password:password callbackBlock:callback options:options];
 }
@@ -99,7 +103,7 @@
  * @param options - client options. For more information see HCOptions
  * @param callbackBlock - Block called on message from the server. For more informations on messages received by the callback visit : https://github.com/hubiquitus/hubiquitusjs/wiki/Callback
  */
-- (id)initWithUsername:(NSString *)username password:(NSString *)password callbackBlock:(void (^)(NSString * context, NSArray * data))callback options:(HCOptions*)options {
+- (id)initWithUsername:(NSString *)username password:(NSString *)password callbackBlock:(void (^)(NSString * context, NSDictionary * data))callback options:(HCOptions*)options {
     if (self) {
         if (!options) {
             _options = [HCOptions optionsWithDict:nil];
@@ -139,33 +143,42 @@
 }
 
 /**
- * Requests a subscription to a node to the server
+ * Requests a subscription to a channel to the server
  * The answer of the server is treated by the delegate or block
  * @param channel_identifier - Name of the channel to subscribe
- * @return id - a request id that can be used to check if subscribe was successful (id returned through callback result)
+ * @return msgid - a message id that can be used to check if subscribe was successful (id returned through callback result)
  */
 - (NSString*)subscribeToChannel:(NSString*)channel_identifier {
     return [transport subscribeToChannel:channel_identifier];
 }
 
 /**
- * Requests to unsubscribe from an node
+ * Requests to unsubscribe from an channel
  * The answer of the server is treated by the delegate or block
  * @param channel_identifier - Name of the channel to unsubscribe from
- * @return id - a request id that can be used to check if unsubscribe was successful (id returned through callback result)
+ * @return msgid - a message id that can be used to check if unsubscribe was successful (id returned through callback result)
  */
 - (NSString*)unsubscribeFromChannel:(NSString*)channel_identifier {
     return [transport unsubscribeFromChannel:channel_identifier];
 }
 
 /**
- * Requests to publish entries to a node
+ * Requests to publish entries to a channel
  * @param channel_identifer - channel to publish the items
  * @param item - An hubiquitus message to publish
- * @return id - a request id that can be used to check if publish was successful (id returned through callback result)
+ * @return msgid - a message id that can be used to check if publish was successful (id returned through callback result)
  */
-- (NSString*)publishToChannel:(NSString*)channel_identifier item:(HCMessage*)item {
-    return [transport publishToChannel:channel_identifier item:item];
+- (NSString*)publishToChannel:(NSString*)channel_identifier message:(HCMessage*)message {
+    return [transport publishToChannel:channel_identifier message:message];
+}
+
+/**
+ * Request to get messages stored in the channel history
+ * @param channel_identifier - channel were messages are stores
+ * @return msgid - a msgid that represents a unique identifier for the message sent
+ */
+- (NSString *)getMessagesFromChannel:(NSString *)channel_identifier {
+    return [transport getMessagesFromChannel:channel_identifier];
 }
 
 #pragma mark - internal - transport delegate 
@@ -177,38 +190,68 @@
  */
 - (void)notifyIncomingMessage:(NSDictionary*)data context:(NSString *)context {
     if (_callback != nil) {
-        _callback(context, [data objectForKey:@"data"]);
+        
+        
+        NSDictionary * newData = nil;
+        
+        //make some pre-transformations
+        if ([context isEqualToString:@"message"]) {
+            NSString * channel = [data objectForKey:@"channel"];
+            NSString * messageAsStr = [data objectForKey:@"message"];
+            HCMessage * message = [self hmessageFromJSonString:messageAsStr];
+            
+            newData = [NSDictionary dictionaryWithObjectsAndKeys:channel, @"channel",
+                                                                 message, @"message", nil];
+        } else {
+            newData = data;
+        }
+        
+        
+        _callback(context, newData);
     }
     
     //call the right delegate from the context
     if (delegate != nil) {
-        if ([context compare:@"link"] == NSOrderedSame && [delegate respondsToSelector:@selector(notifyLinkStatusUpdate:message:)]) {
+        if ([context isEqualToString:@"link"] && [delegate respondsToSelector:@selector(notifyLinkStatusUpdate:code:)]) {
             
             NSString * status = [data objectForKey:@"status"];
-            NSString * message = [data objectForKey:@"message"];
-            [delegate notifyLinkStatusUpdate:status message:message];
+            NSNumber * code = [data objectForKey:@"code"];
+            [delegate notifyLinkStatusUpdate:status code:code];
             
-        }/* else if ([context compare:@"result"] == NSOrderedSame && [delegate respondsToSelector:@selector(notifyResultWithType:node:request_id:)]) {
+        } else if ([context isEqualToString:@"result"] && [delegate respondsToSelector:@selector(notifyResultWithType:channel:msgid:)]) {
             
             NSString * type = [data objectForKey:@"type"];
-            NSString * node = [data objectForKey:@"node"];
-            NSString * request_id = [data objectForKey:@"id"];
-            [delegate notifyResultWithType:type node:node request_id:request_id];
+            NSString * channel = [data objectForKey:@"channel"];
+            NSString * msgid = [data objectForKey:@"msgid"];
+            [delegate notifyResultWithType:type channel:channel msgid:msgid];
+    
+        } else if ([context isEqualToString:@"message"] && [delegate respondsToSelector:@selector(notifyMessage:FromChannel:)]) {
+            NSString * channel = [data objectForKey:@"channel"];
+            NSString * messageAsStr = [data objectForKey:@"message"];
             
-        } else if ([context compare:@"items"] == NSOrderedSame && [delegate respondsToSelector:@selector(notifyItems:FromNode:)]) {
+            HCMessage * message = [self hmessageFromJSonString:messageAsStr];
+        
+            [delegate notifyMessage:message FromChannel:channel];
             
-            NSArray * items = [data objectForKey:@"entries"];
-            NSString * node = [data objectForKey:@"node"];
-            [delegate notifyItems:items FromNode:node];
-            
-        } else if ([context compare:@"error"] == NSOrderedSame && [delegate respondsToSelector:@selector(notifyErrorOfType:code:node:request_id:)]) {
+        } else if ([context isEqualToString:@"error"] && [delegate respondsToSelector:@selector(notifyErrorOfType:code:channel:msgid:)]) {
             
             NSString * type = [data objectForKey:@"type"];
             NSNumber * code = [data objectForKey:@"code"];
-            NSString * node = [data objectForKey:@"node"];
-            NSString * request_id = [data objectForKey:@"id"];
-            [delegate notifyErrorOfType:type code:[code intValue] node:node request_id:request_id];
-        }*/
+            NSString * channel = [data objectForKey:@"channel"];
+            NSString * msgid = [data objectForKey:@"msgid"];
+            [delegate notifyErrorOfType:type code:code channel:channel msgid:msgid];
+        }
     }
 }
+
+#pragma mark - internal - internal methods
+- (HCMessage *)hmessageFromJSonString:(NSString *)jsonMessage {
+    SBJsonParser * jsonParser = [[SBJsonParser alloc] init];
+    
+    NSDictionary * messageAsDict = [jsonParser objectWithString:jsonMessage];
+    HCMessage * message = [[HCMessage alloc] initWithDictionnary:messageAsDict];
+    
+    return message;
+}
+
 @end

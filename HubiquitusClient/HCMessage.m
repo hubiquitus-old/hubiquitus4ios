@@ -49,4 +49,7 @@
     return data;
 }
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"HCMessage : %@", data];
+}
 @end
