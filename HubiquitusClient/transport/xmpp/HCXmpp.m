@@ -20,7 +20,7 @@
 #import "HCXmpp.h"
 #import "HCErrors.h"
 #import "SBJson.h"
-#import "XMPPPubSub+Utils.h"
+#import "HCXmpp+XMPPUtils.h"
 
 /**
  * @internal
@@ -34,6 +34,8 @@
 @synthesize isXmppConnected, isAuthenticated;
 @synthesize service;
 @synthesize msgidChannel;
+@synthesize resultBlocks;
+@synthesize subscriptionMsgId;
 
 /**
  * init the xmpp stream, add the extensions we need
@@ -113,6 +115,8 @@
         self.isAuthenticated = NO;
         
         self.msgidChannel = [NSMutableDictionary dictionary];
+        self.resultBlocks = [NSMutableDictionary dictionary];
+        self.subscriptionMsgId = [NSMutableDictionary dictionary];
         
         [self setupStream];
     }
@@ -189,7 +193,38 @@
  * see HCTransport protocol
  */
 - (NSString*)subscribeToChannel:(NSString*)channel_identifier {
-    return [xmppPubSub subscribeToNode:channel_identifier withOptions:nil];
+    NSString * msgid = [xmppPubSub getSubscriptionsForNode:channel_identifier];
+    
+    //add a block on this function return
+    void(^block)(XMPPIQ * iq) = ^(XMPPIQ * iq) {        
+        BOOL hasSubscriptions = [self resultIqHasSubscriptions:iq];
+        if (hasSubscriptions) {
+            //set error default value
+            NSString * type = @"subscribe";
+            NSNumber * code = [NSNumber numberWithInt:ALREADY_SUBSCRIBED];
+            NSString * channel = channel_identifier;
+            NSString * errorMsgid = msgid;
+            
+            //notify delegate of error
+            NSDictionary * errorDict = [NSDictionary dictionaryWithObjectsAndKeys:type, @"type",
+                                        code, @"code",
+                                        channel, @"channel",
+                                        errorMsgid, @"msgid",
+                                        nil];
+            [delegate notifyIncomingMessage:errorDict context:@"error"];
+        } else {
+            NSString * subMsgid = [xmppPubSub subscribeToNode:channel_identifier withOptions:nil];
+            [subscriptionMsgId  setObject:subMsgid forKey:msgid];
+        }
+    };
+    
+    //add the block to the result callback
+    if (block && msgid) {
+        [self.resultBlocks setObject:block forKey:msgid];
+    }
+
+    
+    return msgid;
 }
 
 /**
@@ -197,10 +232,9 @@
  */
 - (NSString*)unsubscribeFromChannel:(NSString*)channel_identifier {
     NSString * msgid = [xmppPubSub unsubscribeFromNode:channel_identifier];
-    [msgidChannel setObject:channel_identifier forKey:msgid];
-    
-    /**** TMP TO REMOVE FOR CLEARING SUBSCRIPTIONS ******/
-    //[xmppPubSub removeAllSubscriptionsToNode:channel_identifier];
+    if (msgid && channel_identifier) {
+        [msgidChannel setObject:channel_identifier forKey:msgid];
+    }
     
     return msgid;
 }
@@ -321,11 +355,18 @@
 
 - (void)xmppStream:(XMPPStream *)sender didReceiveError:(id)error
 {
+    //set error default value
+    NSString * type = @"";
+    NSNumber * code = [NSNumber numberWithInt:UNKNOWN_ERROR];
+    NSString * channel = @"";
+    NSString * msgid = @"";
+    
+    
     //notify delegate of error
-    NSDictionary * errorDict = [NSDictionary dictionaryWithObjectsAndKeys:@"", @"type",
-                                [NSNumber numberWithInt:UNKNOWN_ERROR], @"code",
-                                @"", @"channel",
-                                @"", @"msgid",
+    NSDictionary * errorDict = [NSDictionary dictionaryWithObjectsAndKeys:type, @"type",
+                                code, @"code",
+                                channel, @"channel",
+                                msgid, @"msgid",
                                 nil];
     [delegate notifyIncomingMessage:errorDict context:@"error"];
     
@@ -368,14 +409,21 @@
     NSXMLElement * subscriptionElem = [pubsubElem elementForName:@"subscription"];
     
     NSString * channel = [subscriptionElem attributeStringValueForName:@"node"];
-    NSString * msgid = [subscriptionElem attributeStringValueForName:@"subid"];
+    NSString * msgidSubscription = [subscriptionElem attributeStringValueForName:@"subid"];
+    
+    NSString * msgid = nil;
     
     if (!channel) {
         channel = @"";
     }
     
+    //link subscription id with the getAllsubscription msgid
+    if (msgidSubscription) {
+        msgid = [subscriptionMsgId objectForKey:msgidSubscription];
+    }
+            
     if (!msgid) {
-        channel = @"";
+        msgid = @"";
     }
     
     NSDictionary * resDict = [NSDictionary dictionaryWithObjectsAndKeys:@"subscribe", @"type",
@@ -435,11 +483,41 @@
 }
 
 - (void)xmppPubSub:(XMPPPubSub *)sender didReceiveError:(XMPPIQ *)iq {
+    //set error default value
+    NSString * type = @"";
+    NSNumber * code = [NSNumber numberWithInt:UNKNOWN_ERROR];
+    NSString * channel = @"";
+    NSString * msgid = @"";
+    
+    //deal with errors
+
+    msgid = [iq attributeStringValueForName:@"id"];
+    NSXMLElement * pubsub = [iq elementForName:@"pubsub"];
+    NSXMLElement * errorElem = [iq elementForName:@"error"];
+    
+    if (pubsub) {
+        NSXMLElement * unsubcribe = [pubsub elementForName:@"unsubscribe"];
+        
+        if (unsubcribe) {
+            type = @"unsubscribe";
+            channel = [unsubcribe attributeStringValueForName:@"node"];
+            
+            if (errorElem) {
+                NSXMLElement * notSubscribed = [errorElem elementForName:@"not-subscribed"];
+                if (notSubscribed) {
+                    code = [NSNumber numberWithInt:NOT_SUBSCRIBED];
+                }
+            }
+        }
+    }
+    
+    
+    
     //notify delegate of error
-    NSDictionary * errorDict = [NSDictionary dictionaryWithObjectsAndKeys:@"", @"type",
-                                [NSNumber numberWithInt:UNKNOWN_ERROR], @"code",
-                                @"", @"channel",
-                                @"", @"msgid",
+    NSDictionary * errorDict = [NSDictionary dictionaryWithObjectsAndKeys:type, @"type",
+                                code, @"code",
+                                channel, @"channel",
+                                msgid, @"msgid",
                                 nil];
     [delegate notifyIncomingMessage:errorDict context:@"error"];
     
@@ -447,28 +525,39 @@
 }
 
 - (void)xmppPubSub:(XMPPPubSub *)sender didReceiveResult:(XMPPIQ *)iq {
-    //in case we receive items after calling get messages
-    NSXMLElement * pubsubElem = [iq elementForName:@"pubsub"];
-    if (pubsubElem) {
-        NSXMLElement * itemsElem = [pubsubElem elementForName:@"items"];
+    //first check if there is a callback in relation to this msgid
+    NSString * msgid = [iq attributeStringValueForName:@"id"];
+    void (^block)(XMPPIQ * iq);
+    if (msgid && resultBlocks.count > 0 && (block = [resultBlocks objectForKey:msgid])) {
+        block(iq);
+        [resultBlocks removeObjectForKey:msgid];
+    } else {
         
-        if (itemsElem) {
-            NSString * channel = [itemsElem attributeStringValueForName:@"node"];
+        //in case we receive items after calling get messages
+        NSXMLElement * pubsubElem = [iq elementForName:@"pubsub"];
+        if (pubsubElem) {
+            NSXMLElement * itemsElem = [pubsubElem elementForName:@"items"];
             
-            if (!channel) {
-                channel = nil;
-            }
-            
-            NSArray * items = [itemsElem elementsForName:@"item"];
-            
-            for (NSXMLElement * item in items) {
-                NSString * content = [item stringValue];
-                NSDictionary * resDict = [NSDictionary dictionaryWithObjectsAndKeys:channel, @"channel",
-                                          content, @"message", nil];
-                [delegate notifyIncomingMessage:resDict context:@"message"];
+            if (itemsElem) {
+                NSString * channel = [itemsElem attributeStringValueForName:@"node"];
+                
+                if (!channel) {
+                    channel = nil;
+                }
+                
+                NSArray * items = [itemsElem elementsForName:@"item"];
+                
+                for (NSXMLElement * item in items) {
+                    NSString * content = [item stringValue];
+                    NSDictionary * resDict = [NSDictionary dictionaryWithObjectsAndKeys:channel, @"channel",
+                                              content, @"message", nil];
+                    [delegate notifyIncomingMessage:resDict context:@"message"];
+                }
             }
         }
+        
     }
+    
     //NSLog(@"HCXmpp pub sub did receive result : %@ \n", iq);
 }
 

@@ -17,14 +17,15 @@
  *     along with Hubiquitus.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-typedef enum {
-    NO_ERROR = 0,
-    ALREADY_SUBSCRIBED = 1,
-    GET_SUBS_FAILED = 2,
-    FAILED_ATTACH = 3,
-    CONNECTION_FAILED = 4, 
-    CONNECTION_TIMEOUT = 5, 
-    AUTH_FAILED = 6,
-    UNKNOWN_ERROR = 7,
-    NOT_SUBSCRIBED = 8
-} HCErrors;
+#import "XMPPPubSub.h"
+#import "NSXMLElement+XMPP.h"
+#import "DDXML.h"
+#import "HCXmpp.h"
+
+@interface HCXmpp (XMPPUtils)
+
+- (void)removeAllSubscriptionsToNode:(NSString*)node withPubsub:(XMPPPubSub *)pubsub;
+- (NSArray*)subscriptionsFromResultIQ:(XMPPIQ*)result;
+- (BOOL)resultIqHasSubscriptions:(XMPPIQ*)result;
+
+@end

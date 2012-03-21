@@ -36,6 +36,8 @@
 @property (nonatomic) BOOL isAuthenticated;
 
 @property (nonatomic, strong) NSMutableDictionary * msgidChannel; //used to link a msgid and channel request. Needed for did unsubscribe;
+@property (nonatomic, strong) NSMutableDictionary * resultBlocks; //used to add a block call on a result event. key = msgid -> content = void(^)(XMPPIQ * iq)
+@property (nonatomic, strong) NSMutableDictionary * subscriptionMsgId; //used to link a publish msgid, to the publish msgid returned by the publish function. This is because two times calls, first getsubscriptions and check if already subscribed, the if not subscribed, subscribe
 
 - (void)setupStream;
 - (void)teardownStream;
