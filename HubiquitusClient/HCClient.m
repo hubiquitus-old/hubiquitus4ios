@@ -23,7 +23,7 @@
 
 #import "HCClient.h"
 #import "transport/socketio/HCSocketIO.h"
-#import "transport/xmpp/HCXmpp.h"
+#import "transport/xmpp/HCXmppTransport.h"
 #import "SBJson.h"
 
 /**

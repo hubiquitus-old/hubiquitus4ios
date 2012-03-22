@@ -23,11 +23,11 @@
 
 @implementation HCXmpp (XMPPUtils)
 
-- (void)removeAllSubscriptionsToNode:(NSString *)node withPubsub:(XMPPPubSub *)pubsub {
-    NSString * msgid = [pubsub getSubscriptionsForNode:node];
+- (void)removeAllSubscriptionsToNode:(NSString *)node {
+    NSString * msgid = [self.xmppPubSub getSubscriptionsForNode:node];
     
     //add a block on this function return
-    void(^block)(XMPPIQ * iq) = ^(XMPPIQ * iq) {        
+    void(^block)(XMPPIQ * iq, NSDictionary * data) = ^(XMPPIQ * iq, NSDictionary * data) {        
         NSXMLElement * pubsubElem = [iq elementForName:@"pubsub"];
         if (pubsubElem) {
             NSXMLElement * subscriptions = [pubsubElem elementForName:@"subscriptions"];
@@ -38,15 +38,14 @@
                     NSString * subid = [subscription attributeStringValueForName:@"subid"];
                     if (subid) {
                         NSLog(@"removing with subid : %@", subid);
-                        [pubsub unsubscribeFromNode:node withSubid:subid];
+                        [self.xmppPubSub unsubscribeFromNode:node withSubid:subid];
                     }
                 }
             }
         }
     };
-    if (block && msgid) {
-        [self.resultBlocks setObject:block forKey:msgid];
-    }
+    
+    [self addResultBlockForMsgid:msgid withData:nil block:block];
 }
 
 - (NSArray*)subscriptionsFromResultIQ:(XMPPIQ*)result {

@@ -22,8 +22,7 @@
 
 @implementation ViewController
 @synthesize username;
-@synthesize statuses;
-@synthesize items;
+@synthesize channel;
 @synthesize options, client;
 
 - (void)didReceiveMemoryWarning
@@ -43,21 +42,21 @@
     options = [HCOptions optionsWithPlist:optionPath];
     client = [HCClient clientWithUsername:TEST_USERNAME password:TEST_PASSWORD delegate:self options:options];
     
+    self.channel.text = TEST_CHANNEL;
+    
     //callback version
     /*client = [HubiquitusClient clientWithUsername:@"" password:@"" options:options callbackBlock:^(NSDictionary * content) {
         NSLog(@"notification : %@", content);
     }];*/
     
     username.text = options.username;
-    statuses.text = @"";
-    items.text = @"";
+    
 }
 
 - (void)viewDidUnload
 {
     [self setUsername:nil];
-    [self setStatuses:nil];
-    [self setItems:nil];
+    [self setChannel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -111,6 +110,8 @@
     NSLog(@"Error notification : type %@, code %@, channel %@, msgid %@", type, code, channel_identifier, msgid);
 }
 
+#pragma mark - buttons actions
+
 - (IBAction)connect:(id)sender {
     [client connect];
 }
@@ -122,22 +123,27 @@
 - (IBAction)publish:(id)sender {
     NSDictionary * publishMsg = [NSDictionary dictionaryWithObjectsAndKeys:@"it works !", @"msg", nil];
     HCMessage * message = [[HCMessage alloc] initWithDictionnary:publishMsg];
-    NSString * msgid = [client publishToChannel:TEST_CHANNEL message:message];
+    NSString * msgid = [client publishToChannel:self.channel.text message:message];
     NSLog(@"Trying to publish with msgid : %@", msgid);
 }
 
 - (IBAction)subscribe:(id)sender {
-    NSString * msgid = [client subscribeToChannel:TEST_CHANNEL];
+    NSString * msgid = [client subscribeToChannel:self.channel.text];
     NSLog(@"Trying to subscribe with msgid : %@", msgid);
 }
 
 - (IBAction)unsubscribe:(id)sender {
-    NSString * msgid = [client unsubscribeFromChannel:TEST_CHANNEL];
+    NSString * msgid = [client unsubscribeFromChannel:self.channel.text];
     NSLog(@"Trying to unsubscribe with msgid : %@", msgid);
 }
 
 - (IBAction)getAllMessages:(id)sender {
-    NSString * msgid = [client getMessagesFromChannel:TEST_CHANNEL2];
+    NSString * msgid = [client getMessagesFromChannel:self.channel.text];
     NSLog(@"Trying to get all messages from channel with msgid : %@", msgid);
 }
+
+- (IBAction)closeKeyboard:(id)sender {
+    [self.channel resignFirstResponder];
+}
+
 @end

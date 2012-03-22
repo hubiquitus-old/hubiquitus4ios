@@ -22,24 +22,42 @@
 #import "XMPPFramework.h"
 #import "XMPPPubSub.h"
 
-@interface HCXmpp : NSObject<HCTransport, XMPPStreamDelegate, XMPPPubSubDelegate>
+@interface HCXmpp : NSObject {
+    @private
+    NSMutableDictionary * resultBlocks; //used to add a block call on a result event. key = msgid -> content = void(^)(XMPPIQ * iq, NSDictionnary * data)
+}
+
+//@property (nonatomic, strong) NSMutableDictionary * resultBlocks; 
 
 @property (nonatomic, strong) id<HCTransportDelegate> delegate;
 @property (nonatomic, strong) HCOptions * options;
 
+//xmppframework components
 @property (nonatomic, strong) XMPPStream * xmppStream;
 @property (nonatomic, strong) XMPPReconnect * xmppReconnect;
 @property (nonatomic, strong) XMPPPubSub * xmppPubSub;
 
-@property (nonatomic, strong) XMPPJID * service;
+//xmpp infos
+@property (nonatomic, strong) XMPPJID * service; //should be something like pubsub.myservice.com
 @property (nonatomic) BOOL isXmppConnected;
 @property (nonatomic) BOOL isAuthenticated;
 
-@property (nonatomic, strong) NSMutableDictionary * msgidChannel; //used to link a msgid and channel request. Needed for did unsubscribe;
-@property (nonatomic, strong) NSMutableDictionary * resultBlocks; //used to add a block call on a result event. key = msgid -> content = void(^)(XMPPIQ * iq)
-@property (nonatomic, strong) NSMutableDictionary * subscriptionMsgId; //used to link a publish msgid, to the publish msgid returned by the publish function. This is because two times calls, first getsubscriptions and check if already subscribed, the if not subscribed, subscribe
+//Xmpp methods
+- (void)setupStream; //link xmpp extensions and setup
+- (void)teardownStream; //unlink xmpp extensions
+- (void)goOnline; //send presence to xmpp
+- (void)goOffline; //send offline to xmpp
 
-- (void)setupStream;
-- (void)teardownStream;
+//result block 
+- (void)addResultBlockForMsgid:(NSString*)msgid withData:(NSDictionary*)data block:(void (^)(XMPPIQ * iq, NSDictionary * data))block; 
+- (void)removeResultBlockForMsgid:(NSString*)msgid;
+- (BOOL)callBlockForMsgid:(NSString*)msgid withIq:(XMPPIQ*)iq; //call the block associated with the msgid if there is one
+
+//helper function to call delegate notifications
+- (void)notifyDelegateUnsubscribeWithMsgid:(NSString*)msgid fromChannel:(NSString*)channel;
+- (void)notifyDelegateSubscribeWithMsgid:(NSString*)msgid toChannel:(NSString*)channel;
+- (void)notifyDelegateErrorWithMsgid:(NSString*)msgid fromChannel:(NSString*)channel withCode:(NSNumber*)code ofType:(NSString*)type;
+- (void)notifyDelegateMessagefromChannel:(NSString*)channel content:(NSString *)content;
+- (void)notifyDelegatePublishWithMsgid:(NSString*)msgid toChannel:(NSString*)channel;
 
 @end

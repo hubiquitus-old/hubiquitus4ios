@@ -17,15 +17,8 @@
  *     along with Hubiquitus.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "XMPPPubSub.h"
-#import "NSXMLElement+XMPP.h"
-#import "DDXML.h"
 #import "HCXmpp.h"
-
-@interface HCXmpp (XMPPUtils)
-
-- (void)removeAllSubscriptionsToNode:(NSString*)node;
-- (NSArray*)subscriptionsFromResultIQ:(XMPPIQ*)result;
-- (BOOL)resultIqHasSubscriptions:(XMPPIQ*)result;
-
-@end
+#import "HCXmpp+XMPPUtils.h"
+#import "HCXmpp+XMPPStreamDelegate.h"
+#import "HCXmpp+XMPPPubSubDelegate.h"
+#import "HCXmpp+HCTransportProtocol.m"

@@ -25,8 +25,7 @@
 @property (strong, nonatomic) HCOptions * options;
 @property (strong, nonatomic) HCClient * client;
 @property (strong, nonatomic) IBOutlet UILabel *username;
-@property (weak, nonatomic) IBOutlet UITextView *statuses;
-@property (weak, nonatomic) IBOutlet UITextView *items;
+@property (weak, nonatomic) IBOutlet UITextField *channel;
 
 - (IBAction)connect:(id)sender;
 - (IBAction)disconnect:(id)sender;

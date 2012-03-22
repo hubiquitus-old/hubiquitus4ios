@@ -11,11 +11,11 @@
 		<key>xmpp</key>
 		<dict>
 			<key>allowSelfSignedCertificates</key>
-			<string>YES</string>
+			<string>NO</string>
 			<key>allowSSLHostnameMismatch</key>
-			<true/>
-			<key>runInBackground</key>
 			<false/>
+			<key>runInBackground</key>
+			<true/>
 		</dict>
 		<key>socketio</key>
 		<dict>
