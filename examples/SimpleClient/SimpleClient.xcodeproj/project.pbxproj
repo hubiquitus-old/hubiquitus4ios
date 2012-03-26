@@ -32,9 +32,7 @@
 		1131A223150F9E9500A61449 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 1131A1D6150F9E9500A61449 /* ASIInputStream.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1131A224150F9E9500A61449 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1131A1D8150F9E9500A61449 /* ASINetworkQueue.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1131A226150F9E9500A61449 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1131A1DE150F9E9500A61449 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		1131A22A150F9E9500A61449 /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1131A1E5150F9E9500A61449 /* AsyncSocket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		1131A22B150F9E9500A61449 /* AsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1131A1E7150F9E9500A61449 /* AsyncUdpSocket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		1131A22E150F9E9500A61449 /* WebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1131A1EB150F9E9500A61449 /* WebSocket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1131A22E150F9E9500A61449 /* WebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1131A1EB150F9E9500A61449 /* WebSocket.m */; };
 		1131A230150F9E9500A61449 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 1131A1F0150F9E9500A61449 /* NSObject+SBJson.m */; };
 		1131A231150F9E9500A61449 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1131A1F3150F9E9500A61449 /* SBJsonParser.m */; };
 		1131A232150F9E9500A61449 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1131A1F5150F9E9500A61449 /* SBJsonStreamParser.m */; };
@@ -48,7 +46,7 @@
 		1131A23A150F9E9500A61449 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 1131A205150F9E9500A61449 /* SBJsonUTF8Stream.m */; };
 		1131A23B150F9E9500A61449 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1131A207150F9E9500A61449 /* SBJsonWriter.m */; };
 		1131A242150F9E9500A61449 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 1131A210150F9E9500A61449 /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		1131A245150F9E9500A61449 /* SocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 1131A215150F9E9500A61449 /* SocketIO.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1131A245150F9E9500A61449 /* SocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 1131A215150F9E9500A61449 /* SocketIO.m */; };
 		1131A247150FA01500A61449 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1131A246150FA01500A61449 /* CFNetwork.framework */; };
 		1131A24D150FA08100A61449 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1131A24B150FA07600A61449 /* SystemConfiguration.framework */; };
 		1131A253150FA12D00A61449 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1131A251150FA12600A61449 /* MobileCoreServices.framework */; };
@@ -57,7 +55,6 @@
 		1139CF01151B617500C90BD3 /* HCXmpp+HCTransportProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 1139CF00151B617500C90BD3 /* HCXmpp+HCTransportProtocol.m */; };
 		1139CF05151B857E00C90BD3 /* XMPPPubSub.m in Sources */ = {isa = PBXBuildFile; fileRef = 1139CF04151B857E00C90BD3 /* XMPPPubSub.m */; };
 		11452E061510D39400B94B34 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11452E041510D39400B94B34 /* ViewController_iPhone.xib */; };
-		11DA17C81510ED8900483F4C /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DA17C61510ED8900483F4C /* GCDAsyncSocket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		11DA17DD1510ED9000483F4C /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DA17CD1510ED9000483F4C /* DDAbstractDatabaseLogger.m */; };
 		11DA17DE1510ED9000483F4C /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DA17CF1510ED9000483F4C /* DDASLLogger.m */; };
 		11DA17DF1510ED9000483F4C /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DA17D11510ED9000483F4C /* DDFileLogger.m */; };
@@ -73,6 +70,7 @@
 		11DA19151510EFC500483F4C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11DA19131510EF7900483F4C /* CoreData.framework */; };
 		11DA19171510EFCA00483F4C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11DA19161510EFCA00483F4C /* CoreLocation.framework */; };
 		11DA191D1510F64900483F4C /* HCXmpp.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DA191C1510F64900483F4C /* HCXmpp.m */; };
+		11DD77511520AF0400D94A3B /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DD77501520AF0400D94A3B /* GCDAsyncSocket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		11E663251511FFA200095274 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 11DA19181510F04100483F4C /* libresolv.dylib */; };
 		11E663261511FFA400095274 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 11DA19101510EE8D00483F4C /* libxml2.dylib */; };
 		11E663271511FFA600095274 /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11DA17FC1510EDA500483F4C /* libidn.a */; };
@@ -155,6 +153,8 @@
 		11E73FE7151A19B800C494F0 /* XMPPSRVResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E73F98151A19B800C494F0 /* XMPPSRVResolver.m */; };
 		11E73FE8151A19B800C494F0 /* XMPPXFacebookPlatformAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E73F9A151A19B800C494F0 /* XMPPXFacebookPlatformAuthentication.m */; };
 		11E73FEB151A399900C494F0 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 11E73FE9151A398C00C494F0 /* libz.dylib */; };
+		11F42C16151CBE7400B0E707 /* HCReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F42C15151CBE7400B0E707 /* HCReachability.m */; };
+		11F42C1B151CBEAC00B0E707 /* HCReconnect.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F42C1A151CBEAC00B0E707 /* HCReconnect.m */; };
 		11F532CA15109D2300038043 /* HCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F532C915109D2300038043 /* HCMessage.m */; };
 /* End PBXBuildFile section */
 
@@ -211,10 +211,6 @@
 		1131A1D9150F9E9500A61449 /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIProgressDelegate.h; sourceTree = "<group>"; };
 		1131A1DD150F9E9500A61449 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		1131A1DE150F9E9500A61449 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		1131A1E4150F9E9500A61449 /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncSocket.h; sourceTree = "<group>"; };
-		1131A1E5150F9E9500A61449 /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSocket.m; sourceTree = "<group>"; };
-		1131A1E6150F9E9500A61449 /* AsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncUdpSocket.h; sourceTree = "<group>"; };
-		1131A1E7150F9E9500A61449 /* AsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncUdpSocket.m; sourceTree = "<group>"; };
 		1131A1EA150F9E9500A61449 /* WebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebSocket.h; sourceTree = "<group>"; };
 		1131A1EB150F9E9500A61449 /* WebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebSocket.m; sourceTree = "<group>"; };
 		1131A1EF150F9E9500A61449 /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
@@ -261,8 +257,6 @@
 		1139CF04151B857E00C90BD3 /* XMPPPubSub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMPPPubSub.m; path = "../../../../hubiquitus/hubiquitusios/HubiquitusClient/vendors/XMPPFramework/Extensions/XEP-0060/XMPPPubSub.m"; sourceTree = "<group>"; };
 		11452DFF1510AC4600B94B34 /* HCErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCErrors.h; sourceTree = "<group>"; };
 		11452E051510D39400B94B34 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
-		11DA17C51510ED8900483F4C /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
-		11DA17C61510ED8900483F4C /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		11DA17CC1510ED9000483F4C /* DDAbstractDatabaseLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDAbstractDatabaseLogger.h; sourceTree = "<group>"; };
 		11DA17CD1510ED9000483F4C /* DDAbstractDatabaseLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDAbstractDatabaseLogger.m; sourceTree = "<group>"; };
 		11DA17CE1510ED9000483F4C /* DDASLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDASLLogger.h; sourceTree = "<group>"; };
@@ -298,6 +292,8 @@
 		11DA191B1510F64900483F4C /* HCXmpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HCXmpp.h; path = xmpp/HCXmpp.h; sourceTree = "<group>"; };
 		11DA191C1510F64900483F4C /* HCXmpp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HCXmpp.m; path = xmpp/HCXmpp.m; sourceTree = "<group>"; };
 		11DA191E1510F6DD00483F4C /* XMPPFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMPPFramework.h; path = xmpp/XMPPFramework.h; sourceTree = "<group>"; };
+		11DD774F1520AF0400D94A3B /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
+		11DD77501520AF0400D94A3B /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		11E73ED8151A19B800C494F0 /* NSData+XMPP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+XMPP.h"; sourceTree = "<group>"; };
 		11E73ED9151A19B800C494F0 /* NSData+XMPP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+XMPP.m"; sourceTree = "<group>"; };
 		11E73EDA151A19B800C494F0 /* NSNumber+XMPP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+XMPP.h"; sourceTree = "<group>"; };
@@ -462,6 +458,10 @@
 		11E73F99151A19B800C494F0 /* XMPPXFacebookPlatformAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPXFacebookPlatformAuthentication.h; sourceTree = "<group>"; };
 		11E73F9A151A19B800C494F0 /* XMPPXFacebookPlatformAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPXFacebookPlatformAuthentication.m; sourceTree = "<group>"; };
 		11E73FE9151A398C00C494F0 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		11F42C14151CBE7400B0E707 /* HCReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCReachability.h; sourceTree = "<group>"; };
+		11F42C15151CBE7400B0E707 /* HCReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCReachability.m; sourceTree = "<group>"; };
+		11F42C19151CBEAC00B0E707 /* HCReconnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCReconnect.h; sourceTree = "<group>"; };
+		11F42C1A151CBEAC00B0E707 /* HCReconnect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCReconnect.m; sourceTree = "<group>"; };
 		11F532C815109D2300038043 /* HCMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMessage.h; sourceTree = "<group>"; };
 		11F532C915109D2300038043 /* HCMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMessage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -598,8 +598,12 @@
 		1131A1BD150F9E9500A61449 /* socketio */ = {
 			isa = PBXGroup;
 			children = (
+				11F42C14151CBE7400B0E707 /* HCReachability.h */,
+				11F42C15151CBE7400B0E707 /* HCReachability.m */,
 				1131A1BE150F9E9500A61449 /* HCSocketIO.h */,
 				1131A1BF150F9E9500A61449 /* HCSocketIO.m */,
+				11F42C19151CBEAC00B0E707 /* HCReconnect.h */,
+				11F42C1A151CBEAC00B0E707 /* HCReconnect.m */,
 			);
 			path = socketio;
 			sourceTree = "<group>";
@@ -686,22 +690,10 @@
 		1131A1E1150F9E9500A61449 /* cocoa-websocket */ = {
 			isa = PBXGroup;
 			children = (
-				1131A1E2150F9E9500A61449 /* AsyncSocket */,
 				1131A1EA150F9E9500A61449 /* WebSocket.h */,
 				1131A1EB150F9E9500A61449 /* WebSocket.m */,
 			);
 			path = "cocoa-websocket";
-			sourceTree = "<group>";
-		};
-		1131A1E2150F9E9500A61449 /* AsyncSocket */ = {
-			isa = PBXGroup;
-			children = (
-				1131A1E4150F9E9500A61449 /* AsyncSocket.h */,
-				1131A1E5150F9E9500A61449 /* AsyncSocket.m */,
-				1131A1E6150F9E9500A61449 /* AsyncUdpSocket.h */,
-				1131A1E7150F9E9500A61449 /* AsyncUdpSocket.m */,
-			);
-			path = AsyncSocket;
 			sourceTree = "<group>";
 		};
 		1131A1EC150F9E9500A61449 /* json-framework */ = {
@@ -765,8 +757,8 @@
 		11DA17C31510ED8900483F4C /* CocoaAsyncSocket */ = {
 			isa = PBXGroup;
 			children = (
-				11DA17C51510ED8900483F4C /* GCDAsyncSocket.h */,
-				11DA17C61510ED8900483F4C /* GCDAsyncSocket.m */,
+				11DD774F1520AF0400D94A3B /* GCDAsyncSocket.h */,
+				11DD77501520AF0400D94A3B /* GCDAsyncSocket.m */,
 			);
 			path = CocoaAsyncSocket;
 			sourceTree = "<group>";
@@ -1345,8 +1337,6 @@
 				1131A223150F9E9500A61449 /* ASIInputStream.m in Sources */,
 				1131A224150F9E9500A61449 /* ASINetworkQueue.m in Sources */,
 				1131A226150F9E9500A61449 /* Reachability.m in Sources */,
-				1131A22A150F9E9500A61449 /* AsyncSocket.m in Sources */,
-				1131A22B150F9E9500A61449 /* AsyncUdpSocket.m in Sources */,
 				1131A22E150F9E9500A61449 /* WebSocket.m in Sources */,
 				1131A230150F9E9500A61449 /* NSObject+SBJson.m in Sources */,
 				1131A231150F9E9500A61449 /* SBJsonParser.m in Sources */,
@@ -1363,7 +1353,6 @@
 				1131A242150F9E9500A61449 /* RegexKitLite.m in Sources */,
 				1131A245150F9E9500A61449 /* SocketIO.m in Sources */,
 				11F532CA15109D2300038043 /* HCMessage.m in Sources */,
-				11DA17C81510ED8900483F4C /* GCDAsyncSocket.m in Sources */,
 				11DA17DD1510ED9000483F4C /* DDAbstractDatabaseLogger.m in Sources */,
 				11DA17DE1510ED9000483F4C /* DDASLLogger.m in Sources */,
 				11DA17DF1510ED9000483F4C /* DDFileLogger.m in Sources */,
@@ -1458,6 +1447,9 @@
 				1139CEFE151B5DA200C90BD3 /* HCXmpp+XMPPStreamDelegate.m in Sources */,
 				1139CF01151B617500C90BD3 /* HCXmpp+HCTransportProtocol.m in Sources */,
 				1139CF05151B857E00C90BD3 /* XMPPPubSub.m in Sources */,
+				11F42C16151CBE7400B0E707 /* HCReachability.m in Sources */,
+				11F42C1B151CBEAC00B0E707 /* HCReconnect.m in Sources */,
+				11DD77511520AF0400D94A3B /* GCDAsyncSocket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

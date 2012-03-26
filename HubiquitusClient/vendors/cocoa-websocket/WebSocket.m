@@ -8,9 +8,14 @@
 //
 //  Tobias Rodäbel implemented support for draft-hixie-thewebsocketprotocol-76.
 //
+//  Updated by Nadim for Novedia Group - Hubiquitus project[hubiquitus.com]
+//
+
+#if ! __has_feature(objc_arc)
+#warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
+#endif
 
 #import "WebSocket.h"
-#import "AsyncSocket.h"
 
 #import <CommonCrypto/CommonDigest.h>
 
@@ -25,10 +30,16 @@ enum {
     WebSocketTagMessage = 1
 };
 
-typedef struct SecKey {
-    uint32_t num;
-    NSString *key;
-} SecKey;
+//using objective-c interface, because c struct are not allowed in arc
+@interface SecKey : NSObject
+@property (nonatomic) uint32_t num;
+@property (nonatomic, strong) NSString * key;
+@end
+
+@implementation SecKey
+@synthesize num, key;
+
+@end
 
 #define HANDSHAKE_REQUEST @"GET %@ HTTP/1.1\r\n" \
                            "Upgrade: WebSocket\r\n" \
@@ -68,27 +79,26 @@ typedef struct SecKey {
 
 @implementation WebSocket
 
-@synthesize delegate, url, origin, state, expectedChallenge, runLoopModes, secure;
+@synthesize delegate, url, origin, state, expectedChallenge, secure;
 
 #pragma mark Initializers
 
 + (id)webSocketWithURLString:(NSString*)urlString delegate:(id<WebSocketDelegate>)aDelegate {
-    return [[[WebSocket alloc] initWithURLString:urlString delegate:aDelegate] autorelease];
+    return [[WebSocket alloc] initWithURLString:urlString delegate:aDelegate];
 }
 
 - (id)initWithURLString:(NSString *)urlString delegate:(id<WebSocketDelegate>)aDelegate {
     self = [super init];
     if (self) {
         self.delegate = aDelegate;
-        url = [[NSURL URLWithString:urlString] retain];
+        url = [NSURL URLWithString:urlString];
         if (![url.scheme isEqualToString:@"ws"] && ![url.scheme isEqualToString:@"wss"]) {
           [NSException raise:WebSocketException format:@"Unsupported protocol %@", url.scheme];
         }
         if ([url.scheme isEqualToString:@"wss"]) {
           secure = YES;
         }
-        socket = [[AsyncSocket alloc] initWithDelegate:self];
-        self.runLoopModes = [NSArray arrayWithObjects:NSRunLoopCommonModes, nil];
+        socket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
     }
     return self;
 }
@@ -137,9 +147,9 @@ typedef struct SecKey {
     [socket readDataToData:[NSData dataWithBytes:"\xFF" length:1] withTimeout:-1 tag:WebSocketTagMessage];
 }
 
-- (struct SecKey)_makeKey {
+- (SecKey *)_makeKey {
 
-    struct SecKey seckey;
+    SecKey * seckey = [[SecKey alloc] init];
     uint32_t spaces;
     uint32_t max, num, prod;
     NSInteger keylen;
@@ -161,7 +171,7 @@ typedef struct SecKey {
         else
             letter = (arc4random() % (126 - 58 + 1)) + 58;
 
-        [key insertString:[[[NSString alloc] initWithCharacters:&letter length:1] autorelease] atIndex:(arc4random() % (keylen-1))];
+        [key insertString:[[NSString alloc] initWithCharacters:&letter length:1] atIndex:(arc4random() % (keylen-1))];
     }
 
     keylen = [key length];
@@ -205,14 +215,16 @@ typedef struct SecKey {
         if (secure) {
           NSDictionary *settings = nil;
           if (WEBSOCKET_DEV_MODE) {
+            //allow self signed certificates and use highest possible security
             settings = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES],
-                        (NSString *)kCFStreamSSLAllowsAnyRoot, nil];
+                        (NSString *)kCFStreamSSLAllowsAnyRoot,
+                        (NSString *)kCFStreamSocketSecurityLevelNegotiatedSSL, (NSString *)kCFStreamSSLLevel,
+                        nil];
           }
           [socket startTLS:settings];
         }
 
         [socket connectToHost:url.host onPort:[url.port intValue] withTimeout:5 error:nil];
-        if (runLoopModes) [socket setRunLoopModes:runLoopModes];
     }
 }
 
@@ -231,58 +243,35 @@ typedef struct SecKey {
 
 #pragma mark AsyncSocket delegate methods
 
-- (BOOL)onSocketWillConnect:(AsyncSocket *)sock {
-  if (secure && WEBSOCKET_DEV_MODE) {
-    // Connecting to a secure server
-    NSMutableDictionary * settings = [NSMutableDictionary dictionaryWithCapacity:2];
-
-    // Use the highest possible security
-    [settings setObject:(NSString *)kCFStreamSocketSecurityLevelNegotiatedSSL
-                 forKey:(NSString *)kCFStreamSSLLevel];
-
-    // Allow self-signed certificates
-    [settings setObject:[NSNumber numberWithBool:YES]
-                 forKey:(NSString *)kCFStreamSSLAllowsAnyRoot];
-
-    CFReadStreamSetProperty([sock getCFReadStream],
-                            kCFStreamPropertySSLSettings, (CFDictionaryRef)settings);
-    CFWriteStreamSetProperty([sock getCFWriteStream],
-                             kCFStreamPropertySSLSettings, (CFDictionaryRef)settings);
-  }
-
-  return YES;
-}
-
-- (void)onSocketDidSecure:(AsyncSocket *)sock {
+- (void)socketDidSecure:(GCDAsyncSocket *)sock {
   [self _dispatchSecured];
 }
 
-- (void)onSocketDidDisconnect:(AsyncSocket *)sock {
-    BOOL wasConnected = ([self state] == WebSocketStateConnected);
-    [self setState:WebSocketStateDisconnected];
-    
-    // Only dispatch the websocket closed message if it previously opened
-    // (completed the handshake). If it never opened, this is probably a 
-    // connection timeout error.
-    if (wasConnected) [self _dispatchClosed];
-}
-
-- (void)onSocket:(AsyncSocket *)sock willDisconnectWithError:(NSError *)err {
-    if ([self state] == WebSocketStateConnecting) {
-        [self _dispatchFailure:[self _makeError:WebSocketErrorConnectionFailed underlyingError:err]];
+- (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err {
+    if (err) {
+        if ([self state] == WebSocketStateConnecting) {
+            [self _dispatchFailure:[self _makeError:WebSocketErrorConnectionFailed underlyingError:err]];
+        } else {
+            [self _dispatchFailure:err];
+        }
     } else {
-        [self _dispatchFailure:err];
+        BOOL wasConnected = ([self state] == WebSocketStateConnected);
+        [self setState:WebSocketStateDisconnected];
+        
+        // Only dispatch the websocket closed message if it previously opened
+        // (completed the handshake). If it never opened, this is probably a 
+        // connection timeout error.
+        if (wasConnected) [self _dispatchClosed];
     }
 }
 
-- (void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port {
-
+- (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port {
     NSString *requestOrigin = (self.origin) ? self.origin : [NSString stringWithFormat:@"http://%@", url.host];
 
     NSString *requestPath = (url.query) ? [NSString stringWithFormat:@"%@?%@", url.path, url.query] : url.path;
 
-    SecKey seckey1 = [self _makeKey];
-    SecKey seckey2 = [self _makeKey];
+    SecKey * seckey1 = [self _makeKey];
+    SecKey * seckey2 = [self _makeKey];
 
     NSString *key1 = seckey1.key;
     NSString *key2 = seckey2.key;
@@ -319,30 +308,29 @@ typedef struct SecKey {
     [socket writeData:request withTimeout:-1 tag:WebSocketTagHandshake];
 }
 
-- (void)onSocket:(AsyncSocket *)sock didWriteDataWithTag:(long)tag {
+- (void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag {
     switch (tag) {
         case WebSocketTagHandshake:
             [sock readDataToData:self.expectedChallenge withTimeout:5 tag:WebSocketTagHandshake];
             break;
-
+            
         case WebSocketTagMessage:
             [self _dispatchMessageSent];
             break;
-
+            
         default:
             break;
     }
 }
 
-- (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {
-
+- (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {    
     if (tag == WebSocketTagHandshake) {
-
+        
         NSString *upgrade;
         NSString *connection;
         NSData *body;
         UInt32 statusCode = 0;
-
+        
         CFHTTPMessageRef message = CFHTTPMessageCreateEmpty(kCFAllocatorDefault, FALSE);
         
         if (!message || !CFHTTPMessageAppendBytes(message, [data bytes], [data length])) {
@@ -350,22 +338,22 @@ typedef struct SecKey {
             if (message) CFRelease(message);
             return;
         }
-
+        
         if (CFHTTPMessageIsHeaderComplete(message)) {
-            upgrade = [(NSString *) CFHTTPMessageCopyHeaderFieldValue(message, CFSTR("Upgrade")) autorelease];
-            connection = [(NSString *) CFHTTPMessageCopyHeaderFieldValue(message, CFSTR("Connection")) autorelease];
+            upgrade = (__bridge_transfer NSString *) CFHTTPMessageCopyHeaderFieldValue(message, CFSTR("Upgrade"));
+            connection = (__bridge_transfer NSString *) CFHTTPMessageCopyHeaderFieldValue(message, CFSTR("Connection"));
             statusCode = (UInt32)CFHTTPMessageGetResponseStatusCode(message);
         }
-
+        
         if (statusCode == 101 && [upgrade isEqualToString:@"WebSocket"] && [connection isEqualToString:@"Upgrade"]) {
-            body = [(NSData *)CFHTTPMessageCopyBody(message) autorelease];
+            body = (__bridge_transfer NSData *)CFHTTPMessageCopyBody(message);
             CFRelease(message);
-
+            
             if (![body isEqualToData:self.expectedChallenge]) {
                 [self _dispatchFailure:[self _makeError:WebSocketErrorHandshakeFailed underlyingError:nil]];
                 return;
             }
-
+            
             [self setState:WebSocketStateConnected];
             [self _dispatchOpened];
             [self _readNextMessage];
@@ -373,17 +361,17 @@ typedef struct SecKey {
             CFRelease(message);
             [self _dispatchFailure:[self _makeError:WebSocketErrorHandshakeFailed underlyingError:nil]];
         }
-
+        
     } else if (tag == WebSocketTagMessage) {
-
+        
         char firstByte = 0xFF;
-
+        
         [data getBytes:&firstByte length:1];
-
+        
         if (firstByte != 0x00) return; // Discard message
-
-        NSString *message = [[[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(1, [data length]-2)] encoding:NSUTF8StringEncoding] autorelease];
-
+        
+        NSString *message = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(1, [data length]-2)] encoding:NSUTF8StringEncoding];
+        
         [self _dispatchMessageReceived:message];
         [self _readNextMessage];
     }
@@ -394,11 +382,9 @@ typedef struct SecKey {
 - (void)dealloc {
     socket.delegate = nil;
     [socket disconnect];
-    [socket release];
-    [expectedChallenge release];
-    [runLoopModes release];
-    [url release];
-    [super dealloc];
+    socket = nil;
+    expectedChallenge = nil;
+    url = nil;
 }
 
 @end

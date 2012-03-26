@@ -8,10 +8,13 @@
 //
 //  Tobias Rodäbel implemented support for draft-hixie-thewebsocketprotocol-76.
 //
+//  Updated by Nadim for Novedia Group - Hubiquitus project[hubiquitus.com]
+//
 
 #import <Foundation/Foundation.h>
+#import "GCDAsyncSocket.h"
 
-@class AsyncSocket;
+@class GCDAsyncSocket;
 @class WebSocket;
 
 @protocol WebSocketDelegate<NSObject>
@@ -30,24 +33,22 @@ typedef enum {
     WebSocketStateConnected,
 } WebSocketState;
 
-@interface WebSocket : NSObject {
+@interface WebSocket : NSObject<GCDAsyncSocketDelegate> {
     id<WebSocketDelegate> delegate;
     NSURL *url;
-    AsyncSocket *socket;
+    GCDAsyncSocket *socket;
     WebSocketState state;
     BOOL secure;
     NSString *origin;
     NSData *expectedChallenge;
-    NSArray* runLoopModes;
 }
 
-@property(nonatomic,assign) id<WebSocketDelegate> delegate;
+@property(nonatomic, strong) id<WebSocketDelegate> delegate;
 @property(nonatomic,readonly) NSURL *url;
-@property(nonatomic,retain) NSString *origin;
+@property(nonatomic, strong) NSString *origin;
 @property(nonatomic,readonly) WebSocketState state;
 @property(nonatomic,readonly) BOOL secure;
-@property(nonatomic,retain) NSData *expectedChallenge;
-@property(nonatomic,retain) NSArray *runLoopModes;
+@property(nonatomic,strong) NSData *expectedChallenge;
 
 + (id)webSocketWithURLString:(NSString *)urlString delegate:(id<WebSocketDelegate>)delegate;
 - (id)initWithURLString:(NSString *)urlString delegate:(id<WebSocketDelegate>)delegate;

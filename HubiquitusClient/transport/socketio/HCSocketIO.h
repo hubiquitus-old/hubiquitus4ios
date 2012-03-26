@@ -20,13 +20,32 @@
 #import <Foundation/Foundation.h>
 #import "HCTransport.h"
 #import "SocketIO.h"
+#import "HCReconnect.h"
 
-@interface HCSocketIO : NSObject<HCTransport, SocketIODelegate>
+@interface HCSocketIO : NSObject<HCTransport, SocketIODelegate, HCReconnectDelegate>
 
 @property (nonatomic, strong) id<HCTransportDelegate> delegate;
 @property (nonatomic, strong) HCOptions * options;
 @property (nonatomic, strong) SocketIO * socketio;
+@property (nonatomic) BOOL connectedToGateway;
+@property (nonatomic) BOOL connectedToXmpp;
+@property (nonatomic) BOOL autoreconnect;
+@property (nonatomic, strong) NSString * userid;
+@property (nonatomic) int rid;
+@property (nonatomic, strong) NSString * sid;
+@property (nonatomic, strong) HCReconnect * reconnectPlugin;
 
 - (BOOL)establishLink;
+- (NSString*)generateMsgid;
+
+- (void)processEvent:(NSString*)eventName withArg:(NSDictionary*)arg;
+- (void)processLinkEventWithArg:(NSDictionary *)arg;
+- (void)processResultEventWithArg:(NSDictionary*)arg;
+- (void)processMessageEventWithArg:(NSDictionary*)arg;
+- (void)processErrorEventWithArg:(NSDictionary*)arg;
+- (void)processAttrsEventWithArg:(NSDictionary*)arg;
+
+- (void)connectToXmpp;
+- (BOOL)attach;
 
 @end
