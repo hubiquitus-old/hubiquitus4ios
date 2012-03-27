@@ -65,7 +65,6 @@
         
         // Try to reconnect when it fires
         dispatch_source_set_event_handler(_timer, ^{
-            NSLog(@"timer called");
             [self tryReconnect];
         });
         
@@ -109,10 +108,8 @@
 }
 
 - (void)stopTimer {
-    NSLog(@"Call to stopTime with _timerRunning status : %d", _timerRunning);
     @synchronized(self) {
         if (_timerRunning) {
-            NSLog(@"stopping timer");
             dispatch_suspend(_timer);
             _timerRunning = NO;
         }
@@ -121,10 +118,8 @@
 
 - (void)fireAutoReconnect {
     // now that our timer is all set to go, start it
-    NSLog(@"call to fireAutoReconnect, timerRunning status : %d", _timerRunning);
     @synchronized(self) {
         if (!_timerRunning) {
-            NSLog(@"restart timer");
             _timerRunning = YES;
             dispatch_resume(_timer);
         }
@@ -141,10 +136,8 @@
 #pragma mark - private functions
 
 - (void)tryReconnect {
-    NSLog(@"Trying a reconnect");
     //check first if we should reconnect and of course if we have reachbility
     if ([reachability currentReachabilityStatus] != NotReachable && delegate && [delegate respondsToSelector:@selector(shouldReconnect)]) {
-        NSLog(@"Trying reachability, delegate and selector ok");
         if ([delegate shouldReconnect] && [delegate respondsToSelector:@selector(connected)]) {
             if ([delegate connected]) {
                 //stop time if connected

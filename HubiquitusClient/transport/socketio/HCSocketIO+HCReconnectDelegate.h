@@ -17,33 +17,11 @@
  *     along with Hubiquitus.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <Foundation/Foundation.h>
-#import "HCTransport.h"
-#import "SocketIO.h"
+
+#import "HCSocketIO.h"
 #import "HCReconnect.h"
 
-@interface HCSocketIO : NSObject
-
-@property (nonatomic, strong) id<HCTransportDelegate> delegate;
-@property (nonatomic, strong) HCOptions * options;
-@property (nonatomic, strong) SocketIO * socketio;
-@property (nonatomic) BOOL connectedToGateway;
-@property (nonatomic) BOOL connectedToXmpp;
-@property (nonatomic) BOOL autoreconnect;
-@property (nonatomic, strong) NSString * userid;
-@property (nonatomic) int rid;
-@property (nonatomic, strong) NSString * sid;
-@property (nonatomic, strong) HCReconnect * reconnectPlugin;
-
-- (void)establishLink;
-- (NSString*)generateMsgid;
-
-
-
-- (void)connectToXmpp;
-- (BOOL)attach;
-
-
+@interface HCSocketIO (HCReconnectDelegate)  <HCReconnectDelegate>
 
 
 @end

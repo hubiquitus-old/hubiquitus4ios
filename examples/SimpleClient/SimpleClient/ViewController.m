@@ -42,13 +42,14 @@
     options = [HCOptions optionsWithPlist:optionPath];
     client = [HCClient clientWithUsername:TEST_USERNAME password:TEST_PASSWORD delegate:self options:options];
     
-    self.channel.text = TEST_CHANNEL;
-    
     //callback version
-    /*client = [HubiquitusClient clientWithUsername:@"" password:@"" options:options callbackBlock:^(NSDictionary * content) {
-        NSLog(@"notification : %@", content);
-    }];*/
-    
+    /*
+    client = [HCClient clientWithUsername:TEST_USERNAME password:TEST_PASSWORD callbackBlock:^(NSString * context, NSDictionary * data) {
+        NSLog(@"Event : context %@,    data %@", context, data);
+    } options:options];
+    */
+     
+    self.channel.text = TEST_CHANNEL;
     username.text = options.username;
     
 }

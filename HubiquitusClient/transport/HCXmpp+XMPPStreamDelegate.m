@@ -24,7 +24,7 @@
 
 - (void)xmppStream:(XMPPStream *)sender socketDidConnect:(GCDAsyncSocket *)socket 
 {
-    NSLog(@"XMPP Transport : socket did connect \n");
+    //NSLog(@"XMPP Transport : socket did connect \n");
 }
 
 - (void)xmppStream:(XMPPStream *)sender willSecureWithSettings:(NSMutableDictionary *)settings
@@ -45,12 +45,12 @@
 
 - (void)xmppStreamDidSecure:(XMPPStream *)sender
 {
-    NSLog(@"XMPP Transport : did secure \n");
+    //NSLog(@"XMPP Transport : did secure \n");
 }
 
 - (void)xmppStreamDidConnect:(XMPPStream *)sender
 {
-	NSLog(@"XMPP Transport : stream did connect \n");
+	//NSLog(@"XMPP Transport : stream did connect \n");
 	
     self.isXmppConnected = YES;
 	
@@ -75,7 +75,7 @@
 
 - (void)xmppStreamDidAuthenticate:(XMPPStream *)sender
 {
-    NSLog(@"XMPP Transport : did authenticate \n");
+    //NSLog(@"XMPP Transport : did authenticate \n");
     self.isAuthenticated = YES;
     
     //broadcast presence 
@@ -132,7 +132,7 @@
     if (error) {
         NSLog(@"XMPP Transport : did disconnect with error : %@ \n", error);
     } else {
-        NSLog(@"XMPP Transport : did disconnect \n");
+        //NSLog(@"XMPP Transport : did disconnect \n");
     }
     
     //notify delegate connection

@@ -55,6 +55,10 @@
 		1139CF01151B617500C90BD3 /* HCXmpp+HCTransportProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 1139CF00151B617500C90BD3 /* HCXmpp+HCTransportProtocol.m */; };
 		1139CF05151B857E00C90BD3 /* XMPPPubSub.m in Sources */ = {isa = PBXBuildFile; fileRef = 1139CF04151B857E00C90BD3 /* XMPPPubSub.m */; };
 		11452E061510D39400B94B34 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11452E041510D39400B94B34 /* ViewController_iPhone.xib */; };
+		11D4C5581521B63B0000533B /* HCSocketIO+HCTransportProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D4C5571521B63B0000533B /* HCSocketIO+HCTransportProtocol.m */; };
+		11D4C55D1521B69B0000533B /* HCSocketIO+SocketIODelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D4C55C1521B69B0000533B /* HCSocketIO+SocketIODelegate.m */; };
+		11D4C5601521B6AE0000533B /* HCSocketIO+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D4C55F1521B6AD0000533B /* HCSocketIO+Helper.m */; };
+		11D4C5631521B6D80000533B /* HCSocketIO+HCReconnectDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D4C5621521B6D80000533B /* HCSocketIO+HCReconnectDelegate.m */; };
 		11DA17DD1510ED9000483F4C /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DA17CD1510ED9000483F4C /* DDAbstractDatabaseLogger.m */; };
 		11DA17DE1510ED9000483F4C /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DA17CF1510ED9000483F4C /* DDASLLogger.m */; };
 		11DA17DF1510ED9000483F4C /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DA17D11510ED9000483F4C /* DDFileLogger.m */; };
@@ -257,6 +261,15 @@
 		1139CF04151B857E00C90BD3 /* XMPPPubSub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMPPPubSub.m; path = "../../../../hubiquitus/hubiquitusios/HubiquitusClient/vendors/XMPPFramework/Extensions/XEP-0060/XMPPPubSub.m"; sourceTree = "<group>"; };
 		11452DFF1510AC4600B94B34 /* HCErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCErrors.h; sourceTree = "<group>"; };
 		11452E051510D39400B94B34 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
+		11D4C5561521B63B0000533B /* HCSocketIO+HCTransportProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HCSocketIO+HCTransportProtocol.h"; sourceTree = "<group>"; };
+		11D4C5571521B63B0000533B /* HCSocketIO+HCTransportProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HCSocketIO+HCTransportProtocol.m"; sourceTree = "<group>"; };
+		11D4C55A1521B65E0000533B /* HCSocketIOTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCSocketIOTransport.h; sourceTree = "<group>"; };
+		11D4C55B1521B69B0000533B /* HCSocketIO+SocketIODelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HCSocketIO+SocketIODelegate.h"; sourceTree = "<group>"; };
+		11D4C55C1521B69B0000533B /* HCSocketIO+SocketIODelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HCSocketIO+SocketIODelegate.m"; sourceTree = "<group>"; };
+		11D4C55E1521B6AD0000533B /* HCSocketIO+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HCSocketIO+Helper.h"; sourceTree = "<group>"; };
+		11D4C55F1521B6AD0000533B /* HCSocketIO+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HCSocketIO+Helper.m"; sourceTree = "<group>"; };
+		11D4C5611521B6D70000533B /* HCSocketIO+HCReconnectDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HCSocketIO+HCReconnectDelegate.h"; sourceTree = "<group>"; };
+		11D4C5621521B6D80000533B /* HCSocketIO+HCReconnectDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HCSocketIO+HCReconnectDelegate.m"; sourceTree = "<group>"; };
 		11DA17CC1510ED9000483F4C /* DDAbstractDatabaseLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDAbstractDatabaseLogger.h; sourceTree = "<group>"; };
 		11DA17CD1510ED9000483F4C /* DDAbstractDatabaseLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDAbstractDatabaseLogger.m; sourceTree = "<group>"; };
 		11DA17CE1510ED9000483F4C /* DDASLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDASLLogger.h; sourceTree = "<group>"; };
@@ -604,6 +617,15 @@
 				1131A1BF150F9E9500A61449 /* HCSocketIO.m */,
 				11F42C19151CBEAC00B0E707 /* HCReconnect.h */,
 				11F42C1A151CBEAC00B0E707 /* HCReconnect.m */,
+				11D4C5561521B63B0000533B /* HCSocketIO+HCTransportProtocol.h */,
+				11D4C5571521B63B0000533B /* HCSocketIO+HCTransportProtocol.m */,
+				11D4C55A1521B65E0000533B /* HCSocketIOTransport.h */,
+				11D4C55B1521B69B0000533B /* HCSocketIO+SocketIODelegate.h */,
+				11D4C55C1521B69B0000533B /* HCSocketIO+SocketIODelegate.m */,
+				11D4C55E1521B6AD0000533B /* HCSocketIO+Helper.h */,
+				11D4C55F1521B6AD0000533B /* HCSocketIO+Helper.m */,
+				11D4C5611521B6D70000533B /* HCSocketIO+HCReconnectDelegate.h */,
+				11D4C5621521B6D80000533B /* HCSocketIO+HCReconnectDelegate.m */,
 			);
 			path = socketio;
 			sourceTree = "<group>";
@@ -1450,6 +1472,10 @@
 				11F42C16151CBE7400B0E707 /* HCReachability.m in Sources */,
 				11F42C1B151CBEAC00B0E707 /* HCReconnect.m in Sources */,
 				11DD77511520AF0400D94A3B /* GCDAsyncSocket.m in Sources */,
+				11D4C5581521B63B0000533B /* HCSocketIO+HCTransportProtocol.m in Sources */,
+				11D4C55D1521B69B0000533B /* HCSocketIO+SocketIODelegate.m in Sources */,
+				11D4C5601521B6AE0000533B /* HCSocketIO+Helper.m in Sources */,
+				11D4C5631521B6D80000533B /* HCSocketIO+HCReconnectDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

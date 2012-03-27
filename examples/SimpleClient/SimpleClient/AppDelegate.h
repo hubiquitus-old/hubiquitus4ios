@@ -21,7 +21,7 @@
 
 #define TEST_CHANNEL @""
 #define TEST_USERNAME @""
-#define TEST_PASSWORD @""
+#define TEST_PASSWORD @"
 
 @class ViewController;
 
