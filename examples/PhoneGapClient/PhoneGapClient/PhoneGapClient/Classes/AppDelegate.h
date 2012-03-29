@@ -19,16 +19,26 @@
 
 #import <UIKit/UIKit.h>
 
-#define TEST_CHANNEL @""
-#define TEST_USERNAME @""
-#define TEST_PASSWORD @""
+#ifdef CORDOVA_FRAMEWORK
+    #import <Cordova/CDVViewController.h>
+#else
+    #import "CDVViewController.h"
+#endif
 
-@class ViewController;
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : NSObject < UIApplicationDelegate, UIWebViewDelegate, CDVCommandDelegate > {
 
-@property (strong, nonatomic) UIWindow *window;
+	NSString* invokeString;
+}
 
-@property (strong, nonatomic) ViewController *viewController;
+// invoke string is passed to your app on launch, this is only valid if you 
+// edit FooBar.plist to add a protocol
+// a simple tutorial can be found here : 
+// http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
+
+@property (nonatomic, copy)  NSString* invokeString;
+@property (nonatomic, strong) IBOutlet UIWindow* window;
+@property (nonatomic, strong) IBOutlet CDVViewController* viewController;
 
 @end
+

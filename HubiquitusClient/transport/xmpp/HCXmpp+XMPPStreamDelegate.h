@@ -17,18 +17,8 @@
  *     along with Hubiquitus.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <UIKit/UIKit.h>
+#import "HCXmpp.h"
 
-#define TEST_CHANNEL @""
-#define TEST_USERNAME @""
-#define TEST_PASSWORD @""
-
-@class ViewController;
-
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
-@property (strong, nonatomic) ViewController *viewController;
+@interface HCXmpp (XMPPStreamDelegate)
 
 @end

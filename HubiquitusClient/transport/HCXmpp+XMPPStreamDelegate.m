@@ -18,6 +18,7 @@
  */
 
 #import "HCXmpp+XMPPStreamDelegate.h"
+#import "HCReconnect.h"
 #import "HCErrors.h"
 
 @implementation HCXmpp (XMPPStreamDelegate)
@@ -151,6 +152,8 @@
     
     self.isAuthenticated = NO;
     self.isXmppConnected = NO;
+    
+    [self.hcreconnect fireAutoReconnect];
 }
 
 

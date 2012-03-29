@@ -21,6 +21,7 @@
 #import "HCTransport.h"
 #import "XMPPFramework.h"
 #import "XMPPPubSub.h"
+#import "HCReconnect.h"
 
 @interface HCXmpp : NSObject {
     @private
@@ -31,10 +32,12 @@
 
 @property (nonatomic, strong) id<HCTransportDelegate> delegate;
 @property (nonatomic, strong) HCOptions * options;
+@property (nonatomic) BOOL autoreconnect;
+@property (nonatomic, strong) HCReconnect * hcreconnect;
 
 //xmppframework components
 @property (nonatomic, strong) XMPPStream * xmppStream;
-@property (nonatomic, strong) XMPPReconnect * xmppReconnect;
+//@property (nonatomic, strong) XMPPReconnect * xmppReconnect;
 @property (nonatomic, strong) XMPPPubSub * xmppPubSub;
 
 //xmpp infos

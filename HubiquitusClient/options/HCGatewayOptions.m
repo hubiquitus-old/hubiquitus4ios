@@ -65,7 +65,7 @@
 - (id)initWithDict:(NSDictionary *)dict {
     self = [super init];
     if (self) {
-        transport = @"socketio";
+        transport = @"xmpp";
         _socketio = [HCSocketIOOptions optionsWithDict:[dict objectForKey:@"socketio"]];
         _xmpp = [HCXmppOptions optionsWithDict:[dict objectForKey:@"xmpp"]];
         

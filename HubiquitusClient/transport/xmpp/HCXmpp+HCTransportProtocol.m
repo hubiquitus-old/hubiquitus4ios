@@ -19,6 +19,7 @@
 
 #import "HCXmpp+HCTransportProtocol.h"
 #import "HCXmpp+XMPPUtils.h"
+#import "HCXmpp+HCReconnectDelegate.h"
 #import "HCErrors.h"
 #import "SBJsonWriter.h"
 
@@ -35,6 +36,8 @@
         self.delegate = aDelegate;
         self.isXmppConnected = NO;
         self.isAuthenticated = NO;
+        self.hcreconnect = [[HCReconnect alloc] initWithDelegate:self];
+        
         
         [self setupStream];
     }
@@ -46,60 +49,15 @@
  * see HCTransport protocol
  */
 - (void)connect {
-    if (!self.isXmppConnected) {
-        //set hostname and host port
-        if (self.options.routeDomain != nil) {
-            [self.xmppStream setHostName:self.options.routeDomain];
-        } else if (self.options.domain != nil) {
-            [self.xmppStream setHostName:self.options.domain];
-        }
-        
-        if (self.options.routePort != nil) {
-            [self.xmppStream setHostPort:[self.options.routePort intValue]];
-        }
-        
-        self.service = [XMPPJID jidWithUser:nil domain:[NSString stringWithFormat:@"%@%@", @"pubsub.", [self.xmppStream hostName]] resource:nil];
-        
-        //setup extensions
-        
-        //PubSub extension : enable publish subscribe XEP-0060 xmpp extension
-        self.xmppPubSub = [[XMPPPubSub alloc] initWithServiceJID: self.service];
-        
-        // Activate xmpp modules
-        [self.xmppPubSub activate:self.xmppStream];
-        
-        //add delegate
-        [self.xmppPubSub addDelegate:self delegateQueue:dispatch_get_main_queue()];
-        
-        NSString * jid = self.options.username;
-        NSString * password = self.options.password;
-        
-        //notify delegate connection
-        NSDictionary * resDict = [NSDictionary dictionaryWithObjectsAndKeys:@"connecting", @"status",
-                                  [NSNumber numberWithInt:NO_ERROR], @"code", nil];
-        [self.delegate notifyIncomingMessage:resDict context:@"link"];
-        
-        
-        if(![self.xmppStream isConnected] && jid != nil && password != nil) {
-            [self.xmppStream setMyJID:[XMPPJID jidWithString:jid]];
-            
-            NSError * error = nil;
-            if (![self.xmppStream connect:&error]) {
-                NSDictionary * errorDict = [NSDictionary dictionaryWithObjectsAndKeys:@"error", @"status",
-                                            [NSNumber numberWithInt:CONNECTION_FAILED], @"code", nil];
-                [self.delegate notifyIncomingMessage:errorDict context:@"link"];
-                
-                NSLog(@"HCXmpp error on connect : %@", error);
-            }
-            
-        }
-    }
+    self.autoreconnect = YES;
+    [self.hcreconnect fireAutoReconnect];
 }
 
 /**
  * see HCTransport protocol
  */
 - (void)disconnect {
+    self.autoreconnect = NO;
     if (self.isXmppConnected) {
         //notify delegate connection
         NSDictionary * resDict = [NSDictionary dictionaryWithObjectsAndKeys:@"disconnecting", @"status",

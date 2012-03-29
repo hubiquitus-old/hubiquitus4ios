@@ -26,10 +26,6 @@
 #import "transport/xmpp/HCXmppTransport.h"
 #import "SBJson.h"
 
-/**
- *  @todo add xmpp transport layer support
- */
-
 @interface HCClient () {
     void (^_callback)(NSString * context, NSDictionary * data);
     HCOptions * _options;

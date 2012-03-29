@@ -30,9 +30,11 @@
 @implementation HCXmpp
 @synthesize delegate;
 @synthesize options;
-@synthesize xmppStream, xmppReconnect, xmppPubSub;
+@synthesize xmppStream, xmppPubSub;
 @synthesize isXmppConnected, isAuthenticated;
 @synthesize service;
+@synthesize autoreconnect;
+@synthesize hcreconnect;
 
 /**
  * init
@@ -60,11 +62,11 @@
     //setup extensions
     
     //XMPPReconnect, monitors for "accidental diconnections" and automatically reconnects.
-	xmppReconnect = [[XMPPReconnect alloc] init];
+	//xmppReconnect = [[XMPPReconnect alloc] init];
     
 	// Activate xmpp modules
     
-	[xmppReconnect activate:xmppStream];
+	//[xmppReconnect activate:xmppStream];
     
 	// Add ourself as a delegate to anything we may be interested in
 	[xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
@@ -77,11 +79,11 @@
 {
 	[xmppStream removeDelegate:self];
 	
-	[xmppReconnect deactivate];
+	//[xmppReconnect deactivate];
 	[xmppStream disconnect];
 	
 	xmppStream = nil;
-	xmppReconnect = nil;
+	//xmppReconnect = nil;
 }
 
 
