@@ -118,6 +118,7 @@
 		119728A61521E9F3002AF83F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 119728A41521E9E5002AF83F /* CFNetwork.framework */; };
 		119728AA1521EA2A002AF83F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 119728A91521EA2A002AF83F /* CoreData.framework */; };
 		11D4322A1522FE50004BE1F1 /* hcoptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11D432291522FE50004BE1F1 /* hcoptions.plist */; };
+		C563169D1524E39000902F24 /* HCPhoneGapClient.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 110A40031524942500C1EDDA /* HCPhoneGapClient.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -127,6 +128,7 @@
 			dstPath = www;
 			dstSubfolderSpec = 6;
 			files = (
+				C563169D1524E39000902F24 /* HCPhoneGapClient.js in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
