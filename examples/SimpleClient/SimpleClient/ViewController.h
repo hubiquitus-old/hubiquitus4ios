@@ -25,7 +25,8 @@
 @property (strong, nonatomic) HCOptions * options;
 @property (strong, nonatomic) HCClient * client;
 @property (strong, nonatomic) IBOutlet UILabel *username;
-@property (weak, nonatomic) IBOutlet UITextField *channel;
+@property (strong, nonatomic) IBOutlet UITextField *channel;
+@property (strong, nonatomic) IBOutlet UITextView *console;
 
 - (IBAction)connect:(id)sender;
 - (IBAction)disconnect:(id)sender;
@@ -33,5 +34,6 @@
 - (IBAction)subscribe:(id)sender;
 - (IBAction)unsubscribe:(id)sender;
 - (IBAction)getAllMessages:(id)sender;
+- (IBAction)clear:(id)sender;
 
 @end

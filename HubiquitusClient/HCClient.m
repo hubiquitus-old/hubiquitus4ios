@@ -113,10 +113,10 @@
         _callback = callback;
         self.delegate = nil;
         
-        if ([options.gateway.transport compare:@"xmpp"] == NSOrderedSame) {
-            transport = [[HCXmpp alloc] initWithOptions:_options delegate:self];
-        } else {
+        if ([options.gateway.transport compare:@"socketio"] == NSOrderedSame) {
             transport = [[HCSocketIO alloc] initWithOptions:_options delegate:self];
+        } else {
+            transport = [[HCXmpp alloc] initWithOptions:_options delegate:self];
         }
     }
     

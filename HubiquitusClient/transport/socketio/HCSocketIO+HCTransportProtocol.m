@@ -65,19 +65,21 @@
 - (void)disconnect {
     self.autoreconnect = NO;
     
-    //notify delegate connection
-    NSDictionary * resDict = [NSDictionary dictionaryWithObjectsAndKeys:@"disconnecting", @"status",
-                              [NSNumber numberWithInt:NO_ERROR], @"code", nil];
-    [self.delegate notifyIncomingMessage:resDict context:@"link"];
-    
-    //call disconnect of huquitus node 
-    self.userid = nil;
-    self.sid = nil;
-    self.rid = 0;
-    [self.socketio sendEvent:@"disconnect" withData:nil];
-    
-    //close the link
-    [self.socketio disconnect];
+    if ([self.socketio isConnected]) {
+        //notify delegate connection
+        NSDictionary * resDict = [NSDictionary dictionaryWithObjectsAndKeys:@"disconnecting", @"status",
+                                  [NSNumber numberWithInt:NO_ERROR], @"code", nil];
+        [self.delegate notifyIncomingMessage:resDict context:@"link"];
+        
+        //call disconnect of huquitus node 
+        self.userid = nil;
+        self.sid = nil;
+        self.rid = 0;
+        [self.socketio sendEvent:@"disconnect" withData:nil];
+        
+        //close the link
+        [self.socketio disconnect];
+    }
 }
 
 /**

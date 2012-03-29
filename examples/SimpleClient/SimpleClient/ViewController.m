@@ -23,6 +23,7 @@
 @implementation ViewController
 @synthesize username;
 @synthesize channel;
+@synthesize console;
 @synthesize options, client;
 
 - (void)didReceiveMemoryWarning
@@ -58,6 +59,7 @@
 {
     [self setUsername:nil];
     [self setChannel:nil];
+    [self setConsole:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -95,20 +97,34 @@
 
 #pragma mark - HCCLient delegate
 
+- (void)updateConsoleWithTxt:(NSString*)txt {
+    console.text = [NSString stringWithFormat:@"%@\n%@", console.text, txt];
+    [console scrollRangeToVisible:NSMakeRange(console.text.length-2, 1)];
+}
+
 - (void)notifyResultWithType:(NSString *)type channel:(NSString *)channel_identifier msgid:(NSString *)msgid {
     NSLog(@"Getting a result : Type %@, channel %@, msgid %@", type, channel_identifier, msgid);
+    NSString * txt = [NSString stringWithFormat:@"Getting a result : Type %@, channel %@, msgid %@", type, channel_identifier, msgid ];
+    [self performSelectorOnMainThread:@selector(updateConsoleWithTxt:) withObject:txt waitUntilDone:YES];
 }
 
 - (void)notifyLinkStatusUpdate:(NSString *)status code:(NSNumber *)code {
     NSLog(@"Link update : status %@, code %@ \n", status, code);
+    NSString * txt = [NSString stringWithFormat:@"Link update : status %@, code %@ \n", status, code];
+    [self performSelectorOnMainThread:@selector(updateConsoleWithTxt:) withObject:txt waitUntilDone:YES];
+    
 }
 
 - (void)notifyMessage:(HCMessage *)message FromChannel:(NSString *)channel_identifier {
     NSLog(@"Getting a message : message %@, channel %@", message, channel_identifier);
+    NSString * txt = [NSString stringWithFormat:@"Getting a message : message %@, channel %@", message, channel_identifier];
+    [self performSelectorOnMainThread:@selector(updateConsoleWithTxt:) withObject:txt waitUntilDone:YES];
 }
 
 - (void)notifyErrorOfType:(NSString *)type code:(NSNumber*)code channel:(NSString *)channel_identifier msgid:(NSString *)msgid {
     NSLog(@"Error notification : type %@, code %@, channel %@, msgid %@", type, code, channel_identifier, msgid);
+    NSString * txt = [NSString stringWithFormat:@"Error notification : type %@, code %@, channel %@, msgid %@", type, code, channel_identifier, msgid];
+    [self performSelectorOnMainThread:@selector(updateConsoleWithTxt:) withObject:txt waitUntilDone:YES];
 }
 
 #pragma mark - buttons actions
@@ -126,21 +142,33 @@
     HCMessage * message = [[HCMessage alloc] initWithDictionnary:publishMsg];
     NSString * msgid = [client publishToChannel:self.channel.text message:message];
     NSLog(@"Trying to publish with msgid : %@", msgid);
+    NSString * txt = [NSString stringWithFormat:@"%Trying to publish with msgid : %@", msgid];
+    [self performSelectorOnMainThread:@selector(updateConsoleWithTxt:) withObject:txt waitUntilDone:YES];
 }
 
 - (IBAction)subscribe:(id)sender {
     NSString * msgid = [client subscribeToChannel:self.channel.text];
     NSLog(@"Trying to subscribe with msgid : %@", msgid);
+    NSString * txt = [NSString stringWithFormat:@"Trying to subscribe with msgid : %@", msgid];
+    [self performSelectorOnMainThread:@selector(updateConsoleWithTxt:) withObject:txt waitUntilDone:YES];
 }
 
 - (IBAction)unsubscribe:(id)sender {
     NSString * msgid = [client unsubscribeFromChannel:self.channel.text];
     NSLog(@"Trying to unsubscribe with msgid : %@", msgid);
+    NSString * txt = [NSString stringWithFormat:@"Trying to unsubscribe with msgid : %@",msgid];
+    [self performSelectorOnMainThread:@selector(updateConsoleWithTxt:) withObject:txt waitUntilDone:YES];
 }
 
 - (IBAction)getAllMessages:(id)sender {
     NSString * msgid = [client getMessagesFromChannel:self.channel.text];
     NSLog(@"Trying to get all messages from channel with msgid : %@", msgid);
+    NSString * txt = [NSString stringWithFormat:@"Trying to get all messages from channel with msgid : %@", msgid];
+    [self performSelectorOnMainThread:@selector(updateConsoleWithTxt:) withObject:txt waitUntilDone:YES];
+}
+
+- (IBAction)clear:(id)sender {
+    console.text = @"";
 }
 
 - (IBAction)closeKeyboard:(id)sender {

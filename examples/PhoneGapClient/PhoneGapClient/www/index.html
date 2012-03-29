@@ -29,6 +29,7 @@
         getOptionsCallback = function(options) {
             callback = function (msg) {
                 console.log("msg : " + JSON.stringify(msg));
+                window.document.getElementById("console").innerHTML += "<br> msg : " + JSON.stringify(msg) + "<br>";
             }
             
             //now init hubiquitusClient
@@ -50,6 +51,9 @@
           <button type="button"  onclick="hubiquitusClient.unsubscribe(CHANNEL);">Unsubscribe</button>
           <button type="button"  onclick="hubiquitusClient.publish(CHANNEL, {Test : 'It Works'});">Publish</button>
           <button type="button"  onclick="hubiquitusClient.getMessages(CHANNEL2);">GetMessages</button>
+          
+          <div id="console" style="overflow:scroll; height:250px;">
+          </div>
       </section>
   </body>
 </html>

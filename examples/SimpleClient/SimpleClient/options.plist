@@ -7,7 +7,7 @@
 	<key>gateway</key>
 	<dict>
 		<key>transport</key>
-		<string>socketio</string>
+		<string>xmpp</string>
 		<key>xmpp</key>
 		<dict>
 			<key>allowSelfSignedCertificates</key>

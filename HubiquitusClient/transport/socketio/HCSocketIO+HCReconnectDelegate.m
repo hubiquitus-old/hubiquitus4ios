@@ -43,7 +43,6 @@
  * Used by HCReconnect to reconnect
  */
 - (void)reconnect {
-    self.autoreconnect = YES;
     //first of all connect to the gateway
     if (!self.connectedToGateway) {
         [self establishLink];
