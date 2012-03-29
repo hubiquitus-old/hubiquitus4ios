@@ -26,6 +26,10 @@
 #import "transport/xmpp/HCXmppTransport.h"
 #import "SBJson.h"
 
+#if ! __has_feature(objc_arc)
+#warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
+#endif
+
 @interface HCClient () {
     void (^_callback)(NSString * context, NSDictionary * data);
     HCOptions * _options;

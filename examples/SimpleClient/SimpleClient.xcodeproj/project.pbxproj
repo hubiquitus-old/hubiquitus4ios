@@ -258,10 +258,10 @@
 		11E73F98151A19B800C494F0 /* XMPPSRVResolver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPSRVResolver.m; sourceTree = "<group>"; };
 		11E73F99151A19B800C494F0 /* XMPPXFacebookPlatformAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPXFacebookPlatformAuthentication.h; sourceTree = "<group>"; };
 		11E73F9A151A19B800C494F0 /* XMPPXFacebookPlatformAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPXFacebookPlatformAuthentication.m; sourceTree = "<group>"; };
-		11F42C14151CBE7400B0E707 /* HCReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCReachability.h; sourceTree = "<group>"; };
-		11F42C15151CBE7400B0E707 /* HCReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCReachability.m; sourceTree = "<group>"; };
-		11F42C19151CBEAC00B0E707 /* HCReconnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCReconnect.h; sourceTree = "<group>"; };
-		11F42C1A151CBEAC00B0E707 /* HCReconnect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCReconnect.m; sourceTree = "<group>"; };
+		11F42C14151CBE7400B0E707 /* HCReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HCReachability.h; path = socketio/HCReachability.h; sourceTree = "<group>"; };
+		11F42C15151CBE7400B0E707 /* HCReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HCReachability.m; path = socketio/HCReachability.m; sourceTree = "<group>"; };
+		11F42C19151CBEAC00B0E707 /* HCReconnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HCReconnect.h; path = socketio/HCReconnect.h; sourceTree = "<group>"; };
+		11F42C1A151CBEAC00B0E707 /* HCReconnect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HCReconnect.m; path = socketio/HCReconnect.m; sourceTree = "<group>"; };
 		11F532C815109D2300038043 /* HCMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCMessage.h; sourceTree = "<group>"; };
 		11F532C915109D2300038043 /* HCMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCMessage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -385,6 +385,10 @@
 			isa = PBXGroup;
 			children = (
 				1131A1BC150F9E9500A61449 /* HCTransport.h */,
+				11F42C19151CBEAC00B0E707 /* HCReconnect.h */,
+				11F42C1A151CBEAC00B0E707 /* HCReconnect.m */,
+				11F42C14151CBE7400B0E707 /* HCReachability.h */,
+				11F42C15151CBE7400B0E707 /* HCReachability.m */,
 				11DA191A1510F61C00483F4C /* xmpp */,
 				1131A1BD150F9E9500A61449 /* socketio */,
 			);
@@ -394,12 +398,8 @@
 		1131A1BD150F9E9500A61449 /* socketio */ = {
 			isa = PBXGroup;
 			children = (
-				11F42C14151CBE7400B0E707 /* HCReachability.h */,
-				11F42C15151CBE7400B0E707 /* HCReachability.m */,
 				1131A1BE150F9E9500A61449 /* HCSocketIO.h */,
 				1131A1BF150F9E9500A61449 /* HCSocketIO.m */,
-				11F42C19151CBEAC00B0E707 /* HCReconnect.h */,
-				11F42C1A151CBEAC00B0E707 /* HCReconnect.m */,
 				11D4C5561521B63B0000533B /* HCSocketIO+HCTransportProtocol.h */,
 				11D4C5571521B63B0000533B /* HCSocketIO+HCTransportProtocol.m */,
 				11D4C55A1521B65E0000533B /* HCSocketIOTransport.h */,

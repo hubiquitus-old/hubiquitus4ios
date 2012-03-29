@@ -21,6 +21,10 @@
 #import "HCReconnect.h"
 #import "HCReachability.h"
 
+#if ! __has_feature(objc_arc)
+#warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
+#endif
+
 @interface HCReconnect () {
 @private
     dispatch_queue_t _reconnectQueue;
@@ -76,8 +80,6 @@
         [reachability startNotifier];
         
         //register to reachibility notification
-        [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
-        
         [[NSNotificationCenter defaultCenter] addObserverForName:kReachabilityChangedNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
             NetworkStatus netStatus = [reachability currentReachabilityStatus];
             switch (netStatus)

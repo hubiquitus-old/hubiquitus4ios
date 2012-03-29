@@ -16,13 +16,6 @@
  specific language governing permissions and limitations
  under the License.
  */
-//
-//  main.m
-//  PhoneGapClient
-//
-//  Created by Novedia Agency on 27/03/12.
-//  Copyright __MyCompanyName__ 2012. All rights reserved.
-//
 
 #import <UIKit/UIKit.h>
 
