@@ -916,7 +916,7 @@
 		1197262E1521E571002AF83F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 			};
 			buildConfigurationList = 119726311521E571002AF83F /* Build configuration list for PBXProject "PhoneGapClient" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1136,6 +1136,7 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1157,6 +1158,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1178,6 +1180,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PhoneGapClient/PhoneGapClient-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "CORDOVA_FRAMEWORK=1";
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "PhoneGapClient/PhoneGapClient-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
@@ -1206,6 +1209,7 @@
 					"NDEBUG=1,",
 					"CORDOVA_FRAMEWORK=1",
 				);
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "PhoneGapClient/PhoneGapClient-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;

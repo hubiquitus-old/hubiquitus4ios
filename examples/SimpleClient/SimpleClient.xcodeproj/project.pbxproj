@@ -715,7 +715,7 @@
 		1131A17D150F9DDE00A61449 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 			};
 			buildConfigurationList = 1131A180150F9DDE00A61449 /* Build configuration list for PBXProject "SimpleClient" */;
 			compatibilityVersion = "Xcode 3.2";
