@@ -70,12 +70,7 @@
         [self.delegate notifyIncomingMessage:errorDict context:@"link"];
         
         //NSLog(@"HCXmpp error on authentification : %@ \n", error);
-	} else {
-        //notify delegate connection
-        NSDictionary * resDict = [NSDictionary dictionaryWithObjectsAndKeys:@"connected", @"status",
-                                  [NSNumber numberWithInt:NO_ERROR], @"code", nil];
-        [self.delegate notifyIncomingMessage:resDict context:@"link"];
-    }
+	}
 }
 
 - (void)xmppStreamDidAuthenticate:(XMPPStream *)sender
@@ -85,6 +80,11 @@
     
     //broadcast presence 
     [self goOnline];
+    
+    //notify delegate connection
+    NSDictionary * resDict = [NSDictionary dictionaryWithObjectsAndKeys:@"connected", @"status",
+                              [NSNumber numberWithInt:NO_ERROR], @"code", nil];
+    [self.delegate notifyIncomingMessage:resDict context:@"link"];
 }
 
 - (void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(NSXMLElement *)error
