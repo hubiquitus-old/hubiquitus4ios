@@ -7,6 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1124AE2815A4864500FE1C28 /* HClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124ADF315A4864500FE1C28 /* HClient.m */; };
+		1124AE2915A4864500FE1C28 /* HMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124ADF615A4864500FE1C28 /* HMessage.m */; };
+		1124AE2A15A4864500FE1C28 /* HGatewayOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124ADF915A4864500FE1C28 /* HGatewayOptions.m */; };
+		1124AE2B15A4864500FE1C28 /* HOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124ADFB15A4864500FE1C28 /* HOptions.m */; };
+		1124AE2C15A4864500FE1C28 /* HSocketIOOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124ADFD15A4864500FE1C28 /* HSocketIOOptions.m */; };
+		1124AE2D15A4864500FE1C28 /* HXmppOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124ADFF15A4864500FE1C28 /* HXmppOptions.m */; };
+		1124AE2E15A4864500FE1C28 /* HXmpp+XMPPStreamDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124AE0515A4864500FE1C28 /* HXmpp+XMPPStreamDelegate.m */; };
+		1124AE2F15A4864500FE1C28 /* HReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124AE0815A4864500FE1C28 /* HReachability.m */; };
+		1124AE3015A4864500FE1C28 /* HReconnect.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124AE0A15A4864500FE1C28 /* HReconnect.m */; };
+		1124AE3115A4864500FE1C28 /* HSocketIO+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124AE0C15A4864500FE1C28 /* HSocketIO+Helper.m */; };
+		1124AE3215A4864500FE1C28 /* HSocketIO+HReconnectDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124AE0E15A4864500FE1C28 /* HSocketIO+HReconnectDelegate.m */; };
+		1124AE3315A4864500FE1C28 /* HSocketIO+HTransportProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124AE1015A4864500FE1C28 /* HSocketIO+HTransportProtocol.m */; };
+		1124AE3415A4864500FE1C28 /* HSocketIO+SocketIODelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124AE1215A4864500FE1C28 /* HSocketIO+SocketIODelegate.m */; };
+		1124AE3515A4864500FE1C28 /* HSocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124AE1415A4864500FE1C28 /* HSocketIO.m */; };
+		1124AE3615A4864500FE1C28 /* HXmpp+HCTransportProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124AE1715A4864500FE1C28 /* HXmpp+HCTransportProtocol.m */; };
+		1124AE3715A4864500FE1C28 /* HXmpp+HReconnectDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124AE1915A4864500FE1C28 /* HXmpp+HReconnectDelegate.m */; };
+		1124AE3815A4864500FE1C28 /* HXmpp+XMPPPubSubDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124AE1C15A4864500FE1C28 /* HXmpp+XMPPPubSubDelegate.m */; };
+		1124AE3915A4864500FE1C28 /* HXmpp+XMPPStreamDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124AE1E15A4864500FE1C28 /* HXmpp+XMPPStreamDelegate.m */; };
+		1124AE3A15A4864500FE1C28 /* HXmpp+XMPPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124AE2015A4864500FE1C28 /* HXmpp+XMPPUtils.m */; };
+		1124AE3B15A4864500FE1C28 /* HXmpp.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124AE2215A4864500FE1C28 /* HXmpp.m */; };
+		1124AE3C15A4864500FE1C28 /* HUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124AE2715A4864500FE1C28 /* HUtils.m */; };
+		1124AE3F15A4928D00FE1C28 /* NSDate+ISO8601.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124AE3E15A4928D00FE1C28 /* NSDate+ISO8601.m */; };
+		1124AE4215A498AD00FE1C28 /* NSDate+SBJSon.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124AE4115A498AD00FE1C28 /* NSDate+SBJSon.m */; };
+		1124AE4915A49C6F00FE1C28 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124AE4815A49C6F00FE1C28 /* ISO8601DateFormatter.m */; };
+		1124AE4C15A49EDF00FE1C28 /* NSDate+HObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124AE4B15A49EDF00FE1C28 /* NSDate+HObj.m */; };
 		1131A18B150F9DDE00A61449 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1131A18A150F9DDE00A61449 /* UIKit.framework */; };
 		1131A195150F9DDE00A61449 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1131A193150F9DDE00A61449 /* InfoPlist.strings */; };
 		1131A197150F9DDE00A61449 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1131A196150F9DDE00A61449 /* main.m */; };
@@ -61,27 +86,6 @@
 		11AF5D1215A34292003F7F5B /* XMPPSRVResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5C8715A34292003F7F5B /* XMPPSRVResolver.m */; };
 		11AF5D1315A34292003F7F5B /* XMPPXFacebookPlatformAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5C8915A34292003F7F5B /* XMPPXFacebookPlatformAuthentication.m */; };
 		11AF5DD715A342EF003F7F5B /* XMPPPubSub.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5D8015A342EF003F7F5B /* XMPPPubSub.m */; };
-		11AF5E2115A34CF0003F7F5B /* HClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5DED15A34CF0003F7F5B /* HClient.m */; };
-		11AF5E2215A34CF0003F7F5B /* HMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5DF015A34CF0003F7F5B /* HMessage.m */; };
-		11AF5E2315A34CF0003F7F5B /* HGatewayOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5DF415A34CF0003F7F5B /* HGatewayOptions.m */; };
-		11AF5E2415A34CF0003F7F5B /* HOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5DF615A34CF0003F7F5B /* HOptions.m */; };
-		11AF5E2515A34CF0003F7F5B /* HSocketIOOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5DF815A34CF0003F7F5B /* HSocketIOOptions.m */; };
-		11AF5E2615A34CF0003F7F5B /* HXmppOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5DFA15A34CF0003F7F5B /* HXmppOptions.m */; };
-		11AF5E2715A34CF0003F7F5B /* HXmpp+XMPPStreamDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5DFE15A34CF0003F7F5B /* HXmpp+XMPPStreamDelegate.m */; };
-		11AF5E2815A34CF0003F7F5B /* HReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5E0115A34CF0003F7F5B /* HReachability.m */; };
-		11AF5E2915A34CF0003F7F5B /* HReconnect.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5E0315A34CF0003F7F5B /* HReconnect.m */; };
-		11AF5E2A15A34CF0003F7F5B /* HSocketIO+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5E0515A34CF0003F7F5B /* HSocketIO+Helper.m */; };
-		11AF5E2B15A34CF0003F7F5B /* HSocketIO+HReconnectDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5E0715A34CF0003F7F5B /* HSocketIO+HReconnectDelegate.m */; };
-		11AF5E2C15A34CF0003F7F5B /* HSocketIO+HTransportProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5E0915A34CF0003F7F5B /* HSocketIO+HTransportProtocol.m */; };
-		11AF5E2D15A34CF0003F7F5B /* HSocketIO+SocketIODelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5E0B15A34CF0003F7F5B /* HSocketIO+SocketIODelegate.m */; };
-		11AF5E2E15A34CF0003F7F5B /* HSocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5E0D15A34CF0003F7F5B /* HSocketIO.m */; };
-		11AF5E2F15A34CF0003F7F5B /* HXmpp+HCTransportProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5E1015A34CF0003F7F5B /* HXmpp+HCTransportProtocol.m */; };
-		11AF5E3015A34CF0003F7F5B /* HXmpp+HReconnectDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5E1215A34CF0003F7F5B /* HXmpp+HReconnectDelegate.m */; };
-		11AF5E3115A34CF0003F7F5B /* HXmpp+XMPPPubSubDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5E1515A34CF0003F7F5B /* HXmpp+XMPPPubSubDelegate.m */; };
-		11AF5E3215A34CF0003F7F5B /* HXmpp+XMPPStreamDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5E1715A34CF0003F7F5B /* HXmpp+XMPPStreamDelegate.m */; };
-		11AF5E3315A34CF0003F7F5B /* HXmpp+XMPPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5E1915A34CF0003F7F5B /* HXmpp+XMPPUtils.m */; };
-		11AF5E3415A34CF0003F7F5B /* HXmpp.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5E1B15A34CF0003F7F5B /* HXmpp.m */; };
-		11AF5E3515A34CF0003F7F5B /* HUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5E2015A34CF0003F7F5B /* HUtils.m */; };
 		11E663251511FFA200095274 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 11DA19181510F04100483F4C /* libresolv.dylib */; };
 		11E663261511FFA400095274 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 11DA19101510EE8D00483F4C /* libxml2.dylib */; };
 		C55BA1801530DA0E00782699 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C55BA17E1530D9F600782699 /* Security.framework */; };
@@ -91,6 +95,62 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1124ADF215A4864500FE1C28 /* HClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HClient.h; sourceTree = "<group>"; };
+		1124ADF315A4864500FE1C28 /* HClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HClient.m; sourceTree = "<group>"; };
+		1124ADF415A4864500FE1C28 /* HErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HErrors.h; sourceTree = "<group>"; };
+		1124ADF515A4864500FE1C28 /* HMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMessage.h; sourceTree = "<group>"; };
+		1124ADF615A4864500FE1C28 /* HMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMessage.m; sourceTree = "<group>"; };
+		1124ADF815A4864500FE1C28 /* HGatewayOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGatewayOptions.h; sourceTree = "<group>"; };
+		1124ADF915A4864500FE1C28 /* HGatewayOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGatewayOptions.m; sourceTree = "<group>"; };
+		1124ADFA15A4864500FE1C28 /* HOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HOptions.h; sourceTree = "<group>"; };
+		1124ADFB15A4864500FE1C28 /* HOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HOptions.m; sourceTree = "<group>"; };
+		1124ADFC15A4864500FE1C28 /* HSocketIOOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSocketIOOptions.h; sourceTree = "<group>"; };
+		1124ADFD15A4864500FE1C28 /* HSocketIOOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSocketIOOptions.m; sourceTree = "<group>"; };
+		1124ADFE15A4864500FE1C28 /* HXmppOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXmppOptions.h; sourceTree = "<group>"; };
+		1124ADFF15A4864500FE1C28 /* HXmppOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXmppOptions.m; sourceTree = "<group>"; };
+		1124AE0115A4864500FE1C28 /* HObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HObj.h; sourceTree = "<group>"; };
+		1124AE0315A4864500FE1C28 /* HTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTransport.h; sourceTree = "<group>"; };
+		1124AE0415A4864500FE1C28 /* HXmpp+XMPPStreamDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HXmpp+XMPPStreamDelegate.h"; sourceTree = "<group>"; };
+		1124AE0515A4864500FE1C28 /* HXmpp+XMPPStreamDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HXmpp+XMPPStreamDelegate.m"; sourceTree = "<group>"; };
+		1124AE0715A4864500FE1C28 /* HReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HReachability.h; sourceTree = "<group>"; };
+		1124AE0815A4864500FE1C28 /* HReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HReachability.m; sourceTree = "<group>"; };
+		1124AE0915A4864500FE1C28 /* HReconnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HReconnect.h; sourceTree = "<group>"; };
+		1124AE0A15A4864500FE1C28 /* HReconnect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HReconnect.m; sourceTree = "<group>"; };
+		1124AE0B15A4864500FE1C28 /* HSocketIO+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HSocketIO+Helper.h"; sourceTree = "<group>"; };
+		1124AE0C15A4864500FE1C28 /* HSocketIO+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HSocketIO+Helper.m"; sourceTree = "<group>"; };
+		1124AE0D15A4864500FE1C28 /* HSocketIO+HReconnectDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HSocketIO+HReconnectDelegate.h"; sourceTree = "<group>"; };
+		1124AE0E15A4864500FE1C28 /* HSocketIO+HReconnectDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HSocketIO+HReconnectDelegate.m"; sourceTree = "<group>"; };
+		1124AE0F15A4864500FE1C28 /* HSocketIO+HTransportProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HSocketIO+HTransportProtocol.h"; sourceTree = "<group>"; };
+		1124AE1015A4864500FE1C28 /* HSocketIO+HTransportProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HSocketIO+HTransportProtocol.m"; sourceTree = "<group>"; };
+		1124AE1115A4864500FE1C28 /* HSocketIO+SocketIODelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HSocketIO+SocketIODelegate.h"; sourceTree = "<group>"; };
+		1124AE1215A4864500FE1C28 /* HSocketIO+SocketIODelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HSocketIO+SocketIODelegate.m"; sourceTree = "<group>"; };
+		1124AE1315A4864500FE1C28 /* HSocketIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSocketIO.h; sourceTree = "<group>"; };
+		1124AE1415A4864500FE1C28 /* HSocketIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSocketIO.m; sourceTree = "<group>"; };
+		1124AE1515A4864500FE1C28 /* HSocketIOTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSocketIOTransport.h; sourceTree = "<group>"; };
+		1124AE1715A4864500FE1C28 /* HXmpp+HCTransportProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HXmpp+HCTransportProtocol.m"; sourceTree = "<group>"; };
+		1124AE1815A4864500FE1C28 /* HXmpp+HReconnectDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HXmpp+HReconnectDelegate.h"; sourceTree = "<group>"; };
+		1124AE1915A4864500FE1C28 /* HXmpp+HReconnectDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HXmpp+HReconnectDelegate.m"; sourceTree = "<group>"; };
+		1124AE1A15A4864500FE1C28 /* HXmpp+HTransportProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HXmpp+HTransportProtocol.h"; sourceTree = "<group>"; };
+		1124AE1B15A4864500FE1C28 /* HXmpp+XMPPPubSubDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HXmpp+XMPPPubSubDelegate.h"; sourceTree = "<group>"; };
+		1124AE1C15A4864500FE1C28 /* HXmpp+XMPPPubSubDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HXmpp+XMPPPubSubDelegate.m"; sourceTree = "<group>"; };
+		1124AE1D15A4864500FE1C28 /* HXmpp+XMPPStreamDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HXmpp+XMPPStreamDelegate.h"; sourceTree = "<group>"; };
+		1124AE1E15A4864500FE1C28 /* HXmpp+XMPPStreamDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HXmpp+XMPPStreamDelegate.m"; sourceTree = "<group>"; };
+		1124AE1F15A4864500FE1C28 /* HXmpp+XMPPUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HXmpp+XMPPUtils.h"; sourceTree = "<group>"; };
+		1124AE2015A4864500FE1C28 /* HXmpp+XMPPUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HXmpp+XMPPUtils.m"; sourceTree = "<group>"; };
+		1124AE2115A4864500FE1C28 /* HXmpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXmpp.h; sourceTree = "<group>"; };
+		1124AE2215A4864500FE1C28 /* HXmpp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXmpp.m; sourceTree = "<group>"; };
+		1124AE2315A4864500FE1C28 /* HXmppTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXmppTransport.h; sourceTree = "<group>"; };
+		1124AE2415A4864500FE1C28 /* XMPPFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPFramework.h; sourceTree = "<group>"; };
+		1124AE2615A4864500FE1C28 /* HUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUtils.h; sourceTree = "<group>"; };
+		1124AE2715A4864500FE1C28 /* HUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUtils.m; sourceTree = "<group>"; };
+		1124AE3D15A4928D00FE1C28 /* NSDate+ISO8601.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+ISO8601.h"; sourceTree = "<group>"; };
+		1124AE3E15A4928D00FE1C28 /* NSDate+ISO8601.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+ISO8601.m"; sourceTree = "<group>"; };
+		1124AE4015A498AD00FE1C28 /* NSDate+SBJSon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+SBJSon.h"; sourceTree = "<group>"; };
+		1124AE4115A498AD00FE1C28 /* NSDate+SBJSon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+SBJSon.m"; sourceTree = "<group>"; };
+		1124AE4715A49C6F00FE1C28 /* ISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISO8601DateFormatter.h; sourceTree = "<group>"; };
+		1124AE4815A49C6F00FE1C28 /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
+		1124AE4A15A49EDF00FE1C28 /* NSDate+HObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+HObj.h"; sourceTree = "<group>"; };
+		1124AE4B15A49EDF00FE1C28 /* NSDate+HObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+HObj.m"; sourceTree = "<group>"; };
 		1131A186150F9DDE00A61449 /* SimpleClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1131A18A150F9DDE00A61449 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1131A192150F9DDE00A61449 /* SimpleClient-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SimpleClient-Info.plist"; sourceTree = "<group>"; };
@@ -219,53 +279,6 @@
 		11AF5C8915A34292003F7F5B /* XMPPXFacebookPlatformAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPXFacebookPlatformAuthentication.m; sourceTree = "<group>"; };
 		11AF5D7F15A342EF003F7F5B /* XMPPPubSub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPPubSub.h; sourceTree = "<group>"; };
 		11AF5D8015A342EF003F7F5B /* XMPPPubSub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPPubSub.m; sourceTree = "<group>"; };
-		11AF5DEC15A34CF0003F7F5B /* HClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HClient.h; sourceTree = "<group>"; };
-		11AF5DED15A34CF0003F7F5B /* HClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HClient.m; sourceTree = "<group>"; };
-		11AF5DEE15A34CF0003F7F5B /* HErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HErrors.h; sourceTree = "<group>"; };
-		11AF5DEF15A34CF0003F7F5B /* HMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMessage.h; sourceTree = "<group>"; };
-		11AF5DF015A34CF0003F7F5B /* HMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMessage.m; sourceTree = "<group>"; };
-		11AF5DF315A34CF0003F7F5B /* HGatewayOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGatewayOptions.h; sourceTree = "<group>"; };
-		11AF5DF415A34CF0003F7F5B /* HGatewayOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGatewayOptions.m; sourceTree = "<group>"; };
-		11AF5DF515A34CF0003F7F5B /* HOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HOptions.h; sourceTree = "<group>"; };
-		11AF5DF615A34CF0003F7F5B /* HOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HOptions.m; sourceTree = "<group>"; };
-		11AF5DF715A34CF0003F7F5B /* HSocketIOOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSocketIOOptions.h; sourceTree = "<group>"; };
-		11AF5DF815A34CF0003F7F5B /* HSocketIOOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSocketIOOptions.m; sourceTree = "<group>"; };
-		11AF5DF915A34CF0003F7F5B /* HXmppOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXmppOptions.h; sourceTree = "<group>"; };
-		11AF5DFA15A34CF0003F7F5B /* HXmppOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXmppOptions.m; sourceTree = "<group>"; };
-		11AF5DFC15A34CF0003F7F5B /* HTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTransport.h; sourceTree = "<group>"; };
-		11AF5DFD15A34CF0003F7F5B /* HXmpp+XMPPStreamDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HXmpp+XMPPStreamDelegate.h"; sourceTree = "<group>"; };
-		11AF5DFE15A34CF0003F7F5B /* HXmpp+XMPPStreamDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HXmpp+XMPPStreamDelegate.m"; sourceTree = "<group>"; };
-		11AF5E0015A34CF0003F7F5B /* HReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HReachability.h; sourceTree = "<group>"; };
-		11AF5E0115A34CF0003F7F5B /* HReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HReachability.m; sourceTree = "<group>"; };
-		11AF5E0215A34CF0003F7F5B /* HReconnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HReconnect.h; sourceTree = "<group>"; };
-		11AF5E0315A34CF0003F7F5B /* HReconnect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HReconnect.m; sourceTree = "<group>"; };
-		11AF5E0415A34CF0003F7F5B /* HSocketIO+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HSocketIO+Helper.h"; sourceTree = "<group>"; };
-		11AF5E0515A34CF0003F7F5B /* HSocketIO+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HSocketIO+Helper.m"; sourceTree = "<group>"; };
-		11AF5E0615A34CF0003F7F5B /* HSocketIO+HReconnectDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HSocketIO+HReconnectDelegate.h"; sourceTree = "<group>"; };
-		11AF5E0715A34CF0003F7F5B /* HSocketIO+HReconnectDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HSocketIO+HReconnectDelegate.m"; sourceTree = "<group>"; };
-		11AF5E0815A34CF0003F7F5B /* HSocketIO+HTransportProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HSocketIO+HTransportProtocol.h"; sourceTree = "<group>"; };
-		11AF5E0915A34CF0003F7F5B /* HSocketIO+HTransportProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HSocketIO+HTransportProtocol.m"; sourceTree = "<group>"; };
-		11AF5E0A15A34CF0003F7F5B /* HSocketIO+SocketIODelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HSocketIO+SocketIODelegate.h"; sourceTree = "<group>"; };
-		11AF5E0B15A34CF0003F7F5B /* HSocketIO+SocketIODelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HSocketIO+SocketIODelegate.m"; sourceTree = "<group>"; };
-		11AF5E0C15A34CF0003F7F5B /* HSocketIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSocketIO.h; sourceTree = "<group>"; };
-		11AF5E0D15A34CF0003F7F5B /* HSocketIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSocketIO.m; sourceTree = "<group>"; };
-		11AF5E0E15A34CF0003F7F5B /* HSocketIOTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSocketIOTransport.h; sourceTree = "<group>"; };
-		11AF5E1015A34CF0003F7F5B /* HXmpp+HCTransportProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HXmpp+HCTransportProtocol.m"; sourceTree = "<group>"; };
-		11AF5E1115A34CF0003F7F5B /* HXmpp+HReconnectDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HXmpp+HReconnectDelegate.h"; sourceTree = "<group>"; };
-		11AF5E1215A34CF0003F7F5B /* HXmpp+HReconnectDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HXmpp+HReconnectDelegate.m"; sourceTree = "<group>"; };
-		11AF5E1315A34CF0003F7F5B /* HXmpp+HTransportProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HXmpp+HTransportProtocol.h"; sourceTree = "<group>"; };
-		11AF5E1415A34CF0003F7F5B /* HXmpp+XMPPPubSubDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HXmpp+XMPPPubSubDelegate.h"; sourceTree = "<group>"; };
-		11AF5E1515A34CF0003F7F5B /* HXmpp+XMPPPubSubDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HXmpp+XMPPPubSubDelegate.m"; sourceTree = "<group>"; };
-		11AF5E1615A34CF0003F7F5B /* HXmpp+XMPPStreamDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HXmpp+XMPPStreamDelegate.h"; sourceTree = "<group>"; };
-		11AF5E1715A34CF0003F7F5B /* HXmpp+XMPPStreamDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HXmpp+XMPPStreamDelegate.m"; sourceTree = "<group>"; };
-		11AF5E1815A34CF0003F7F5B /* HXmpp+XMPPUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HXmpp+XMPPUtils.h"; sourceTree = "<group>"; };
-		11AF5E1915A34CF0003F7F5B /* HXmpp+XMPPUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HXmpp+XMPPUtils.m"; sourceTree = "<group>"; };
-		11AF5E1A15A34CF0003F7F5B /* HXmpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXmpp.h; sourceTree = "<group>"; };
-		11AF5E1B15A34CF0003F7F5B /* HXmpp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXmpp.m; sourceTree = "<group>"; };
-		11AF5E1C15A34CF0003F7F5B /* HXmppTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXmppTransport.h; sourceTree = "<group>"; };
-		11AF5E1D15A34CF0003F7F5B /* XMPPFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPFramework.h; sourceTree = "<group>"; };
-		11AF5E1F15A34CF0003F7F5B /* HUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUtils.h; sourceTree = "<group>"; };
-		11AF5E2015A34CF0003F7F5B /* HUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUtils.m; sourceTree = "<group>"; };
 		11DA19101510EE8D00483F4C /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		11DA19181510F04100483F4C /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
 		C55BA17E1530D9F600782699 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -291,6 +304,126 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1124ADF015A4864500FE1C28 /* hapi */ = {
+			isa = PBXGroup;
+			children = (
+				1124ADF115A4864500FE1C28 /* Categories */,
+				1124ADF215A4864500FE1C28 /* HClient.h */,
+				1124ADF315A4864500FE1C28 /* HClient.m */,
+				1124ADF415A4864500FE1C28 /* HErrors.h */,
+				1124ADF515A4864500FE1C28 /* HMessage.h */,
+				1124ADF615A4864500FE1C28 /* HMessage.m */,
+				1124ADF715A4864500FE1C28 /* Options */,
+				1124AE0015A4864500FE1C28 /* Structures */,
+				1124AE0215A4864500FE1C28 /* Transport */,
+				1124AE2515A4864500FE1C28 /* Utils */,
+			);
+			name = hapi;
+			path = ../../../hapi;
+			sourceTree = "<group>";
+		};
+		1124ADF115A4864500FE1C28 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				1124AE3D15A4928D00FE1C28 /* NSDate+ISO8601.h */,
+				1124AE3E15A4928D00FE1C28 /* NSDate+ISO8601.m */,
+				1124AE4015A498AD00FE1C28 /* NSDate+SBJSon.h */,
+				1124AE4115A498AD00FE1C28 /* NSDate+SBJSon.m */,
+				1124AE4A15A49EDF00FE1C28 /* NSDate+HObj.h */,
+				1124AE4B15A49EDF00FE1C28 /* NSDate+HObj.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		1124ADF715A4864500FE1C28 /* Options */ = {
+			isa = PBXGroup;
+			children = (
+				1124ADF815A4864500FE1C28 /* HGatewayOptions.h */,
+				1124ADF915A4864500FE1C28 /* HGatewayOptions.m */,
+				1124ADFA15A4864500FE1C28 /* HOptions.h */,
+				1124ADFB15A4864500FE1C28 /* HOptions.m */,
+				1124ADFC15A4864500FE1C28 /* HSocketIOOptions.h */,
+				1124ADFD15A4864500FE1C28 /* HSocketIOOptions.m */,
+				1124ADFE15A4864500FE1C28 /* HXmppOptions.h */,
+				1124ADFF15A4864500FE1C28 /* HXmppOptions.m */,
+			);
+			path = Options;
+			sourceTree = "<group>";
+		};
+		1124AE0015A4864500FE1C28 /* Structures */ = {
+			isa = PBXGroup;
+			children = (
+				1124AE0115A4864500FE1C28 /* HObj.h */,
+			);
+			path = Structures;
+			sourceTree = "<group>";
+		};
+		1124AE0215A4864500FE1C28 /* Transport */ = {
+			isa = PBXGroup;
+			children = (
+				1124AE0315A4864500FE1C28 /* HTransport.h */,
+				1124AE0415A4864500FE1C28 /* HXmpp+XMPPStreamDelegate.h */,
+				1124AE0515A4864500FE1C28 /* HXmpp+XMPPStreamDelegate.m */,
+				1124AE0615A4864500FE1C28 /* socketio */,
+				1124AE1615A4864500FE1C28 /* xmpp */,
+			);
+			path = Transport;
+			sourceTree = "<group>";
+		};
+		1124AE0615A4864500FE1C28 /* socketio */ = {
+			isa = PBXGroup;
+			children = (
+				1124AE0715A4864500FE1C28 /* HReachability.h */,
+				1124AE0815A4864500FE1C28 /* HReachability.m */,
+				1124AE0915A4864500FE1C28 /* HReconnect.h */,
+				1124AE0A15A4864500FE1C28 /* HReconnect.m */,
+				1124AE0B15A4864500FE1C28 /* HSocketIO+Helper.h */,
+				1124AE0C15A4864500FE1C28 /* HSocketIO+Helper.m */,
+				1124AE0D15A4864500FE1C28 /* HSocketIO+HReconnectDelegate.h */,
+				1124AE0E15A4864500FE1C28 /* HSocketIO+HReconnectDelegate.m */,
+				1124AE0F15A4864500FE1C28 /* HSocketIO+HTransportProtocol.h */,
+				1124AE1015A4864500FE1C28 /* HSocketIO+HTransportProtocol.m */,
+				1124AE1115A4864500FE1C28 /* HSocketIO+SocketIODelegate.h */,
+				1124AE1215A4864500FE1C28 /* HSocketIO+SocketIODelegate.m */,
+				1124AE1315A4864500FE1C28 /* HSocketIO.h */,
+				1124AE1415A4864500FE1C28 /* HSocketIO.m */,
+				1124AE1515A4864500FE1C28 /* HSocketIOTransport.h */,
+			);
+			path = socketio;
+			sourceTree = "<group>";
+		};
+		1124AE1615A4864500FE1C28 /* xmpp */ = {
+			isa = PBXGroup;
+			children = (
+				1124AE1715A4864500FE1C28 /* HXmpp+HCTransportProtocol.m */,
+				1124AE1815A4864500FE1C28 /* HXmpp+HReconnectDelegate.h */,
+				1124AE1915A4864500FE1C28 /* HXmpp+HReconnectDelegate.m */,
+				1124AE1A15A4864500FE1C28 /* HXmpp+HTransportProtocol.h */,
+				1124AE1B15A4864500FE1C28 /* HXmpp+XMPPPubSubDelegate.h */,
+				1124AE1C15A4864500FE1C28 /* HXmpp+XMPPPubSubDelegate.m */,
+				1124AE1D15A4864500FE1C28 /* HXmpp+XMPPStreamDelegate.h */,
+				1124AE1E15A4864500FE1C28 /* HXmpp+XMPPStreamDelegate.m */,
+				1124AE1F15A4864500FE1C28 /* HXmpp+XMPPUtils.h */,
+				1124AE2015A4864500FE1C28 /* HXmpp+XMPPUtils.m */,
+				1124AE2115A4864500FE1C28 /* HXmpp.h */,
+				1124AE2215A4864500FE1C28 /* HXmpp.m */,
+				1124AE2315A4864500FE1C28 /* HXmppTransport.h */,
+				1124AE2415A4864500FE1C28 /* XMPPFramework.h */,
+			);
+			path = xmpp;
+			sourceTree = "<group>";
+		};
+		1124AE2515A4864500FE1C28 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				1124AE4715A49C6F00FE1C28 /* ISO8601DateFormatter.h */,
+				1124AE4815A49C6F00FE1C28 /* ISO8601DateFormatter.m */,
+				1124AE2615A4864500FE1C28 /* HUtils.h */,
+				1124AE2715A4864500FE1C28 /* HUtils.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		1131A17B150F9DDE00A61449 = {
 			isa = PBXGroup;
 			children = (
@@ -325,7 +458,7 @@
 		1131A190150F9DDE00A61449 /* SimpleClient */ = {
 			isa = PBXGroup;
 			children = (
-				11AF5DEB15A34CF0003F7F5B /* hapi */,
+				1124ADF015A4864500FE1C28 /* hapi */,
 				11AF5B7115A34292003F7F5B /* vendor */,
 				1131A1A7150F9E6400A61449 /* AppDelegate.h */,
 				1131A1A8150F9E6400A61449 /* AppDelegate.m */,
@@ -607,109 +740,6 @@
 			path = "XEP-0060";
 			sourceTree = "<group>";
 		};
-		11AF5DEB15A34CF0003F7F5B /* hapi */ = {
-			isa = PBXGroup;
-			children = (
-				11AF5DEC15A34CF0003F7F5B /* HClient.h */,
-				11AF5DED15A34CF0003F7F5B /* HClient.m */,
-				11AF5DEE15A34CF0003F7F5B /* HErrors.h */,
-				11AF5DEF15A34CF0003F7F5B /* HMessage.h */,
-				11AF5DF015A34CF0003F7F5B /* HMessage.m */,
-				11AF5DF115A34CF0003F7F5B /* hStructures */,
-				11AF5DF215A34CF0003F7F5B /* options */,
-				11AF5DFB15A34CF0003F7F5B /* transport */,
-				11AF5E1E15A34CF0003F7F5B /* utils */,
-			);
-			name = hapi;
-			path = ../../../hapi;
-			sourceTree = "<group>";
-		};
-		11AF5DF115A34CF0003F7F5B /* hStructures */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = hStructures;
-			sourceTree = "<group>";
-		};
-		11AF5DF215A34CF0003F7F5B /* options */ = {
-			isa = PBXGroup;
-			children = (
-				11AF5DF315A34CF0003F7F5B /* HGatewayOptions.h */,
-				11AF5DF415A34CF0003F7F5B /* HGatewayOptions.m */,
-				11AF5DF515A34CF0003F7F5B /* HOptions.h */,
-				11AF5DF615A34CF0003F7F5B /* HOptions.m */,
-				11AF5DF715A34CF0003F7F5B /* HSocketIOOptions.h */,
-				11AF5DF815A34CF0003F7F5B /* HSocketIOOptions.m */,
-				11AF5DF915A34CF0003F7F5B /* HXmppOptions.h */,
-				11AF5DFA15A34CF0003F7F5B /* HXmppOptions.m */,
-			);
-			path = options;
-			sourceTree = "<group>";
-		};
-		11AF5DFB15A34CF0003F7F5B /* transport */ = {
-			isa = PBXGroup;
-			children = (
-				11AF5DFC15A34CF0003F7F5B /* HTransport.h */,
-				11AF5DFD15A34CF0003F7F5B /* HXmpp+XMPPStreamDelegate.h */,
-				11AF5DFE15A34CF0003F7F5B /* HXmpp+XMPPStreamDelegate.m */,
-				11AF5DFF15A34CF0003F7F5B /* socketio */,
-				11AF5E0F15A34CF0003F7F5B /* xmpp */,
-			);
-			path = transport;
-			sourceTree = "<group>";
-		};
-		11AF5DFF15A34CF0003F7F5B /* socketio */ = {
-			isa = PBXGroup;
-			children = (
-				11AF5E0015A34CF0003F7F5B /* HReachability.h */,
-				11AF5E0115A34CF0003F7F5B /* HReachability.m */,
-				11AF5E0215A34CF0003F7F5B /* HReconnect.h */,
-				11AF5E0315A34CF0003F7F5B /* HReconnect.m */,
-				11AF5E0415A34CF0003F7F5B /* HSocketIO+Helper.h */,
-				11AF5E0515A34CF0003F7F5B /* HSocketIO+Helper.m */,
-				11AF5E0615A34CF0003F7F5B /* HSocketIO+HReconnectDelegate.h */,
-				11AF5E0715A34CF0003F7F5B /* HSocketIO+HReconnectDelegate.m */,
-				11AF5E0815A34CF0003F7F5B /* HSocketIO+HTransportProtocol.h */,
-				11AF5E0915A34CF0003F7F5B /* HSocketIO+HTransportProtocol.m */,
-				11AF5E0A15A34CF0003F7F5B /* HSocketIO+SocketIODelegate.h */,
-				11AF5E0B15A34CF0003F7F5B /* HSocketIO+SocketIODelegate.m */,
-				11AF5E0C15A34CF0003F7F5B /* HSocketIO.h */,
-				11AF5E0D15A34CF0003F7F5B /* HSocketIO.m */,
-				11AF5E0E15A34CF0003F7F5B /* HSocketIOTransport.h */,
-			);
-			path = socketio;
-			sourceTree = "<group>";
-		};
-		11AF5E0F15A34CF0003F7F5B /* xmpp */ = {
-			isa = PBXGroup;
-			children = (
-				11AF5E1015A34CF0003F7F5B /* HXmpp+HCTransportProtocol.m */,
-				11AF5E1115A34CF0003F7F5B /* HXmpp+HReconnectDelegate.h */,
-				11AF5E1215A34CF0003F7F5B /* HXmpp+HReconnectDelegate.m */,
-				11AF5E1315A34CF0003F7F5B /* HXmpp+HTransportProtocol.h */,
-				11AF5E1415A34CF0003F7F5B /* HXmpp+XMPPPubSubDelegate.h */,
-				11AF5E1515A34CF0003F7F5B /* HXmpp+XMPPPubSubDelegate.m */,
-				11AF5E1615A34CF0003F7F5B /* HXmpp+XMPPStreamDelegate.h */,
-				11AF5E1715A34CF0003F7F5B /* HXmpp+XMPPStreamDelegate.m */,
-				11AF5E1815A34CF0003F7F5B /* HXmpp+XMPPUtils.h */,
-				11AF5E1915A34CF0003F7F5B /* HXmpp+XMPPUtils.m */,
-				11AF5E1A15A34CF0003F7F5B /* HXmpp.h */,
-				11AF5E1B15A34CF0003F7F5B /* HXmpp.m */,
-				11AF5E1C15A34CF0003F7F5B /* HXmppTransport.h */,
-				11AF5E1D15A34CF0003F7F5B /* XMPPFramework.h */,
-			);
-			path = xmpp;
-			sourceTree = "<group>";
-		};
-		11AF5E1E15A34CF0003F7F5B /* utils */ = {
-			isa = PBXGroup;
-			children = (
-				11AF5E1F15A34CF0003F7F5B /* HUtils.h */,
-				11AF5E2015A34CF0003F7F5B /* HUtils.m */,
-			);
-			path = utils;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -822,27 +852,31 @@
 				11AF5D1215A34292003F7F5B /* XMPPSRVResolver.m in Sources */,
 				11AF5D1315A34292003F7F5B /* XMPPXFacebookPlatformAuthentication.m in Sources */,
 				11AF5DD715A342EF003F7F5B /* XMPPPubSub.m in Sources */,
-				11AF5E2115A34CF0003F7F5B /* HClient.m in Sources */,
-				11AF5E2215A34CF0003F7F5B /* HMessage.m in Sources */,
-				11AF5E2315A34CF0003F7F5B /* HGatewayOptions.m in Sources */,
-				11AF5E2415A34CF0003F7F5B /* HOptions.m in Sources */,
-				11AF5E2515A34CF0003F7F5B /* HSocketIOOptions.m in Sources */,
-				11AF5E2615A34CF0003F7F5B /* HXmppOptions.m in Sources */,
-				11AF5E2715A34CF0003F7F5B /* HXmpp+XMPPStreamDelegate.m in Sources */,
-				11AF5E2815A34CF0003F7F5B /* HReachability.m in Sources */,
-				11AF5E2915A34CF0003F7F5B /* HReconnect.m in Sources */,
-				11AF5E2A15A34CF0003F7F5B /* HSocketIO+Helper.m in Sources */,
-				11AF5E2B15A34CF0003F7F5B /* HSocketIO+HReconnectDelegate.m in Sources */,
-				11AF5E2C15A34CF0003F7F5B /* HSocketIO+HTransportProtocol.m in Sources */,
-				11AF5E2D15A34CF0003F7F5B /* HSocketIO+SocketIODelegate.m in Sources */,
-				11AF5E2E15A34CF0003F7F5B /* HSocketIO.m in Sources */,
-				11AF5E2F15A34CF0003F7F5B /* HXmpp+HCTransportProtocol.m in Sources */,
-				11AF5E3015A34CF0003F7F5B /* HXmpp+HReconnectDelegate.m in Sources */,
-				11AF5E3115A34CF0003F7F5B /* HXmpp+XMPPPubSubDelegate.m in Sources */,
-				11AF5E3215A34CF0003F7F5B /* HXmpp+XMPPStreamDelegate.m in Sources */,
-				11AF5E3315A34CF0003F7F5B /* HXmpp+XMPPUtils.m in Sources */,
-				11AF5E3415A34CF0003F7F5B /* HXmpp.m in Sources */,
-				11AF5E3515A34CF0003F7F5B /* HUtils.m in Sources */,
+				1124AE2815A4864500FE1C28 /* HClient.m in Sources */,
+				1124AE2915A4864500FE1C28 /* HMessage.m in Sources */,
+				1124AE2A15A4864500FE1C28 /* HGatewayOptions.m in Sources */,
+				1124AE2B15A4864500FE1C28 /* HOptions.m in Sources */,
+				1124AE2C15A4864500FE1C28 /* HSocketIOOptions.m in Sources */,
+				1124AE2D15A4864500FE1C28 /* HXmppOptions.m in Sources */,
+				1124AE2E15A4864500FE1C28 /* HXmpp+XMPPStreamDelegate.m in Sources */,
+				1124AE2F15A4864500FE1C28 /* HReachability.m in Sources */,
+				1124AE3015A4864500FE1C28 /* HReconnect.m in Sources */,
+				1124AE3115A4864500FE1C28 /* HSocketIO+Helper.m in Sources */,
+				1124AE3215A4864500FE1C28 /* HSocketIO+HReconnectDelegate.m in Sources */,
+				1124AE3315A4864500FE1C28 /* HSocketIO+HTransportProtocol.m in Sources */,
+				1124AE3415A4864500FE1C28 /* HSocketIO+SocketIODelegate.m in Sources */,
+				1124AE3515A4864500FE1C28 /* HSocketIO.m in Sources */,
+				1124AE3615A4864500FE1C28 /* HXmpp+HCTransportProtocol.m in Sources */,
+				1124AE3715A4864500FE1C28 /* HXmpp+HReconnectDelegate.m in Sources */,
+				1124AE3815A4864500FE1C28 /* HXmpp+XMPPPubSubDelegate.m in Sources */,
+				1124AE3915A4864500FE1C28 /* HXmpp+XMPPStreamDelegate.m in Sources */,
+				1124AE3A15A4864500FE1C28 /* HXmpp+XMPPUtils.m in Sources */,
+				1124AE3B15A4864500FE1C28 /* HXmpp.m in Sources */,
+				1124AE3C15A4864500FE1C28 /* HUtils.m in Sources */,
+				1124AE3F15A4928D00FE1C28 /* NSDate+ISO8601.m in Sources */,
+				1124AE4215A498AD00FE1C28 /* NSDate+SBJSon.m in Sources */,
+				1124AE4915A49C6F00FE1C28 /* ISO8601DateFormatter.m in Sources */,
+				1124AE4C15A49EDF00FE1C28 /* NSDate+HObj.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

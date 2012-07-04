@@ -19,6 +19,7 @@
 
 #import "ViewController.h"
 #import "HMessage.h"
+#import "SBJson.h"
 
 @implementation ViewController
 @synthesize username;
@@ -49,6 +50,21 @@
         NSLog(@"Event : context %@,    data %@", context, data);
     } options:options];
     */
+    
+    /*NSDate * date = [NSDate date];
+    NSCalendar * calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    [comps setMonth:2];
+    [comps setDay:3];
+    [comps setSecond:1];
+    date = [NSDate dateWithTimeInterval:1 sinceDate:date];
+    //date = [calendar dateByAddingComponents:comps toDate:date  options:0];
+    
+    NSLog(@"date is : %@", date);
+    NSLog(@"json date is : %@", [date JSONRepresentation]);
+    
+    NSDictionary * dictTest = [NSDictionary dictionaryWithObjectsAndKeys:date, @"date", nil];
+     NSLog(@"dict date is : %@", [dictTest JSONRepresentation]);*/
      
     self.channel.text = TEST_CHANNEL;
     username.text = options.username;

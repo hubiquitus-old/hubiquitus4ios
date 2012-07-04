@@ -18,7 +18,7 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "transport/HTransport.h"
+#import "Transport/HTransport.h"
 #import "options/HOptions.h"
 #import "HMessage.h"
 #import "HErrors.h"
