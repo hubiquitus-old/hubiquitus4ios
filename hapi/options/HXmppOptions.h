@@ -17,23 +17,18 @@
  *     along with Hubiquitus.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <UIKit/UIKit.h>
-#import "HClient.h"
-#import "AppDelegate.h"
+#import <Foundation/Foundation.h>
 
-@interface ViewController : UIViewController <HClientDelegate>
-@property (strong, nonatomic) HOptions * options;
-@property (strong, nonatomic) HClient * client;
-@property (strong, nonatomic) IBOutlet UILabel *username;
-@property (strong, nonatomic) IBOutlet UITextField *channel;
-@property (strong, nonatomic) IBOutlet UITextView *console;
+@interface HXmppOptions : NSObject
 
-- (IBAction)connect:(id)sender;
-- (IBAction)disconnect:(id)sender;
-- (IBAction)publish:(id)sender;
-- (IBAction)subscribe:(id)sender;
-- (IBAction)unsubscribe:(id)sender;
-- (IBAction)getAllMessages:(id)sender;
-- (IBAction)clear:(id)sender;
+@property (nonatomic) BOOL runInBackground;
+@property (nonatomic) BOOL allowSelfSignedCertificates;
+@property (nonatomic) BOOL allowSSLHostnameMismatch;
+
+//@property (copy, nonatomic) NSString * endpoint;
+//@property (copy, nonatomic) NSArray * ports;
+
++ (id)optionsWithDict:(NSDictionary*)dict;
+- (id)initWithDict:(NSDictionary*)dict;
 
 @end

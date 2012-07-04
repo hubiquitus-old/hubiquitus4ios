@@ -17,23 +17,25 @@
  *     along with Hubiquitus.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <UIKit/UIKit.h>
-#import "HClient.h"
-#import "AppDelegate.h"
+#import <Foundation/Foundation.h>
+#import "HGatewayOptions.h"
 
-@interface ViewController : UIViewController <HClientDelegate>
-@property (strong, nonatomic) HOptions * options;
-@property (strong, nonatomic) HClient * client;
-@property (strong, nonatomic) IBOutlet UILabel *username;
-@property (strong, nonatomic) IBOutlet UITextField *channel;
-@property (strong, nonatomic) IBOutlet UITextView *console;
+@interface HOptions : NSObject
 
-- (IBAction)connect:(id)sender;
-- (IBAction)disconnect:(id)sender;
-- (IBAction)publish:(id)sender;
-- (IBAction)subscribe:(id)sender;
-- (IBAction)unsubscribe:(id)sender;
-- (IBAction)getAllMessages:(id)sender;
-- (IBAction)clear:(id)sender;
+@property (copy, nonatomic) NSString * username;
+@property (copy, nonatomic) NSString * password;
+@property (readonly, nonatomic) NSString * domain;
+@property (copy, nonatomic) NSString * route;
+@property (readonly, nonatomic) NSString * routeDomain;
+@property (readonly, nonatomic) NSNumber * routePort;
+
+@property (readonly, nonatomic) HGatewayOptions * gateway;
+
++ (id)optionsWithDict:(NSDictionary*)dict;
++ (id)optionsWithPlist:(NSString*)path;
+
+- (id)initWithDict:(NSDictionary*)dict;
+- (id)initWithPlist:(NSString*)path;
+
 
 @end

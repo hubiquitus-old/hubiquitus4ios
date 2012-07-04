@@ -18,7 +18,7 @@
  */
 
 #import "ViewController.h"
-#import "HCMessage.h"
+#import "HMessage.h"
 
 @implementation ViewController
 @synthesize username;
@@ -40,8 +40,8 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     NSString * optionPath = [[NSBundle mainBundle] pathForResource:@"options" ofType:@"plist"];
-    options = [HCOptions optionsWithPlist:optionPath];
-    client = [HCClient clientWithUsername:TEST_USERNAME password:TEST_PASSWORD delegate:self options:options];
+    options = [HOptions optionsWithPlist:optionPath];
+    client = [HClient clientWithUsername:TEST_USERNAME password:TEST_PASSWORD delegate:self options:options];
     
     //callback version
     /*
@@ -115,7 +115,7 @@
     
 }
 
-- (void)notifyMessage:(HCMessage *)message FromChannel:(NSString *)channel_identifier {
+- (void)notifyMessage:(HMessage *)message FromChannel:(NSString *)channel_identifier {
     NSLog(@"Getting a message : message %@, channel %@", message, channel_identifier);
     NSString * txt = [NSString stringWithFormat:@"Getting a message : message %@, channel %@", message, channel_identifier];
     [self performSelectorOnMainThread:@selector(updateConsoleWithTxt:) withObject:txt waitUntilDone:YES];
@@ -139,7 +139,7 @@
 
 - (IBAction)publish:(id)sender {
     NSDictionary * publishMsg = [NSDictionary dictionaryWithObjectsAndKeys:@"it works !", @"msg", nil];
-    HCMessage * message = [[HCMessage alloc] initWithDictionnary:publishMsg];
+    HMessage * message = [[HMessage alloc] initWithDictionnary:publishMsg];
     NSString * msgid = [client publishToChannel:self.channel.text message:message];
     NSLog(@"Trying to publish with msgid : %@", msgid);
     NSString * txt = [NSString stringWithFormat:@"%Trying to publish with msgid : %@", msgid];

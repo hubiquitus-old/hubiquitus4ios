@@ -17,23 +17,33 @@
  *     along with Hubiquitus.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <UIKit/UIKit.h>
-#import "HClient.h"
-#import "AppDelegate.h"
+#import "HUtils.h"
 
-@interface ViewController : UIViewController <HClientDelegate>
-@property (strong, nonatomic) HOptions * options;
-@property (strong, nonatomic) HClient * client;
-@property (strong, nonatomic) IBOutlet UILabel *username;
-@property (strong, nonatomic) IBOutlet UITextField *channel;
-@property (strong, nonatomic) IBOutlet UITextView *console;
+#if ! __has_feature(objc_arc)
+#warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
+#endif
 
-- (IBAction)connect:(id)sender;
-- (IBAction)disconnect:(id)sender;
-- (IBAction)publish:(id)sender;
-- (IBAction)subscribe:(id)sender;
-- (IBAction)unsubscribe:(id)sender;
-- (IBAction)getAllMessages:(id)sender;
-- (IBAction)clear:(id)sender;
+/**
+ * @internal
+ * pick a random object from an array
+ */
+id pickRandomValue(NSArray * array) {
+    if ([array count] > 0) {
+        int index = arc4random() % [array count];
+        return [array objectAtIndex:index];
+    }
+    
+    return nil;
+}
+
+/**
+ * @internal
+ * category of SocketIOPacket to add a description
+ */
+@implementation SocketIOPacket (description)
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"type %@, pID %@, ack %@, name %@, data %@, endpoint %@, args %@", self.type, self.pId, self.ack, self.name, self.data, self.endpoint, self.args];
+}
 
 @end

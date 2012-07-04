@@ -17,23 +17,33 @@
  *     along with Hubiquitus.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <UIKit/UIKit.h>
-#import "HClient.h"
-#import "AppDelegate.h"
+#import <Foundation/Foundation.h>
+#import "HTransport.h"
+#import "SocketIO.h"
+#import "HReconnect.h"
 
-@interface ViewController : UIViewController <HClientDelegate>
-@property (strong, nonatomic) HOptions * options;
-@property (strong, nonatomic) HClient * client;
-@property (strong, nonatomic) IBOutlet UILabel *username;
-@property (strong, nonatomic) IBOutlet UITextField *channel;
-@property (strong, nonatomic) IBOutlet UITextView *console;
+@interface HSocketIO : NSObject
 
-- (IBAction)connect:(id)sender;
-- (IBAction)disconnect:(id)sender;
-- (IBAction)publish:(id)sender;
-- (IBAction)subscribe:(id)sender;
-- (IBAction)unsubscribe:(id)sender;
-- (IBAction)getAllMessages:(id)sender;
-- (IBAction)clear:(id)sender;
+@property (nonatomic, strong) id<HTransportDelegate> delegate;
+@property (nonatomic, strong) HOptions * options;
+@property (nonatomic, strong) SocketIO * socketio;
+@property (nonatomic) BOOL connectedToGateway;
+@property (nonatomic) BOOL connectedToXmpp;
+@property (nonatomic) BOOL autoreconnect;
+@property (nonatomic, strong) NSString * userid;
+@property (nonatomic) int rid;
+@property (nonatomic, strong) NSString * sid;
+@property (nonatomic, strong) HReconnect * reconnectPlugin;
+
+- (void)establishLink;
+- (NSString*)generateMsgid;
+
+
+
+- (void)connectToXmpp;
+- (BOOL)attach;
+
+
+
 
 @end
