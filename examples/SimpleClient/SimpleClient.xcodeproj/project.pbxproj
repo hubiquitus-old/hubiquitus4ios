@@ -32,6 +32,11 @@
 		1124AE4215A498AD00FE1C28 /* NSDate+SBJSon.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124AE4115A498AD00FE1C28 /* NSDate+SBJSon.m */; };
 		1124AE4915A49C6F00FE1C28 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124AE4815A49C6F00FE1C28 /* ISO8601DateFormatter.m */; };
 		1124AE4C15A49EDF00FE1C28 /* NSDate+HObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124AE4B15A49EDF00FE1C28 /* NSDate+HObj.m */; };
+		1124AE4F15A4A65F00FE1C28 /* NSDictionary+HObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124AE4E15A4A65F00FE1C28 /* NSDictionary+HObj.m */; };
+		1124AE5215A4A6C900FE1C28 /* NSArray+HObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124AE5115A4A6C800FE1C28 /* NSArray+HObj.m */; };
+		1124AE5515A4A72000FE1C28 /* NSString+HObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124AE5415A4A71F00FE1C28 /* NSString+HObj.m */; };
+		1124AE5815A4A78F00FE1C28 /* NSNumber+HObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124AE5715A4A78F00FE1C28 /* NSNumber+HObj.m */; };
+		1124AE5B15A4A7F400FE1C28 /* NSNull+HObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124AE5A15A4A7F400FE1C28 /* NSNull+HObj.m */; };
 		1131A18B150F9DDE00A61449 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1131A18A150F9DDE00A61449 /* UIKit.framework */; };
 		1131A195150F9DDE00A61449 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1131A193150F9DDE00A61449 /* InfoPlist.strings */; };
 		1131A197150F9DDE00A61449 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1131A196150F9DDE00A61449 /* main.m */; };
@@ -151,6 +156,16 @@
 		1124AE4815A49C6F00FE1C28 /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
 		1124AE4A15A49EDF00FE1C28 /* NSDate+HObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+HObj.h"; sourceTree = "<group>"; };
 		1124AE4B15A49EDF00FE1C28 /* NSDate+HObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+HObj.m"; sourceTree = "<group>"; };
+		1124AE4D15A4A65F00FE1C28 /* NSDictionary+HObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+HObj.h"; sourceTree = "<group>"; };
+		1124AE4E15A4A65F00FE1C28 /* NSDictionary+HObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+HObj.m"; sourceTree = "<group>"; };
+		1124AE5015A4A6C800FE1C28 /* NSArray+HObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+HObj.h"; sourceTree = "<group>"; };
+		1124AE5115A4A6C800FE1C28 /* NSArray+HObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+HObj.m"; sourceTree = "<group>"; };
+		1124AE5315A4A71F00FE1C28 /* NSString+HObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HObj.h"; sourceTree = "<group>"; };
+		1124AE5415A4A71F00FE1C28 /* NSString+HObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HObj.m"; sourceTree = "<group>"; };
+		1124AE5615A4A78E00FE1C28 /* NSNumber+HObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+HObj.h"; sourceTree = "<group>"; };
+		1124AE5715A4A78F00FE1C28 /* NSNumber+HObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+HObj.m"; sourceTree = "<group>"; };
+		1124AE5915A4A7F300FE1C28 /* NSNull+HObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+HObj.h"; sourceTree = "<group>"; };
+		1124AE5A15A4A7F400FE1C28 /* NSNull+HObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+HObj.m"; sourceTree = "<group>"; };
 		1131A186150F9DDE00A61449 /* SimpleClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1131A18A150F9DDE00A61449 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1131A192150F9DDE00A61449 /* SimpleClient-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SimpleClient-Info.plist"; sourceTree = "<group>"; };
@@ -331,6 +346,16 @@
 				1124AE4115A498AD00FE1C28 /* NSDate+SBJSon.m */,
 				1124AE4A15A49EDF00FE1C28 /* NSDate+HObj.h */,
 				1124AE4B15A49EDF00FE1C28 /* NSDate+HObj.m */,
+				1124AE4D15A4A65F00FE1C28 /* NSDictionary+HObj.h */,
+				1124AE4E15A4A65F00FE1C28 /* NSDictionary+HObj.m */,
+				1124AE5015A4A6C800FE1C28 /* NSArray+HObj.h */,
+				1124AE5115A4A6C800FE1C28 /* NSArray+HObj.m */,
+				1124AE5315A4A71F00FE1C28 /* NSString+HObj.h */,
+				1124AE5415A4A71F00FE1C28 /* NSString+HObj.m */,
+				1124AE5615A4A78E00FE1C28 /* NSNumber+HObj.h */,
+				1124AE5715A4A78F00FE1C28 /* NSNumber+HObj.m */,
+				1124AE5915A4A7F300FE1C28 /* NSNull+HObj.h */,
+				1124AE5A15A4A7F400FE1C28 /* NSNull+HObj.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -877,6 +902,11 @@
 				1124AE4215A498AD00FE1C28 /* NSDate+SBJSon.m in Sources */,
 				1124AE4915A49C6F00FE1C28 /* ISO8601DateFormatter.m in Sources */,
 				1124AE4C15A49EDF00FE1C28 /* NSDate+HObj.m in Sources */,
+				1124AE4F15A4A65F00FE1C28 /* NSDictionary+HObj.m in Sources */,
+				1124AE5215A4A6C900FE1C28 /* NSArray+HObj.m in Sources */,
+				1124AE5515A4A72000FE1C28 /* NSString+HObj.m in Sources */,
+				1124AE5815A4A78F00FE1C28 /* NSNumber+HObj.m in Sources */,
+				1124AE5B15A4A7F400FE1C28 /* NSNull+HObj.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
