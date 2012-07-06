@@ -44,6 +44,9 @@
 		1131A1AD150F9E6400A61449 /* options.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1131A1A9150F9E6400A61449 /* options.plist */; };
 		1131A1AE150F9E6400A61449 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1131A1AB150F9E6400A61449 /* ViewController.m */; };
 		11452E061510D39400B94B34 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11452E041510D39400B94B34 /* ViewController_iPhone.xib */; };
+		116EB59C15A70D0B00E6F5B0 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 116EB59B15A70D0B00E6F5B0 /* Storyboard.storyboard */; };
+		116EB5A415A712AF00E6F5B0 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 116EB5A215A712AE00E6F5B0 /* TabBarController.m */; };
+		116EB5A815A746FD00E6F5B0 /* ConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 116EB5A715A746FD00E6F5B0 /* ConnectionController.m */; };
 		11AF5CA015A34292003F7F5B /* WebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5B7515A34292003F7F5B /* WebSocket.m */; };
 		11AF5CA115A34292003F7F5B /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5B7815A34292003F7F5B /* GCDAsyncSocket.m */; };
 		11AF5CA215A34292003F7F5B /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5B7B15A34292003F7F5B /* DDAbstractDatabaseLogger.m */; };
@@ -180,6 +183,11 @@
 		1131A246150FA01500A61449 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		1131A24B150FA07600A61449 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		11452E051510D39400B94B34 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
+		116EB59B15A70D0B00E6F5B0 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		116EB5A115A712AE00E6F5B0 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabBarController.h; path = ../examples/SimpleClient/SimpleClient/TabBarController.h; sourceTree = "<group>"; };
+		116EB5A215A712AE00E6F5B0 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabBarController.m; path = ../examples/SimpleClient/SimpleClient/TabBarController.m; sourceTree = "<group>"; };
+		116EB5A615A746FC00E6F5B0 /* ConnectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionController.h; sourceTree = SOURCE_ROOT; };
+		116EB5A715A746FD00E6F5B0 /* ConnectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionController.m; sourceTree = SOURCE_ROOT; };
 		11AF5B7315A34292003F7F5B /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		11AF5B7415A34292003F7F5B /* WebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebSocket.h; sourceTree = "<group>"; };
 		11AF5B7515A34292003F7F5B /* WebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebSocket.m; sourceTree = "<group>"; };
@@ -322,6 +330,8 @@
 		1124ADF015A4864500FE1C28 /* hapi */ = {
 			isa = PBXGroup;
 			children = (
+				116EB5A115A712AE00E6F5B0 /* TabBarController.h */,
+				116EB5A215A712AE00E6F5B0 /* TabBarController.m */,
 				1124ADF115A4864500FE1C28 /* Categories */,
 				1124ADF215A4864500FE1C28 /* HClient.h */,
 				1124ADF315A4864500FE1C28 /* HClient.m */,
@@ -332,6 +342,8 @@
 				1124AE0015A4864500FE1C28 /* Structures */,
 				1124AE0215A4864500FE1C28 /* Transport */,
 				1124AE2515A4864500FE1C28 /* Utils */,
+				116EB5A615A746FC00E6F5B0 /* ConnectionController.h */,
+				116EB5A715A746FD00E6F5B0 /* ConnectionController.m */,
 			);
 			name = hapi;
 			path = ../../../hapi;
@@ -503,6 +515,7 @@
 				1131A193150F9DDE00A61449 /* InfoPlist.strings */,
 				1131A196150F9DDE00A61449 /* main.m */,
 				1131A198150F9DDE00A61449 /* SimpleClient-Prefix.pch */,
+				116EB59B15A70D0B00E6F5B0 /* Storyboard.storyboard */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -818,6 +831,7 @@
 				1131A195150F9DDE00A61449 /* InfoPlist.strings in Resources */,
 				1131A1AD150F9E6400A61449 /* options.plist in Resources */,
 				11452E061510D39400B94B34 /* ViewController_iPhone.xib in Resources */,
+				116EB59C15A70D0B00E6F5B0 /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -907,6 +921,8 @@
 				1124AE5515A4A72000FE1C28 /* NSString+HObj.m in Sources */,
 				1124AE5815A4A78F00FE1C28 /* NSNumber+HObj.m in Sources */,
 				1124AE5B15A4A7F400FE1C28 /* NSNull+HObj.m in Sources */,
+				116EB5A415A712AF00E6F5B0 /* TabBarController.m in Sources */,
+				116EB5A815A746FD00E6F5B0 /* ConnectionController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -984,7 +1000,7 @@
 				GCC_PREFIX_HEADER = "SimpleClient/SimpleClient-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "SimpleClient/SimpleClient-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../vendor/libidn\"",
@@ -1001,7 +1017,7 @@
 				GCC_PREFIX_HEADER = "SimpleClient/SimpleClient-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "SimpleClient/SimpleClient-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../vendor/libidn\"",
