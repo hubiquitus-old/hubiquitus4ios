@@ -17,18 +17,15 @@
  *     along with Hubiquitus.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "HClient.h"
+#import <Foundation/Foundation.h>
+#import "HStructure.h"
 
-#if ! __has_feature(objc_arc)
-#warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
-#endif
+@interface HOptions : HStructure
 
-/**
- * @version 0.4.0
- * Hubiquitus API for ios
- * Hubiquitus is an attempt to provide a simple way to develop networks of smart agents - say actors - that can interact together with connected things - say objects, sensors, user devices - and humans.
- */
-
-@implementation HClient
+@property (strong, nonatomic) NSString * serverHost;
+@property (nonatomic) int serverPort;
+@property (nonatomic, strong) NSString * hServer;
+@property (nonatomic, strong) NSString * transport;
+@property (nonatomic, strong) NSArray * endpoints;
 
 @end

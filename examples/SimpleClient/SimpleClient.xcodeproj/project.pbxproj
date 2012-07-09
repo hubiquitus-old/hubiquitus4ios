@@ -7,10 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1124AE2815A4864500FE1C28 /* HClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124ADF315A4864500FE1C28 /* HClient.m */; };
 		1124AE2915A4864500FE1C28 /* HMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124ADF615A4864500FE1C28 /* HMessage.m */; };
 		1124AE2A15A4864500FE1C28 /* HGatewayOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124ADF915A4864500FE1C28 /* HGatewayOptions.m */; };
-		1124AE2B15A4864500FE1C28 /* HOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124ADFB15A4864500FE1C28 /* HOptions.m */; };
 		1124AE2C15A4864500FE1C28 /* HSocketIOOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124ADFD15A4864500FE1C28 /* HSocketIOOptions.m */; };
 		1124AE2D15A4864500FE1C28 /* HXmppOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124ADFF15A4864500FE1C28 /* HXmppOptions.m */; };
 		1124AE2E15A4864500FE1C28 /* HXmpp+XMPPStreamDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124AE0515A4864500FE1C28 /* HXmpp+XMPPStreamDelegate.m */; };
@@ -42,7 +40,6 @@
 		1131A197150F9DDE00A61449 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1131A196150F9DDE00A61449 /* main.m */; };
 		1131A1AC150F9E6400A61449 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1131A1A8150F9E6400A61449 /* AppDelegate.m */; };
 		1131A1AD150F9E6400A61449 /* options.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1131A1A9150F9E6400A61449 /* options.plist */; };
-		1131A1AE150F9E6400A61449 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1131A1AB150F9E6400A61449 /* ViewController.m */; };
 		11452E061510D39400B94B34 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11452E041510D39400B94B34 /* ViewController_iPhone.xib */; };
 		116EB59C15A70D0B00E6F5B0 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 116EB59B15A70D0B00E6F5B0 /* Storyboard.storyboard */; };
 		116EB5A415A712AF00E6F5B0 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 116EB5A215A712AE00E6F5B0 /* TabBarController.m */; };
@@ -95,6 +92,9 @@
 		11AF5D1315A34292003F7F5B /* XMPPXFacebookPlatformAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5C8915A34292003F7F5B /* XMPPXFacebookPlatformAuthentication.m */; };
 		11AF5DD715A342EF003F7F5B /* XMPPPubSub.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5D8015A342EF003F7F5B /* XMPPPubSub.m */; };
 		11E2B11215AAD11A00824ED2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11E2B11015AAD11400824ED2 /* CoreGraphics.framework */; };
+		11E2B11615AB015F00824ED2 /* HClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E2B11515AB015F00824ED2 /* HClient.m */; };
+		11E2B11915AB027600824ED2 /* HOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E2B11815AB027600824ED2 /* HOptions.m */; };
+		11E2B12215AB0C2500824ED2 /* HStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E2B12115AB0C2500824ED2 /* HStructure.m */; };
 		11E663251511FFA200095274 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 11DA19181510F04100483F4C /* libresolv.dylib */; };
 		11E663261511FFA400095274 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 11DA19101510EE8D00483F4C /* libxml2.dylib */; };
 		C55BA1801530DA0E00782699 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C55BA17E1530D9F600782699 /* Security.framework */; };
@@ -104,8 +104,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1124ADF215A4864500FE1C28 /* HClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HClient.h; sourceTree = "<group>"; };
-		1124ADF315A4864500FE1C28 /* HClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HClient.m; sourceTree = "<group>"; };
+		1124ADF215A4864500FE1C28 /* HClient.old.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HClient.old.h; sourceTree = "<group>"; };
+		1124ADF315A4864500FE1C28 /* HClient.old.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HClient.old.m; sourceTree = "<group>"; };
 		1124ADF415A4864500FE1C28 /* HErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HErrors.h; sourceTree = "<group>"; };
 		1124ADF515A4864500FE1C28 /* HMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMessage.h; sourceTree = "<group>"; };
 		1124ADF615A4864500FE1C28 /* HMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMessage.m; sourceTree = "<group>"; };
@@ -307,6 +307,12 @@
 		11DA19181510F04100483F4C /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
 		11E2B11015AAD11400824ED2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		11E2B11315AB008C00824ED2 /* NativeObjectsCategories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NativeObjectsCategories.h; sourceTree = "<group>"; };
+		11E2B11415AB015F00824ED2 /* HClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HClient.h; sourceTree = "<group>"; };
+		11E2B11515AB015F00824ED2 /* HClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HClient.m; sourceTree = "<group>"; };
+		11E2B11715AB027600824ED2 /* HOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HOptions.h; sourceTree = "<group>"; };
+		11E2B11815AB027600824ED2 /* HOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HOptions.m; sourceTree = "<group>"; };
+		11E2B12015AB0C2400824ED2 /* HStructure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HStructure.h; sourceTree = "<group>"; };
+		11E2B12115AB0C2500824ED2 /* HStructure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HStructure.m; sourceTree = "<group>"; };
 		C55BA17E1530D9F600782699 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		C55BA1811530DA5600782699 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -337,8 +343,10 @@
 				116EB5A115A712AE00E6F5B0 /* TabBarController.h */,
 				116EB5A215A712AE00E6F5B0 /* TabBarController.m */,
 				1124ADF115A4864500FE1C28 /* Categories */,
-				1124ADF215A4864500FE1C28 /* HClient.h */,
-				1124ADF315A4864500FE1C28 /* HClient.m */,
+				1124ADF215A4864500FE1C28 /* HClient.old.h */,
+				1124ADF315A4864500FE1C28 /* HClient.old.m */,
+				11E2B11415AB015F00824ED2 /* HClient.h */,
+				11E2B11515AB015F00824ED2 /* HClient.m */,
 				1124ADF415A4864500FE1C28 /* HErrors.h */,
 				1124ADF515A4864500FE1C28 /* HMessage.h */,
 				1124ADF615A4864500FE1C28 /* HMessage.m */,
@@ -396,6 +404,10 @@
 			isa = PBXGroup;
 			children = (
 				1124AE0115A4864500FE1C28 /* HObj.h */,
+				11E2B11715AB027600824ED2 /* HOptions.h */,
+				11E2B11815AB027600824ED2 /* HOptions.m */,
+				11E2B12015AB0C2400824ED2 /* HStructure.h */,
+				11E2B12115AB0C2500824ED2 /* HStructure.m */,
 			);
 			path = Structures;
 			sourceTree = "<group>";
@@ -850,7 +862,6 @@
 			files = (
 				1131A197150F9DDE00A61449 /* main.m in Sources */,
 				1131A1AC150F9E6400A61449 /* AppDelegate.m in Sources */,
-				1131A1AE150F9E6400A61449 /* ViewController.m in Sources */,
 				11AF5CA015A34292003F7F5B /* WebSocket.m in Sources */,
 				11AF5CA115A34292003F7F5B /* GCDAsyncSocket.m in Sources */,
 				11AF5CA215A34292003F7F5B /* DDAbstractDatabaseLogger.m in Sources */,
@@ -897,10 +908,8 @@
 				11AF5D1215A34292003F7F5B /* XMPPSRVResolver.m in Sources */,
 				11AF5D1315A34292003F7F5B /* XMPPXFacebookPlatformAuthentication.m in Sources */,
 				11AF5DD715A342EF003F7F5B /* XMPPPubSub.m in Sources */,
-				1124AE2815A4864500FE1C28 /* HClient.m in Sources */,
 				1124AE2915A4864500FE1C28 /* HMessage.m in Sources */,
 				1124AE2A15A4864500FE1C28 /* HGatewayOptions.m in Sources */,
-				1124AE2B15A4864500FE1C28 /* HOptions.m in Sources */,
 				1124AE2C15A4864500FE1C28 /* HSocketIOOptions.m in Sources */,
 				1124AE2D15A4864500FE1C28 /* HXmppOptions.m in Sources */,
 				1124AE2E15A4864500FE1C28 /* HXmpp+XMPPStreamDelegate.m in Sources */,
@@ -929,6 +938,9 @@
 				1124AE5B15A4A7F400FE1C28 /* NSNull+HObj.m in Sources */,
 				116EB5A415A712AF00E6F5B0 /* TabBarController.m in Sources */,
 				116EB5A815A746FD00E6F5B0 /* ConnectionController.m in Sources */,
+				11E2B11615AB015F00824ED2 /* HClient.m in Sources */,
+				11E2B11915AB027600824ED2 /* HOptions.m in Sources */,
+				11E2B12215AB0C2500824ED2 /* HStructure.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
