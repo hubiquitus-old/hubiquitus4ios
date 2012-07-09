@@ -46,22 +46,31 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="publisher (ie : u1@localhost)" minimumFontSize="17" id="jRY-Vr-YGv">
-                                        <rect key="frame" x="20" y="34" width="280" height="31"/>
+                                        <rect key="frame" x="20" y="28" width="280" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="qbN-js-6V1" id="U2n-R6-2j5"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" id="4Kw-Xo-VSW">
-                                        <rect key="frame" x="20" y="73" width="280" height="31"/>
+                                        <rect key="frame" x="19" y="66" width="280" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="qbN-js-6V1" id="Hgr-RV-rYq"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Endpoints : (ie :http://localhost:8080, http://localhost:8081)" minimumFontSize="17" id="3aG-iM-DoC">
-                                        <rect key="frame" x="41" y="134" width="280" height="31"/>
+                                        <rect key="frame" x="19" y="120" width="280" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="qbN-js-6V1" id="xqQ-ur-8R7"/>
+                                        </connections>
                                     </textField>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Authentification" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="uTr-Rv-Nqr">
                                         <rect key="frame" x="100" y="5" width="119" height="21"/>
@@ -71,23 +80,29 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Connection" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="MPi-ej-XxO">
-                                        <rect key="frame" x="116" y="99" width="88" height="21"/>
+                                        <rect key="frame" x="115" y="98" width="88" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Server host : (ie : localhost)" minimumFontSize="17" id="y3m-l8-tBS">
-                                        <rect key="frame" x="20" y="203" width="280" height="31"/>
+                                        <rect key="frame" x="19" y="159" width="280" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="qbN-js-6V1" id="Ror-Ho-3gJ"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Server port : (ie : 5222)" minimumFontSize="17" id="fu3-sL-1yU">
-                                        <rect key="frame" x="20" y="224" width="280" height="31"/>
+                                        <rect key="frame" x="20" y="198" width="280" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="qbN-js-6V1" id="9SC-kz-bs2"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cXM-cD-kLr">
                                         <rect key="frame" x="20" y="320" width="106" height="37"/>
@@ -105,21 +120,21 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Status :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="wCa-rE-GaA">
-                                        <rect key="frame" x="173" y="258" width="59" height="21"/>
+                                        <rect key="frame" x="20" y="237" width="59" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Error code :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="EE0-te-H37">
-                                        <rect key="frame" x="52" y="247" width="90" height="21"/>
+                                        <rect key="frame" x="17" y="266" width="90" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Error msg :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="PEK-ID-04i">
-                                        <rect key="frame" x="41" y="290" width="85" height="21"/>
+                                        <rect key="frame" x="17" y="295" width="85" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -140,7 +155,32 @@
                                             <action selector="connect:" destination="qbN-js-6V1" eventType="touchUpInside" id="P4x-ax-LC6"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Disconnected" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="xNt-ms-v6K">
+                                        <rect key="frame" x="84" y="237" width="216" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="Rtz-bO-EtL">
+                                        <rect key="frame" x="115" y="266" width="184" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="9vv-hh-c6d">
+                                        <rect key="frame" x="110" y="295" width="187" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="bxo-Zo-bhq" appends="YES" id="MYc-BA-YU7"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
@@ -150,16 +190,22 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Connection" id="8yj-wC-aTY"/>
                     <connections>
-                        <outlet property="connStatus" destination="wCa-rE-GaA" id="i3i-X1-loj"/>
+                        <outlet property="connStatus" destination="xNt-ms-v6K" id="9hh-9M-4Ji"/>
                         <outlet property="endpoints" destination="3aG-iM-DoC" id="bvh-6c-pqa"/>
-                        <outlet property="errorCode" destination="EE0-te-H37" id="c2n-Z7-wkh"/>
-                        <outlet property="errorMsg" destination="PEK-ID-04i" id="jp6-PA-ZGe"/>
+                        <outlet property="errorCode" destination="Rtz-bO-EtL" id="DcQ-Y7-plP"/>
+                        <outlet property="errorMsg" destination="9vv-hh-c6d" id="dsC-3F-3ig"/>
                         <outlet property="password" destination="4Kw-Xo-VSW" id="Amp-FI-MaB"/>
                         <outlet property="publisher" destination="jRY-Vr-YGv" id="JtM-KR-XwF"/>
+                        <outlet property="scrollView" destination="oXb-26-15e" id="mAB-FA-CIn"/>
                         <outlet property="serverHost" destination="y3m-l8-tBS" id="OiA-OI-0W3"/>
                         <outlet property="serverPort" destination="fu3-sL-1yU" id="nfj-Kq-8pC"/>
                     </connections>
                 </viewController>
+                <tapGestureRecognizer id="bxo-Zo-bhq">
+                    <connections>
+                        <action selector="hideKeyboard:" destination="qbN-js-6V1" id="TYO-YB-7zV"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="613" y="-187"/>
         </scene>
@@ -168,7 +214,7 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pod-uv-xH8" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tabBarController definesPresentationContext="YES" id="c08-ua-R9a" customClass="TabBarController" sceneMemberID="viewController">
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="sFX-JI-RLT">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -196,6 +242,7 @@
                 <relationship kind="outlet" name="errorMsg" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="password" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="publisher" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="serverHost" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="serverPort" candidateClass="UITextField"/>
             </relationships>

@@ -94,6 +94,7 @@
 		11AF5D1215A34292003F7F5B /* XMPPSRVResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5C8715A34292003F7F5B /* XMPPSRVResolver.m */; };
 		11AF5D1315A34292003F7F5B /* XMPPXFacebookPlatformAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5C8915A34292003F7F5B /* XMPPXFacebookPlatformAuthentication.m */; };
 		11AF5DD715A342EF003F7F5B /* XMPPPubSub.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5D8015A342EF003F7F5B /* XMPPPubSub.m */; };
+		11E2B11215AAD11A00824ED2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11E2B11015AAD11400824ED2 /* CoreGraphics.framework */; };
 		11E663251511FFA200095274 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 11DA19181510F04100483F4C /* libresolv.dylib */; };
 		11E663261511FFA400095274 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 11DA19101510EE8D00483F4C /* libxml2.dylib */; };
 		C55BA1801530DA0E00782699 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C55BA17E1530D9F600782699 /* Security.framework */; };
@@ -304,6 +305,8 @@
 		11AF5D8015A342EF003F7F5B /* XMPPPubSub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPPubSub.m; sourceTree = "<group>"; };
 		11DA19101510EE8D00483F4C /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		11DA19181510F04100483F4C /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
+		11E2B11015AAD11400824ED2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		11E2B11315AB008C00824ED2 /* NativeObjectsCategories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NativeObjectsCategories.h; sourceTree = "<group>"; };
 		C55BA17E1530D9F600782699 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		C55BA1811530DA5600782699 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -318,6 +321,7 @@
 				11E663251511FFA200095274 /* libresolv.dylib in Frameworks */,
 				1131A18B150F9DDE00A61449 /* UIKit.framework in Frameworks */,
 				C55BA1841530DA9800782699 /* SystemConfiguration.framework in Frameworks */,
+				11E2B11215AAD11A00824ED2 /* CoreGraphics.framework in Frameworks */,
 				C55BA1851530DAA200782699 /* CFNetwork.framework in Frameworks */,
 				C55BA1831530DA6300782699 /* Foundation.framework in Frameworks */,
 				11AF5CBF15A34292003F7F5B /* libidn.a in Frameworks */,
@@ -368,6 +372,7 @@
 				1124AE5715A4A78F00FE1C28 /* NSNumber+HObj.m */,
 				1124AE5915A4A7F300FE1C28 /* NSNull+HObj.h */,
 				1124AE5A15A4A7F400FE1C28 /* NSNull+HObj.m */,
+				11E2B11315AB008C00824ED2 /* NativeObjectsCategories.h */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -481,6 +486,7 @@
 		1131A189150F9DDE00A61449 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				11E2B11015AAD11400824ED2 /* CoreGraphics.framework */,
 				11DA19181510F04100483F4C /* libresolv.dylib */,
 				11DA19101510EE8D00483F4C /* libxml2.dylib */,
 				C55BA1811530DA5600782699 /* Foundation.framework */,
