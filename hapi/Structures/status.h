@@ -17,18 +17,16 @@
  *     along with Hubiquitus.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <Foundation/Foundation.h>
-#import "HSocketIOOptions.h"
-#import "HXmppOptions.h"
+/**
+ * @version 0.4.0
+ * Connection status. See HStatus.status
+ */
 
-@interface HGatewayOptions : NSObject
-@property (copy, nonatomic) NSString * transport;
-@property (readonly, nonatomic) HSocketIOOptions * socketio;
-@property (readonly, nonatomic) HXmppOptions * xmpp;
-
-+ (id)optionsWithDict:(NSDictionary*)dict;
-- (id)initWithDict:(NSDictionary*)dict;
-
-
-
-@end
+typedef enum {
+    CONNECTING = 1,
+    CONNECTED = 2,
+    REATTACHING = 3,
+    REATTACHED = 4,
+    DISCONNECTING = 5, 
+    DISCONNECTED = 6
+} Status;

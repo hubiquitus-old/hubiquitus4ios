@@ -22,10 +22,10 @@
 /**
  * @version 0.4.0
  * Base class for hAPI native structures
- * Implements convenient functions
- * hAPI native structures are implemented as getters and setter on a dictionary (obj)
- * Equal is based on dictionary content comparaison
- * Description is based on dictionary comparaison
+ * Implements helper functions
+ * All hAPI native structures are implemented as getters and setter on a dictionary (obj)
+ * Equal is based on dictionary content comparison
+ * Description is based on dictionary comparison
  */
 
 #if ! __has_feature(objc_arc)

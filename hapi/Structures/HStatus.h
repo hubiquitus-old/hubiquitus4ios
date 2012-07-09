@@ -18,17 +18,14 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "HStructure.h"
+#import "status.h"
+#import "ErrorCode.h"
 
-@interface HXmppOptions : NSObject
+@interface HStatus : HStructure
 
-@property (nonatomic) BOOL runInBackground;
-@property (nonatomic) BOOL allowSelfSignedCertificates;
-@property (nonatomic) BOOL allowSSLHostnameMismatch;
-
-//@property (copy, nonatomic) NSString * endpoint;
-//@property (copy, nonatomic) NSArray * ports;
-
-+ (id)optionsWithDict:(NSDictionary*)dict;
-- (id)initWithDict:(NSDictionary*)dict;
+@property (nonatomic) Status status;
+@property (nonatomic) ErrorCode errorCode;
+@property (nonatomic, strong) NSString * errorMsg;
 
 @end

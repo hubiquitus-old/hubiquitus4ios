@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1124AE2915A4864500FE1C28 /* HMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124ADF615A4864500FE1C28 /* HMessage.m */; };
-		1124AE2A15A4864500FE1C28 /* HGatewayOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124ADF915A4864500FE1C28 /* HGatewayOptions.m */; };
-		1124AE2C15A4864500FE1C28 /* HSocketIOOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124ADFD15A4864500FE1C28 /* HSocketIOOptions.m */; };
-		1124AE2D15A4864500FE1C28 /* HXmppOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124ADFF15A4864500FE1C28 /* HXmppOptions.m */; };
 		1124AE2E15A4864500FE1C28 /* HXmpp+XMPPStreamDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124AE0515A4864500FE1C28 /* HXmpp+XMPPStreamDelegate.m */; };
 		1124AE2F15A4864500FE1C28 /* HReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124AE0815A4864500FE1C28 /* HReachability.m */; };
 		1124AE3015A4864500FE1C28 /* HReconnect.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124AE0A15A4864500FE1C28 /* HReconnect.m */; };
@@ -95,6 +92,7 @@
 		11E2B11615AB015F00824ED2 /* HClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E2B11515AB015F00824ED2 /* HClient.m */; };
 		11E2B11915AB027600824ED2 /* HOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E2B11815AB027600824ED2 /* HOptions.m */; };
 		11E2B12215AB0C2500824ED2 /* HStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E2B12115AB0C2500824ED2 /* HStructure.m */; };
+		11E2B12615AB295B00824ED2 /* HStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E2B12515AB295B00824ED2 /* HStatus.m */; };
 		11E663251511FFA200095274 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 11DA19181510F04100483F4C /* libresolv.dylib */; };
 		11E663261511FFA400095274 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 11DA19101510EE8D00483F4C /* libxml2.dylib */; };
 		C55BA1801530DA0E00782699 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C55BA17E1530D9F600782699 /* Security.framework */; };
@@ -109,14 +107,6 @@
 		1124ADF415A4864500FE1C28 /* HErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HErrors.h; sourceTree = "<group>"; };
 		1124ADF515A4864500FE1C28 /* HMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMessage.h; sourceTree = "<group>"; };
 		1124ADF615A4864500FE1C28 /* HMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMessage.m; sourceTree = "<group>"; };
-		1124ADF815A4864500FE1C28 /* HGatewayOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGatewayOptions.h; sourceTree = "<group>"; };
-		1124ADF915A4864500FE1C28 /* HGatewayOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGatewayOptions.m; sourceTree = "<group>"; };
-		1124ADFA15A4864500FE1C28 /* HOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HOptions.h; sourceTree = "<group>"; };
-		1124ADFB15A4864500FE1C28 /* HOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HOptions.m; sourceTree = "<group>"; };
-		1124ADFC15A4864500FE1C28 /* HSocketIOOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSocketIOOptions.h; sourceTree = "<group>"; };
-		1124ADFD15A4864500FE1C28 /* HSocketIOOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSocketIOOptions.m; sourceTree = "<group>"; };
-		1124ADFE15A4864500FE1C28 /* HXmppOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXmppOptions.h; sourceTree = "<group>"; };
-		1124ADFF15A4864500FE1C28 /* HXmppOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXmppOptions.m; sourceTree = "<group>"; };
 		1124AE0115A4864500FE1C28 /* HObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HObj.h; sourceTree = "<group>"; };
 		1124AE0315A4864500FE1C28 /* HTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTransport.h; sourceTree = "<group>"; };
 		1124AE0415A4864500FE1C28 /* HXmpp+XMPPStreamDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HXmpp+XMPPStreamDelegate.h"; sourceTree = "<group>"; };
@@ -185,8 +175,8 @@
 		1131A24B150FA07600A61449 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		11452E051510D39400B94B34 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		116EB59B15A70D0B00E6F5B0 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
-		116EB5A115A712AE00E6F5B0 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabBarController.h; path = ../examples/SimpleClient/SimpleClient/TabBarController.h; sourceTree = "<group>"; };
-		116EB5A215A712AE00E6F5B0 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabBarController.m; path = ../examples/SimpleClient/SimpleClient/TabBarController.m; sourceTree = "<group>"; };
+		116EB5A115A712AE00E6F5B0 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
+		116EB5A215A712AE00E6F5B0 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		116EB5A615A746FC00E6F5B0 /* ConnectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionController.h; sourceTree = SOURCE_ROOT; };
 		116EB5A715A746FD00E6F5B0 /* ConnectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionController.m; sourceTree = SOURCE_ROOT; };
 		11AF5B7315A34292003F7F5B /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
@@ -306,13 +296,17 @@
 		11DA19101510EE8D00483F4C /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		11DA19181510F04100483F4C /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
 		11E2B11015AAD11400824ED2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		11E2B11315AB008C00824ED2 /* NativeObjectsCategories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NativeObjectsCategories.h; sourceTree = "<group>"; };
+		11E2B11315AB008C00824ED2 /* HNativeObjectsCategories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HNativeObjectsCategories.h; sourceTree = "<group>"; };
 		11E2B11415AB015F00824ED2 /* HClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HClient.h; sourceTree = "<group>"; };
 		11E2B11515AB015F00824ED2 /* HClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HClient.m; sourceTree = "<group>"; };
 		11E2B11715AB027600824ED2 /* HOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HOptions.h; sourceTree = "<group>"; };
 		11E2B11815AB027600824ED2 /* HOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HOptions.m; sourceTree = "<group>"; };
 		11E2B12015AB0C2400824ED2 /* HStructure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HStructure.h; sourceTree = "<group>"; };
 		11E2B12115AB0C2500824ED2 /* HStructure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HStructure.m; sourceTree = "<group>"; };
+		11E2B12415AB295B00824ED2 /* HStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HStatus.h; sourceTree = "<group>"; };
+		11E2B12515AB295B00824ED2 /* HStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HStatus.m; sourceTree = "<group>"; };
+		11E2B12815AB2FB500824ED2 /* Status.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Status.h; sourceTree = "<group>"; };
+		11E2B12915AB300400824ED2 /* ErrorCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ErrorCode.h; sourceTree = "<group>"; };
 		C55BA17E1530D9F600782699 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		C55BA1811530DA5600782699 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -340,8 +334,6 @@
 		1124ADF015A4864500FE1C28 /* hapi */ = {
 			isa = PBXGroup;
 			children = (
-				116EB5A115A712AE00E6F5B0 /* TabBarController.h */,
-				116EB5A215A712AE00E6F5B0 /* TabBarController.m */,
 				1124ADF115A4864500FE1C28 /* Categories */,
 				1124ADF215A4864500FE1C28 /* HClient.old.h */,
 				1124ADF315A4864500FE1C28 /* HClient.old.m */,
@@ -350,7 +342,6 @@
 				1124ADF415A4864500FE1C28 /* HErrors.h */,
 				1124ADF515A4864500FE1C28 /* HMessage.h */,
 				1124ADF615A4864500FE1C28 /* HMessage.m */,
-				1124ADF715A4864500FE1C28 /* Options */,
 				1124AE0015A4864500FE1C28 /* Structures */,
 				1124AE0215A4864500FE1C28 /* Transport */,
 				1124AE2515A4864500FE1C28 /* Utils */,
@@ -380,24 +371,9 @@
 				1124AE5715A4A78F00FE1C28 /* NSNumber+HObj.m */,
 				1124AE5915A4A7F300FE1C28 /* NSNull+HObj.h */,
 				1124AE5A15A4A7F400FE1C28 /* NSNull+HObj.m */,
-				11E2B11315AB008C00824ED2 /* NativeObjectsCategories.h */,
+				11E2B11315AB008C00824ED2 /* HNativeObjectsCategories.h */,
 			);
 			path = Categories;
-			sourceTree = "<group>";
-		};
-		1124ADF715A4864500FE1C28 /* Options */ = {
-			isa = PBXGroup;
-			children = (
-				1124ADF815A4864500FE1C28 /* HGatewayOptions.h */,
-				1124ADF915A4864500FE1C28 /* HGatewayOptions.m */,
-				1124ADFA15A4864500FE1C28 /* HOptions.h */,
-				1124ADFB15A4864500FE1C28 /* HOptions.m */,
-				1124ADFC15A4864500FE1C28 /* HSocketIOOptions.h */,
-				1124ADFD15A4864500FE1C28 /* HSocketIOOptions.m */,
-				1124ADFE15A4864500FE1C28 /* HXmppOptions.h */,
-				1124ADFF15A4864500FE1C28 /* HXmppOptions.m */,
-			);
-			path = Options;
 			sourceTree = "<group>";
 		};
 		1124AE0015A4864500FE1C28 /* Structures */ = {
@@ -408,6 +384,10 @@
 				11E2B11815AB027600824ED2 /* HOptions.m */,
 				11E2B12015AB0C2400824ED2 /* HStructure.h */,
 				11E2B12115AB0C2500824ED2 /* HStructure.m */,
+				11E2B12415AB295B00824ED2 /* HStatus.h */,
+				11E2B12515AB295B00824ED2 /* HStatus.m */,
+				11E2B12815AB2FB500824ED2 /* Status.h */,
+				11E2B12915AB300400824ED2 /* ErrorCode.h */,
 			);
 			path = Structures;
 			sourceTree = "<group>";
@@ -513,6 +493,7 @@
 		1131A190150F9DDE00A61449 /* SimpleClient */ = {
 			isa = PBXGroup;
 			children = (
+				11E2B12315AB291100824ED2 /* SimpleClientControllers */,
 				1124ADF015A4864500FE1C28 /* hapi */,
 				11AF5B7115A34292003F7F5B /* vendor */,
 				1131A1A7150F9E6400A61449 /* AppDelegate.h */,
@@ -796,6 +777,15 @@
 			path = "XEP-0060";
 			sourceTree = "<group>";
 		};
+		11E2B12315AB291100824ED2 /* SimpleClientControllers */ = {
+			isa = PBXGroup;
+			children = (
+				116EB5A115A712AE00E6F5B0 /* TabBarController.h */,
+				116EB5A215A712AE00E6F5B0 /* TabBarController.m */,
+			);
+			name = SimpleClientControllers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -909,9 +899,6 @@
 				11AF5D1315A34292003F7F5B /* XMPPXFacebookPlatformAuthentication.m in Sources */,
 				11AF5DD715A342EF003F7F5B /* XMPPPubSub.m in Sources */,
 				1124AE2915A4864500FE1C28 /* HMessage.m in Sources */,
-				1124AE2A15A4864500FE1C28 /* HGatewayOptions.m in Sources */,
-				1124AE2C15A4864500FE1C28 /* HSocketIOOptions.m in Sources */,
-				1124AE2D15A4864500FE1C28 /* HXmppOptions.m in Sources */,
 				1124AE2E15A4864500FE1C28 /* HXmpp+XMPPStreamDelegate.m in Sources */,
 				1124AE2F15A4864500FE1C28 /* HReachability.m in Sources */,
 				1124AE3015A4864500FE1C28 /* HReconnect.m in Sources */,
@@ -941,6 +928,7 @@
 				11E2B11615AB015F00824ED2 /* HClient.m in Sources */,
 				11E2B11915AB027600824ED2 /* HOptions.m in Sources */,
 				11E2B12215AB0C2500824ED2 /* HStructure.m in Sources */,
+				11E2B12615AB295B00824ED2 /* HStatus.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,25 +17,19 @@
  *     along with Hubiquitus.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <Foundation/Foundation.h>
-#import "HGatewayOptions.h"
+/**
+ * @version 0.4.0
+ * Connection status. See HStatus.status
+ */
 
-@interface HOptions : NSObject
-
-@property (copy, nonatomic) NSString * username;
-@property (copy, nonatomic) NSString * password;
-@property (readonly, nonatomic) NSString * domain;
-@property (copy, nonatomic) NSString * route;
-@property (readonly, nonatomic) NSString * routeDomain;
-@property (readonly, nonatomic) NSNumber * routePort;
-
-@property (readonly, nonatomic) HGatewayOptions * gateway;
-
-+ (id)optionsWithDict:(NSDictionary*)dict;
-+ (id)optionsWithPlist:(NSString*)path;
-
-- (id)initWithDict:(NSDictionary*)dict;
-- (id)initWithPlist:(NSString*)path;
-
-
-@end
+typedef enum {
+    NO_ERROR = 0,
+    JID_MALFORMAT = 1,
+    CONN_TIMEOUT = 2,
+    AUTH_FAILED = 3,
+    ATTACH_FAILED = 4, 
+    ALREADY_CONNECTED = 5,
+    TECH_ERROR = 6,
+    NOT_CONNECTED = 7,
+    CONN_PROGRESS = 8
+} ErrorCode;

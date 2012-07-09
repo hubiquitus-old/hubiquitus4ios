@@ -18,7 +18,7 @@
  */
 
 #import "HOptions.h"
-#import "NativeObjectsCategories.h"
+#import "HNativeObjectsCategories.h"
 
 /**
  * @version 0.4.0
