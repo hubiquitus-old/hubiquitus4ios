@@ -93,6 +93,7 @@
 		11E2B11915AB027600824ED2 /* HOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E2B11815AB027600824ED2 /* HOptions.m */; };
 		11E2B12215AB0C2500824ED2 /* HStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E2B12115AB0C2500824ED2 /* HStructure.m */; };
 		11E2B12615AB295B00824ED2 /* HStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E2B12515AB295B00824ED2 /* HStatus.m */; };
+		11E2B12C15AB375400824ED2 /* HTransportOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E2B12B15AB375400824ED2 /* HTransportOptions.m */; };
 		11E663251511FFA200095274 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 11DA19181510F04100483F4C /* libresolv.dylib */; };
 		11E663261511FFA400095274 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 11DA19101510EE8D00483F4C /* libxml2.dylib */; };
 		C55BA1801530DA0E00782699 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C55BA17E1530D9F600782699 /* Security.framework */; };
@@ -307,6 +308,8 @@
 		11E2B12515AB295B00824ED2 /* HStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HStatus.m; sourceTree = "<group>"; };
 		11E2B12815AB2FB500824ED2 /* Status.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Status.h; sourceTree = "<group>"; };
 		11E2B12915AB300400824ED2 /* ErrorCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ErrorCode.h; sourceTree = "<group>"; };
+		11E2B12A15AB375400824ED2 /* HTransportOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTransportOptions.h; sourceTree = "<group>"; };
+		11E2B12B15AB375400824ED2 /* HTransportOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTransportOptions.m; sourceTree = "<group>"; };
 		C55BA17E1530D9F600782699 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		C55BA1811530DA5600782699 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -395,6 +398,8 @@
 		1124AE0215A4864500FE1C28 /* Transport */ = {
 			isa = PBXGroup;
 			children = (
+				11E2B12B15AB375400824ED2 /* HTransportOptions.m */,
+				11E2B12A15AB375400824ED2 /* HTransportOptions.h */,
 				1124AE0315A4864500FE1C28 /* HTransport.h */,
 				1124AE0415A4864500FE1C28 /* HXmpp+XMPPStreamDelegate.h */,
 				1124AE0515A4864500FE1C28 /* HXmpp+XMPPStreamDelegate.m */,
@@ -929,6 +934,7 @@
 				11E2B11915AB027600824ED2 /* HOptions.m in Sources */,
 				11E2B12215AB0C2500824ED2 /* HStructure.m in Sources */,
 				11E2B12615AB295B00824ED2 /* HStatus.m in Sources */,
+				11E2B12C15AB375400824ED2 /* HTransportOptions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
