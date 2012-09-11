@@ -18,7 +18,7 @@
  */
 
 #import "ConnectionController.h"
-//#import "HUtils.h"
+#import "HUtils.h"
 
 @interface ConnectionController ()
 
@@ -48,7 +48,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //NSLog(@"coucou");
     [self registerForKeyboardNotifications];
     [self createGestureRecognizers];
 	// Do any additional setup after loading the view.
@@ -71,14 +70,15 @@
 }
 
 - (IBAction)connect:(id)sender {
-    [self hideKeyboard:nil];
-    NSLog(@"coucou");
+    //[self hideKeyboard:nil];
+    NSLog(@"coucou2");
+    NSLog(@"jid components : %@", splitJid(@"@"));
     //splitJid(@"u1@hub.novediagroup.com");
 }
 
 - (IBAction)disconnect:(id)sender {
-    [self hideKeyboard:nil];
-    NSLog(@"coucou");
+    //[self hideKeyboard:nil];
+    NSLog(@"coucou1");
 }
 
 

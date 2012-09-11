@@ -53,25 +53,27 @@ id pickRandomValue(NSArray * array) {
  * key returned are : username, domain, resource
  */
 NSDictionary * splitJid(NSString * jid) {
+    NSDictionary * result = nil;
     NSString * regexPattern = @"^(?:([^@/<>'\"]+)@)([^@/<>'\"]+)(?:/([^/<>'\"]*))?$";
     
     NSRegularExpression * regex = [NSRegularExpression regularExpressionWithPattern:regexPattern options:0 error:nil];
     NSArray * matches = [regex matchesInString:jid options:0 range:NSMakeRange(0, [jid length])];
-    for (NSTextCheckingResult * match in matches) {
-        NSLog(@"match is : %@", match);
-        
-        /*NSMutableArray * localMatch = [NSMutableArray array];
-        for (int i = 0; i < [nsmatchTest numberOfRanges]; i++) {
-            NSRange range = [nsmatchTest rangeAtIndex:i];
-            NSString * nsmatchStr = nil;
-            if (range.location != NSNotFound && NSMaxRange(range) <= [data length]) {
-                nsmatchStr = [data substringWithRange:[nsmatchTest rangeAtIndex:i]];
-            } else {
-                nsmatchStr = @"";
-            }
-            [localMatch addObject:nsmatchStr];
-        }
-        [test addObject:localMatch];*/
-    }
 
+    for (NSTextCheckingResult * match in matches) {
+
+        if(result == nil && match.numberOfRanges >= 3) {
+            NSString * username = [jid substringWithRange:[match rangeAtIndex:1]];
+            NSString * domain = [jid substringWithRange:[match rangeAtIndex:2]];
+            NSString * resource = nil;
+            
+            if(match.numberOfRanges >= 4 && [match rangeAtIndex:3].length > 0) {
+                resource = [jid substringWithRange:[match rangeAtIndex:3]];
+            }
+            
+            result = [NSDictionary dictionaryWithObjectsAndKeys:username, @"username",
+                                                                domain, @"domain",
+                                                                resource, @"resource", nil];
+        }
+    }
+    return result;
 }
