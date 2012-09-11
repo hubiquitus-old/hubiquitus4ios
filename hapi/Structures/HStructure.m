@@ -20,12 +20,12 @@
 #import "HStructure.h"
 
 /**
- * @version 0.4.0
+ * @version 0.5.0
  * Base class for hAPI native structures
  * Implements helper functions
  * All hAPI native structures are implemented as getters and setter on a dictionary (obj)
  * Equal is based on dictionary content comparison
- * Description is based on dictionary comparison
+ * Description is based on dictionary description
  */
 
 #if ! __has_feature(objc_arc)

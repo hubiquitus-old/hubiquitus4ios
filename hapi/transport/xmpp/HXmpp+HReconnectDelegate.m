@@ -52,7 +52,8 @@
  * Function called to connect or reconnect
  */
 - (void)reconnect {
-    if (!self.isXmppConnected) {
+    ////// TO BE CORRECTED
+   /* if (!self.isXmppConnected) {
         //set hostname and host port
         if (self.options.routeDomain != nil) {
             [self.xmppStream setHostName:self.options.routeDomain];
@@ -99,7 +100,7 @@
             }
             
         }
-    }
+    }*/
 }
 
 @end

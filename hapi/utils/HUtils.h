@@ -25,3 +25,5 @@ id pickRandomValue(NSArray * array);
 @interface SocketIOPacket (description) 
 - (NSString *)description;
 @end
+
+NSDictionary * splitJid(NSString * jid);

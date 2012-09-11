@@ -54,13 +54,15 @@
 - (void)establishLink {
     socketio = [[SocketIO alloc] initWithDelegate:self];
     
-    //pick randomly 
+    ///// TO BE CORRECTED FOR NEW VERSION
+    /*//pick randomly 
     NSInteger port = [(NSNumber*)pickRandomValue(options.gateway.socketio.ports) integerValue];
     
     //NSLog(@"HCSocketIO Establishing a link to : %@, on port %d, with namespace : %@", options.gateway.socketio.endpoint, port, options.gateway.socketio.namespace);
     
     //connect to host
     [socketio connectToHost:options.gateway.socketio.endpoint onPort:port withParams:nil withNamespace:options.gateway.socketio.namespace];
+     */
 }
 
 /**
@@ -114,7 +116,8 @@
  * if a userid is available, we should first try to re attach
  */
 - (void)connectToXmpp {
-    if (!self.connectedToXmpp) {
+    /// TO BE CORRECTED FOR NEW VERSION
+  /*  if (!self.connectedToXmpp) {
         NSString * host = options.domain;
         NSString * port = @"5222"; //default port
         
@@ -143,7 +146,7 @@
         NSDictionary * notifDict = [NSDictionary dictionaryWithObjectsAndKeys:@"connecting", @"status",
                                     [NSNumber numberWithInt:NO_ERROR], @"code", nil];
         [self.delegate notifyIncomingMessage:notifDict context:@"link"];
-    }
+    }*/
 }
 
 

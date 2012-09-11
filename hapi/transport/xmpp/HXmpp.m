@@ -58,7 +58,9 @@
  * Should be called only once
  */
 - (void)setupStream {
-    NSAssert(xmppStream == nil, @"Method setupStream invoked multiple times");
+   
+    //// TO BE CORRECTED
+    /* NSAssert(xmppStream == nil, @"Method setupStream invoked multiple times");
 	
 	xmppStream = [[XMPPStream alloc] init];
 	
@@ -74,6 +76,7 @@
     
 	// Add ourself as a delegate to anything we may be interested in
 	[xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
+    */
 }
 
 /**

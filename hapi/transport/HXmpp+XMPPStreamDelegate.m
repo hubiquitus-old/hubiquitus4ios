@@ -35,7 +35,9 @@
 - (void)xmppStream:(XMPPStream *)sender willSecureWithSettings:(NSMutableDictionary *)settings
 {
     //set security options to connect
-    if (self.options.gateway.xmpp.allowSelfSignedCertificates)
+   /////TO BE CORRECTED FOR NEW VERSION
+    
+    /* if (self.options.gateway.xmpp.allowSelfSignedCertificates)
 	{
 		[settings setObject:[NSNumber numberWithBool:YES] forKey:(NSString *)kCFStreamSSLAllowsAnyRoot];
 	}
@@ -43,7 +45,7 @@
 	if (self.options.gateway.xmpp.allowSelfSignedCertificates)
 	{
 		[settings setObject:[NSNull null] forKey:(NSString *)kCFStreamSSLPeerName];
-	}
+	}*/
     
     //NSLog(@"XMPP Transport : Will secure -> setting : %@ \n", settings);
 }
@@ -62,7 +64,9 @@
     //authenticate once connected
 	NSError *error = nil;
     
-	if (![[self xmppStream] authenticateWithPassword:self.options.password error:&error])
+    
+    ////// TO BE CORRECTED FOR NEW VERSION
+	/*if (![[self xmppStream] authenticateWithPassword:self.options.password error:&error])
 	{
         //notify delegate of error
         NSDictionary * errorDict = [NSDictionary dictionaryWithObjectsAndKeys:@"error", @"status",
@@ -75,7 +79,7 @@
         NSDictionary * resDict = [NSDictionary dictionaryWithObjectsAndKeys:@"connected", @"status",
                                   [NSNumber numberWithInt:NO_ERROR], @"code", nil];
         [self.delegate notifyIncomingMessage:resDict context:@"link"];
-    }
+    }*/
 }
 
 - (void)xmppStreamDidAuthenticate:(XMPPStream *)sender

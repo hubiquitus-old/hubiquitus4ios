@@ -20,7 +20,7 @@
 #import <Foundation/Foundation.h>
 
 /**
- * @version 0.4.0
+ * @version 0.5.0
  * Any structure of the hapi or any object that will be manipulated by the hapi (ie : message payloads) should follow this protocol
  */
 

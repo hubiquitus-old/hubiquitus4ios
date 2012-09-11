@@ -19,7 +19,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Transport/HTransport.h"
-#import "options/HOptions.h"
+#import "HOptions.h"
 #import "HMessage.h"
 #import "HErrors.h"
 

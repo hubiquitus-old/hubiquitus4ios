@@ -88,6 +88,9 @@
 		11AF5D1215A34292003F7F5B /* XMPPSRVResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5C8715A34292003F7F5B /* XMPPSRVResolver.m */; };
 		11AF5D1315A34292003F7F5B /* XMPPXFacebookPlatformAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5C8915A34292003F7F5B /* XMPPXFacebookPlatformAuthentication.m */; };
 		11AF5DD715A342EF003F7F5B /* XMPPPubSub.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5D8015A342EF003F7F5B /* XMPPPubSub.m */; };
+		11DF658015FF4ABE00259252 /* hub_connected.png in Resources */ = {isa = PBXBuildFile; fileRef = 11DF657D15FF4ABE00259252 /* hub_connected.png */; };
+		11DF658115FF4ABE00259252 /* hub_connecting.png in Resources */ = {isa = PBXBuildFile; fileRef = 11DF657E15FF4ABE00259252 /* hub_connecting.png */; };
+		11DF658215FF4ABE00259252 /* hub_disconnected.png in Resources */ = {isa = PBXBuildFile; fileRef = 11DF657F15FF4ABE00259252 /* hub_disconnected.png */; };
 		11E2B11215AAD11A00824ED2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11E2B11015AAD11400824ED2 /* CoreGraphics.framework */; };
 		11E2B11615AB015F00824ED2 /* HClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E2B11515AB015F00824ED2 /* HClient.m */; };
 		11E2B11915AB027600824ED2 /* HOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E2B11815AB027600824ED2 /* HOptions.m */; };
@@ -296,6 +299,9 @@
 		11AF5D8015A342EF003F7F5B /* XMPPPubSub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPPubSub.m; sourceTree = "<group>"; };
 		11DA19101510EE8D00483F4C /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		11DA19181510F04100483F4C /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
+		11DF657D15FF4ABE00259252 /* hub_connected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hub_connected.png; sourceTree = "<group>"; };
+		11DF657E15FF4ABE00259252 /* hub_connecting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hub_connecting.png; sourceTree = "<group>"; };
+		11DF657F15FF4ABE00259252 /* hub_disconnected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hub_disconnected.png; sourceTree = "<group>"; };
 		11E2B11015AAD11400824ED2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		11E2B11315AB008C00824ED2 /* HNativeObjectsCategories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HNativeObjectsCategories.h; sourceTree = "<group>"; };
 		11E2B11415AB015F00824ED2 /* HClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HClient.h; sourceTree = "<group>"; };
@@ -348,8 +354,6 @@
 				1124AE0015A4864500FE1C28 /* Structures */,
 				1124AE0215A4864500FE1C28 /* Transport */,
 				1124AE2515A4864500FE1C28 /* Utils */,
-				116EB5A615A746FC00E6F5B0 /* ConnectionController.h */,
-				116EB5A715A746FD00E6F5B0 /* ConnectionController.m */,
 			);
 			name = hapi;
 			path = ../../../hapi;
@@ -498,6 +502,7 @@
 		1131A190150F9DDE00A61449 /* SimpleClient */ = {
 			isa = PBXGroup;
 			children = (
+				11DF657C15FF4ABE00259252 /* Resources */,
 				11E2B12315AB291100824ED2 /* SimpleClientControllers */,
 				1124ADF015A4864500FE1C28 /* hapi */,
 				11AF5B7115A34292003F7F5B /* vendor */,
@@ -782,9 +787,22 @@
 			path = "XEP-0060";
 			sourceTree = "<group>";
 		};
+		11DF657C15FF4ABE00259252 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				11DF657D15FF4ABE00259252 /* hub_connected.png */,
+				11DF657E15FF4ABE00259252 /* hub_connecting.png */,
+				11DF657F15FF4ABE00259252 /* hub_disconnected.png */,
+			);
+			name = Resources;
+			path = resources;
+			sourceTree = "<group>";
+		};
 		11E2B12315AB291100824ED2 /* SimpleClientControllers */ = {
 			isa = PBXGroup;
 			children = (
+				116EB5A615A746FC00E6F5B0 /* ConnectionController.h */,
+				116EB5A715A746FD00E6F5B0 /* ConnectionController.m */,
 				116EB5A115A712AE00E6F5B0 /* TabBarController.h */,
 				116EB5A215A712AE00E6F5B0 /* TabBarController.m */,
 			);
@@ -845,6 +863,9 @@
 				1131A1AD150F9E6400A61449 /* options.plist in Resources */,
 				11452E061510D39400B94B34 /* ViewController_iPhone.xib in Resources */,
 				116EB59C15A70D0B00E6F5B0 /* Storyboard.storyboard in Resources */,
+				11DF658015FF4ABE00259252 /* hub_connected.png in Resources */,
+				11DF658115FF4ABE00259252 /* hub_connecting.png in Resources */,
+				11DF658215FF4ABE00259252 /* hub_disconnected.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

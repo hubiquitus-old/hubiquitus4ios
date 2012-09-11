@@ -47,3 +47,31 @@ id pickRandomValue(NSArray * array) {
 }
 
 @end
+
+/**
+ * return the parts of a jid or null if invalid jid (valid jid : username@domain[/resource])
+ * key returned are : username, domain, resource
+ */
+NSDictionary * splitJid(NSString * jid) {
+    NSString * regexPattern = @"^(?:([^@/<>'\"]+)@)([^@/<>'\"]+)(?:/([^/<>'\"]*))?$";
+    
+    NSRegularExpression * regex = [NSRegularExpression regularExpressionWithPattern:regexPattern options:0 error:nil];
+    NSArray * matches = [regex matchesInString:jid options:0 range:NSMakeRange(0, [jid length])];
+    for (NSTextCheckingResult * match in matches) {
+        NSLog(@"match is : %@", match);
+        
+        /*NSMutableArray * localMatch = [NSMutableArray array];
+        for (int i = 0; i < [nsmatchTest numberOfRanges]; i++) {
+            NSRange range = [nsmatchTest rangeAtIndex:i];
+            NSString * nsmatchStr = nil;
+            if (range.location != NSNotFound && NSMaxRange(range) <= [data length]) {
+                nsmatchStr = [data substringWithRange:[nsmatchTest rangeAtIndex:i]];
+            } else {
+                nsmatchStr = @"";
+            }
+            [localMatch addObject:nsmatchStr];
+        }
+        [test addObject:localMatch];*/
+    }
+
+}

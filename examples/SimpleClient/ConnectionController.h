@@ -19,7 +19,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ConnectionController : UIViewController<UITextFieldDelegate>
+@interface ConnectionController : UIViewController<UITextFieldDelegate, UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 

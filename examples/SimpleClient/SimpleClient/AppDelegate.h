@@ -23,7 +23,7 @@
 #define TEST_USERNAME @""
 #define TEST_PASSWORD @""
 
-@class ViewController;
+//@class ViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

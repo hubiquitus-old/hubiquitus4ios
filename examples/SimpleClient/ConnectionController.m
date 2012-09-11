@@ -18,6 +18,7 @@
  */
 
 #import "ConnectionController.h"
+//#import "HUtils.h"
 
 @interface ConnectionController ()
 
@@ -47,11 +48,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //NSLog(@"coucou");
     [self registerForKeyboardNotifications];
+    [self createGestureRecognizers];
 	// Do any additional setup after loading the view.
 }
 
-- (void)viewDidUnload
+- (void)viewDidUnload 
 {
     [self setPublisher:nil];
     [self setPassword:nil];
@@ -67,16 +70,33 @@
     // Release any retained subviews of the main view.
 }
 
+- (IBAction)connect:(id)sender {
+    [self hideKeyboard:nil];
+    NSLog(@"coucou");
+    //splitJid(@"u1@hub.novediagroup.com");
+}
+
+- (IBAction)disconnect:(id)sender {
+    [self hideKeyboard:nil];
+    NSLog(@"coucou");
+}
+
+
+
+#pragma mark - common views setup
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (IBAction)hideKeyboard:(id)sender {
-    [activeField resignFirstResponder];
+- (void)createGestureRecognizers {
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]
+                                             initWithTarget:self action:@selector(hideKeyboard:)];
+    tapRecognizer.delegate = self;
+    [self.scrollView addGestureRecognizer:tapRecognizer];
 }
 
-// Call this method somewhere in your view controller setup code.
 - (void)registerForKeyboardNotifications
 {
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -110,27 +130,35 @@
 }
 
 // Called when the UIKeyboardWillHideNotification is sent
-- (void)keyboardWillBeHidden:(NSNotification*)aNotification
-{
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification {
     UIEdgeInsets contentInsets = UIEdgeInsetsZero;
     scrollView.contentInset = contentInsets;
     scrollView.scrollIndicatorInsets = contentInsets;
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
+
+#pragma mark - text field delegate
+
+- (IBAction)hideKeyboard:(id)sender {
+    [activeField resignFirstResponder];
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
     activeField = textField;
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
+- (void)textFieldDidEndEditing:(UITextField *)textField {
     activeField = nil;
 }
 
-- (IBAction)connect:(id)sender {
+#pragma mark - gesture recognizer delegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    if ([touch.view isKindOfClass:[UIButton class]]){
+        return NO;
+    }
+    return YES;
 }
 
-- (IBAction)disconnect:(id)sender {
-}
 
 @end
