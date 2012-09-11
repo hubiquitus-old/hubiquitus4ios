@@ -21,22 +21,9 @@
 
 @interface HTransportOptions : NSObject
 
-@property (nonatomic, strong) NSString * username;
-@property (nonatomic, strong) NSString * serverDomain;
-@property (nonatomic, strong) NSString * resource;
-@property (nonatomic, strong) NSString * bareJid;
-@property (nonatomic, strong) NSString * fullJid;
-
-@property (nonatomic, strong) NSString * serverHost;
-@property (nonatomic) int * serverPort;
+@property (nonatomic, strong) NSString * jid;
+@property (nonatomic, strong) NSString * password;
 
 @property (nonatomic, strong) NSArray * endpoints;
-
-@property (nonatomic, strong) NSString * hServerName;
-@property (nonatomic, strong) NSString * hServerDomain;
-@property (nonatomic, strong) NSString * hServerResource;
-@property (nonatomic, strong) NSString * hServerBareJid;
-@property (nonatomic, strong) NSString * hServerFullJid;
-
 
 @end

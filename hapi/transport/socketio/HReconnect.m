@@ -58,7 +58,7 @@
         reachability = [HReachability reachabilityForInternetConnection];
     
         //setup
-        _reconnectQueue = dispatch_queue_create("HCReconnect.queue", NULL);
+        _reconnectQueue = dispatch_queue_create("HReconnect.queue", NULL);
         
         // create our timer source
         _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, _reconnectQueue);

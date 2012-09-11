@@ -56,6 +56,7 @@
 		11AF5CB515A34292003F7F5B /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5BA315A34292003F7F5B /* SBJsonUTF8Stream.m */; };
 		11AF5CB615A34292003F7F5B /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5BA515A34292003F7F5B /* SBJsonWriter.m */; };
 		11AF5CC215A34292003F7F5B /* SocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5BBF15A34292003F7F5B /* SocketIO.m */; };
+		11B7B2F415FF87F800E6BBD1 /* HTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B7B2F315FF87F800E6BBD1 /* HTransport.m */; };
 		11DF658015FF4ABE00259252 /* hub_connected.png in Resources */ = {isa = PBXBuildFile; fileRef = 11DF657D15FF4ABE00259252 /* hub_connected.png */; };
 		11DF658115FF4ABE00259252 /* hub_connecting.png in Resources */ = {isa = PBXBuildFile; fileRef = 11DF657E15FF4ABE00259252 /* hub_connecting.png */; };
 		11DF658215FF4ABE00259252 /* hub_disconnected.png in Resources */ = {isa = PBXBuildFile; fileRef = 11DF657F15FF4ABE00259252 /* hub_disconnected.png */; };
@@ -78,11 +79,11 @@
 		1124ADF515A4864500FE1C28 /* HMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMessage.h; sourceTree = "<group>"; };
 		1124ADF615A4864500FE1C28 /* HMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMessage.m; sourceTree = "<group>"; };
 		1124AE0115A4864500FE1C28 /* HObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HObj.h; sourceTree = "<group>"; };
-		1124AE0315A4864500FE1C28 /* HTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTransport.h; sourceTree = "<group>"; };
-		1124AE0715A4864500FE1C28 /* HReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HReachability.h; sourceTree = "<group>"; };
-		1124AE0815A4864500FE1C28 /* HReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HReachability.m; sourceTree = "<group>"; };
-		1124AE0915A4864500FE1C28 /* HReconnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HReconnect.h; sourceTree = "<group>"; };
-		1124AE0A15A4864500FE1C28 /* HReconnect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HReconnect.m; sourceTree = "<group>"; };
+		1124AE0315A4864500FE1C28 /* HTransport.old.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTransport.old.h; sourceTree = "<group>"; };
+		1124AE0715A4864500FE1C28 /* HReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HReachability.h; path = socketio/HReachability.h; sourceTree = "<group>"; };
+		1124AE0815A4864500FE1C28 /* HReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HReachability.m; path = socketio/HReachability.m; sourceTree = "<group>"; };
+		1124AE0915A4864500FE1C28 /* HReconnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HReconnect.h; path = socketio/HReconnect.h; sourceTree = "<group>"; };
+		1124AE0A15A4864500FE1C28 /* HReconnect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HReconnect.m; path = socketio/HReconnect.m; sourceTree = "<group>"; };
 		1124AE0B15A4864500FE1C28 /* HSocketIO+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HSocketIO+Helper.h"; sourceTree = "<group>"; };
 		1124AE0C15A4864500FE1C28 /* HSocketIO+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HSocketIO+Helper.m"; sourceTree = "<group>"; };
 		1124AE0D15A4864500FE1C28 /* HSocketIO+HReconnectDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HSocketIO+HReconnectDelegate.h"; sourceTree = "<group>"; };
@@ -186,6 +187,8 @@
 		11AF5BBD15A34292003F7F5B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		11AF5BBE15A34292003F7F5B /* SocketIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIO.h; sourceTree = "<group>"; };
 		11AF5BBF15A34292003F7F5B /* SocketIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIO.m; sourceTree = "<group>"; };
+		11B7B2F215FF87F800E6BBD1 /* HTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTransport.h; path = ../transport/new/HTransport.h; sourceTree = "<group>"; };
+		11B7B2F315FF87F800E6BBD1 /* HTransport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTransport.m; path = ../transport/new/HTransport.m; sourceTree = "<group>"; };
 		11DF657D15FF4ABE00259252 /* hub_connected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hub_connected.png; sourceTree = "<group>"; };
 		11DF657E15FF4ABE00259252 /* hub_connecting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hub_connecting.png; sourceTree = "<group>"; };
 		11DF657F15FF4ABE00259252 /* hub_disconnected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hub_disconnected.png; sourceTree = "<group>"; };
@@ -286,9 +289,10 @@
 		1124AE0215A4864500FE1C28 /* Transport */ = {
 			isa = PBXGroup;
 			children = (
+				11B7B2ED15FF80F000E6BBD1 /* TransportLayer */,
 				11E2B12B15AB375400824ED2 /* HTransportOptions.m */,
 				11E2B12A15AB375400824ED2 /* HTransportOptions.h */,
-				1124AE0315A4864500FE1C28 /* HTransport.h */,
+				1124AE0315A4864500FE1C28 /* HTransport.old.h */,
 				1124AE0615A4864500FE1C28 /* socketio */,
 			);
 			path = Transport;
@@ -297,10 +301,6 @@
 		1124AE0615A4864500FE1C28 /* socketio */ = {
 			isa = PBXGroup;
 			children = (
-				1124AE0715A4864500FE1C28 /* HReachability.h */,
-				1124AE0815A4864500FE1C28 /* HReachability.m */,
-				1124AE0915A4864500FE1C28 /* HReconnect.h */,
-				1124AE0A15A4864500FE1C28 /* HReconnect.m */,
 				1124AE0B15A4864500FE1C28 /* HSocketIO+Helper.h */,
 				1124AE0C15A4864500FE1C28 /* HSocketIO+Helper.m */,
 				1124AE0D15A4864500FE1C28 /* HSocketIO+HReconnectDelegate.h */,
@@ -504,6 +504,19 @@
 			path = "socket.IO-objc";
 			sourceTree = "<group>";
 		};
+		11B7B2ED15FF80F000E6BBD1 /* TransportLayer */ = {
+			isa = PBXGroup;
+			children = (
+				1124AE0915A4864500FE1C28 /* HReconnect.h */,
+				1124AE0A15A4864500FE1C28 /* HReconnect.m */,
+				1124AE0715A4864500FE1C28 /* HReachability.h */,
+				1124AE0815A4864500FE1C28 /* HReachability.m */,
+				11B7B2F215FF87F800E6BBD1 /* HTransport.h */,
+				11B7B2F315FF87F800E6BBD1 /* HTransport.m */,
+			);
+			name = TransportLayer;
+			sourceTree = "<group>";
+		};
 		11DF657C15FF4ABE00259252 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -642,6 +655,7 @@
 				11E2B12215AB0C2500824ED2 /* HStructure.m in Sources */,
 				11E2B12615AB295B00824ED2 /* HStatus.m in Sources */,
 				11E2B12C15AB375400824ED2 /* HTransportOptions.m in Sources */,
+				11B7B2F415FF87F800E6BBD1 /* HTransport.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

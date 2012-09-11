@@ -17,17 +17,15 @@
  *     along with Hubiquitus.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "HTransportOptions.h"
+#import "HTransport.h"
 
 /**
  * @cond internal
  * @version 0.5.0
- * Options used by the transport layers
+ * Transport layer. Call the chosen transport layer and manage autoreconnect
  */
 
-@implementation HTransportOptions
-@synthesize jid, password, endpoints;
-
+@implementation HTransport
 
 @end
 

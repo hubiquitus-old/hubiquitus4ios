@@ -17,20 +17,27 @@
  *     along with Hubiquitus.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "HTransportOptions.h"
+#import <Foundation/Foundation.h>
+#import "HStatus.h"
 
-/**
- * @cond internal
- * @version 0.5.0
- * Options used by the transport layers
- */
-
-@implementation HTransportOptions
-@synthesize jid, password, endpoints;
-
+@protocol HTransportLayer <NSObject>
 
 @end
 
-/**
- * @endcond
- */
+@protocol HTransportDelegate <NSObject>
+
+@required
+- onStatus:(HStatus*)status;
+- onMessage:(HMe;
+
+@end
+
+@interface HTransport : NSObject
+
+@property id<HTransportDelegate> delegate;
+
+- (id)initWith:(id<HTransportDelegate>)delegate;
+
+
+
+@end
