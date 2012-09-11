@@ -25,8 +25,6 @@
 typedef enum {
     CONNECTING = 1,
     CONNECTED = 2,
-    REATTACHING = 3,
-    REATTACHED = 4,
     DISCONNECTING = 5, 
     DISCONNECTED = 6
 } Status;

@@ -19,7 +19,7 @@
 
 /**
  * @version 0.5.0
- * Connection status. See HStatus.status
+ * Connection error codes. See HStatus.status
  */
 
 typedef enum {
