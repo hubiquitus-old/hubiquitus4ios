@@ -128,6 +128,7 @@
 		1131A1AB150F9E6400A61449 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		1131A246150FA01500A61449 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		1131A24B150FA07600A61449 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		1139F71E1600E47D0034E8E9 /* HTransportLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HTransportLayer.h; path = ../transport/new/HTransportLayer.h; sourceTree = "<group>"; };
 		11452E051510D39400B94B34 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		116EB59B15A70D0B00E6F5B0 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		116EB5A115A712AE00E6F5B0 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
@@ -513,6 +514,7 @@
 				1124AE0815A4864500FE1C28 /* HReachability.m */,
 				11B7B2F215FF87F800E6BBD1 /* HTransport.h */,
 				11B7B2F315FF87F800E6BBD1 /* HTransport.m */,
+				1139F71E1600E47D0034E8E9 /* HTransportLayer.h */,
 			);
 			name = TransportLayer;
 			sourceTree = "<group>";

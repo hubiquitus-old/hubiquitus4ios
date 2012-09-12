@@ -18,14 +18,197 @@
  */
 
 #import "HTransport.h"
+#import "HReachability.h"
+#import "HTransportLayer.h"
 
 /**
  * @cond internal
  * @version 0.5.0
- * Transport layer. Call the chosen transport layer and manage autoreconnect
+ * Transport. Call the chosen transport layer and manage autoreconnect
  */
 
+@interface HTransport () {
+@private
+    Status status; /** status of the connection */
+    
+    dispatch_queue_t _connectQueue; /** queue that will handle connections and reconnections requests */
+    dispatch_source_t _connectTimer; /** timer used for auto connect attempts */
+
+    int _autoConnectDelay;
+    bool _autoConnectTimerEnabled;
+}
+
+@property (nonatomic) BOOL autoConnect;
+@property (nonatomic, strong) HReachability * reachability;
+@property (nonatomic, strong) id<HTransportLayer> transportLayer;
+
+- (void)setupAutoConnect;
+
+@end
+
+
+
 @implementation HTransport
+@synthesize autoConnectDelay = _autoConnectDelay;
+@synthesize delegate, status = _status;
+@synthesize reachability, autoConnect;
+@synthesize options;
+@synthesize transportLayer;
+
+- (id)initWith:(id<HTransportDelegate>)aDelegate {
+    self = [super init];
+    if(self) {
+        self.delegate = aDelegate;
+        status = DISCONNECTED;
+        
+        self.autoConnectDelay = 2; //2s by default
+        self.autoConnect = false;
+        
+        [self setupAutoConnect];
+    }
+    
+    return self;
+}
+
+- (void)connectWithOptions:(HTransportOptions*)someOptions {
+    self.options = someOptions;
+    self.autoConnect = YES;
+    
+    //start auto connect system
+    @synchronized(self) {
+        if (!_connectTimer) {
+            _autoConnectTimerEnabled = YES;
+            dispatch_resume(_connectTimer);
+        }
+    }
+}
+
+- (void)disconnect {
+    //stop autoconnect timer if we are trying to connect
+    self.autoConnect = NO;
+    [self tryToConnectDisconnect];
+}
+
+- (void)send:(HMessage *)message {
+    
+}
+
+- (void)dealloc {
+    dispatch_source_cancel(_connectTimer);
+    dispatch_release(_connectTimer);
+    dispatch_release(_connectQueue);
+    [reachability stopNotifier];
+}
+
+#pragma mark - connectInternal
+
+/**
+ * If reachability is reachable and we can connect (user want to be connected and we are disconnecting or disconnected)
+ * ask the transport layer to connect
+ */
+- (void)tryToConnectDisconnect {
+    //check first if we need to connect
+    if(!self.autoConnect && transportLayer.status == CONNECTED) {
+        [self.transportLayer disconnect]; //well make sure we disconnect
+    } else if(self.autoConnect && transportLayer.status == DISCONNECTED) {
+        [self.transportLayer connectWithOptions:self.options];
+    } else if(!autoConnect && transportLayer.status == DISCONNECTED) {
+        [self stopTimer];
+    } else if(autoConnect && transportLayer.status == CONNECTED) {
+        [self stopTimer];
+    }
+}
+
+#pragma mark - autoConnect
+
+- (void)setAutoConnectDelay:(int)autoConnectDelay {
+    //if we update it, update timer too
+    _autoConnectDelay = autoConnectDelay;
+    
+    dispatch_source_set_timer(_connectTimer, dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC),
+                              self.autoConnectDelay * NSEC_PER_SEC, 1);
+}
+
+/**
+ * stop the auto connect timer
+ */
+- (void)stopTimer {
+    @synchronized(self) {
+        if (_autoConnectTimerEnabled) {
+            dispatch_suspend(_connectTimer);
+            _autoConnectTimerEnabled = NO;
+        }
+    }
+}
+
+/**
+ * Set the auto connect. Auto connect start a connection and try to connect until it can
+ */
+- (void)setupAutoConnect {
+    //set reachability to disable timer until we have an uplink
+    reachability = [HReachability reachabilityForInternetConnection];
+    
+    //setup
+    _connectQueue = dispatch_queue_create("HTransport.connect.queue", NULL);
+    
+    // create our timer source, it fires to notify that we should do an attempt to connect
+    _connectTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, _connectQueue);
+    
+    // so just fill in the initial time).
+    dispatch_source_set_timer(_connectTimer, dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC),
+                              self.autoConnectDelay * NSEC_PER_SEC, 1);
+    
+    //we have to make sure we call dispatch_suspend or dispatch_resume only one time because 
+    //it has a counter of all. Each dispatch_suspend should be balanced by a dispatch_resume
+    _autoConnectTimerEnabled = NO;
+    
+    // Try to autoconnect when it fires
+    dispatch_source_set_event_handler(_connectTimer, ^{
+        [self tryToConnectDisconnect];
+    });
+    
+    //start checking reachability
+    [reachability startNotifier];
+    
+    //register to reachibility notification
+    [[NSNotificationCenter defaultCenter] addObserverForName:kReachabilityChangedNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+        NetworkStatus netStatus = [reachability currentReachabilityStatus];
+        switch (netStatus)
+        {
+            case NotReachable:
+            {
+                [self stopTimer];
+                break;
+            }
+                
+            case ReachableViaWWAN:
+            {
+                [self tryToConnectDisconnect];
+                break;
+            }
+            case ReachableViaWiFi:
+            {
+                [self tryToConnectDisconnect];
+                break;
+            }
+        }
+        
+    }];
+    
+}
+
+#pragma mark - 
+
+#pragma mark - Transport layer delegate
+
+
+- (void)statusNotification:(Status)status withErrorCode:(ErrorCode)errorCode errorMsg:(NSString *)errorMsg {
+    
+}
+
+- (void)messageNotification:(NSString *)message {
+    
+}
 
 @end
 

@@ -18,35 +18,58 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "HTransportLayer.h"
-#import "HStatus.h"
-#import "HMessage.h"
-#import "HOptions.h"
+#import "Status.h"
+#import "ErrorCode.h"
 #import "HTransportOptions.h"
 
-@protocol HTransportDelegate <NSObject>
+/**
+ * @cond internal
+ * @version 0.5.0
+ * Transport layer. Abstract a transport layer. 
+ */
+
+/**
+ * Defines the transport layer delegate.
+ */
+@protocol HTransportLayerDelegate <NSObject>
 
 @required
 
-- (void)statusNotification:(HStatus*)status;
-- (void)messageNotification:(HMessage*)message;
+/**
+ * Notify a connexion status update
+ */
+- (void)statusNotification:(Status)status withErrorCode:(ErrorCode)errorCode errorMsg:(NSString*)errorMsg;
+
+/**
+ * Notify an hMessage formated into a json string reprensentation
+ */
+- (void)messageNotification:(NSString*)message;
 
 @end
 
 
-@interface HTransport : NSObject <HTransportLayerDelegate>
+/**
+ * Protocol used by all transports
+ */
+@protocol HTransportLayer <NSObject>
 
-@property id<HTransportDelegate> delegate;
-
+@required 
+@property (strong) id<HTransportLayerDelegate> delegate;
 @property (nonatomic, readonly) Status status;
-@property (nonatomic) int autoConnectDelay;
-@property (nonatomic, strong) HTransportOptions * options;
 
-- (id)initWith:(id<HTransportDelegate>)delegate;
+- (id)initWithDelegate:(id<HTransportLayerDelegate>)delegate;
 
-- (void)connectWithOptions:(HOptions*)options;
+- (void)connectWithOptions:(HTransportOptions*)options;
 - (void)disconnect;
 
-- (void)send:(HMessage*)message;
+/**
+ * sending an hMessage as a string representation
+ */
+- (void)send:(NSString*)message;
 
 @end
+
+
+/**
+ * @endcond
+ */
