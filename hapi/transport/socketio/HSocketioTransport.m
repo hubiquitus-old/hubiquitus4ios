@@ -19,6 +19,7 @@
 
 #import "HSocketioTransport.h"
 #import "DDLog.h"
+#import "Status.h"
 
 #if ! __has_feature(objc_arc)
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
@@ -32,28 +33,58 @@
 
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
+@interface HSocketioTransport() {
+    Status _status;
+}
+
+@end
+
 @implementation HSocketioTransport
-@synthesize jid, rid, sid, socketio;
+@synthesize socketio;
 @synthesize delegate, status;
 
-- (id)initWithDelegate:(id<HTransportLayerDelegate>)delegate {
+- (id)initWithDelegate:(id<HTransportLayerDelegate>)aDelegate {
     self = [super init];
     if(self) {
+        _status = DISCONNECTED;
+        self.socketio = nil;
+        self.delegate = nil;
         
+        self.delegate = aDelegate;
     }
     
     return self;
 }
 
+/**
+ * if we are disconnected, try fir to attach if possible
+ * if not connect
+ */
 - (void)connectWithOptions:(HTransportOptions *)options {
-    
+    if(self.status == DISCONNECTED) {
+        _status = CONNECTING;
+        
+        if([self.delegate respondsToSelector:@selector(statusNotification:withErrorCode:errorMsg:)]) {
+            [self.delegate statusNotification:CONNECTING withErrorCode:NO_ERROR errorMsg:nil];
+        }
+        
+        //TO ADD CONNECTION
+    }
 }
 
 - (void)disconnect {
-    
+    if(self.status == CONNECTING || self.status == DISCONNECTED) {
+        _status = DISCONNECTING;
+        
+        if([self.delegate respondsToSelector:@selector(statusNotification:withErrorCode:errorMsg:)]) {
+            [self.delegate statusNotification:DISCONNECTING withErrorCode:NO_ERROR errorMsg:nil];
+        }
+        
+        [self.socketio disconnect];
+    }
 }
 
-- (void)send:(NSString *)message {
+- (void)send:(NSDictionary *)message {
     
 }
 
@@ -63,15 +94,43 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 - (void) socketIODidDisconnect:(SocketIO *)socket {
+    _status = DISCONNECTED;
     
+    if([self.delegate respondsToSelector:@selector(statusNotification:withErrorCode:errorMsg:)]) {
+        [self.delegate statusNotification:DISCONNECTED withErrorCode:NO_ERROR errorMsg:nil];
+    }
 }
 
 - (void) socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet {
-    
+    for (NSDictionary* arg in packet.args) {
+        if([packet.name isEqualToString:@"hMessage"]) {
+            if([self.delegate respondsToSelector:@selector(messageNotification:)]) {
+                [self.delegate messageNotification:arg];
+            }
+            
+        } else if([packet.name isEqualToString:@"hStatus"]) {
+            int status = [[arg objectForKey:@"status"] integerValue];
+            int errorCode = [[arg objectForKey:@"errorCode"] integerValue];
+            NSString * errorMsg = [arg objectForKey:@"errorMsg"];
+            
+            /** check if we didn't disconnect meanwhile */
+            if (self.status == CONNECTING || self.status == CONNECTED) {
+                _status = status;
+                
+                if([self.delegate respondsToSelector:@selector(statusNotification:withErrorCode:errorMsg:)]) {
+                    [self.delegate statusNotification:status withErrorCode:errorCode errorMsg:errorMsg];
+                }
+            }
+        }
+    }
 }
 
 - (void) socketIOHandshakeFailed:(SocketIO *)socket {
+    _status = DISCONNECTED;
     
+    if([self.delegate respondsToSelector:@selector(statusNotification:withErrorCode:errorMsg:)]) {
+        [self.delegate statusNotification:DISCONNECTED withErrorCode:TECH_ERROR errorMsg:@"SocketIO handshake failed"];
+    }
 }
 
 @end

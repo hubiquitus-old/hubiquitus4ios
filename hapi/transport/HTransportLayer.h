@@ -43,7 +43,7 @@
 /**
  * Notify an hMessage formated into a json string reprensentation
  */
-- (void)messageNotification:(NSString*)message;
+- (void)messageNotification:(NSDictionary*)message;
 
 @end
 
@@ -65,7 +65,7 @@
 /**
  * sending an hMessage as a string representation
  */
-- (void)send:(NSString*)message;
+- (void)send:(NSDictionary*)message;
 
 @end
 

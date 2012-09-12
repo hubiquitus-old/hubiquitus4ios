@@ -29,8 +29,6 @@
 @synthesize publisher;
 @synthesize password;
 @synthesize endpoints;
-@synthesize serverHost;
-@synthesize serverPort;
 @synthesize connStatus;
 @synthesize errorCode;
 @synthesize errorMsg;
@@ -58,8 +56,6 @@
     [self setPublisher:nil];
     [self setPassword:nil];
     [self setEndpoints:nil];
-    [self setServerHost:nil];
-    [self setServerPort:nil];
     [self setConnStatus:nil];
     [self setErrorCode:nil];
     [self setErrorMsg:nil];

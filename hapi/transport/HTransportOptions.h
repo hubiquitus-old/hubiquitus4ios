@@ -28,6 +28,6 @@
 @property (nonatomic, strong) NSString * jid;
 @property (nonatomic, strong) NSString * password;
 
-@property (nonatomic, strong) NSArray * endpoints;
+@property (nonatomic, strong) NSString * endpoint;
 
 @end

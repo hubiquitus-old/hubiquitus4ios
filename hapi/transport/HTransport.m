@@ -238,7 +238,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
 }
 
-- (void)messageNotification:(NSString *)message {
+- (void)messageNotification:(NSDictionary *)message {
     
 }
 

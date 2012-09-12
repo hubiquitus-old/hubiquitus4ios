@@ -24,10 +24,6 @@
 @interface HSocketioTransport : NSObject <SocketIODelegate, HTransportLayer>
 
 /** mandatory infos to do reattach */
-@property (nonatomic, strong) NSString * rid;
-@property (nonatomic, strong) NSString * sid;
-@property (nonatomic, strong) NSString * jid;
-
 @property (nonatomic, strong) SocketIO* socketio;
 
 

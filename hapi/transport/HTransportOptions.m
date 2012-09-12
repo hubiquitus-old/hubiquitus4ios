@@ -26,7 +26,7 @@
  */
 
 @implementation HTransportOptions
-@synthesize jid, password, endpoints;
+@synthesize jid, password, endpoint;
 
 
 @end
