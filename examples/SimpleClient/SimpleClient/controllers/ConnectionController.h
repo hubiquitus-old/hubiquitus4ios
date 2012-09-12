@@ -27,10 +27,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *publisher;
 @property (weak, nonatomic) IBOutlet UITextField *password;
-
 @property (weak, nonatomic) IBOutlet UITextField *endpoints;
-@property (weak, nonatomic) IBOutlet UITextField *serverHost;
-@property (weak, nonatomic) IBOutlet UITextField *serverPort;
 
 @property (weak, nonatomic) IBOutlet UILabel *connStatus;
 @property (weak, nonatomic) IBOutlet UILabel *errorCode;

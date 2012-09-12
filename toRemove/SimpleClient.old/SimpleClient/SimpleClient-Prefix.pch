@@ -16,19 +16,17 @@
  *     You should have received a copy of the GNU General Public License
  *     along with Hubiquitus.  If not, see <http://www.gnu.org/licenses/>.
  */
+//
+// Prefix header for all source files of the 'SimpleClient' target in the 'SimpleClient' project
+//
 
-#import <Foundation/Foundation.h>
-#import "SocketIO.h"
-#import "HTransportLayer.h"
+#import <Availability.h>
 
-@interface HSocketioTransport : NSObject <SocketIODelegate, HTransportLayer>
+#ifndef __IPHONE_4_0
+#warning "This project uses features only available in iOS SDK 4.0 and later."
+#endif
 
-/** mandatory infos to do reattach */
-@property (nonatomic, strong) NSString * rid;
-@property (nonatomic, strong) NSString * sid;
-@property (nonatomic, strong) NSString * jid;
-
-@property (nonatomic, strong) SocketIO* socketio;
-
-
-@end
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+#endif

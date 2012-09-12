@@ -17,18 +17,17 @@
  *     along with Hubiquitus.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <Foundation/Foundation.h>
-#import "SocketIO.h"
-#import "HTransportLayer.h"
+#import <UIKit/UIKit.h>
 
-@interface HSocketioTransport : NSObject <SocketIODelegate, HTransportLayer>
+#define TEST_CHANNEL @""
+#define TEST_USERNAME @""
+#define TEST_PASSWORD @""
 
-/** mandatory infos to do reattach */
-@property (nonatomic, strong) NSString * rid;
-@property (nonatomic, strong) NSString * sid;
-@property (nonatomic, strong) NSString * jid;
+//@class ViewController;
 
-@property (nonatomic, strong) SocketIO* socketio;
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
+
+@property (strong, nonatomic) UIWindow *window;
 
 
 @end

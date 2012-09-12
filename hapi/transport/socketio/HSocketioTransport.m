@@ -33,7 +33,29 @@
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 @implementation HSocketioTransport
+@synthesize jid, rid, sid, socketio;
+@synthesize delegate, status;
 
+- (id)initWithDelegate:(id<HTransportLayerDelegate>)delegate {
+    self = [super init];
+    if(self) {
+        
+    }
+    
+    return self;
+}
+
+- (void)connectWithOptions:(HTransportOptions *)options {
+    
+}
+
+- (void)disconnect {
+    
+}
+
+- (void)send:(NSString *)message {
+    
+}
 
 #pragma mark - socketio delegate
 - (void) socketIODidConnect:(SocketIO *)socket {

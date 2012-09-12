@@ -17,18 +17,13 @@
  *     along with Hubiquitus.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <Foundation/Foundation.h>
-#import "SocketIO.h"
-#import "HTransportLayer.h"
+#import <UIKit/UIKit.h>
 
-@interface HSocketioTransport : NSObject <SocketIODelegate, HTransportLayer>
+#import "AppDelegate.h"
 
-/** mandatory infos to do reattach */
-@property (nonatomic, strong) NSString * rid;
-@property (nonatomic, strong) NSString * sid;
-@property (nonatomic, strong) NSString * jid;
-
-@property (nonatomic, strong) SocketIO* socketio;
-
-
-@end
+int main(int argc, char *argv[])
+{
+    @autoreleasepool {
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+    }
+}
