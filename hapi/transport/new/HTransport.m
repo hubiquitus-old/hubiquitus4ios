@@ -20,6 +20,10 @@
 #import "HTransport.h"
 #import "HReachability.h"
 #import "HTransportLayer.h"
+#import "DDLog.h"
+#import "DDASLLogger.h"
+#import "DDTTYLogger.h"
+#import "DDFileLogger.h"
 
 /**
  * @cond internal
@@ -27,9 +31,11 @@
  * Transport. Call the chosen transport layer and manage autoreconnect
  */
 
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+
 @interface HTransport () {
 @private
-    Status status; /** status of the connection */
+    Status _status; /** status of the connection */
     
     dispatch_queue_t _connectQueue; /** queue that will handle connections and reconnections requests */
     dispatch_source_t _connectTimer; /** timer used for auto connect attempts */
@@ -59,7 +65,7 @@
     self = [super init];
     if(self) {
         self.delegate = aDelegate;
-        status = DISCONNECTED;
+        _status = DISCONNECTED;
         
         self.autoConnectDelay = 2; //2s by default
         self.autoConnect = false;
@@ -74,6 +80,8 @@
     self.options = someOptions;
     self.autoConnect = YES;
     
+    [reachability startNotifier];
+    
     //start auto connect system
     @synchronized(self) {
         if (!_connectTimer) {
@@ -85,12 +93,13 @@
 
 - (void)disconnect {
     //stop autoconnect timer if we are trying to connect
+    [reachability stopNotifier];
     self.autoConnect = NO;
     [self tryToConnectDisconnect];
 }
 
 - (void)send:(HMessage *)message {
-    
+    DDLogVerbose(@"sending message : %@", message);
 }
 
 - (void)dealloc {
@@ -103,11 +112,10 @@
 #pragma mark - connectInternal
 
 /**
- * If reachability is reachable and we can connect (user want to be connected and we are disconnecting or disconnected)
- * ask the transport layer to connect
+ * Check if it need to disconnect or connect. If it need to connect, it first waits for reachability
  */
 - (void)tryToConnectDisconnect {
-    //check first if we need to connect
+    DDLogVerbose("Auto connect system in progress : autoConnect %d, connection status : %d, transportLayer status %d", self.autoConnect, self.status, self.transportLayer.status);
     if(!self.autoConnect && transportLayer.status == CONNECTED) {
         [self.transportLayer disconnect]; //well make sure we disconnect
     } else if(self.autoConnect && transportLayer.status == DISCONNECTED) {
@@ -168,7 +176,7 @@
     });
     
     //start checking reachability
-    [reachability startNotifier];
+    //[reachability startNotifier];
     
     //register to reachibility notification
     [[NSNotificationCenter defaultCenter] addObserverForName:kReachabilityChangedNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
@@ -177,17 +185,20 @@
         {
             case NotReachable:
             {
+                DDLogVerbose("Reachability unavailable");
                 [self stopTimer];
                 break;
             }
                 
             case ReachableViaWWAN:
             {
+                DDLogVerbose("Reachability available through GSM");
                 [self tryToConnectDisconnect];
                 break;
             }
             case ReachableViaWiFi:
             {
+                DDLogVerbose("Reachability available through Wifi");
                 [self tryToConnectDisconnect];
                 break;
             }
@@ -202,8 +213,8 @@
 #pragma mark - Transport layer delegate
 
 
-- (void)statusNotification:(Status)status withErrorCode:(ErrorCode)errorCode errorMsg:(NSString *)errorMsg {
-    
+- (void)statusNotification:(Status)aStatus withErrorCode:(ErrorCode)anRrrorCode errorMsg:(NSString *)anErrorMsg {
+    _status = aStatus;
 }
 
 - (void)messageNotification:(NSString *)message {

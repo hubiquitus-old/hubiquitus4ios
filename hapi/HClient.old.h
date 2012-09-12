@@ -34,7 +34,7 @@
 
 
 
-@interface HClientOld : NSObject <HTransportDelegate>
+/*@interface HClientOld : NSObject <HTransportDelegate>
 
 @property (strong) id<HClientDelegate> delegate;
 @property (strong, nonatomic, readonly) HOptions * options;
@@ -54,4 +54,4 @@
 - (NSString*)publishToChannel:(NSString*)channel_identifier message:(HMessage*)message;
 - (NSString*)getMessagesFromChannel:(NSString*)channel_identifier;
 
-@end
+@end*/
