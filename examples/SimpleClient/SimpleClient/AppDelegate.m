@@ -18,7 +18,6 @@
  */
 
 #import "AppDelegate.h"
-#import "ViewController.h"
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"

@@ -18,35 +18,16 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "SocketIO.h"
 #import "HTransportLayer.h"
-#import "HStatus.h"
-#import "HMessage.h"
-#import "HOptions.h"
-#import "HTransportOptions.h"
 
-@protocol HTransportDelegate <NSObject>
+@interface HSocketioTransport : NSObject <SocketIODelegate>
 
-@required
+/** mandatory infos to do reattach */
+@property (nonatomic, strong) NSString * rid;
+@property (nonatomic, strong) NSString * sid;
+@property (nonatomic, strong) NSString * jid;
 
-- (void)statusNotification:(HStatus*)status;
-- (void)messageNotification:(HMessage*)message;
-
-@end
-
-
-@interface HTransport : NSObject <HTransportLayerDelegate>
-
-@property id<HTransportDelegate> delegate;
-
-@property (nonatomic, readonly) Status status;
-@property (nonatomic) int autoConnectDelay;
-@property (nonatomic, strong) HTransportOptions * options;
-
-- (id)initWith:(id<HTransportDelegate>)delegate;
-
-- (void)connectWithOptions:(HOptions*)options;
-- (void)disconnect;
-
-- (void)send:(HMessage*)message;
+@property (nonatomic, strong) SocketIO* socketio;
 
 @end

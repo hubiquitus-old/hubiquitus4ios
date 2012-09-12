@@ -17,36 +17,43 @@
  *     along with Hubiquitus.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <Foundation/Foundation.h>
-#import "HTransportLayer.h"
-#import "HStatus.h"
-//#import "HMessage.h"
-#import "HOptions.h"
-#import "HTransportOptions.h"
+#import "HSocketioTransport.h"
+#import "DDLog.h"
 
-@protocol HTransportDelegate <NSObject>
+#if ! __has_feature(objc_arc)
+#warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
+#endif
 
-@required
+/**
+ * @cond internal
+ * @version 0.5.0
+ * Socket.io transport layer
+ */
 
-- (void)statusNotification:(HStatus*)status;
-//- (void)messageNotification:(HMessage*)message;
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+
+@implementation HSocketioTransport
+
+
+#pragma mark - socketio delegate
+- (void) socketIODidConnect:(SocketIO *)socket {
+    
+}
+
+- (void) socketIODidDisconnect:(SocketIO *)socket {
+    
+}
+
+- (void) socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet {
+    
+}
+
+- (void) socketIOHandshakeFailed:(SocketIO *)socket {
+    
+}
 
 @end
 
-
-@interface HTransport : NSObject <HTransportLayerDelegate>
-
-@property id<HTransportDelegate> delegate;
-
-@property (nonatomic, readonly) Status status;
-@property (nonatomic) int autoConnectDelay;
-@property (nonatomic, strong) HTransportOptions * options;
-
-- (id)initWith:(id<HTransportDelegate>)delegate;
-
-- (void)connectWithOptions:(HOptions*)options;
-- (void)disconnect;
-
-//- (void)send:(HMessage*)message;
-
-@end
+/**
+ * @endcond
+ */

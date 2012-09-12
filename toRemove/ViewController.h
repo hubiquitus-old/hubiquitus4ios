@@ -18,7 +18,6 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "HClient.old.h"
 #import "AppDelegate.h"
 
 @interface ViewController : UIViewController <HClientDelegate>

@@ -25,6 +25,10 @@
 #import "DDTTYLogger.h"
 #import "DDFileLogger.h"
 
+#if ! __has_feature(objc_arc)
+#warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
+#endif
+
 /**
  * @cond internal
  * @version 0.5.0
@@ -76,6 +80,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     return self;
 }
 
+/**
+ * init transport layer and start autoConnect system to connect
+ */
 - (void)connectWithOptions:(HTransportOptions*)someOptions {
     self.options = someOptions;
     self.autoConnect = YES;
@@ -91,6 +98,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
 }
 
+/**
+ * stop autoConnect and wait for auto disconnect
+ */
 - (void)disconnect {
     //stop autoconnect timer if we are trying to connect
     [reachability stopNotifier];
@@ -98,9 +108,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [self tryToConnectDisconnect];
 }
 
-- (void)send:(HMessage *)message {
+/*- (void)send:(HMessage *)message {
     DDLogVerbose(@"sending message : %@", message);
-}
+}*/
 
 - (void)dealloc {
     dispatch_source_cancel(_connectTimer);
@@ -115,7 +125,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  * Check if it need to disconnect or connect. If it need to connect, it first waits for reachability
  */
 - (void)tryToConnectDisconnect {
-    DDLogVerbose("Auto connect system in progress : autoConnect %d, connection status : %d, transportLayer status %d", self.autoConnect, self.status, self.transportLayer.status);
+    DDLogVerbose(@"Auto connect system in progress : autoConnect %d, connection status : %d, transportLayer status %d", self.autoConnect, self.status, self.transportLayer.status);
     if(!self.autoConnect && transportLayer.status == CONNECTED) {
         [self.transportLayer disconnect]; //well make sure we disconnect
     } else if(self.autoConnect && transportLayer.status == DISCONNECTED) {
@@ -129,6 +139,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 #pragma mark - autoConnect
 
+/**
+ * change delay for auto connect attemps
+ */
 - (void)setAutoConnectDelay:(int)autoConnectDelay {
     //if we update it, update timer too
     _autoConnectDelay = autoConnectDelay;
@@ -185,20 +198,20 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         {
             case NotReachable:
             {
-                DDLogVerbose("Reachability unavailable");
+                DDLogVerbose(@"Reachability unavailable");
                 [self stopTimer];
                 break;
             }
                 
             case ReachableViaWWAN:
             {
-                DDLogVerbose("Reachability available through GSM");
+                DDLogVerbose(@"Reachability available through GSM");
                 [self tryToConnectDisconnect];
                 break;
             }
             case ReachableViaWiFi:
             {
-                DDLogVerbose("Reachability available through Wifi");
+                DDLogVerbose(@"Reachability available through Wifi");
                 [self tryToConnectDisconnect];
                 break;
             }
@@ -212,9 +225,17 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 #pragma mark - Transport layer delegate
 
-
-- (void)statusNotification:(Status)aStatus withErrorCode:(ErrorCode)anRrrorCode errorMsg:(NSString *)anErrorMsg {
+- (void)statusNotification:(Status)aStatus withErrorCode:(ErrorCode)anErrorCode errorMsg:(NSString *)anErrorMsg {
     _status = aStatus;
+    
+    HStatus * hStatus = [[HStatus alloc] init];
+    hStatus.status = aStatus;
+    hStatus.errorCode = anErrorCode;
+    hStatus.errorMsg = anErrorMsg;
+    
+    if(self.delegate && [self.delegate respondsToSelector:@selector(statusNotification:)]) {
+        [self.delegate statusNotification:hStatus];
+    }
 }
 
 - (void)messageNotification:(NSString *)message {
