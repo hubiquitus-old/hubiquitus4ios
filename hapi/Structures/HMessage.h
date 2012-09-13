@@ -24,6 +24,8 @@
 #import "Priority.h"
 #import "HLocation.h"
 #import "HObj.h"
+#import "HCommand.h"
+#import "HResult.h"
 
 @interface HMessage : HStructure
 
@@ -46,6 +48,8 @@
 @property (nonatomic, strong) NSArray * payloadAsArray;
 @property (nonatomic, strong) NSNumber * payloadAsNumber;
 @property (nonatomic, strong) NSString * payloadAsString;
+@property (nonatomic, strong) HCommand * payloadAsCommand;
+@property (nonatomic, strong) HResult * payloadAsResult;
 
 @property (nonatomic) long timeout;
 

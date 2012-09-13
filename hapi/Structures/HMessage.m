@@ -93,11 +93,17 @@
  */
 - (Priority)priority {
     NSNumber * priority = [self objectForKey:@"priority" withClass:[NSNumber class]];
+    if (priority == nil)
+        return -1;
+    
     return [priority intValue];
 }
 
 - (void)setPriority:(Priority)priority {
-    [self setObject:[NSNumber numberWithInt:priority] forKey:@"priority"];
+    if(priority >= 0)
+        [self setObject:[NSNumber numberWithInt:priority] forKey:@"priority"];
+    else
+        [self setObject:nil forKey:@"priority"];
 }
 
 /**
@@ -217,7 +223,43 @@
 }
 
 - (void)setPayloadAsString:(NSString *)payloadAsString {
-    return [self setObject:payloadAsString forKey:@"payload"];
+    [self setObject:payloadAsString forKey:@"payload"];
+}
+
+- (HCommand *)payloadAsCommand {
+    HCommand * cmd = [self objectForKey:@"payload" withClass:[HCommand class]];
+    if(cmd == nil) {
+        NSDictionary * cmdAsDictionary = [self objectForKey:@"payload" withClass:[NSDictionary class]];
+        if (cmdAsDictionary != nil) {
+            cmd = [[HCommand alloc] init];
+            cmd.nativeObj = cmdAsDictionary;
+        }
+    }
+    
+    return cmd;
+}
+
+- (void)setPayloadAsCommand:(HCommand *)payloadAsCommand {
+    [self setObject:payloadAsCommand forKey:@"payload"];
+}
+
+- (HResult *)payloadAsResult {
+    HResult * result = [self objectForKey:@"payload" withClass:[HResult class]];
+    if(result == nil) {
+        NSDictionary * resultAsDictionary = [self objectForKey:@"payload" withClass:[NSDictionary class]];
+        if (resultAsDictionary != nil) {
+            result = [[HResult alloc] init];
+            result.nativeObj = resultAsDictionary;
+        }
+    }
+    
+    return result;
+    
+    return [self objectForKey:@"payload" withClass:[HResult class]];
+}
+
+- (void)setPayloadAsResult:(HResult *)payloadAsResult {
+    [self setObject:payloadAsResult forKey:@"payload"];
 }
 
 /**
@@ -225,10 +267,16 @@
  */
 - (long)timeout {
     NSNumber * timeout = [self objectForKey:@"timeout" withClass:[NSNumber class]];
+    if(timeout == nil)
+        return -1;
+    
     return [timeout longValue];
 }
 
 - (void)setTimeout:(long)timeout {
-    [self setObject:[NSNumber numberWithLong:timeout] forKey:@"timeout"];
+    if(timeout >= 0)
+        [self setObject:[NSNumber numberWithLong:timeout] forKey:@"timeout"];
+    else
+        [self setObject:nil forKey:@"timeour"];
 }
 @end

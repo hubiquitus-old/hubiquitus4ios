@@ -18,11 +18,19 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "HStructure.h"
+#import "Priority.h"
+#import "HLocation.h"
 
-@interface HGeo : HStructure
-
-@property (nonatomic, strong) NSNumber * lng;
-@property (nonatomic, strong) NSNumber * lat;
+@interface HMessageOptions : NSObject
+@property (nonatomic, strong) NSString * ref;
+@property (nonatomic, strong) NSString * convid;
+@property (nonatomic) Priority priority;
+@property (nonatomic, strong) NSDate * relevance;
+@property (nonatomic) BOOL persistent;
+@property (nonatomic, strong) HLocation * location;
+@property (nonatomic, strong) NSString * author;
+@property (nonatomic, strong) NSDictionary * headers;
+@property (nonatomic, strong) NSDate * published;
+@property (nonatomic) long timeout;
 
 @end

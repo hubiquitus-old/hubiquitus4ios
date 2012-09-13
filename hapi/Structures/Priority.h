@@ -23,6 +23,7 @@
  */
 
 typedef enum {
+    UNDEFINED = -1,
     TRACE = 0,
     INFO = 1,
     WARNING = 2, 

@@ -20,6 +20,9 @@
 #import "HClient.h"
 #import "DDLog.h"
 #import "HMessage.h"
+#import "HCommand.h"
+#import "HResult.h"
+#import "ErrorCode.h"
 
 #if ! __has_feature(objc_arc)
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
@@ -108,6 +111,76 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
     
     [self.transport send:message];
+}
+
+#pragma mark - builders
+- (HMessage *)buildMessageWithActor:(NSString *)actor type:(NSString *)type payload:(id<HObj>)payload options:(HMessageOptions *)msgOptions didFailWithError:(NSError *)error {
+    HMessage * msg = nil;
+    
+    if(actor == nil || [actor length] <= 0) {
+        error = [NSError errorWithDomain:@"hBuilders" code:RES_MISSING_ATTR userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"actor", @"attr", nil]];
+        return nil;
+    }
+    
+    msg.actor = actor;
+    msg.type = type;
+    msg.payload = payload;
+    
+    if(self.transport.options)
+        msg.publisher = self.transport.options.jid;
+    
+    if(msgOptions) {
+        if(msgOptions.ref) msg.ref = msgOptions.ref;
+        if(msgOptions.convid) msg.convid = msgOptions.convid;
+        if(msgOptions.priority) msg.priority = msgOptions.priority;
+        if(msgOptions.relevance) msg.relevance = msgOptions.relevance;
+        if(msgOptions.persistent) msg.persistent = msgOptions.persistent;
+        if(msgOptions.location) msg.location = msgOptions.location;
+        if(msgOptions.author) msg.author = msgOptions.author;
+        if(msgOptions.published) msg.published = msgOptions.published;
+        if(msgOptions.headers) msg.headers = msgOptions.headers;
+        if(msgOptions.timeout) msg.timeout = msgOptions.timeout;
+        
+    }
+    
+    return msg;
+}
+
+- (HMessage *)buildCommandWithActor:(NSString *)actor cmd:(NSString *)cmd params:(NSDictionary *)params options:(HMessageOptions *)msgOptions didFailWithError:(NSError *)error {
+    
+    if(cmd == nil || [cmd length] <= 0) {
+        error = [NSError errorWithDomain:@"hBuilders" code:RES_MISSING_ATTR userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"cmd", @"attr", nil]];
+        return nil;
+    }
+    
+    HCommand * hCommmand = [[HCommand alloc] init];
+    hCommmand.cmd = cmd;
+    hCommmand.params = params;
+    
+    HMessage *msg = [self buildMessageWithActor:actor type:@"hCommand" payload:hCommmand options:msgOptions didFailWithError:error];
+    
+    return msg;
+}
+
+- (HMessage *)buildResultWithActor:(NSString *)actor ref:(NSString *)ref status:(ResultStatus)status result:(id<HObj>)result options:(HMessageOptions *)msgOptions didFailWithError:(NSError *)error {
+    
+    if(status < 0) {
+        error = [NSError errorWithDomain:@"hBuilders" code:RES_MISSING_ATTR userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"status", @"attr", nil]];
+        return nil;
+    }
+    
+    if(ref == nil || [ref length] <= 0) {
+        error = [NSError errorWithDomain:@"hBuilders" code:RES_MISSING_ATTR userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"ref", @"attr", nil]];
+        return nil;
+    }
+    
+    HResult * hResult = [[HResult alloc] init];
+    hResult.status = status;
+    hResult.result = result;
+    
+    HMessage * msg = [self buildMessageWithActor:actor type:@"hResult" payload:hResult options:msgOptions didFailWithError:error];
+    
+    return msg;
 }
 
 #pragma mark - transport delegate

@@ -23,6 +23,7 @@
 #import "HOptions.h"
 #import "HTransport.h"
 #import "HMessage.h"
+#import "HMessageOptions.h"
 
 @interface HClient : NSObject <HTransportDelegate>
 @property (nonatomic, readonly) Status status;
@@ -33,5 +34,11 @@
 - (void)disconnect;
 
 - (void)send:(HMessage*)message withBlock:(void(^)(HMessage*))callback;
+
+- (HMessage*)buildMessageWithActor:(NSString*)actor type:(NSString*)type payload:(id<HObj>)payload options:(HMessageOptions*)msgOptions didFailWithError:(NSError*)error;
+
+- (HMessage*)buildCommandWithActor:(NSString*)actor cmd:(NSString*)cmd params:(NSDictionary*)params options:(HMessageOptions*)msgOptions didFailWithError:(NSError*)error;
+
+- (HMessage*)buildResultWithActor:(NSString*)actor ref:(NSString*)ref status:(ResultStatus)status result:(id<HObj>)result options:(HMessageOptions *)msgOptions didFailWithError:(NSError*)error;
 
 @end

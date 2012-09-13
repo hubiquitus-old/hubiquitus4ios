@@ -17,12 +17,19 @@
  *     along with Hubiquitus.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <Foundation/Foundation.h>
-#import "HStructure.h"
+#import "HMessageOptions.h"
 
-@interface HGeo : HStructure
+/**
+ * @version 0.5.0
+ * hMessageOptions used for buildMessage
+ */
 
-@property (nonatomic, strong) NSNumber * lng;
-@property (nonatomic, strong) NSNumber * lat;
+#if ! __has_feature(objc_arc)
+#warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
+#endif
+
+@implementation HMessageOptions
+@synthesize author, convid, headers, location;
+@synthesize persistent, priority, published, ref, relevance, timeout;
 
 @end

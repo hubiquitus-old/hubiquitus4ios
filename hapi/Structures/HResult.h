@@ -24,10 +24,10 @@
 @interface HResult : HStructure
 
 @property (nonatomic) ResultStatus status;
-@property (nonatomic) id<HObj> result;
-@property (nonatomic) NSDictionary * resultAsDictionary;
-@property (nonatomic) NSArray * resultAsArray;
-@property (nonatomic) NSNumber * resultAsNumber;
-@property (nonatomic) NSString * resultAsString;
+@property (nonatomic, strong) id<HObj> result;
+@property (nonatomic, strong) NSDictionary * resultAsDictionary;
+@property (nonatomic, strong) NSArray * resultAsArray;
+@property (nonatomic, strong) NSNumber * resultAsNumber;
+@property (nonatomic, strong) NSString * resultAsString;
 
 @end

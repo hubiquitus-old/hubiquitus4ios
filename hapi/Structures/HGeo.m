@@ -34,25 +34,23 @@
 /**
  * longitude
  */
-- (double)lng {
-    NSNumber * value = [self objectForKey:@"lng" withClass:[NSNumber class]];
-    return [value intValue];
+- (NSNumber*)lng {
+    return [self objectForKey:@"lng" withClass:[NSNumber class]];
 }
 
-- (void)setLng:(double)lng {
-    [self setObject:[NSNumber numberWithInt:lng] forKey:@"lng"];
+- (void)setLng:(NSNumber*)lng {
+    [self setObject:lng forKey:@"lng"];
 }
 
 /**
  * latitude
  */
-- (double)lat {
-    NSNumber * value = [self objectForKey:@"lat" withClass:[NSNumber class]];
-    return [value intValue];
+- (NSNumber*)lat {
+    return [self objectForKey:@"lat" withClass:[NSNumber class]];
 }
 
-- (void)setLat:(double)lat {
-    [self setObject:[NSNumber numberWithInt:lat] forKey:@"lat"];
+- (void)setLat:(NSNumber*)lat {
+    [self setObject:lat forKey:@"lat"];
 }
 
 @end

@@ -12,6 +12,7 @@
 		11ADA516160242EF00CF4A10 /* HMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 11782E8A16023BF200783E5A /* HMessage.m */; };
 		11ADA51B160247CB00CF4A10 /* HCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 11ADA518160247C200CF4A10 /* HCommand.m */; };
 		11ADA51C160247CD00CF4A10 /* HResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 11ADA51A160247C200CF4A10 /* HResult.m */; };
+		C5138BFD160280BF00829B44 /* HMessageOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = C5138BFC160280BF00829B44 /* HMessageOptions.m */; };
 		C574909E16013A0700B80BC4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C574909D16013A0700B80BC4 /* UIKit.framework */; };
 		C57490A016013A0700B80BC4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C574909F16013A0700B80BC4 /* Foundation.framework */; };
 		C57490A216013A0700B80BC4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C57490A116013A0700B80BC4 /* CoreGraphics.framework */; };
@@ -90,6 +91,8 @@
 		11ADA518160247C200CF4A10 /* HCommand.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HCommand.m; sourceTree = "<group>"; };
 		11ADA519160247C200CF4A10 /* HResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HResult.h; sourceTree = "<group>"; };
 		11ADA51A160247C200CF4A10 /* HResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HResult.m; sourceTree = "<group>"; };
+		C5138BFB160280BF00829B44 /* HMessageOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMessageOptions.h; sourceTree = "<group>"; };
+		C5138BFC160280BF00829B44 /* HMessageOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMessageOptions.m; sourceTree = "<group>"; };
 		C574909916013A0700B80BC4 /* SimpleClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C574909D16013A0700B80BC4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C574909F16013A0700B80BC4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -363,6 +366,8 @@
 				C57490F816013B0400B80BC4 /* HStructure.m */,
 				C57490F916013B0400B80BC4 /* Status.h */,
 				11ADA5121602405000CF4A10 /* Priority.h */,
+				C5138BFB160280BF00829B44 /* HMessageOptions.h */,
+				C5138BFC160280BF00829B44 /* HMessageOptions.m */,
 			);
 			path = Structures;
 			sourceTree = "<group>";
@@ -642,6 +647,7 @@
 				C574916F16013B1200B80BC4 /* SBJsonUTF8Stream.m in Sources */,
 				C574917016013B1200B80BC4 /* SBJsonWriter.m in Sources */,
 				C574917616013B1200B80BC4 /* SocketIO.m in Sources */,
+				C5138BFD160280BF00829B44 /* HMessageOptions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
