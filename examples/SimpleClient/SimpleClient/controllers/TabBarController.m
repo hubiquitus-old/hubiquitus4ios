@@ -21,6 +21,8 @@
 #import "AppDelegate.h"
 #import "SimpleClientViewController.h"
 #import "ConnectionController.h"
+#import "MessageController.h"
+#import "SBJson.h"
 
 @interface TabBarController ()
 
@@ -60,6 +62,14 @@
             connController.connStatus.text = [NSString stringWithFormat:@"%d",status.status];
             connController.errorCode.text = [NSString stringWithFormat:@"%d",status.errorCode];
             connController.errorMsg.text = status.errorMsg;
+        });
+    };
+    
+    hClient.onMessage = ^(HMessage *message) {
+        dispatch_async(dispatch_get_main_queue(), ^() {
+            //update connection view
+            MessageController * msgController = [[weakSelf viewControllers] objectAtIndex:1];
+            msgController.onMessageContent.text = [message JSONRepresentation];
         });
     };
 
