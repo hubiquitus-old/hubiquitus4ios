@@ -24,6 +24,8 @@
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
 #import "DDFileLogger.h"
+#import "HUtils.h"
+#import "HSocketioTransport.h"
 
 #if ! __has_feature(objc_arc)
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
@@ -71,10 +73,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         self.delegate = aDelegate;
         _status = DISCONNECTED;
         
+        [self setupAutoConnect];
+        
         self.autoConnectDelay = 2; //2s by default
         self.autoConnect = false;
-        
-        [self setupAutoConnect];
     }
     
     return self;
@@ -83,15 +85,40 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 /**
  * init transport layer and start autoConnect system to connect
  */
-- (void)connectWithOptions:(HTransportOptions*)someOptions {
+- (void)connectWithOptions:(HTransportOptions*)someOptions {   
+    //check if we are not connected
+    if(self.status != DISCONNECTED && self.status != DISCONNECTING) {
+        ErrorCode errorCode = ALREADY_CONNECTED;
+        if (self.status == CONNECTING) {
+            errorCode = CONN_PROGRESS;
+        }
+        
+        [self notifyStatus:self.status withErrorCode:errorCode errorMsg:@"Already connected or trying to connect"];
+        return;
+    }
+    
+    //check if it's a jid
+    if(!isJid(someOptions.jid)) {
+        [self notifyStatus:self.status withErrorCode:JID_MALFORMAT errorMsg:@"Publisher malformated. Should follow pattern user@domain/resource"];
+        return;
+    }
+    
+    //finally we can try to connect
     self.options = someOptions;
+    
+    //create transport layer : by default socketio
+    if(self.transportLayer == nil) {
+        self.transportLayer = [[HSocketioTransport alloc] initWithDelegate:self];
+    }
+    
     self.autoConnect = YES;
     
     [reachability startNotifier];
     
     //start auto connect system
     @synchronized(self) {
-        if (!_connectTimer) {
+        if (_connectTimer != NULL  && !_autoConnectTimerEnabled) {
+            DDLogVerbose(@"Starting auto connect system to connect");
             _autoConnectTimerEnabled = YES;
             dispatch_resume(_connectTimer);
         }
@@ -105,7 +132,22 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     //stop autoconnect timer if we are trying to connect
     [reachability stopNotifier];
     self.autoConnect = NO;
-    [self tryToConnectDisconnect];
+    
+    if(self.status != DISCONNECTING && self.status != DISCONNECTED) {
+        //start auto connect system
+        @synchronized(self) {
+            if (_connectTimer != NULL && !_autoConnectTimerEnabled) {
+                DDLogVerbose(@"Starting auto connect system to disconnect");
+                _autoConnectTimerEnabled = YES;
+                dispatch_resume(_connectTimer);
+            }
+        }
+    } else {
+        if (self.status == DISCONNECTED) {
+            [self notifyStatus:self.status withErrorCode:NOT_CONNECTED errorMsg:nil];
+        }
+    }
+    
 }
 
 /*- (void)send:(HMessage *)message {
@@ -188,9 +230,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         [self tryToConnectDisconnect];
     });
     
-    //start checking reachability
-    //[reachability startNotifier];
-    
     //register to reachibility notification
     [[NSNotificationCenter defaultCenter] addObserverForName:kReachabilityChangedNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
         NetworkStatus netStatus = [reachability currentReachabilityStatus];
@@ -228,18 +267,31 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 - (void)statusNotification:(Status)aStatus withErrorCode:(ErrorCode)anErrorCode errorMsg:(NSString *)anErrorMsg {
     _status = aStatus;
     
+    //if credentials are refused, we disconnect and stop auto connect system
+    if(aStatus == AUTH_FAILED)
+        [self disconnect];
+    
+    [self notifyStatus:aStatus withErrorCode:anErrorCode errorMsg:anErrorMsg];
+}
+
+- (void)messageNotification:(NSDictionary *)message {
+    DDLogVerbose(@"Message received : %@", message);
+}
+
+#pragma mark - Helper functions
+
+/**
+ * notify the delegate of a status update
+ */
+- (void)notifyStatus:(Status)aStatus withErrorCode:(ErrorCode)anErrorCode errorMsg:(NSString *)anErrorMsg {
     HStatus * hStatus = [[HStatus alloc] init];
     hStatus.status = aStatus;
     hStatus.errorCode = anErrorCode;
     hStatus.errorMsg = anErrorMsg;
     
-    if(self.delegate && [self.delegate respondsToSelector:@selector(statusNotification:)]) {
+    if([self.delegate respondsToSelector:@selector(statusNotification:)]) {
         [self.delegate statusNotification:hStatus];
     }
-}
-
-- (void)messageNotification:(NSDictionary *)message {
-    
 }
 
 @end

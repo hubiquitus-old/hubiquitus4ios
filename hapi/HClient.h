@@ -18,7 +18,17 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "Status.h"
+#import "HStatus.h"
+#import "HOptions.h"
+#import "HTransport.h"
 
-@interface HClient : NSObject
+@interface HClient : NSObject <HTransportDelegate>
+@property (nonatomic, readonly) Status status;
+@property (nonatomic, strong) void(^onStatus)(HStatus*);
+//@property (nonatomic, strong) void(^onMessage)(HMessage*);
+
+- (void)connectWithPublisher:(NSString*)publisher password:(NSString*)password options:(HOptions*)options;
+- (void)disconnect;
 
 @end

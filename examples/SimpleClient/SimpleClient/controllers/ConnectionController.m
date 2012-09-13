@@ -19,6 +19,11 @@
 
 #import "ConnectionController.h"
 #import "HUtils.h"
+#import "AppDelegate.h"
+#import "DDLog.h"
+#import "HOptions.h"
+
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 @interface ConnectionController ()
 
@@ -33,12 +38,13 @@
 @synthesize errorCode;
 @synthesize errorMsg;
 @synthesize activeField;
+@synthesize connector;
+@synthesize hClient;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -46,6 +52,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    AppDelegate *appDelegate = (AppDelegate *)[ [UIApplication sharedApplication] delegate];
+    self.hClient = appDelegate.hClient;
+    
     [self registerForKeyboardNotifications];
     [self createGestureRecognizers];
 	// Do any additional setup after loading the view.
@@ -61,20 +71,26 @@
     [self setErrorMsg:nil];
     [self setScrollView:nil];
     [self setActiveField:nil];
+    [self setConnector:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
 
 - (IBAction)connect:(id)sender {
-    //[self hideKeyboard:nil];
-    NSLog(@"coucou2");
-    NSLog(@"jid components : %@", splitJid(@"@"));
-    //splitJid(@"u1@hub.novediagroup.com");
+    [self hideKeyboard:nil];
+    
+    DDLogVerbose(@"Connecting with publisher %@ and endpoints : %@", publisher.text, endpoints.text); 
+
+    HOptions *options = [[HOptions alloc] init];
+    options.endpoints = [endpoints.text componentsSeparatedByString:@","];
+    
+    [self.hClient connectWithPublisher:publisher.text password:password.text options:options];
 }
 
 - (IBAction)disconnect:(id)sender {
-    //[self hideKeyboard:nil];
-    NSLog(@"coucou1");
+    [self hideKeyboard:nil];
+    DDLogVerbose(@"disconnecting");
+    [self.hClient disconnect];
 }
 
 
@@ -156,5 +172,19 @@
     return YES;
 }
 
+#pragma mark - simple client view controller protocol
+- (void)updateConnectorStatus:(Status)status {
+    if(status == CONNECTED) {
+        self.connector.image = [UIImage imageNamed:@"hub_connected"];
+    } else if(status == DISCONNECTED) {
+        self.connector.image = [UIImage imageNamed:@"hub_disconnected"];
+    } else {
+        self.connector.image = [UIImage imageNamed:@"hub_connecting"];
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [self updateConnectorStatus:hClient.status];
+}
 
 @end

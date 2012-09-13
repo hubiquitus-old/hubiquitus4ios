@@ -18,12 +18,17 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "HClient.h"
+#import "SimpleClientViewController.h"
 
-@interface ConnectionController : UIViewController<UITextFieldDelegate, UIGestureRecognizerDelegate>
+@interface ConnectionController : UIViewController<UITextFieldDelegate, UIGestureRecognizerDelegate, SimpleClientViewController>
+
+@property (strong, nonatomic) HClient * hClient;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (weak, nonatomic) UITextField *activeField;
+@property (weak, nonatomic) IBOutlet UIImageView *connector;
 
 @property (weak, nonatomic) IBOutlet UITextField *publisher;
 @property (weak, nonatomic) IBOutlet UITextField *password;

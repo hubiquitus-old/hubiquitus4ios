@@ -691,6 +691,11 @@
     NSLog(@"ERROR: Connection failed with error ... %@", [error localizedDescription]);
     // Assuming this resulted in a disconnect
     [self onDisconnect];
+    
+    if ([_delegate respondsToSelector:@selector(socketIOHandshakeFailed:)])
+    {
+        [_delegate socketIOHandshakeFailed:self];
+    }
 }
 
 - (void) webSocket:(WebSocket *)ws didReceiveMessage:(NSString*)message 

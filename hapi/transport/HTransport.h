@@ -44,7 +44,7 @@
 
 - (id)initWith:(id<HTransportDelegate>)delegate;
 
-- (void)connectWithOptions:(HOptions*)options;
+- (void)connectWithOptions:(HTransportOptions*)options;
 - (void)disconnect;
 
 //- (void)send:(HMessage*)message;

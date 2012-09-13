@@ -18,18 +18,22 @@
  */
 
 #import "TabBarController.h"
+#import "AppDelegate.h"
+#import "SimpleClientViewController.h"
+#import "ConnectionController.h"
 
 @interface TabBarController ()
 
 @end
 
 @implementation TabBarController
+@synthesize hClient;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
@@ -38,6 +42,27 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    AppDelegate *appDelegate = (AppDelegate *)[ [UIApplication sharedApplication] delegate];
+    self.hClient = appDelegate.hClient;
+    
+    __weak TabBarController *weakSelf = self;
+    
+    hClient.onStatus = ^(HStatus *status) {
+        dispatch_async(dispatch_get_main_queue(), ^() {
+            UIViewController *selectedViewController = [weakSelf selectedViewController];
+            if([selectedViewController conformsToProtocol:@protocol(SimpleClientViewController)]) {
+                id<SimpleClientViewController> viewController = (id<SimpleClientViewController>)selectedViewController;
+                [viewController updateConnectorStatus:status.status];
+            }
+            
+            //update connection view
+            ConnectionController * connController = [[weakSelf viewControllers] objectAtIndex:0];
+            connController.connStatus.text = [NSString stringWithFormat:@"%d",status.status];
+            connController.errorCode.text = [NSString stringWithFormat:@"%d",status.errorCode];
+            connController.errorMsg.text = status.errorMsg;
+        });
+    };
+
 }
 
 - (void)viewDidUnload

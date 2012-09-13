@@ -52,7 +52,7 @@
 - (id)objectForKey:(id)aKey withClass:(__unsafe_unretained Class)aClass {
     id object = nil;
     if (self.nativeObj && [self.nativeObj isKindOfClass:[NSDictionary class]] &&
-        (object = [self.nativeObj objectForKey:@"aKey"]) && [object isKindOfClass:aClass]) {
+        (object = [self.nativeObj objectForKey:aKey]) && [object isKindOfClass:aClass]) {
         return object;
     }
     return nil;
@@ -62,7 +62,10 @@
  * Convenient function to set obj dictionnary key
  */
 - (void)setObject:(id<HObj>)object forKey:(id)aKey {
-    [self.obj setObject:object forKey:aKey];
+    if(object != nil)
+        [self.obj setObject:object forKey:aKey];
+    else
+        [self.obj removeObjectForKey:aKey];
 }
 
 #pragma mark - HObj protocol

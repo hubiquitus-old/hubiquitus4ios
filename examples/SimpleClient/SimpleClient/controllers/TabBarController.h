@@ -18,7 +18,11 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "HClient.h"
 
 @interface TabBarController : UITabBarController
+@property (nonatomic, strong) HClient * hClient;
+
+
 
 @end

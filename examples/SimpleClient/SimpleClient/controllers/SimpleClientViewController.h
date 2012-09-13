@@ -16,40 +16,12 @@
  *     You should have received a copy of the GNU General Public License
  *     along with Hubiquitus.  If not, see <http://www.gnu.org/licenses/>.
  */
+#import <Foundation/Foundation.h>
+#import "Status.h"
 
-#import "HTransportOptions.h"
-#import "HUtils.h"
+@protocol SimpleClientViewController <NSObject>
 
-/**
- * @cond internal
- * @version 0.5.0
- * Options used by the transport layers
- */
-
-@implementation HTransportOptions
-@synthesize jid, password;
-
-/**
- * Randomly choose an endpoint from the endpoints
- */
-- (NSURL *)endpoint {
-    NSString * randomEndpoint = pickRandomValue(self.endpoints);
-    NSURL * endpoint = [NSURL URLWithString:randomEndpoint];
-    return endpoint;
-}
-
-- (id)initWithOptions:(HOptions *)options {
-    self = [super init];
-    if(self) {
-        self.transport = options.transport;
-        self.endpoints = options.endpoints;
-    }
-    
-    return self;
-}
+@required
+- (void)updateConnectorStatus:(Status)status;
 
 @end
-
-/**
- * @endcond
- */

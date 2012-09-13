@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2549" systemVersion="12B19" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="c08-ua-R9a">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="c08-ua-R9a">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1498"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
     </dependencies>
     <scenes>
         <!--View Controller - Item 2-->
@@ -44,7 +44,7 @@
                                 <rect key="frame" x="0.0" y="34" width="320" height="377"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="publisher (ie : u1@localhost)" minimumFontSize="17" id="jRY-Vr-YGv">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="u1@localhost" borderStyle="roundedRect" placeholder="publisher (ie : u1@localhost)" minimumFontSize="17" id="jRY-Vr-YGv">
                                         <rect key="frame" x="19" y="49" width="280" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -53,7 +53,7 @@
                                             <outlet property="delegate" destination="qbN-js-6V1" id="U2n-R6-2j5"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" id="4Kw-Xo-VSW">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="u1" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" id="4Kw-Xo-VSW">
                                         <rect key="frame" x="20" y="97" width="280" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -62,7 +62,7 @@
                                             <outlet property="delegate" destination="qbN-js-6V1" id="Hgr-RV-rYq"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Endpoints : (ie :http://localhost:8080, http://localhost:8081)" minimumFontSize="17" id="3aG-iM-DoC">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="http://localhost:8080" borderStyle="roundedRect" placeholder="Endpoints : (ie :http://localhost:8080, http://localhost:8081)" minimumFontSize="17" id="3aG-iM-DoC">
                                         <rect key="frame" x="19" y="142" width="280" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -163,6 +163,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="connStatus" destination="xNt-ms-v6K" id="9hh-9M-4Ji"/>
+                        <outlet property="connector" destination="Oi3-Ga-FUp" id="wfk-Q5-RKO"/>
                         <outlet property="endpoints" destination="3aG-iM-DoC" id="bvh-6c-pqa"/>
                         <outlet property="errorCode" destination="Rtz-bO-EtL" id="DcQ-Y7-plP"/>
                         <outlet property="errorMsg" destination="9vv-hh-c6d" id="dsC-3F-3ig"/>
@@ -205,14 +206,13 @@
                 <relationship kind="action" name="disconnect:"/>
                 <relationship kind="action" name="hideKeyboard:"/>
                 <relationship kind="outlet" name="connStatus" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="connector" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="endpoints" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="errorCode" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="errorMsg" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="password" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="publisher" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="serverHost" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="serverPort" candidateClass="UITextField"/>
             </relationships>
         </class>
         <class className="TabBarController" superclassName="UITabBarController">

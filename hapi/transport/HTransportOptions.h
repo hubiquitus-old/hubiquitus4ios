@@ -18,16 +18,18 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "HOptions.h"
 
 #if ! __has_feature(objc_arc)
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
 #endif
 
-@interface HTransportOptions : NSObject
+@interface HTransportOptions : HOptions
 
 @property (nonatomic, strong) NSString * jid;
 @property (nonatomic, strong) NSString * password;
+@property (readonly, nonatomic) NSURL * endpoint;
 
-@property (nonatomic, strong) NSString * endpoint;
+- initWithOptions:(HOptions*)options;
 
 @end

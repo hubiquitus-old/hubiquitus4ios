@@ -73,6 +73,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		11782E8316021BB200783E5A /* SimpleClientViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleClientViewController.h; sourceTree = "<group>"; };
 		C574909916013A0700B80BC4 /* SimpleClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C574909D16013A0700B80BC4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C574909F16013A0700B80BC4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -270,6 +271,7 @@
 				C57490CB16013AC000B80BC4 /* ConnectionController.m */,
 				C57490CC16013AC000B80BC4 /* TabBarController.h */,
 				C57490CD16013AC000B80BC4 /* TabBarController.m */,
+				11782E8316021BB200783E5A /* SimpleClientViewController.h */,
 			);
 			path = controllers;
 			sourceTree = "<group>";

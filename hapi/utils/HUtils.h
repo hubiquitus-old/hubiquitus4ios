@@ -27,3 +27,4 @@ id pickRandomValue(NSArray * array);
 @end
 
 NSDictionary * splitJid(NSString * jid);
+BOOL isJid(NSString * jid);

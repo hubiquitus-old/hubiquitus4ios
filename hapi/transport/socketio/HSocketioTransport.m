@@ -36,19 +36,20 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 @interface HSocketioTransport() {
     Status _status;
 }
+@property HTransportOptions * options;
 
 @end
 
 @implementation HSocketioTransport
 @synthesize socketio;
-@synthesize delegate, status;
+@synthesize delegate, status = _status;
+@synthesize options;
 
 - (id)initWithDelegate:(id<HTransportLayerDelegate>)aDelegate {
     self = [super init];
     if(self) {
         _status = DISCONNECTED;
-        self.socketio = nil;
-        self.delegate = nil;
+        self.socketio = [[SocketIO alloc] initWithDelegate:self];
         
         self.delegate = aDelegate;
     }
@@ -60,20 +61,21 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  * if we are disconnected, try fir to attach if possible
  * if not connect
  */
-- (void)connectWithOptions:(HTransportOptions *)options {
+- (void)connectWithOptions:(HTransportOptions *)someOptions {
     if(self.status == DISCONNECTED) {
         _status = CONNECTING;
         
         if([self.delegate respondsToSelector:@selector(statusNotification:withErrorCode:errorMsg:)]) {
             [self.delegate statusNotification:CONNECTING withErrorCode:NO_ERROR errorMsg:nil];
         }
-        
-        //TO ADD CONNECTION
+        self.options = someOptions;
+        NSURL *endpoint = self.options.endpoint;
+        [self.socketio connectToHost:endpoint.host onPort:[endpoint.port intValue]];
     }
 }
 
 - (void)disconnect {
-    if(self.status == CONNECTING || self.status == DISCONNECTED) {
+    if(self.status == CONNECTED || self.status == CONNECTING) {
         _status = DISCONNECTING;
         
         if([self.delegate respondsToSelector:@selector(statusNotification:withErrorCode:errorMsg:)]) {
@@ -85,15 +87,31 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 - (void)send:(NSDictionary *)message {
-    
+    if(self.status == CONNECTED) {
+        [self.socketio sendEvent:@"hMessage" withData:message]; 
+    } else {
+        //RETURN A HRESULT ERROR
+    }
+}
+
+/**
+ * start authentification on the server
+ * Should be called after connection
+ */
+- (void)authenticate {
+    NSDictionary * credentials = [NSDictionary dictionaryWithObjectsAndKeys:self.options.jid, @"publisher",
+                                                                            self.options.password, @"password", nil];
+    [self.socketio sendEvent:@"hConnect" withData:credentials];
 }
 
 #pragma mark - socketio delegate
 - (void) socketIODidConnect:(SocketIO *)socket {
-    
+    DDLogVerbose(@"transport layer did connect");
+    [self authenticate];
 }
 
 - (void) socketIODidDisconnect:(SocketIO *)socket {
+    DDLogVerbose(@"transport layer did disconnect");
     _status = DISCONNECTED;
     
     if([self.delegate respondsToSelector:@selector(statusNotification:withErrorCode:errorMsg:)]) {
@@ -102,6 +120,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 - (void) socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet {
+    DDLogVerbose(@"transport layer did receive event");
     for (NSDictionary* arg in packet.args) {
         if([packet.name isEqualToString:@"hMessage"]) {
             if([self.delegate respondsToSelector:@selector(messageNotification:)]) {
@@ -109,16 +128,16 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             }
             
         } else if([packet.name isEqualToString:@"hStatus"]) {
-            int status = [[arg objectForKey:@"status"] integerValue];
+            int aStatus = [[arg objectForKey:@"status"] integerValue];
             int errorCode = [[arg objectForKey:@"errorCode"] integerValue];
             NSString * errorMsg = [arg objectForKey:@"errorMsg"];
             
             /** check if we didn't disconnect meanwhile */
             if (self.status == CONNECTING || self.status == CONNECTED) {
-                _status = status;
+                _status = aStatus;
                 
                 if([self.delegate respondsToSelector:@selector(statusNotification:withErrorCode:errorMsg:)]) {
-                    [self.delegate statusNotification:status withErrorCode:errorCode errorMsg:errorMsg];
+                    [self.delegate statusNotification:aStatus withErrorCode:errorCode errorMsg:errorMsg];
                 }
             }
         }
@@ -126,6 +145,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 - (void) socketIOHandshakeFailed:(SocketIO *)socket {
+    DDLogVerbose(@"transport layer handshake failed");
     _status = DISCONNECTED;
     
     if([self.delegate respondsToSelector:@selector(statusNotification:withErrorCode:errorMsg:)]) {
