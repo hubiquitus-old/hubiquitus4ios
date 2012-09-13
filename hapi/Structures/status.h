@@ -28,3 +28,14 @@ typedef enum {
     DISCONNECTING = 5, 
     DISCONNECTED = 6
 } Status;
+
+typedef enum {
+    RES_OK = 0,
+    RES_TECH_ERROR = 1,
+    RES_NOT_CONNECTED = 3,
+    RES_NOT_AUTHORIZED = 5,
+    RES_MISSING_ATTR = 6,
+    RES_INVALID_ATTR = 7,
+    RES_NOT_AVAILABLE = 9,
+    RES_EXEC_TIMEOUT = 10
+} ResultStatus;

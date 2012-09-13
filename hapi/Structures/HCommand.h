@@ -18,11 +18,11 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "NSDate+ISO8601.h"
-#import "NSDate+SBJSon.h"
-#import "NSDate+HObj.h"
-#import "NSDictionary+HObj.h"
-#import "NSArray+HObj.h"
-#import "NSString+HObj.h"
-#import "NSNumber+HObj.h"
-#import "NSNull+HObj.h"
+#import "HStructure.h"
+
+@interface HCommand : HStructure
+
+@property (nonatomic, strong) NSString * cmd;
+@property (nonatomic, strong) NSDictionary * params;
+
+@end

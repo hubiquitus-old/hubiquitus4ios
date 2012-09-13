@@ -17,12 +17,16 @@
  *     along with Hubiquitus.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <Foundation/Foundation.h>
-#import "NSDate+ISO8601.h"
-#import "NSDate+SBJSon.h"
-#import "NSDate+HObj.h"
-#import "NSDictionary+HObj.h"
-#import "NSArray+HObj.h"
-#import "NSString+HObj.h"
-#import "NSNumber+HObj.h"
-#import "NSNull+HObj.h"
+/**
+ * @version 0.5.0
+ * Priority levels
+ */
+
+typedef enum {
+    TRACE = 0,
+    INFO = 1,
+    WARNING = 2, 
+    ALERT = 3,
+    CRITICAL = 4,
+    PANIC = 5
+} Priority;

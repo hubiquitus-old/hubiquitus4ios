@@ -17,12 +17,40 @@
  *     along with Hubiquitus.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <Foundation/Foundation.h>
-#import "NSDate+ISO8601.h"
-#import "NSDate+SBJSon.h"
-#import "NSDate+HObj.h"
-#import "NSDictionary+HObj.h"
-#import "NSArray+HObj.h"
-#import "NSString+HObj.h"
-#import "NSNumber+HObj.h"
-#import "NSNull+HObj.h"
+#import "HCommand.h"
+#import "HNativeObjectsCategories.h"
+
+/**
+ * @version 0.5.0
+ * HCommand
+ */
+
+#if ! __has_feature(objc_arc)
+#warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
+#endif
+
+@implementation HCommand
+
+/**
+ * command name
+ */
+- (NSString*)cmd {
+    return [self objectForKey:@"cmd" withClass:[NSString class]];
+}
+
+- (void)setCmd:(NSString*)cmd {
+    [self setObject:cmd forKey:@"cmd"];
+}
+
+/**
+ * Command parameters
+ */
+- (NSDictionary*)params {
+    return [self objectForKey:@"params" withClass:[NSString class]];
+}
+
+- (void)setParams:(NSString*)params {
+    [self setObject:params forKey:@"params"];
+}
+
+@end

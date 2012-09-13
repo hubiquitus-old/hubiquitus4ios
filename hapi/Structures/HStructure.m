@@ -18,6 +18,7 @@
  */
 
 #import "HStructure.h"
+#import "ISO8601DateFormatter.h"
 
 /**
  * @version 0.5.0
@@ -32,12 +33,20 @@
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
 #endif
 
+@interface HStructure ()
+@property (nonatomic, strong) ISO8601DateFormatter * isoDateFormatter;
+
+@end
+
+
 @implementation HStructure
 @synthesize obj;
+@synthesize isoDateFormatter;
 
 - (id)init {
     self = [super init];
     if (self) {
+        self.isoDateFormatter = [[ISO8601DateFormatter alloc] init];
         obj = [NSMutableDictionary dictionary];
     }
     
@@ -51,9 +60,12 @@
  */
 - (id)objectForKey:(id)aKey withClass:(__unsafe_unretained Class)aClass {
     id object = nil;
-    if (self.nativeObj && [self.nativeObj isKindOfClass:[NSDictionary class]] &&
-        (object = [self.nativeObj objectForKey:aKey]) && [object isKindOfClass:aClass]) {
-        return object;
+    if (self.nativeObj && [self.nativeObj isKindOfClass:[NSDictionary class]] && (object = [self.nativeObj objectForKey:aKey])) {
+        if((object = [self.nativeObj objectForKey:aKey]) && [object isKindOfClass:aClass]) {
+            return object;
+        } else if([aClass isSubclassOfClass:[NSDate class]] && [object isKindOfClass:[NSString class]]) {
+            return [isoDateFormatter dateFromString:object];
+        }
     }
     return nil;
 }

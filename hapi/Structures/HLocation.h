@@ -18,11 +18,20 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "NSDate+ISO8601.h"
-#import "NSDate+SBJSon.h"
-#import "NSDate+HObj.h"
-#import "NSDictionary+HObj.h"
-#import "NSArray+HObj.h"
-#import "NSString+HObj.h"
-#import "NSNumber+HObj.h"
-#import "NSNull+HObj.h"
+#import "HStructure.h"
+#import "HGeo.h"
+
+@interface HLocation : HStructure
+
+@property (nonatomic, strong) HGeo * pos;
+@property (nonatomic, strong) NSString * num;
+@property (nonatomic, strong) NSString * wayType;
+@property (nonatomic, strong) NSString * way;
+@property (nonatomic, strong) NSString * addr;
+@property (nonatomic, strong) NSString * floor;
+@property (nonatomic, strong) NSString * building;
+@property (nonatomic, strong) NSString * zip;
+@property (nonatomic, strong) NSString * city;
+@property (nonatomic, strong) NSString * countryCode;
+
+@end
