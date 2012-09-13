@@ -20,6 +20,7 @@
 #import "HSocketioTransport.h"
 #import "DDLog.h"
 #import "Status.h"
+#import "ErrorCode.h"
 
 #if ! __has_feature(objc_arc)
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
@@ -90,7 +91,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     if(self.status == CONNECTED) {
         [self.socketio sendEvent:@"hMessage" withData:message]; 
     } else {
-        //RETURN A HRESULT ERROR
+        if([self.delegate respondsToSelector:@selector(errorNotification:errorMsg:)]) {
+            [self.delegate errorNotification:NOT_CONNECTED errorMsg:nil refMsg:[message objectForKey:@"msg"]];
+        }
     }
 }
 
@@ -99,8 +102,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  * Should be called after connection
  */
 - (void)authenticate {
-    NSDictionary * credentials = [NSDictionary dictionaryWithObjectsAndKeys:self.options.jid, @"publisher",
-                                                                            self.options.password, @"password", nil];
+    NSDictionary * credentials = [NSDictionary dictionaryWithObjectsAndKeys:self.options.jid, @"publisher", self.options.password, @"password", nil];
     [self.socketio sendEvent:@"hConnect" withData:credentials];
 }
 

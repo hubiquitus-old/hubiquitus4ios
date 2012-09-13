@@ -260,8 +260,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
 }
 
-#pragma mark - 
-
 #pragma mark - Transport layer delegate
 
 - (void)statusNotification:(Status)aStatus withErrorCode:(ErrorCode)anErrorCode errorMsg:(NSString *)anErrorMsg {
@@ -276,6 +274,16 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 - (void)messageNotification:(NSDictionary *)message {
     DDLogVerbose(@"Message received : %@", message);
+    if([self.delegate respondsToSelector:@selector(messageNotification:)]) {
+        [self messageNotification:message];
+    }
+}
+
+- (void)errorNotification:(ResultStatus)resultStatus errorMsg:(NSString *)errorMsg refMsg:(NSString *)ref {
+    DDLogVerbose(@"Error happened : errorCode %d, errorMsg %@, ref %@",resultStatus, errorMsg, ref);
+    if([self.delegate respondsToSelector:@selector(errorNotification:errorMsg:refMsg:)]) {
+        [self errorNotification:resultStatus errorMsg:errorMsg refMsg:ref];
+    }
 }
 
 #pragma mark - Helper functions

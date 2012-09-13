@@ -45,6 +45,11 @@
  */
 - (void)messageNotification:(NSDictionary*)message;
 
+/**
+ * Notify an error other than connection error
+ */
+- (void)errorNotification:(ResultStatus)resultStatus errorMsg:(NSString*)errorMsg refMsg:(NSString*)ref;
+
 @end
 
 

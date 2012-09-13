@@ -31,6 +31,7 @@
 
 - (void)statusNotification:(HStatus*)status;
 - (void)messageNotification:(HMessage*)message;
+- (void)errorNotification:(ResultStatus)resultStatus errorMsg:(NSString *)errorMsg refMsg:(NSString *)ref;
 
 @end
 

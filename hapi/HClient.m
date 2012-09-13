@@ -23,6 +23,7 @@
 #import "HCommand.h"
 #import "HResult.h"
 #import "ErrorCode.h"
+#import "HNativeObjectsCategories.h"
 
 #if ! __has_feature(objc_arc)
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
@@ -89,6 +90,14 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 - (void)send:(HMessage *)message withBlock:(void (^)(HMessage *))callback {
+    if(!message) {
+        [self errorNotification:RES_MISSING_ATTR errorMsg:@"No message" refMsg:nil withBlock:callback];
+    }
+    
+    if(!message.actor || message.actor.length <= 0) {
+        [self errorNotification:RES_MISSING_ATTR errorMsg:@"Missing actor" refMsg:nil withBlock:callback];
+    }
+    
     message.msgid = [self uuid];
     message.publisher = self.transport.options.jid;
     
@@ -103,8 +112,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             if([callbacks objectForKey:message.msgid]) {
                 [callbacks removeObjectForKey:message.msgid];
                 
-                //USE RESULT BUILDER TO SEND RESPONSE TIMEOUT
-                HMessage * timeoutResponse = [[HMessage alloc] init];
+                HMessage * timeoutResponse = [self buildResultWithActor:self.transport.options.jid ref:message.msgid status:RES_EXEC_TIMEOUT result:nil options:nil didFailWithError:nil];
                 callback(timeoutResponse);
             }
         });
@@ -114,11 +122,12 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 #pragma mark - builders
-- (HMessage *)buildMessageWithActor:(NSString *)actor type:(NSString *)type payload:(id<HObj>)payload options:(HMessageOptions *)msgOptions didFailWithError:(NSError *)error {
+- (HMessage *)buildMessageWithActor:(NSString *)actor type:(NSString *)type payload:(id<HObj>)payload options:(HMessageOptions *)msgOptions didFailWithError:(NSError **)error {
     HMessage * msg = nil;
     
     if(actor == nil || [actor length] <= 0) {
-        error = [NSError errorWithDomain:@"hBuilders" code:RES_MISSING_ATTR userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"actor", @"attr", nil]];
+        if(error)
+            *error = [NSError errorWithDomain:@"hBuilders" code:RES_MISSING_ATTR userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"actor", @"attr", nil]];
         return nil;
     }
     
@@ -146,10 +155,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     return msg;
 }
 
-- (HMessage *)buildCommandWithActor:(NSString *)actor cmd:(NSString *)cmd params:(NSDictionary *)params options:(HMessageOptions *)msgOptions didFailWithError:(NSError *)error {
+- (HMessage *)buildCommandWithActor:(NSString *)actor cmd:(NSString *)cmd params:(NSDictionary *)params options:(HMessageOptions *)msgOptions didFailWithError:(NSError **)error {
     
     if(cmd == nil || [cmd length] <= 0) {
-        error = [NSError errorWithDomain:@"hBuilders" code:RES_MISSING_ATTR userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"cmd", @"attr", nil]];
+        if(error)
+            *error = [NSError errorWithDomain:@"hBuilders" code:RES_MISSING_ATTR userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Missing cmd", NSLocalizedDescriptionKey, nil]];
         return nil;
     }
     
@@ -162,15 +172,16 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     return msg;
 }
 
-- (HMessage *)buildResultWithActor:(NSString *)actor ref:(NSString *)ref status:(ResultStatus)status result:(id<HObj>)result options:(HMessageOptions *)msgOptions didFailWithError:(NSError *)error {
+- (HMessage *)buildResultWithActor:(NSString *)actor ref:(NSString *)ref status:(ResultStatus)status result:(id<HObj>)result options:(HMessageOptions *)msgOptions didFailWithError:(NSError **)error {
     
     if(status < 0) {
-        error = [NSError errorWithDomain:@"hBuilders" code:RES_MISSING_ATTR userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"status", @"attr", nil]];
+        if(error)
+            *error = [NSError errorWithDomain:@"hBuilders" code:RES_MISSING_ATTR userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Missing status", NSLocalizedDescriptionKey, nil]];
         return nil;
     }
     
     if(ref == nil || [ref length] <= 0) {
-        error = [NSError errorWithDomain:@"hBuilders" code:RES_MISSING_ATTR userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"ref", @"attr", nil]];
+        *error = [NSError errorWithDomain:@"hBuilders" code:RES_MISSING_ATTR userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Missing ref", NSLocalizedDescriptionKey, nil]];
         return nil;
     }
     
@@ -196,6 +207,18 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [self notifyMessage:aMessage];
 }
 
+- (void)errorNotification:(ResultStatus)resultStatus errorMsg:(NSString *)errorMsg refMsg:(NSString *)ref {
+    HMessage *msg = [self buildResultWithActor:self.transport.options.jid ref:ref status:resultStatus result:errorMsg options:nil didFailWithError:nil];
+    
+    [self notifyMessage:msg];
+}
+
+- (void)errorNotification:(ResultStatus)resultStatus errorMsg:(NSString *)errorMsg refMsg:(NSString *)ref withBlock:(void(^)(HMessage*))callback {
+    HMessage *msg = [self buildResultWithActor:self.transport.options.jid ref:ref status:resultStatus result:errorMsg options:nil didFailWithError:nil];
+    
+    [self notifyMessage:msg withBlock:callback];
+}
+
 #pragma mark - helper functions
 
 // return a new autoreleased UUID string
@@ -218,7 +241,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 - (void)notifyStatus:(HStatus*)aStatus {
     DDLogVerbose(@"Status notification : %@", aStatus);
     dispatch_async(_notificationsQueue, ^() {
-        self.onStatus(aStatus);
+        if(self.onStatus)
+            self.onStatus(aStatus);
     });
 }
 
@@ -241,8 +265,17 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         if(callback) {
             [callbacks removeObjectForKey:[refComponents objectAtIndex:1]];
             callback(aMessage);
-        } else {
+        } else if(self.onMessage){
             self.onMessage(aMessage);
+        }
+    });
+}
+
+- (void)notifyMessage:(HMessage*)aMessage withBlock:(void(^)(HMessage*))callback {
+    
+    dispatch_async(_notificationsQueue, ^() {        
+        if(callback) {
+            callback(aMessage);
         }
     });
 }
