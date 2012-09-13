@@ -22,13 +22,16 @@
 #import "HStatus.h"
 #import "HOptions.h"
 #import "HTransport.h"
+#import "HMessage.h"
 
 @interface HClient : NSObject <HTransportDelegate>
 @property (nonatomic, readonly) Status status;
 @property (nonatomic, strong) void(^onStatus)(HStatus*);
-//@property (nonatomic, strong) void(^onMessage)(HMessage*);
+@property (nonatomic, strong) void(^onMessage)(HMessage*);
 
 - (void)connectWithPublisher:(NSString*)publisher password:(NSString*)password options:(HOptions*)options;
 - (void)disconnect;
+
+- (void)send:(HMessage*)message withBlock:(void(^)(HMessage*))callback;
 
 @end

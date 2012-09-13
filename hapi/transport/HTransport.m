@@ -150,9 +150,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
 }
 
-/*- (void)send:(HMessage *)message {
+- (void)send:(HMessage *)message {
     DDLogVerbose(@"sending message : %@", message);
-}*/
+}
 
 - (void)dealloc {
     dispatch_source_cancel(_connectTimer);

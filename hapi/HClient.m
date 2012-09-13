@@ -19,6 +19,7 @@
 
 #import "HClient.h"
 #import "DDLog.h"
+#import "HMessage.h"
 
 #if ! __has_feature(objc_arc)
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
@@ -30,6 +31,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     dispatch_queue_t _notificationsQueue; /** queue used to sequentially notify client of a status or a message */
 }
 @property (nonatomic, strong) HTransport * transport;
+@property (nonatomic, strong) NSMutableDictionary * callbacks;
 
 @end
 
@@ -42,7 +44,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  */
 
 @implementation HClient
-@synthesize onStatus;
+@synthesize onStatus, onMessage;
+@synthesize callbacks;
 @synthesize transport;
 
 - (id)init {
@@ -50,6 +53,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     if(self) {
         _notificationsQueue = dispatch_queue_create("HClient.notifications.queue", NULL);
         self.transport = [[HTransport alloc] initWith:self];
+        self.callbacks = [NSMutableDictionary dictionary];
     }
     
     return self;
@@ -81,6 +85,31 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     return self.transport.status;
 }
 
+- (void)send:(HMessage *)message withBlock:(void (^)(HMessage *))callback {
+    message.msgid = [self uuid];
+    message.publisher = self.transport.options.jid;
+    
+    if(callbacks != nil && message.timeout > 0) {
+        [self.callbacks setObject:callback forKey:message.msgid];
+        
+        //add a timeout handler
+        dispatch_source_t _connectTimer = NULL; /** timer used for auto connect attempts */
+        dispatch_source_set_timer(_connectTimer, dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC),
+                                  message.timeout * NSEC_PER_MSEC, 1);
+        dispatch_source_set_event_handler(_connectTimer, ^{
+            if([callbacks objectForKey:message.msgid]) {
+                [callbacks removeObjectForKey:message.msgid];
+                
+                //USE RESULT BUILDER TO SEND RESPONSE TIMEOUT
+                HMessage * timeoutResponse = [[HMessage alloc] init];
+                callback(timeoutResponse);
+            }
+        });
+    }
+    
+    [self.transport send:message];
+}
+
 #pragma mark - transport delegate
 
 /**
@@ -90,7 +119,24 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [self notifyStatus:aStatus];
 }
 
+- (void)messageNotification:(HMessage *)aMessage {
+    [self notifyMessage:aMessage];
+}
+
 #pragma mark - helper functions
+
+// return a new autoreleased UUID string
+- (NSString *)uuid
+{
+    // create a new UUID which you own
+    CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
+    
+    // create a new CFStringRef (toll-free bridged to NSString)
+    // that you own
+    NSString *uuidString = (__bridge_transfer NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuid);
+    
+    return uuidString;
+}
 
 /**
  * helper function used to call onStatus callback
@@ -107,11 +153,25 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  * helper function used to call onMessage callback
  * calls to onStatus and onMessage callbacks are done sequentially on a queue using GCD.
  */
-/*- (void)notifyStatus:(HMessage*)aMessage {
+- (void)notifyMessage:(HMessage*)aMessage {
     
     dispatch_async(_notificationsQueue, ^() {
-        self.onMessage(aMessage);
+        //find the callback if there is one
+        NSArray * refComponents = [aMessage.ref componentsSeparatedByString:@"#"];
+        void(^callback)(HMessage*);
+        if([refComponents count] == 2) {
+            callback = [callbacks objectForKey:[refComponents objectAtIndex:1]];
+        }
+        
+        //first check if we have a callback for the message == if it's an answer
+        //Don't forget to remove the callback once it's consumed
+        if(callback) {
+            [callbacks removeObjectForKey:[refComponents objectAtIndex:1]];
+            callback(aMessage);
+        } else {
+            self.onMessage(aMessage);
+        }
     });
-}*/
+}
 
 @end

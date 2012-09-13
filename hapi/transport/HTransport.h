@@ -23,13 +23,14 @@
 //#import "HMessage.h"
 #import "HOptions.h"
 #import "HTransportOptions.h"
+#import "HMessage.h"
 
 @protocol HTransportDelegate <NSObject>
 
 @required
 
 - (void)statusNotification:(HStatus*)status;
-//- (void)messageNotification:(HMessage*)message;
+- (void)messageNotification:(HMessage*)message;
 
 @end
 
@@ -47,6 +48,6 @@
 - (void)connectWithOptions:(HTransportOptions*)options;
 - (void)disconnect;
 
-//- (void)send:(HMessage*)message;
+- (void)send:(HMessage*)message;
 
 @end
