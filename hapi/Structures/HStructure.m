@@ -59,12 +59,12 @@
  * @param aClass - value Class expected
  */
 - (id)objectForKey:(id)aKey withClass:(__unsafe_unretained Class)aClass {
-    id object = nil;
+    id<HObj> object = nil;
     if (self.nativeObj && [self.nativeObj isKindOfClass:[NSDictionary class]] && (object = [self.nativeObj objectForKey:aKey])) {
-        if((object = [self.nativeObj objectForKey:aKey]) && [object isKindOfClass:aClass]) {
+        if([object.nativeObj isKindOfClass:aClass]) {
             return object;
-        } else if([aClass isSubclassOfClass:[NSDate class]] && [object isKindOfClass:[NSString class]]) {
-            return [isoDateFormatter dateFromString:object];
+        } else if([aClass isSubclassOfClass:[NSDate class]] && [object.nativeObj isKindOfClass:[NSString class]]) {
+            return [isoDateFormatter dateFromString:object.nativeObj];
         }
     }
     return nil;
@@ -75,7 +75,7 @@
  */
 - (void)setObject:(id<HObj>)object forKey:(id)aKey {
     if(object != nil)
-        [self.obj setObject:object forKey:aKey];
+        [self.obj setObject:object.nativeObj forKey:aKey];
     else
         [self.obj removeObjectForKey:aKey];
 }
@@ -88,7 +88,7 @@
 
 - (void)setNativeObj:(id)aNativeObj {
     if ([aNativeObj isKindOfClass:[NSDictionary class]]) {
-        obj = [NSMutableDictionary dictionaryWithDictionary:obj];
+        obj = [NSMutableDictionary dictionaryWithDictionary:aNativeObj];
     } else {
         obj = [NSMutableDictionary dictionary];
     }

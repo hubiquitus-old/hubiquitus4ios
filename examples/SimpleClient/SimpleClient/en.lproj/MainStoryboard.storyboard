@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2549" systemVersion="12B19" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="c08-ua-R9a">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="c08-ua-R9a">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1498"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
     </dependencies>
     <scenes>
         <!--Message Controller - Message-->
@@ -29,7 +29,7 @@
                                 <rect key="frame" x="0.0" y="34" width="320" height="377"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Actor (ie : u1@localhost)" minimumFontSize="17" id="jkt-3d-j4K">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="hnode@localhost" borderStyle="roundedRect" placeholder="Actor (ie : u1@localhost)" minimumFontSize="17" id="jkt-3d-j4K">
                                         <rect key="frame" x="20" y="11" width="280" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -53,7 +53,7 @@
                                             <action selector="send:" destination="C9J-UF-Z37" eventType="touchUpInside" id="h5J-wj-Cpa"/>
                                         </connections>
                                     </button>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="86r-h1-2sF">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="{ &quot;cmd&quot;: &quot;hEcho&quot;, &quot;params&quot; : {&quot;name&quot;: &quot;hello&quot;} }" id="86r-h1-2sF">
                                         <rect key="frame" x="20" y="86" width="280" height="112"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -110,7 +110,7 @@
                                             <action selector="clearOnMsg:" destination="C9J-UF-Z37" eventType="touchUpInside" id="UKi-dz-1eG"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message type (ie : hCommand)" minimumFontSize="17" id="bGX-90-8e8">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="hCommand" borderStyle="roundedRect" placeholder="Message type (ie : hCommand)" minimumFontSize="17" id="bGX-90-8e8">
                                         <rect key="frame" x="20" y="48" width="280" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>

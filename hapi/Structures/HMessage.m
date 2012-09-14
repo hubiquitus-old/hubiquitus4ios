@@ -227,13 +227,11 @@
 }
 
 - (HCommand *)payloadAsCommand {
-    HCommand * cmd = [self objectForKey:@"payload" withClass:[HCommand class]];
-    if(cmd == nil) {
-        NSDictionary * cmdAsDictionary = [self objectForKey:@"payload" withClass:[NSDictionary class]];
-        if (cmdAsDictionary != nil) {
-            cmd = [[HCommand alloc] init];
-            cmd.nativeObj = cmdAsDictionary;
-        }
+    HCommand *cmd = nil;
+    NSDictionary * cmdAsDictionary = [self objectForKey:@"payload" withClass:[NSDictionary class]];
+    if (cmdAsDictionary != nil) {
+        cmd = [[HCommand alloc] init];
+        cmd.nativeObj = cmdAsDictionary;
     }
     
     return cmd;
@@ -244,18 +242,14 @@
 }
 
 - (HResult *)payloadAsResult {
-    HResult * result = [self objectForKey:@"payload" withClass:[HResult class]];
-    if(result == nil) {
-        NSDictionary * resultAsDictionary = [self objectForKey:@"payload" withClass:[NSDictionary class]];
-        if (resultAsDictionary != nil) {
-            result = [[HResult alloc] init];
-            result.nativeObj = resultAsDictionary;
-        }
+    HResult *result = nil;
+    NSDictionary * resultAsDictionary = [self objectForKey:@"payload" withClass:[NSDictionary class]];
+    if (resultAsDictionary != nil) {
+        result = [[HResult alloc] init];
+        result.nativeObj = resultAsDictionary;
     }
     
     return result;
-    
-    return [self objectForKey:@"payload" withClass:[HResult class]];
 }
 
 - (void)setPayloadAsResult:(HResult *)payloadAsResult {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		115C0E8416034364007F09B3 /* NSObject+SBJSon.m in Sources */ = {isa = PBXBuildFile; fileRef = 115C0E831603431F007F09B3 /* NSObject+SBJSon.m */; };
 		11ADA514160242EC00CF4A10 /* HGeo.m in Sources */ = {isa = PBXBuildFile; fileRef = 11782E8616023BF000783E5A /* HGeo.m */; };
 		11ADA515160242ED00CF4A10 /* HLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 11782E8816023BF100783E5A /* HLocation.m */; };
 		11ADA516160242EF00CF4A10 /* HMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 11782E8A16023BF200783E5A /* HMessage.m */; };
@@ -80,6 +81,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		115C0E821603431F007F09B3 /* NSObject+SBJSon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSon.h"; sourceTree = "<group>"; };
+		115C0E831603431F007F09B3 /* NSObject+SBJSon.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSon.m"; sourceTree = "<group>"; };
 		11782E8316021BB200783E5A /* SimpleClientViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleClientViewController.h; sourceTree = "<group>"; };
 		11782E8516023BF000783E5A /* HGeo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGeo.h; sourceTree = "<group>"; };
 		11782E8616023BF000783E5A /* HGeo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGeo.m; sourceTree = "<group>"; };
@@ -327,6 +330,8 @@
 		C57490DC16013B0400B80BC4 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				115C0E821603431F007F09B3 /* NSObject+SBJSon.h */,
+				115C0E831603431F007F09B3 /* NSObject+SBJSon.m */,
 				C57490DD16013B0400B80BC4 /* HNativeObjectsCategories.h */,
 				C57490DE16013B0400B80BC4 /* NSArray+HObj.h */,
 				C57490DF16013B0400B80BC4 /* NSArray+HObj.m */,
@@ -649,6 +654,7 @@
 				C574916E16013B1200B80BC4 /* SBJsonTokeniser.m in Sources */,
 				11ADA51B160247CB00CF4A10 /* HCommand.m in Sources */,
 				11ADA51C160247CD00CF4A10 /* HResult.m in Sources */,
+				115C0E8416034364007F09B3 /* NSObject+SBJSon.m in Sources */,
 				C574916F16013B1200B80BC4 /* SBJsonUTF8Stream.m in Sources */,
 				C574917016013B1200B80BC4 /* SBJsonWriter.m in Sources */,
 				C574917616013B1200B80BC4 /* SocketIO.m in Sources */,

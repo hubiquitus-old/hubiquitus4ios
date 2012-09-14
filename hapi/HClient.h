@@ -24,6 +24,7 @@
 #import "HTransport.h"
 #import "HMessage.h"
 #import "HMessageOptions.h"
+#import "HNativeObjectsCategories.h"
 
 @interface HClient : NSObject <HTransportDelegate>
 @property (nonatomic, readonly) Status status;

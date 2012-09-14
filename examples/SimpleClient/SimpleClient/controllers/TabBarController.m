@@ -69,7 +69,7 @@
         dispatch_async(dispatch_get_main_queue(), ^() {
             //update connection view
             MessageController * msgController = [[weakSelf viewControllers] objectAtIndex:1];
-            msgController.onMessageContent.text = [message JSONRepresentation];
+            msgController.onMessageContent.text = [NSString stringWithFormat:@"%@ \n Callback : %@",msgController.onMessageContent.text, [message JSONRepresentation]];
         });
     };
 

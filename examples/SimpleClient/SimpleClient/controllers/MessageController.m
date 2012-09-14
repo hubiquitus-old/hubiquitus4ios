@@ -23,6 +23,7 @@
 #import "DDLog.h"
 #import "HOptions.h"
 #import "SBJson.h"
+#import "HNativeObjectsCategories.h"
 
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
@@ -77,13 +78,15 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     id<HObj> payload = [self.msgToSend.text JSONValue];
     NSError * error = nil;
     HMessage * msg = [hClient buildMessageWithActor:self.actor.text type:self.msgType.text payload:payload options:nil didFailWithError:&error];
-    
+    msg.timeout = 1000;
     if (error)
         DDLogCVerbose(@"Error while trying to build message : %@",error);
     
     [hClient send:msg withBlock:^(HMessage* response) {
         DDLogVerbose(@"Response message : %@", response);
-        onMessageContent.text = [response JSONRepresentation];
+        dispatch_async(dispatch_get_main_queue(), ^() {
+            onMessageContent.text = [NSString stringWithFormat:@"%@ \n Callback : %@",onMessageContent.text, [response JSONRepresentation]];
+        });
     }];
 }
 

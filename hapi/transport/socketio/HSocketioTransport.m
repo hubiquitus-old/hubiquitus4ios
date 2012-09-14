@@ -92,7 +92,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         [self.socketio sendEvent:@"hMessage" withData:message]; 
     } else {
         if([self.delegate respondsToSelector:@selector(errorNotification:errorMsg:)]) {
-            [self.delegate errorNotification:NOT_CONNECTED errorMsg:nil refMsg:[message objectForKey:@"msg"]];
+            [self.delegate errorNotification:NOT_CONNECTED errorMsg:nil refMsg:[message objectForKey:@"msgid"]];
         }
     }
 }

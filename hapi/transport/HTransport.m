@@ -152,6 +152,13 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 - (void)send:(HMessage *)message {
     DDLogVerbose(@"sending message : %@", message);
+    if(self.status == CONNECTED) {
+        [self.transportLayer send:message.nativeObj];
+    } else {
+        if([self.delegate respondsToSelector:@selector(errorNotification:errorMsg:refMsg:)]) {
+            [self errorNotification:NOT_CONNECTED errorMsg:[NSString stringWithFormat:@"cannot send message while status is : %d",self.status] refMsg:message.ref];
+        }
+    }
 }
 
 - (void)dealloc {
@@ -275,14 +282,16 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 - (void)messageNotification:(NSDictionary *)message {
     DDLogVerbose(@"Message received : %@", message);
     if([self.delegate respondsToSelector:@selector(messageNotification:)]) {
-        [self messageNotification:message];
+        HMessage * hMsg = [[HMessage alloc] init];
+        hMsg.nativeObj = message;
+        [self.delegate messageNotification:hMsg];
     }
 }
 
 - (void)errorNotification:(ResultStatus)resultStatus errorMsg:(NSString *)errorMsg refMsg:(NSString *)ref {
     DDLogVerbose(@"Error happened : errorCode %d, errorMsg %@, ref %@",resultStatus, errorMsg, ref);
     if([self.delegate respondsToSelector:@selector(errorNotification:errorMsg:refMsg:)]) {
-        [self errorNotification:resultStatus errorMsg:errorMsg refMsg:ref];
+        [self.delegate errorNotification:resultStatus errorMsg:errorMsg refMsg:ref];
     }
 }
 

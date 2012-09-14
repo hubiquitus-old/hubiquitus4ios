@@ -90,30 +90,35 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 - (void)send:(HMessage *)message withBlock:(void (^)(HMessage *))callback {
+    DDLogVerbose(@"trying to send message %@ through hAPI", message);
     if(!message) {
-        [self errorNotification:RES_MISSING_ATTR errorMsg:@"No message" refMsg:nil withBlock:callback];
+        [self errorNotification:RES_MISSING_ATTR errorMsg:@"No message" refMsg:@"-1" timeout:0 withBlock:callback];
     }
     
     if(!message.actor || message.actor.length <= 0) {
-        [self errorNotification:RES_MISSING_ATTR errorMsg:@"Missing actor" refMsg:nil withBlock:callback];
+        [self errorNotification:RES_MISSING_ATTR errorMsg:@"Missing actor" refMsg:@"-1" timeout:message.timeout withBlock:callback];
     }
     
     message.msgid = [self uuid];
     message.publisher = self.transport.options.jid;
     
-    if(callbacks != nil && message.timeout > 0) {
+    if(callback == nil) {
+        message.timeout = -1;
+    }
+    
+    if(callback != nil && message.timeout >= 0) {
         [self.callbacks setObject:callback forKey:message.msgid];
-        
+        DDLogVerbose(@"Message timeout is : %d", message.timeout);
         //add a timeout handler
-        dispatch_source_t _connectTimer = NULL; /** timer used for auto connect attempts */
-        dispatch_source_set_timer(_connectTimer, dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC),
-                                  message.timeout * NSEC_PER_MSEC, 1);
-        dispatch_source_set_event_handler(_connectTimer, ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (message.timeout * NSEC_PER_MSEC)), _notificationsQueue, ^() {
+            
             if([callbacks objectForKey:message.msgid]) {
                 [callbacks removeObjectForKey:message.msgid];
                 
                 HMessage * timeoutResponse = [self buildResultWithActor:self.transport.options.jid ref:message.msgid status:RES_EXEC_TIMEOUT result:nil options:nil didFailWithError:nil];
-                callback(timeoutResponse);
+                
+                if(message.timeout > 0)
+                    callback(timeoutResponse);
             }
         });
     }
@@ -131,6 +136,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         return nil;
     }
     
+    msg = [[HMessage alloc] init];
     msg.actor = actor;
     msg.type = type;
     msg.payload = payload;
@@ -141,7 +147,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     if(msgOptions) {
         if(msgOptions.ref) msg.ref = msgOptions.ref;
         if(msgOptions.convid) msg.convid = msgOptions.convid;
-        if(msgOptions.priority) msg.priority = msgOptions.priority;
+        if(msgOptions.priority >= 0) msg.priority = msgOptions.priority;
         if(msgOptions.relevance) msg.relevance = msgOptions.relevance;
         if(msgOptions.persistent) msg.persistent = msgOptions.persistent;
         if(msgOptions.location) msg.location = msgOptions.location;
@@ -181,7 +187,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
     
     if(ref == nil || [ref length] <= 0) {
-        *error = [NSError errorWithDomain:@"hBuilders" code:RES_MISSING_ATTR userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Missing ref", NSLocalizedDescriptionKey, nil]];
+        if(error)
+            *error = [NSError errorWithDomain:@"hBuilders" code:RES_MISSING_ATTR userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Missing ref", NSLocalizedDescriptionKey, nil]];
         return nil;
     }
     
@@ -210,13 +217,22 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 - (void)errorNotification:(ResultStatus)resultStatus errorMsg:(NSString *)errorMsg refMsg:(NSString *)ref {
     HMessage *msg = [self buildResultWithActor:self.transport.options.jid ref:ref status:resultStatus result:errorMsg options:nil didFailWithError:nil];
     
-    [self notifyMessage:msg];
+    //check if there is callback because if there is not and it's an error, it means that a timeout of <0 was set
+    NSArray * refComponents = [ref componentsSeparatedByString:@"#"];
+    void(^callback)(HMessage*);
+    if([refComponents count] == 2) {
+        callback = [callbacks objectForKey:[refComponents objectAtIndex:1]];
+    }
+    
+    if(callback)
+        [self notifyMessage:msg];
 }
 
-- (void)errorNotification:(ResultStatus)resultStatus errorMsg:(NSString *)errorMsg refMsg:(NSString *)ref withBlock:(void(^)(HMessage*))callback {
-    HMessage *msg = [self buildResultWithActor:self.transport.options.jid ref:ref status:resultStatus result:errorMsg options:nil didFailWithError:nil];
+- (void)errorNotification:(ResultStatus)resultStatus errorMsg:(NSString *)errorMsg refMsg:(NSString *)ref timeout:(long)timeout withBlock:(void(^)(HMessage*))callback {
+    NSError *error = nil;
+    HMessage *msg = [self buildResultWithActor:self.transport.options.jid ref:ref status:resultStatus result:errorMsg options:nil didFailWithError:&error];
     
-    [self notifyMessage:msg withBlock:callback];
+    [self notifyMessage:msg withBlock:callback timeout:timeout];
 }
 
 #pragma mark - helper functions
@@ -257,13 +273,13 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         NSArray * refComponents = [aMessage.ref componentsSeparatedByString:@"#"];
         void(^callback)(HMessage*);
         if([refComponents count] == 2) {
-            callback = [callbacks objectForKey:[refComponents objectAtIndex:1]];
+            callback = [callbacks objectForKey:[refComponents objectAtIndex:0]];
         }
         
         //first check if we have a callback for the message == if it's an answer
         //Don't forget to remove the callback once it's consumed
         if(callback) {
-            [callbacks removeObjectForKey:[refComponents objectAtIndex:1]];
+            [callbacks removeObjectForKey:[refComponents objectAtIndex:0]];
             callback(aMessage);
         } else if(self.onMessage){
             self.onMessage(aMessage);
@@ -271,13 +287,14 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     });
 }
 
-- (void)notifyMessage:(HMessage*)aMessage withBlock:(void(^)(HMessage*))callback {
-    
-    dispatch_async(_notificationsQueue, ^() {        
-        if(callback) {
-            callback(aMessage);
-        }
-    });
+- (void)notifyMessage:(HMessage*)aMessage withBlock:(void(^)(HMessage*))callback timeout:(long)timeout {
+    if(callback && timeout >= 0) {
+        dispatch_async(_notificationsQueue, ^() {        
+            if(callback) {
+                callback(aMessage);
+            }
+        });
+    }
 }
 
 @end
