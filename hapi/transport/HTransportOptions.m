@@ -26,8 +26,18 @@
  * Options used by the transport layers
  */
 
+@interface HTransportOptions () {
+    NSString * _jid;
+    NSString * _jidDomain;
+    NSString * _jidUsername;
+    NSString * _jidResource;
+}
+
+@end
+
 @implementation HTransportOptions
-@synthesize jid, password;
+@synthesize password, jid = _jid;
+@synthesize jidDomain = _jidDomain, jidResource = _jidResource, jidUsername = _jidUsername;
 
 /**
  * Randomly choose an endpoint from the endpoints
@@ -46,6 +56,14 @@
     }
     
     return self;
+}
+
+- (void)setJid:(NSString *)jid {
+    _jid = jid;
+    NSDictionary * jidComponents =  splitJid(jid);
+    _jidDomain = [jidComponents objectForKey:@"domain"];
+    _jidUsername = [jidComponents objectForKey:@"username"];
+    _jidResource = [jidComponents objectForKey:@"resource"];
 }
 
 @end

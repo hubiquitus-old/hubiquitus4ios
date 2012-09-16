@@ -36,6 +36,22 @@
 
 - (void)send:(HMessage*)message withBlock:(void(^)(HMessage*))callback;
 
+- (void)getSubscriptionsWithBlock:(void(^)(HMessage*))callback;
+
+- (void)subscribeToActor:(NSString*)actor withBlock:(void(^)(HMessage*))callback;
+
+- (void)unscribeFromActor:(NSString*)actor withBlock:(void(^)(HMessage*))callback;
+
+- (void)getLastMessagesFromActor:(NSString*)actor quantity:(NSNumber*)quantity withBlock:(void(^)(HMessage*))callback;
+
+- (void)getThreadFromActor:(NSString*)actor withConvid:(NSString*)convid block:(void(^)(HMessage*))callback;
+
+- (void)getThreadsFromActor:(NSString*)actor withStatus:(NSString*)status block:(void(^)(HMessage*))callback;
+
+- (void)getRelevantMessagesFromActor:(NSString*)actor withBlock:(void(^)(HMessage*))callback;
+
+
+
 - (HMessage*)buildMessageWithActor:(NSString*)actor type:(NSString*)type payload:(id<HObj>)payload options:(HMessageOptions*)msgOptions didFailWithError:(NSError**)error;
 
 - (HMessage*)buildCommandWithActor:(NSString*)actor cmd:(NSString*)cmd params:(NSDictionary*)params options:(HMessageOptions*)msgOptions didFailWithError:(NSError**)error;
