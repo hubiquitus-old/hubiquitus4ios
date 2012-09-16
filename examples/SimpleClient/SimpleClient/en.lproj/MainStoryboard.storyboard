@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1498"/>
     </dependencies>
     <scenes>
-        <!--Message Options Controller - Message Options-->
+        <!--Message Options Controller - Options-->
         <scene sceneID="cHs-3i-u1d">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oeY-Hk-j2c" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -125,7 +125,7 @@
                             <action selector="hideKeyboard:" destination="C9J-UF-Z37" eventType="touchUpInside" id="yxR-6W-2Nc"/>
                         </connections>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Message Options" id="Mfo-q3-x6m"/>
+                    <tabBarItem key="tabBarItem" title="Options" id="Mfo-q3-x6m"/>
                     <connections>
                         <outlet property="actor" destination="jkt-3d-j4K" id="pPi-ns-Ll7"/>
                         <outlet property="author" destination="RhH-sj-IiF" id="QaM-Xr-ohR"/>
@@ -319,7 +319,7 @@
             </objects>
             <point key="canvasLocation" x="65" y="134"/>
         </scene>
-        <!--Message Sender Controller - Message Sender-->
+        <!--Message Sender Controller - Sender-->
         <scene sceneID="Vuz-Rh-hTm">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o0c-Xn-Inj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -408,7 +408,7 @@
                             <action selector="hideKeyboard:" destination="6SQ-oG-QIk" eventType="touchUpInside" id="KMi-sc-k6f"/>
                         </connections>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Message Sender" id="OGm-1V-iNS"/>
+                    <tabBarItem key="tabBarItem" title="Sender" id="OGm-1V-iNS"/>
                     <connections>
                         <outlet property="connector" destination="fvM-ON-Fc2" id="u75-ZK-Rqy"/>
                         <outlet property="messageContent" destination="fri-50-Ib1" id="fHd-5Y-ZHv"/>
@@ -419,7 +419,7 @@
             </objects>
             <point key="canvasLocation" x="885" y="560"/>
         </scene>
-        <!--Message Builder Controller - Message Builders-->
+        <!--Message Builder Controller - Builders-->
         <scene sceneID="BVx-gK-eZf">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pYs-cx-2gi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -627,7 +627,7 @@
                             <action selector="hideKeyboard:" destination="Xx3-qk-u2u" eventType="touchUpInside" id="O1a-0R-DhD"/>
                         </connections>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Message Builders" id="P7E-bH-roa"/>
+                    <tabBarItem key="tabBarItem" title="Builders" id="P7E-bH-roa"/>
                     <connections>
                         <outlet property="alert_ack" destination="eqS-Hb-9bE" id="yeh-bU-HH1"/>
                         <outlet property="cmd_status" destination="E0s-dw-ky5" id="kfg-ga-da0"/>
@@ -644,7 +644,7 @@
             </objects>
             <point key="canvasLocation" x="496" y="742"/>
         </scene>
-        <!--Functions Controller - Fonctions-->
+        <!--Functions Controller - Functions-->
         <scene sceneID="uVT-qD-N1G">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lke-FL-vB5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -818,7 +818,7 @@
                             <action selector="hideKeyboard:" destination="GBj-71-y9g" eventType="touchUpInside" id="dQC-zP-J0y"/>
                         </connections>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Fonctions" id="Tmi-tn-Xkw"/>
+                    <tabBarItem key="tabBarItem" title="Functions" id="Tmi-tn-Xkw"/>
                     <connections>
                         <outlet property="actor" destination="MK7-gY-DEd" id="mJA-hH-mF4"/>
                         <outlet property="connector" destination="J16-Rg-iy6" id="dbA-Q7-Wn5"/>
@@ -831,7 +831,7 @@
             </objects>
             <point key="canvasLocation" x="81" y="885"/>
         </scene>
-        <!--Incoming Message Controller - Incoming Messages-->
+        <!--Incoming Message Controller - Incoming-->
         <scene sceneID="IHj-HR-WYi">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wMR-Yh-tCS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -896,7 +896,7 @@
                             <action selector="hideKeyboard:" destination="zzE-9j-tGA" eventType="touchUpInside" id="3QN-ev-G8M"/>
                         </connections>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Incoming Messages" id="CYA-lS-pXQ"/>
+                    <tabBarItem key="tabBarItem" title="Incoming" id="CYA-lS-pXQ"/>
                     <connections>
                         <outlet property="connector" destination="LYZ-Lp-VbV" id="RlR-dH-cf7"/>
                         <outlet property="onMessageContent" destination="G83-vc-y8c" id="Arb-dw-xQr"/>
