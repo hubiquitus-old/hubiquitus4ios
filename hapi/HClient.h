@@ -42,4 +42,12 @@
 
 - (HMessage*)buildResultWithActor:(NSString*)actor ref:(NSString*)ref status:(ResultStatus)status result:(id<HObj>)result options:(HMessageOptions *)msgOptions didFailWithError:(NSError**)error;
 
+- (HMessage*)buildConvStateWithActor:(NSString*)actor convid:(NSString*)convid status:(NSString*)status option:(HMessageOptions*)msgOptions didFailWithError:(NSError**)error;
+
+- (HMessage*)buildAlertWithActor:(NSString*)actor alert:(NSString*)alert options:(HMessageOptions*)msgOptions didFailWithError:(NSError**)error;
+
+- (HMessage*)buildAckWithActor:(NSString*)actor ref:(NSString*)ref ack:(NSString*)ack options:(HMessageOptions*)msgOptions didFailWithError:(NSError**)error;
+
+- (HMessage*)buildMeasureWithActor:(NSString*)actor value:(NSString*)value unit:(NSString*)unit options:(HMessageOptions*)msgOptions didFailWithError:(NSError**)error;
+
 @end

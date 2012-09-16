@@ -15,6 +15,10 @@
 		11ADA51C160247CD00CF4A10 /* HResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 11ADA51A160247C200CF4A10 /* HResult.m */; };
 		C5138BFD160280BF00829B44 /* HMessageOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = C5138BFC160280BF00829B44 /* HMessageOptions.m */; };
 		C5138C0216029DE000829B44 /* MessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5138C0116029DE000829B44 /* MessageController.m */; };
+		C5145F5216065EFB00D77C41 /* HAck.m in Sources */ = {isa = PBXBuildFile; fileRef = C5145F4A1606598A00D77C41 /* HAck.m */; };
+		C5145F5316065F0100D77C41 /* HAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = C5145F4C1606598A00D77C41 /* HAlert.m */; };
+		C5145F5416065F0700D77C41 /* HConvState.m in Sources */ = {isa = PBXBuildFile; fileRef = C5145F4E1606598A00D77C41 /* HConvState.m */; };
+		C5145F5516065F0900D77C41 /* HMeasure.m in Sources */ = {isa = PBXBuildFile; fileRef = C5145F501606598A00D77C41 /* HMeasure.m */; };
 		C574909E16013A0700B80BC4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C574909D16013A0700B80BC4 /* UIKit.framework */; };
 		C57490A016013A0700B80BC4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C574909F16013A0700B80BC4 /* Foundation.framework */; };
 		C57490A216013A0700B80BC4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C57490A116013A0700B80BC4 /* CoreGraphics.framework */; };
@@ -631,7 +635,11 @@
 				C574910A16013B0400B80BC4 /* NSArray+HObj.m in Sources */,
 				C574910B16013B0400B80BC4 /* NSDate+HObj.m in Sources */,
 				C574910C16013B0400B80BC4 /* NSDate+ISO8601.m in Sources */,
+				C5145F5216065EFB00D77C41 /* HAck.m in Sources */,
 				C574910D16013B0400B80BC4 /* NSDate+SBJSon.m in Sources */,
+				C5145F5416065F0700D77C41 /* HConvState.m in Sources */,
+				C5145F5316065F0100D77C41 /* HAlert.m in Sources */,
+				C5145F5516065F0900D77C41 /* HMeasure.m in Sources */,
 				C574910E16013B0400B80BC4 /* NSDictionary+HObj.m in Sources */,
 				C574910F16013B0400B80BC4 /* NSNull+HObj.m in Sources */,
 				C574911016013B0400B80BC4 /* NSNumber+HObj.m in Sources */,
