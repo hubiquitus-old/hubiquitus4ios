@@ -17,16 +17,28 @@
  *     along with Hubiquitus.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * @version 0.5.0
- * Priority levels
- */
+#import <UIKit/UIKit.h>
+#import "HClient.h"
+#import "SimpleClientViewController.h"
 
-typedef enum {
-    TRACE = 0,
-    INFO = 1,
-    WARNING = 2, 
-    ALERT = 3,
-    CRITICAL = 4,
-    PANIC = 5
-} Priority;
+@interface IncomingMessageController : UIViewController<UITextFieldDelegate, UIGestureRecognizerDelegate, SimpleClientViewController>
+
+@property (strong, nonatomic) HClient * hClient;
+
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
+@property (weak, nonatomic) UITextField *activeField;
+@property (weak, nonatomic) IBOutlet UIImageView *connector;
+
+@property (weak, nonatomic) IBOutlet UITextView *onMessageContent;
+
+
+- (IBAction)hideKeyboard:(id)sender;
+- (void)registerForKeyboardNotifications;
+- (void)keyboardWasShown:(NSNotification*)aNotification;
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification;
+
+
+- (IBAction)clear:(id)sender;
+
+@end

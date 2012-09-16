@@ -21,7 +21,7 @@
 #import "HClient.h"
 #import "SimpleClientViewController.h"
 
-@interface MessageController : UIViewController<UITextFieldDelegate, UIGestureRecognizerDelegate, SimpleClientViewController>
+@interface MessageOptionsController: UIViewController<UITextFieldDelegate, UIGestureRecognizerDelegate, SimpleClientViewController>
 
 @property (strong, nonatomic) HClient * hClient;
 
@@ -29,11 +29,13 @@
 
 @property (weak, nonatomic) UITextField *activeField;
 @property (weak, nonatomic) IBOutlet UIImageView *connector;
-
+@property (weak, nonatomic) IBOutlet UISwitch *persistent;
 @property (weak, nonatomic) IBOutlet UITextField *actor;
-@property (weak, nonatomic) IBOutlet UITextField *msgType;
-@property (weak, nonatomic) IBOutlet UITextView *msgToSend;
-@property (weak, nonatomic) IBOutlet UITextView *onMessageContent;
+@property (weak, nonatomic) IBOutlet UITextField *convid;
+@property (weak, nonatomic) IBOutlet UITextField *ref;
+@property (weak, nonatomic) IBOutlet UITextField *priority;
+@property (weak, nonatomic) IBOutlet UITextField *author;
+@property (weak, nonatomic) IBOutlet UITextField *timeout;
 
 
 - (IBAction)hideKeyboard:(id)sender;
@@ -42,8 +44,6 @@
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification;
 
 
-- (IBAction)send:(id)sender;
-- (IBAction)clearMsg:(id)sender;
-- (IBAction)clearOnMsg:(id)sender;
+- (IBAction)clear:(id)sender;
 
 @end

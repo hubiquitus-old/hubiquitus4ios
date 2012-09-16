@@ -17,7 +17,7 @@
  *     along with Hubiquitus.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "MessageController.h"
+#import "MessageOptionsController.h"
 #import "HUtils.h"
 #import "AppDelegate.h"
 #import "DDLog.h"
@@ -27,18 +27,21 @@
 
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
-@interface MessageController ()
+@interface MessageOptionsController ()
 
 @end
 
-@implementation MessageController
+@implementation MessageOptionsController
 @synthesize scrollView;
 @synthesize activeField;
 @synthesize connector;
+@synthesize persistent;
 @synthesize actor;
-@synthesize msgType;
-@synthesize msgToSend;
-@synthesize onMessageContent;
+@synthesize convid;
+@synthesize ref;
+@synthesize priority;
+@synthesize author;
+@synthesize timeout;
 @synthesize hClient;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -66,15 +69,18 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [self setScrollView:nil];
     [self setActiveField:nil];
     [self setConnector:nil];
+    [self setPersistent:nil];
     [self setActor:nil];
-    [self setMsgToSend:nil];
-    [self setOnMessageContent:nil];
-    [self setMsgType:nil];
+    [self setConvid:nil];
+    [self setRef:nil];
+    [self setPriority:nil];
+    [self setAuthor:nil];
+    [self setTimeout:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
 
-- (IBAction)send:(id)sender {
+/*- (IBAction)send:(id)sender {
     id<HObj> payload = [self.msgToSend.text JSONValue];
     NSError * error = nil;
     HMessage * msg = [hClient buildMessageWithActor:self.actor.text type:self.msgType.text payload:payload options:nil didFailWithError:&error];
@@ -88,14 +94,15 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             onMessageContent.text = [NSString stringWithFormat:@"%@ \n Callback : %@",onMessageContent.text, [response JSONRepresentation]];
         });
     }];
-}
+}*/
 
-- (IBAction)clearMsg:(id)sender {
-    self.msgToSend.text = @"";
-}
-
-- (IBAction)clearOnMsg:(id)sender {
-    self.onMessageContent.text = @"";
+- (IBAction)clear:(id)sender {
+    self.actor.text = @"";
+    self.convid.text = @"";
+    self.ref.text = @"";
+    self.author.text = @"";
+    self.priority.text = @"";
+    self.timeout.text = @"";
 }
 
 #pragma mark - common views setup

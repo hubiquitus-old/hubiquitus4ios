@@ -21,8 +21,13 @@
 #import "AppDelegate.h"
 #import "SimpleClientViewController.h"
 #import "ConnectionController.h"
-#import "MessageController.h"
+#import "IncomingMessageController.h"
 #import "SBJson.h"
+#import "IncomingMessageController.h"
+#import "MessageOptionsController.h"
+#import "MessageBuilderController.h"
+#import "FunctionsController.h"
+#import "MessageSenderController.h"
 
 @interface TabBarController ()
 
@@ -49,6 +54,12 @@
     
     __weak TabBarController *weakSelf = self;
     
+    appDelegate.incomingMessageController = [[weakSelf viewControllers] objectAtIndex:1];
+    appDelegate.messageOptionsController = [[weakSelf viewControllers] objectAtIndex:5];
+    appDelegate.messageBuilderController = [[weakSelf viewControllers] objectAtIndex:3];
+    appDelegate.functionsController = [[weakSelf viewControllers] objectAtIndex:4];
+    appDelegate.messageSenderController = [[weakSelf viewControllers] objectAtIndex:2];
+    
     hClient.onStatus = ^(HStatus *status) {
         dispatch_async(dispatch_get_main_queue(), ^() {
             UIViewController *selectedViewController = [weakSelf selectedViewController];
@@ -68,8 +79,8 @@
     hClient.onMessage = ^(HMessage *message) {
         dispatch_async(dispatch_get_main_queue(), ^() {
             //update connection view
-            MessageController * msgController = [[weakSelf viewControllers] objectAtIndex:1];
-            msgController.onMessageContent.text = [NSString stringWithFormat:@"%@ \n Callback : %@",msgController.onMessageContent.text, [message JSONRepresentation]];
+            IncomingMessageController * msgController = [[weakSelf viewControllers] objectAtIndex:1];
+            msgController.onMessageContent.text = [NSString stringWithFormat:@"%@ \n OnMessage : %@",msgController.onMessageContent.text, [message JSONRepresentation]];
         });
     };
 

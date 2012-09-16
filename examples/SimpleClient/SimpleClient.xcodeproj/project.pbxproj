@@ -14,11 +14,19 @@
 		11ADA51B160247CB00CF4A10 /* HCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 11ADA518160247C200CF4A10 /* HCommand.m */; };
 		11ADA51C160247CD00CF4A10 /* HResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 11ADA51A160247C200CF4A10 /* HResult.m */; };
 		C5138BFD160280BF00829B44 /* HMessageOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = C5138BFC160280BF00829B44 /* HMessageOptions.m */; };
-		C5138C0216029DE000829B44 /* MessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5138C0116029DE000829B44 /* MessageController.m */; };
+		C5138C0216029DE000829B44 /* IncomingMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5138C0116029DE000829B44 /* IncomingMessageController.m */; };
 		C5145F5216065EFB00D77C41 /* HAck.m in Sources */ = {isa = PBXBuildFile; fileRef = C5145F4A1606598A00D77C41 /* HAck.m */; };
 		C5145F5316065F0100D77C41 /* HAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = C5145F4C1606598A00D77C41 /* HAlert.m */; };
 		C5145F5416065F0700D77C41 /* HConvState.m in Sources */ = {isa = PBXBuildFile; fileRef = C5145F4E1606598A00D77C41 /* HConvState.m */; };
 		C5145F5516065F0900D77C41 /* HMeasure.m in Sources */ = {isa = PBXBuildFile; fileRef = C5145F501606598A00D77C41 /* HMeasure.m */; };
+		C5145F5916067D8700D77C41 /* MessageOptionsController.h in Resources */ = {isa = PBXBuildFile; fileRef = C5145F5816067D8700D77C41 /* MessageOptionsController.h */; };
+		C5145F5C16067DB500D77C41 /* MessageBuilderController.h in Resources */ = {isa = PBXBuildFile; fileRef = C5145F5B16067DB500D77C41 /* MessageBuilderController.h */; };
+		C5145F5F16067DE200D77C41 /* MessageOptionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5145F5E16067DE200D77C41 /* MessageOptionsController.m */; };
+		C5145F6116067DF600D77C41 /* MessageBuilderController.m in Resources */ = {isa = PBXBuildFile; fileRef = C5145F6016067DF600D77C41 /* MessageBuilderController.m */; };
+		C5145F6316067E0900D77C41 /* FunctionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5145F6216067E0900D77C41 /* FunctionsController.m */; };
+		C5145F6516067E1A00D77C41 /* MessageSenderController.m in Resources */ = {isa = PBXBuildFile; fileRef = C5145F6416067E1900D77C41 /* MessageSenderController.m */; };
+		C5145F661606836D00D77C41 /* MessageBuilderController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5145F6016067DF600D77C41 /* MessageBuilderController.m */; };
+		C5145F671606837200D77C41 /* MessageSenderController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5145F6416067E1900D77C41 /* MessageSenderController.m */; };
 		C574909E16013A0700B80BC4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C574909D16013A0700B80BC4 /* UIKit.framework */; };
 		C57490A016013A0700B80BC4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C574909F16013A0700B80BC4 /* Foundation.framework */; };
 		C57490A216013A0700B80BC4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C57490A116013A0700B80BC4 /* CoreGraphics.framework */; };
@@ -101,8 +109,8 @@
 		11ADA51A160247C200CF4A10 /* HResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HResult.m; sourceTree = "<group>"; };
 		C5138BFB160280BF00829B44 /* HMessageOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMessageOptions.h; sourceTree = "<group>"; };
 		C5138BFC160280BF00829B44 /* HMessageOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMessageOptions.m; sourceTree = "<group>"; };
-		C5138C0116029DE000829B44 /* MessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageController.m; sourceTree = "<group>"; };
-		C5138C0316029DEE00829B44 /* MessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageController.h; sourceTree = "<group>"; };
+		C5138C0116029DE000829B44 /* IncomingMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncomingMessageController.m; sourceTree = "<group>"; };
+		C5138C0316029DEE00829B44 /* IncomingMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncomingMessageController.h; sourceTree = "<group>"; };
 		C5145F491606598A00D77C41 /* HAck.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HAck.h; sourceTree = "<group>"; };
 		C5145F4A1606598A00D77C41 /* HAck.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HAck.m; sourceTree = "<group>"; };
 		C5145F4B1606598A00D77C41 /* HAlert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HAlert.h; sourceTree = "<group>"; };
@@ -111,6 +119,14 @@
 		C5145F4E1606598A00D77C41 /* HConvState.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HConvState.m; sourceTree = "<group>"; };
 		C5145F4F1606598A00D77C41 /* HMeasure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HMeasure.h; sourceTree = "<group>"; };
 		C5145F501606598A00D77C41 /* HMeasure.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HMeasure.m; sourceTree = "<group>"; };
+		C5145F5816067D8700D77C41 /* MessageOptionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageOptionsController.h; sourceTree = "<group>"; };
+		C5145F5A16067D9800D77C41 /* MessageSenderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageSenderController.h; sourceTree = "<group>"; };
+		C5145F5B16067DB500D77C41 /* MessageBuilderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageBuilderController.h; sourceTree = "<group>"; };
+		C5145F5D16067DC600D77C41 /* FunctionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunctionsController.h; sourceTree = "<group>"; };
+		C5145F5E16067DE200D77C41 /* MessageOptionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageOptionsController.m; sourceTree = "<group>"; };
+		C5145F6016067DF600D77C41 /* MessageBuilderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageBuilderController.m; sourceTree = "<group>"; };
+		C5145F6216067E0900D77C41 /* FunctionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FunctionsController.m; sourceTree = "<group>"; };
+		C5145F6416067E1900D77C41 /* MessageSenderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageSenderController.m; sourceTree = "<group>"; };
 		C574909916013A0700B80BC4 /* SimpleClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C574909D16013A0700B80BC4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C574909F16013A0700B80BC4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -305,9 +321,17 @@
 			isa = PBXGroup;
 			children = (
 				C57490CA16013AC000B80BC4 /* ConnectionController.h */,
-				C5138C0316029DEE00829B44 /* MessageController.h */,
+				C5138C0316029DEE00829B44 /* IncomingMessageController.h */,
+				C5145F5816067D8700D77C41 /* MessageOptionsController.h */,
+				C5145F5B16067DB500D77C41 /* MessageBuilderController.h */,
+				C5145F5D16067DC600D77C41 /* FunctionsController.h */,
+				C5145F5A16067D9800D77C41 /* MessageSenderController.h */,
 				C57490CB16013AC000B80BC4 /* ConnectionController.m */,
-				C5138C0116029DE000829B44 /* MessageController.m */,
+				C5138C0116029DE000829B44 /* IncomingMessageController.m */,
+				C5145F5E16067DE200D77C41 /* MessageOptionsController.m */,
+				C5145F6016067DF600D77C41 /* MessageBuilderController.m */,
+				C5145F6216067E0900D77C41 /* FunctionsController.m */,
+				C5145F6416067E1900D77C41 /* MessageSenderController.m */,
 				C57490CC16013AC000B80BC4 /* TabBarController.h */,
 				C57490CD16013AC000B80BC4 /* TabBarController.m */,
 				11782E8316021BB200783E5A /* SimpleClientViewController.h */,
@@ -618,6 +642,10 @@
 				C574917316013B1200B80BC4 /* Readme.md in Resources */,
 				C574917416013B1200B80BC4 /* LICENSE in Resources */,
 				C574917516013B1200B80BC4 /* README.md in Resources */,
+				C5145F5916067D8700D77C41 /* MessageOptionsController.h in Resources */,
+				C5145F5C16067DB500D77C41 /* MessageBuilderController.h in Resources */,
+				C5145F6116067DF600D77C41 /* MessageBuilderController.m in Resources */,
+				C5145F6516067E1A00D77C41 /* MessageSenderController.m in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,13 +658,18 @@
 			files = (
 				C57490AA16013A0700B80BC4 /* main.m in Sources */,
 				C57490AE16013A0700B80BC4 /* AppDelegate.m in Sources */,
-				C57490D216013AC000B80BC4 /* ConnectionController.m in Sources */,
 				C57490D316013AC000B80BC4 /* TabBarController.m in Sources */,
 				C574910A16013B0400B80BC4 /* NSArray+HObj.m in Sources */,
 				C574910B16013B0400B80BC4 /* NSDate+HObj.m in Sources */,
 				C574910C16013B0400B80BC4 /* NSDate+ISO8601.m in Sources */,
 				C5145F5216065EFB00D77C41 /* HAck.m in Sources */,
+				C5138C0216029DE000829B44 /* IncomingMessageController.m in Sources */,
+				C57490D216013AC000B80BC4 /* ConnectionController.m in Sources */,
+				C5145F6316067E0900D77C41 /* FunctionsController.m in Sources */,
 				C574910D16013B0400B80BC4 /* NSDate+SBJSon.m in Sources */,
+				C5145F671606837200D77C41 /* MessageSenderController.m in Sources */,
+				C5145F661606836D00D77C41 /* MessageBuilderController.m in Sources */,
+				C5145F5F16067DE200D77C41 /* MessageOptionsController.m in Sources */,
 				C5145F5416065F0700D77C41 /* HConvState.m in Sources */,
 				C5145F5316065F0100D77C41 /* HAlert.m in Sources */,
 				C5145F5516065F0900D77C41 /* HMeasure.m in Sources */,
@@ -683,7 +716,6 @@
 				C574917016013B1200B80BC4 /* SBJsonWriter.m in Sources */,
 				C574917616013B1200B80BC4 /* SocketIO.m in Sources */,
 				C5138BFD160280BF00829B44 /* HMessageOptions.m in Sources */,
-				C5138C0216029DE000829B44 /* MessageController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,21 +19,28 @@
 
 #import <UIKit/UIKit.h>
 #import "HClient.h"
-#import "IncomingMessageController.h"
-#import "MessageOptionsController.h"
-#import "MessageBuilderController.h"
-#import "FunctionsController.h"
-#import "MessageSenderController.h"
+#import "SimpleClientViewController.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface MessageSenderController : UIViewController<UITextFieldDelegate, UIGestureRecognizerDelegate, SimpleClientViewController>
 
-@property (nonatomic, strong) HClient * hClient;
-@property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) HClient * hClient;
 
-@property (nonatomic, weak) IncomingMessageController * incomingMessageController;
-@property (nonatomic, weak) MessageOptionsController * messageOptionsController;
-@property (nonatomic, weak) MessageBuilderController * messageBuilderController;
-@property (nonatomic, weak) FunctionsController * functionsController;
-@property (nonatomic, weak) MessageSenderController * messageSenderController;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
+@property (weak, nonatomic) UITextField *activeField;
+@property (weak, nonatomic) IBOutlet UIImageView *connector;
+@property (weak, nonatomic) IBOutlet UITextField *msgType;
+
+@property (weak, nonatomic) IBOutlet UITextView *messageContent;
+
+
+- (IBAction)hideKeyboard:(id)sender;
+- (void)registerForKeyboardNotifications;
+- (void)keyboardWasShown:(NSNotification*)aNotification;
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification;
+
+- (IBAction)send:(id)sender;
+
+- (IBAction)clear:(id)sender;
 
 @end
