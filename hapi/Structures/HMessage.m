@@ -256,6 +256,66 @@
     [self setObject:payloadAsResult forKey:@"payload"];
 }
 
+- (HAck *)payloadAsAck {
+    HAck *ack = nil;
+    NSDictionary * ackAsDictionary = [self objectForKey:@"payload" withClass:[NSDictionary class]];
+    if (ackAsDictionary != nil) {
+        ack = [[HAck alloc] init];
+        ack.nativeObj = ackAsDictionary;
+    }
+    
+    return ack;
+}
+
+- (void)setPayloadAsAck:(HAck *)payloadAsAck {
+    [self setObject:payloadAsAck forKey:@"payload"];
+}
+
+- (HAlert *)payloadAsAlert {
+    HAlert *alert = nil;
+    NSDictionary * alertAsDictionary = [self objectForKey:@"payload" withClass:[NSDictionary class]];
+    if (alertAsDictionary != nil) {
+        alert = [[HAlert alloc] init];
+        alert.nativeObj = alertAsDictionary;
+    }
+    
+    return alert;
+}
+
+- (void)setPayloadAsAlert:(HAlert *)payloadAsAlert {
+    [self setObject:payloadAsAlert forKey:@"payload"];
+}
+
+- (HConvState *)payloadAsConvState {
+    HConvState *convState = nil;
+    NSDictionary * convStateAsDictionary = [self objectForKey:@"payload" withClass:[NSDictionary class]];
+    if (convStateAsDictionary != nil) {
+        convState = [[HConvState alloc] init];
+        convState.nativeObj = convStateAsDictionary;
+    }
+    
+    return convState;
+}
+
+- (void)setPayloadAsConvState:(HConvState *)payloadAsConvState {
+    [self setObject:payloadAsConvState forKey:@"payload"];
+}
+
+- (HMeasure *)payloadAsMeasure {
+    HMeasure *measure = nil;
+    NSDictionary * measureAsDictionary = [self objectForKey:@"payload" withClass:[NSDictionary class]];
+    if (measureAsDictionary != nil) {
+        measure = [[HMeasure alloc] init];
+        measure.nativeObj = measureAsDictionary;
+    }
+    
+    return measure;
+}
+
+- (void)setPayloadAsMeasure:(HMeasure *)payloadAsMeasure {
+    [self setObject:payloadAsMeasure forKey:@"payload"];
+}
+
 /**
  * timeout in ms
  */

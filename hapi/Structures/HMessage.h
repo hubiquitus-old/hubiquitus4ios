@@ -26,6 +26,10 @@
 #import "HObj.h"
 #import "HCommand.h"
 #import "HResult.h"
+#import "HAck.h"
+#import "HConvState.h"
+#import "HMeasure.h"
+#import "HAlert.h"
 
 @interface HMessage : HStructure
 
@@ -50,6 +54,10 @@
 @property (nonatomic, strong) NSString * payloadAsString;
 @property (nonatomic, strong) HCommand * payloadAsCommand;
 @property (nonatomic, strong) HResult * payloadAsResult;
+@property (nonatomic, strong) HAck * payloadAsAck;
+@property (nonatomic, strong) HConvState * payloadAsConvState;
+@property (nonatomic, strong) HMeasure * payloadAsMeasure;
+@property (nonatomic, strong) HAlert * payloadAsAlert;
 
 @property (nonatomic) long timeout;
 
