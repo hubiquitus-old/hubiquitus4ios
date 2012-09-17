@@ -36,10 +36,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 @synthesize scrollView;
 @synthesize activeField;
 @synthesize connector;
-@synthesize cmd_status;
-@synthesize params_result;
-@synthesize unit;
-@synthesize value;
+@synthesize cmd_status_unit;
+@synthesize params_result_value;
 @synthesize alert_ack;
 @synthesize convstate_convid;
 @synthesize errors;
@@ -70,10 +68,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [self setScrollView:nil];
     [self setActiveField:nil];
     [self setConnector:nil];
-    [self setCmd_status:nil];
-    [self setParams_result:nil];
-    [self setUnit:nil];
-    [self setValue:nil];
+    [self setCmd_status_unit:nil];
+    [self setParams_result_value:nil];
     [self setAlert_ack:nil];
     [self setConvstate_convid:nil];
     [self setErrors:nil];
@@ -82,10 +78,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 - (IBAction)clear:(id)sender {
-    self.cmd_status.text = @"";
-    self.params_result.text = @"";
-    self.unit.text = @"";
-    self.value.text = @"";
+    self.cmd_status_unit.text = @"";
+    self.params_result_value.text = @"";
     self.alert_ack.text = @"";
     self.convstate_convid.text = @"";
     self.errors.text = @"";
@@ -156,8 +150,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     msgOpts.author = appDelegate.messageOptionsController.author.text;
     msgOpts.timeout = [appDelegate.messageOptionsController.timeout.text intValue];
     
-    NSDictionary * params = [self.params_result.text JSONValue];
-    HMessage * msg = [hClient buildCommandWithActor:appDelegate.messageOptionsController.actor.text cmd:self.cmd_status.text params:params options:msgOpts didFailWithError:&error];
+    NSDictionary * params = [self.params_result_value.text JSONValue];
+    HMessage * msg = [hClient buildCommandWithActor:appDelegate.messageOptionsController.actor.text cmd:self.cmd_status_unit.text params:params options:msgOpts didFailWithError:&error];
     
     self.errors.text = [error description];
     
@@ -177,8 +171,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     msgOpts.timeout = [appDelegate.messageOptionsController.timeout.text intValue];
     
     
-    NSDictionary * result = [self.params_result.text JSONValue];
-    HMessage * msg = [hClient buildResultWithActor:appDelegate.messageOptionsController.actor.text ref:appDelegate.messageOptionsController.ref.text status:[self.cmd_status.text intValue] result:result options:msgOpts didFailWithError:&error];
+    NSDictionary * result = [self.params_result_value.text JSONValue];
+    HMessage * msg = [hClient buildResultWithActor:appDelegate.messageOptionsController.actor.text ref:appDelegate.messageOptionsController.ref.text status:[self.cmd_status_unit.text intValue] result:result options:msgOpts didFailWithError:&error];
     
     self.errors.text = [error description];
     
@@ -196,7 +190,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     msgOpts.author = appDelegate.messageOptionsController.author.text;
     msgOpts.timeout = [appDelegate.messageOptionsController.timeout.text intValue];
     
-    HMessage * msg = [hClient buildMeasureWithActor:appDelegate.messageOptionsController.actor.text value:self.value.text unit:self.unit.text options:msgOpts didFailWithError:&error];
+    HMessage * msg = [hClient buildMeasureWithActor:appDelegate.messageOptionsController.actor.text value:self.params_result_value.text unit:self.cmd_status_unit.text options:msgOpts didFailWithError:&error];
     
     self.errors.text = [error description];
     
@@ -250,7 +244,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     msgOpts.author = appDelegate.messageOptionsController.author.text;
     msgOpts.timeout = [appDelegate.messageOptionsController.timeout.text intValue];
     
-    HMessage * msg = [hClient buildConvStateWithActor:appDelegate.messageOptionsController.actor.text convid:self.convstate_convid.text status:self.cmd_status.text option:msgOpts didFailWithError:&error];
+    HMessage * msg = [hClient buildConvStateWithActor:appDelegate.messageOptionsController.actor.text convid:self.convstate_convid.text status:self.cmd_status_unit.text option:msgOpts didFailWithError:&error];
     
     self.errors.text = [error description];
     

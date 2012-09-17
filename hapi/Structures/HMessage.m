@@ -322,15 +322,15 @@
 - (long)timeout {
     NSNumber * timeout = [self objectForKey:@"timeout" withClass:[NSNumber class]];
     if(timeout == nil)
-        return -1;
+        return 0;
     
     return [timeout longValue];
 }
 
 - (void)setTimeout:(long)timeout {
-    if(timeout >= 0)
+    if(timeout != 0)
         [self setObject:[NSNumber numberWithLong:timeout] forKey:@"timeout"];
     else
-        [self setObject:nil forKey:@"timeour"];
+        [self setObject:nil forKey:@"timeout"];
 }
 @end

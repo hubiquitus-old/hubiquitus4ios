@@ -35,7 +35,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 @synthesize scrollView;
 @synthesize activeField;
 @synthesize connector;
-@synthesize msgType;
 @synthesize messageContent;
 @synthesize hClient;
 
@@ -65,7 +64,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [self setActiveField:nil];
     [self setConnector:nil];
     [self setMessageContent:nil];
-    [self setMsgType:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -129,21 +127,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 - (IBAction)send:(id)sender {
     AppDelegate *appDelegate = (AppDelegate *)[ [UIApplication sharedApplication] delegate];
-    id<HObj> payload = [self.messageContent.text JSONValue];
-    NSError * error = nil;
     
-    HMessageOptions * msgOpts = [[HMessageOptions alloc] init];
-    msgOpts.convid = appDelegate.messageOptionsController.convid.text;
-    msgOpts.ref = appDelegate.messageOptionsController.ref.text;
-    msgOpts.priority = [appDelegate.messageOptionsController.priority.text intValue];
-    msgOpts.author = appDelegate.messageOptionsController.author.text;
-    msgOpts.timeout = [appDelegate.messageOptionsController.timeout.text intValue];
-    
-    
-    HMessage * msg = [hClient buildMessageWithActor:appDelegate.messageOptionsController.actor.text type:self.msgType.text payload:payload options:nil didFailWithError:&error];
-    msg.timeout = [appDelegate.messageOptionsController.timeout.text intValue];
-    if (error)
-        DDLogCVerbose(@"Error while trying to build message : %@",error);
+    HMessage * msg = [[HMessage alloc] init];
+    msg.nativeObj = [self.messageContent.text JSONValue];
     
     [hClient send:msg withBlock:^(HMessage* response) {
         DDLogVerbose(@"Response message : %@", response);
@@ -158,6 +144,15 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 - (IBAction)hideKeyboard:(id)sender {
     DDLogVerbose(@"Touch up on action");
+    [activeField resignFirstResponder];
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    activeField = textView;
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    activeField = nil;
     [activeField resignFirstResponder];
 }
 

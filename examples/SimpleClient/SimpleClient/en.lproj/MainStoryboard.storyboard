@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2549" systemVersion="12B19" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="c08-ua-R9a">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="c08-ua-R9a">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1498"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
     </dependencies>
     <scenes>
         <!--Message Options Controller - Options-->
@@ -302,11 +302,11 @@
                     </tabBar>
                     <connections>
                         <segue destination="qbN-js-6V1" kind="relationship" relationship="viewControllers" id="UJc-st-rq8"/>
+                        <segue destination="C9J-UF-Z37" kind="relationship" relationship="viewControllers" id="CDA-EO-fMQ"/>
                         <segue destination="zzE-9j-tGA" kind="relationship" relationship="viewControllers" id="AaC-gy-UgA"/>
                         <segue destination="6SQ-oG-QIk" kind="relationship" relationship="viewControllers" id="dQZ-eu-irH"/>
                         <segue destination="Xx3-qk-u2u" kind="relationship" relationship="viewControllers" id="sGT-45-lJg"/>
                         <segue destination="GBj-71-y9g" kind="relationship" relationship="viewControllers" id="qHs-g4-UuT"/>
-                        <segue destination="C9J-UF-Z37" kind="relationship" relationship="viewControllers" id="CDA-EO-fMQ"/>
                     </connections>
                 </tabBarController>
             </objects>
@@ -351,8 +351,8 @@
                                             <action selector="send:" destination="6SQ-oG-QIk" eventType="touchUpInside" id="UEW-sT-zP4"/>
                                         </connections>
                                     </button>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="{ &quot;cmd&quot;: &quot;hEcho&quot;, &quot;params&quot; : {&quot;name&quot;: &quot;hello&quot;} }" id="fri-50-Ib1">
-                                        <rect key="frame" x="20" y="65" width="280" height="248"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="{&quot;actor&quot;: &quot;hnode@localhost&quot;,&quot;timeout&quot;: 1000, &quot;payload&quot;: { &quot;cmd&quot;: &quot;hEcho&quot;, &quot;params&quot; : {&quot;name&quot;: &quot;hello&quot;} }}" id="fri-50-Ib1">
+                                        <rect key="frame" x="20" y="20" width="280" height="293"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -376,15 +376,6 @@
                                             <action selector="clear:" destination="6SQ-oG-QIk" eventType="touchUpInside" id="M9T-mk-hy7"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="hCommand" borderStyle="roundedRect" placeholder="Message type (ie : hCommand)" minimumFontSize="17" id="Uyp-Km-hVG">
-                                        <rect key="frame" x="20" y="20" width="280" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="6SQ-oG-QIk" id="6rx-u8-ShF"/>
-                                        </connections>
-                                    </textField>
                                 </subviews>
                                 <gestureRecognizers/>
                             </scrollView>
@@ -398,7 +389,6 @@
                     <connections>
                         <outlet property="connector" destination="fvM-ON-Fc2" id="u75-ZK-Rqy"/>
                         <outlet property="messageContent" destination="fri-50-Ib1" id="fHd-5Y-ZHv"/>
-                        <outlet property="msgType" destination="Uyp-Km-hVG" id="H1R-17-w72"/>
                         <outlet property="scrollView" destination="mbp-lY-1bt" id="8qF-9n-Oh8"/>
                     </connections>
                 </viewController>
@@ -451,8 +441,8 @@
                                             <action selector="buildMeasure:" destination="Xx3-qk-u2u" eventType="touchUpInside" id="un6-u5-F9D"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="cmd/status" minimumFontSize="17" id="E0s-dw-ky5">
-                                        <rect key="frame" x="20" y="10" width="280" height="31"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="cmd/status/unit" minimumFontSize="17" id="E0s-dw-ky5">
+                                        <rect key="frame" x="20" y="65" width="280" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no"/>
@@ -460,8 +450,8 @@
                                             <outlet property="delegate" destination="Xx3-qk-u2u" id="gYS-j7-fEh"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="params/result" minimumFontSize="17" id="Lto-VX-DDL">
-                                        <rect key="frame" x="20" y="47" width="280" height="31"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="params/result/value" minimumFontSize="17" id="Lto-VX-DDL">
+                                        <rect key="frame" x="20" y="104" width="280" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no"/>
@@ -469,26 +459,8 @@
                                             <outlet property="delegate" destination="Xx3-qk-u2u" id="SnF-jt-LCd"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="unit" minimumFontSize="17" id="Nli-hG-MG3">
-                                        <rect key="frame" x="20" y="85" width="280" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="Xx3-qk-u2u" id="938-k1-Kkw"/>
-                                        </connections>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="value" minimumFontSize="17" id="dL1-nJ-bOz">
-                                        <rect key="frame" x="20" y="121" width="280" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="Xx3-qk-u2u" id="8QC-9u-0G7"/>
-                                        </connections>
-                                    </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="alert/ack" minimumFontSize="17" id="eqS-Hb-9bE">
-                                        <rect key="frame" x="20" y="158" width="280" height="31"/>
+                                        <rect key="frame" x="20" y="143" width="280" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no"/>
@@ -497,7 +469,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="convstate/convid" minimumFontSize="17" id="g07-2Z-5dV">
-                                        <rect key="frame" x="20" y="195" width="280" height="31"/>
+                                        <rect key="frame" x="20" y="182" width="280" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no"/>
@@ -596,7 +568,7 @@
                                         </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Errors" minimumFontSize="17" id="UoP-fR-ClR">
-                                        <rect key="frame" x="20" y="231" width="280" height="31"/>
+                                        <rect key="frame" x="20" y="221" width="280" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no"/>
@@ -616,14 +588,12 @@
                     <tabBarItem key="tabBarItem" title="Builders" id="P7E-bH-roa"/>
                     <connections>
                         <outlet property="alert_ack" destination="eqS-Hb-9bE" id="yeh-bU-HH1"/>
-                        <outlet property="cmd_status" destination="E0s-dw-ky5" id="kfg-ga-da0"/>
+                        <outlet property="cmd_status_unit" destination="E0s-dw-ky5" id="kE1-Yb-UYA"/>
                         <outlet property="connector" destination="TAS-zp-TSa" id="UE0-K2-U4j"/>
                         <outlet property="convstate_convid" destination="g07-2Z-5dV" id="sKx-Wc-IIU"/>
                         <outlet property="errors" destination="UoP-fR-ClR" id="u0Y-Oe-fuY"/>
-                        <outlet property="params_result" destination="Lto-VX-DDL" id="GYx-20-c9u"/>
+                        <outlet property="params_result_value" destination="Lto-VX-DDL" id="Xhf-SE-WAL"/>
                         <outlet property="scrollView" destination="dAS-qu-PVD" id="emX-cx-V9F"/>
-                        <outlet property="unit" destination="Nli-hG-MG3" id="I2l-aU-4Ml"/>
-                        <outlet property="value" destination="dL1-nJ-bOz" id="8aR-VZ-RD4"/>
                     </connections>
                 </viewController>
             </objects>
@@ -954,14 +924,12 @@
                 <relationship kind="action" name="clear:"/>
                 <relationship kind="action" name="hideKeyboard:"/>
                 <relationship kind="outlet" name="alert_ack" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="cmd_status" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="cmd_status_unit" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="connector" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="convstate_convid" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="errors" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="params_result" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="params_result_value" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="unit" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="value" candidateClass="UITextField"/>
             </relationships>
         </class>
         <class className="MessageOptionsController" superclassName="UIViewController">
@@ -988,7 +956,6 @@
                 <relationship kind="action" name="send:"/>
                 <relationship kind="outlet" name="connector" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="messageContent" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="msgType" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
             </relationships>
         </class>

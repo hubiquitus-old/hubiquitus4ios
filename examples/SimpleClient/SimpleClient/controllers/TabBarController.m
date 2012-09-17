@@ -54,11 +54,11 @@
     
     __weak TabBarController *weakSelf = self;
     
-    appDelegate.incomingMessageController = [[weakSelf viewControllers] objectAtIndex:1];
-    appDelegate.messageOptionsController = [[weakSelf viewControllers] objectAtIndex:5];
-    appDelegate.messageBuilderController = [[weakSelf viewControllers] objectAtIndex:3];
-    appDelegate.functionsController = [[weakSelf viewControllers] objectAtIndex:4];
-    appDelegate.messageSenderController = [[weakSelf viewControllers] objectAtIndex:2];
+    appDelegate.incomingMessageController = [[weakSelf viewControllers] objectAtIndex:2];
+    appDelegate.messageOptionsController = [[weakSelf viewControllers] objectAtIndex:1];
+    appDelegate.messageBuilderController = [[weakSelf viewControllers] objectAtIndex:4];
+    appDelegate.functionsController = [[weakSelf viewControllers] objectAtIndex:5];
+    appDelegate.messageSenderController = [[weakSelf viewControllers] objectAtIndex:3];
     
     hClient.onStatus = ^(HStatus *status) {
         dispatch_async(dispatch_get_main_queue(), ^() {
@@ -79,7 +79,7 @@
     hClient.onMessage = ^(HMessage *message) {
         dispatch_async(dispatch_get_main_queue(), ^() {
             //update connection view
-            IncomingMessageController * msgController = [[weakSelf viewControllers] objectAtIndex:1];
+            IncomingMessageController * msgController = [[weakSelf viewControllers] objectAtIndex:2];
             msgController.onMessageContent.text = [NSString stringWithFormat:@"%@ \n OnMessage : %@",msgController.onMessageContent.text, [message JSONRepresentation]];
         });
     };

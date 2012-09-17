@@ -103,11 +103,13 @@ static const long defaultTimeout = 10;
 - (void)send:(HMessage *)message withBlock:(void (^)(HMessage *))callback {
     DDLogVerbose(@"trying to send message %@ through hAPI", message);
     if(!message) {
-        [self errorNotification:RES_MISSING_ATTR errorMsg:@"No message" refMsg:@"-1" timeout:0 withBlock:callback];
+        [self errorNotification:RES_MISSING_ATTR errorMsg:@"Nil message" refMsg:@"-1" timeout:0 withBlock:callback];
+        return;
     }
     
     if(!message.actor || message.actor.length <= 0) {
         [self errorNotification:RES_MISSING_ATTR errorMsg:@"Missing actor" refMsg:@"-1" timeout:message.timeout withBlock:callback];
+        return;
     }
     
     message.msgid = [self uuid];
@@ -270,17 +272,16 @@ static const long defaultTimeout = 10;
         msg.publisher = self.transport.options.jid;
     
     if(msgOptions) {
-        if(msgOptions.ref) msg.ref = msgOptions.ref;
-        if(msgOptions.convid) msg.convid = msgOptions.convid;
+        if(msgOptions.ref.length > 0) msg.ref = msgOptions.ref;
+        if(msgOptions.convid.length > 0) msg.convid = msgOptions.convid;
         if(msgOptions.priority >= 0) msg.priority = msgOptions.priority;
-        if(msgOptions.relevance) msg.relevance = msgOptions.relevance;
+        if(msgOptions.relevance != nil) msg.relevance = msgOptions.relevance;
         if(msgOptions.persistent) msg.persistent = msgOptions.persistent;
-        if(msgOptions.location) msg.location = msgOptions.location;
-        if(msgOptions.author) msg.author = msgOptions.author;
-        if(msgOptions.published) msg.published = msgOptions.published;
-        if(msgOptions.headers) msg.headers = msgOptions.headers;
-        if(msgOptions.timeout) msg.timeout = msgOptions.timeout;
-        
+        if(msgOptions.location != nil) msg.location = msgOptions.location;
+        if(msgOptions.author.length > 0) msg.author = msgOptions.author;
+        if(msgOptions.published != nil) msg.published = msgOptions.published;
+        if(msgOptions.headers != nil) msg.headers = msgOptions.headers;
+        msg.timeout = msgOptions.timeout;
     }
     
     return msg;

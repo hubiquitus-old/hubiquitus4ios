@@ -29,10 +29,8 @@
 
 @property (weak, nonatomic) UITextField *activeField;
 @property (weak, nonatomic) IBOutlet UIImageView *connector;
-@property (weak, nonatomic) IBOutlet UITextField *cmd_status;
-@property (weak, nonatomic) IBOutlet UITextField *params_result;
-@property (weak, nonatomic) IBOutlet UITextField *unit;
-@property (weak, nonatomic) IBOutlet UITextField *value;
+@property (weak, nonatomic) IBOutlet UITextField *cmd_status_unit;
+@property (weak, nonatomic) IBOutlet UITextField *params_result_value;
 @property (weak, nonatomic) IBOutlet UITextField *alert_ack;
 @property (weak, nonatomic) IBOutlet UITextField *convstate_convid;
 @property (weak, nonatomic) IBOutlet UITextField *errors;

@@ -21,15 +21,14 @@
 #import "HClient.h"
 #import "SimpleClientViewController.h"
 
-@interface MessageSenderController : UIViewController<UITextFieldDelegate, UIGestureRecognizerDelegate, SimpleClientViewController>
+@interface MessageSenderController : UIViewController<UITextFieldDelegate, UIGestureRecognizerDelegate, SimpleClientViewController, UITextViewDelegate>
 
 @property (strong, nonatomic) HClient * hClient;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
-@property (weak, nonatomic) UITextField *activeField;
+@property (weak, nonatomic) UIControl<UITextInput> *activeField;
 @property (weak, nonatomic) IBOutlet UIImageView *connector;
-@property (weak, nonatomic) IBOutlet UITextField *msgType;
 
 @property (weak, nonatomic) IBOutlet UITextView *messageContent;
 
