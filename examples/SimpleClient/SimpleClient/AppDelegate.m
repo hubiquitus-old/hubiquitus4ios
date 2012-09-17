@@ -25,6 +25,7 @@
 @implementation AppDelegate
 @synthesize window;
 @synthesize hClient;
+@synthesize functionsController, incomingMessageController, messageBuilderController, messageOptionsController, messageSenderController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
