@@ -18,6 +18,7 @@
  */
 
 #import "HStructure.h"
+#import "ISO8601DateFormatter.h"
 
 /**
  * @version 0.5.0
@@ -32,12 +33,20 @@
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
 #endif
 
+@interface HStructure ()
+@property (nonatomic, strong) ISO8601DateFormatter * isoDateFormatter;
+
+@end
+
+
 @implementation HStructure
 @synthesize obj;
+@synthesize isoDateFormatter;
 
 - (id)init {
     self = [super init];
     if (self) {
+        self.isoDateFormatter = [[ISO8601DateFormatter alloc] init];
         obj = [NSMutableDictionary dictionary];
     }
     
@@ -50,10 +59,13 @@
  * @param aClass - value Class expected
  */
 - (id)objectForKey:(id)aKey withClass:(__unsafe_unretained Class)aClass {
-    id object = nil;
-    if (self.nativeObj && [self.nativeObj isKindOfClass:[NSDictionary class]] &&
-        (object = [self.nativeObj objectForKey:@"aKey"]) && [object isKindOfClass:aClass]) {
-        return object;
+    id<HObj> object = nil;
+    if (self.nativeObj && [self.nativeObj isKindOfClass:[NSDictionary class]] && (object = [self.nativeObj objectForKey:aKey])) {
+        if([object.nativeObj isKindOfClass:aClass]) {
+            return object;
+        } else if([aClass isSubclassOfClass:[NSDate class]] && [object.nativeObj isKindOfClass:[NSString class]]) {
+            return [isoDateFormatter dateFromString:object.nativeObj];
+        }
     }
     return nil;
 }
@@ -62,7 +74,10 @@
  * Convenient function to set obj dictionnary key
  */
 - (void)setObject:(id<HObj>)object forKey:(id)aKey {
-    [self.obj setObject:object forKey:aKey];
+    if(object != nil)
+        [self.obj setObject:object.nativeObj forKey:aKey];
+    else
+        [self.obj removeObjectForKey:aKey];
 }
 
 #pragma mark - HObj protocol
@@ -73,7 +88,7 @@
 
 - (void)setNativeObj:(id)aNativeObj {
     if ([aNativeObj isKindOfClass:[NSDictionary class]]) {
-        obj = [NSMutableDictionary dictionaryWithDictionary:obj];
+        obj = [NSMutableDictionary dictionaryWithDictionary:aNativeObj];
     } else {
         obj = [NSMutableDictionary dictionary];
     }

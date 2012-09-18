@@ -18,72 +18,37 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "HTransportLayer.h"
+#import "HStatus.h"
+//#import "HMessage.h"
 #import "HOptions.h"
+#import "HTransportOptions.h"
 #import "HMessage.h"
 
-/**
- * @internal
- * Set of methods to be implemented to receive messages from the server throught the transport layer
- */
 @protocol HTransportDelegate <NSObject>
 
-- (void)notifyIncomingMessage:(NSDictionary*)data context:(NSString*)context;
+@required
+
+- (void)statusNotification:(HStatus*)status;
+- (void)messageNotification:(HMessage*)message;
+- (void)errorNotification:(ResultStatus)resultStatus errorMsg:(NSString *)errorMsg refMsg:(NSString *)ref;
 
 @end
 
-/**
- * @internal
- * Set of methods to be implemented to act as a transport layer
- */
-@protocol HTransport <NSObject>
 
-/**
- * @internal
- * @param options - global options containing options for the transport layer
- * @param delegate - transport delegate that deals with the messages received from the server
- */
-- (id)initWithOptions:(HOptions*)options delegate:(id<HTransportDelegate>)delegate;
+@interface HTransport : NSObject <HTransportLayerDelegate>
 
-/**
- * Asks the transport layer to connect to XMPP, connect to a gateway if needed,
- * sends the client's presence and starts listening for messages
- */
-- (void)connect;
+@property id<HTransportDelegate> delegate;
 
-/**
- * Asks the transport layer to close the XMPP connection and disconnect from the gateway if needed
- */
+@property (nonatomic, readonly) Status status;
+@property (nonatomic) int autoConnectDelay;
+@property (nonatomic, strong) HTransportOptions * options;
+
+- (id)initWith:(id<HTransportDelegate>)delegate;
+
+- (void)connectWithOptions:(HTransportOptions*)options;
 - (void)disconnect;
 
-/**
- * Requests a subscription to a channel to the server
- * The answer of the server is treated by the delegate or block
- * @param channel_identifier - Name of the channel to subscribe
- * @return msgid - a message id that can be used to check if subscribe was successful (id returned through callback result)
- */
-- (NSString*)subscribeToChannel:(NSString*)channel_identifier;
-
-/**
- * Requests to unsubscribe from an node
- * The answer of the server is treated by the delegate or block
- * @param channel_identifier - Name of the channel to unsubscribe from
- * @return msgid - a message id that can be used to check if unsubscribe was successful (id returned through callback result)
- */
-- (NSString*)unsubscribeFromChannel:(NSString*)channel_identifier;
-
-/**
- * Requests to publish entries to a node
- * @param channel_identifier - channel to publish the items
- * @param item - An hubiquitus message
- * @return msgid - a message id that can be used to check if publish was successful (id returned through callback result)
- */
-- (NSString*)publishToChannel:(NSString*)channel_identifier message:(HMessage*)message;
-
-/**
- * Request to get messages stored in the channel history
- * @param channel_identifier - channel were messages are stores
- * @return msgid - a msgid that represents a unique identifier for the message sent
- */
-- (NSString*)getMessagesFromChannel:(NSString*)channel_identifier;
+- (void)send:(HMessage*)message;
 
 @end

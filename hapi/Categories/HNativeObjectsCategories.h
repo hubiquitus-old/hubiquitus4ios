@@ -20,6 +20,7 @@
 #import <Foundation/Foundation.h>
 #import "NSDate+ISO8601.h"
 #import "NSDate+SBJSon.h"
+#import "NSDate+HObj.h"
 #import "NSDictionary+HObj.h"
 #import "NSArray+HObj.h"
 #import "NSString+HObj.h"

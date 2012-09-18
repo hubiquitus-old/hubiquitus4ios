@@ -34,46 +34,11 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.serverPort = 5222;
-        self.hServer = @"hnode";
         self.transport = @"socketio";
+        self.timeout = 30000;
     }
     
     return self;
-}
-
-/**
- * Server host (usually xmpp server)
- */
-- (NSString *)serverHost {
-    return [self objectForKey:@"serverHost" withClass:[NSString class]];
-}
-
-- (void)setServerHost:(NSString *)serverHost {
-    [self setObject:serverHost forKey:@"serverHost"];
-}
-
-/**
- * Server port (usually xmpp server port. By default 5222);
- */
-- (int)serverPort {
-    NSNumber * port = [self objectForKey:@"serverPort" withClass:[NSNumber class]];
-    return [port intValue];
-}
-
-- (void)setServerPort:(int)serverPort {
-    [self setObject:[NSNumber numberWithInt:serverPort] forKey:@"serverPort"];
-}
-
-/**
- * HServer name (by default : hnode)
- */
-- (NSString *)hServer {
-    return [self objectForKey:@"hServer" withClass:[NSString class]];
-}
-
-- (void)setHServer:(NSString *)hServer {
-    [self setObject:hServer forKey:@"hServer"];
 }
 
 /**
@@ -100,4 +65,25 @@
     [self setObject:endpoints forKey:@"endpoints"];
 }
 
+/**
+ * Connection endpoints (ie : http://localhost:8080/)
+ * Only for socketio
+ */
+/**
+ * timeout in ms
+ */
+- (long)timeout {
+    NSNumber * timeout = [self objectForKey:@"timeout" withClass:[NSNumber class]];
+    if(timeout == nil)
+        return 0;
+    
+    return [timeout longValue];
+}
+
+- (void)setTimeout:(long)timeout {
+    if(timeout > 0)
+        [self setObject:[NSNumber numberWithLong:timeout] forKey:@"timeout"];
+    else
+        [self setObject:nil forKey:@"timeout"];
+}
 @end

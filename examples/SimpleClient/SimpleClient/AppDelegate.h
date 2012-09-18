@@ -18,16 +18,22 @@
  */
 
 #import <UIKit/UIKit.h>
-
-#define TEST_CHANNEL @""
-#define TEST_USERNAME @""
-#define TEST_PASSWORD @""
-
-//@class ViewController;
+#import "HClient.h"
+#import "IncomingMessageController.h"
+#import "MessageOptionsController.h"
+#import "MessageBuilderController.h"
+#import "FunctionsController.h"
+#import "MessageSenderController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
+@property (nonatomic, strong) HClient * hClient;
 @property (strong, nonatomic) UIWindow *window;
 
+@property (nonatomic, weak) IncomingMessageController * incomingMessageController;
+@property (nonatomic, weak) MessageOptionsController * messageOptionsController;
+@property (nonatomic, weak) MessageBuilderController * messageBuilderController;
+@property (nonatomic, weak) FunctionsController * functionsController;
+@property (nonatomic, weak) MessageSenderController * messageSenderController;
 
 @end

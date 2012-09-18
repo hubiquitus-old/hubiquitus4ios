@@ -18,33 +18,53 @@
  */
 
 #import "HTransportOptions.h"
+#import "HUtils.h"
 
 /**
  * @cond internal
- * @version 0.4.0
+ * @version 0.5.0
  * Options used by the transport layers
  */
 
+@interface HTransportOptions () {
+    NSString * _jid;
+    NSString * _jidDomain;
+    NSString * _jidUsername;
+    NSString * _jidResource;
+}
+
+@end
+
 @implementation HTransportOptions
-@synthesize username, serverDomain, resource;
-@synthesize serverHost, serverPort;
-@synthesize endpoints;
-@synthesize hServerName, hServerDomain, hServerResource;
+@synthesize password, jid = _jid;
+@synthesize jidDomain = _jidDomain, jidResource = _jidResource, jidUsername = _jidUsername;
 
-- (NSString *)bareJid {
-    
+/**
+ * Randomly choose an endpoint from the endpoints
+ */
+- (NSURL *)endpoint {
+    NSString * randomEndpoint = pickRandomValue(self.endpoints);
+    NSURL * endpoint = [NSURL URLWithString:randomEndpoint];
+    return endpoint;
 }
 
-- (NSString *)fullJid {
+- (id)initWithOptions:(HOptions *)options {
+    self = [super init];
+    if(self) {
+        self.transport = options.transport;
+        self.endpoints = options.endpoints;
+        self.timeout = options.timeout;
+    }
     
+    return self;
 }
 
-- (NSString *)hServerBareJid {
-    
-}
-
-- (NSString *)hServerFullJid {
-    
+- (void)setJid:(NSString *)jid {
+    _jid = jid;
+    NSDictionary * jidComponents =  splitJid(jid);
+    _jidDomain = [jidComponents objectForKey:@"domain"];
+    _jidUsername = [jidComponents objectForKey:@"username"];
+    _jidResource = [jidComponents objectForKey:@"resource"];
 }
 
 @end

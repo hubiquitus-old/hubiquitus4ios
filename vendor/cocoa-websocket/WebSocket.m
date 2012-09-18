@@ -160,7 +160,7 @@ enum {
     num = arc4random() % max;
     prod = spaces * num;
 
-    NSMutableString *key = [NSMutableString stringWithFormat:@"%ld", prod];
+    NSMutableString *key = [NSMutableString stringWithFormat:@"%d", prod];
 
     keylen = [key length];
 

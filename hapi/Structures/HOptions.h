@@ -22,10 +22,8 @@
 
 @interface HOptions : HStructure
 
-@property (strong, nonatomic) NSString * serverHost;
-@property (nonatomic) int serverPort;
-@property (nonatomic, strong) NSString * hServer;
 @property (nonatomic, strong) NSString * transport;
 @property (nonatomic, strong) NSArray * endpoints;
+@property (nonatomic) long timeout; 
 
 @end
