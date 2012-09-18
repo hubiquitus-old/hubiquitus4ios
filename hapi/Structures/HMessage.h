@@ -60,5 +60,6 @@
 @property (nonatomic, strong) HAlert * payloadAsAlert;
 
 @property (nonatomic) long timeout;
+@property (nonatomic, strong) NSDate * sent;
 
 @end

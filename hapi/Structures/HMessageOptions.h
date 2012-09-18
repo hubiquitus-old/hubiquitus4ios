@@ -26,6 +26,7 @@
 @property (nonatomic, strong) NSString * convid;
 @property (nonatomic) Priority priority;
 @property (nonatomic, strong) NSDate * relevance;
+@property (nonatomic) long relevanceOffset;
 @property (nonatomic) BOOL persistent;
 @property (nonatomic, strong) HLocation * location;
 @property (nonatomic, strong) NSString * author;

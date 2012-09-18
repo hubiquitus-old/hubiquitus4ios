@@ -328,9 +328,20 @@
 }
 
 - (void)setTimeout:(long)timeout {
-    if(timeout != 0)
+    if(timeout > 0)
         [self setObject:[NSNumber numberWithLong:timeout] forKey:@"timeout"];
     else
         [self setObject:nil forKey:@"timeout"];
+}
+
+/**
+ * Message sending time
+ */
+- (NSDate*)sent {
+    return [self objectForKey:@"sent" withClass:[NSDate class]];
+}
+
+- (void)setSent:(NSDate*)sent {
+    [self setObject:sent forKey:@"sent"];
 }
 @end

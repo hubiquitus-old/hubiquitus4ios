@@ -35,7 +35,6 @@
 
 static const NSString * hNodeName = @"hnode";
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
-static const long defaultTimeout = 10;
 
 @interface HClient () {
     dispatch_queue_t _notificationsQueue; /** queue used to sequentially notify client of a status or a message */
@@ -83,6 +82,9 @@ static const long defaultTimeout = 10;
  * This will only be called if disconnect. If not, it will return a hStatus with error code ALREADY_CONNECTED
  */
 - (void)connectWithPublisher:(NSString *)publisher password:(NSString *)password options:(HOptions *)options {
+    if (!options)
+        options = [[HOptions alloc] init];
+    
     HTransportOptions * transportOpts = [[HTransportOptions alloc] initWithOptions:options];
     transportOpts.jid = publisher;
     transportOpts.password = password;
@@ -112,16 +114,17 @@ static const long defaultTimeout = 10;
         return;
     }
     
-    message.msgid = [self uuid];
+    message.sent = [NSDate date];
+    message.msgid = @""; //msgid is set only if there is a timeout
     message.publisher = self.transport.options.jid;
     
-    if(callback == nil) {
-        message.timeout = -1;
+    if(callback == nil || message.timeout < 0) {
+        message.timeout = 0;
     }
     
-    if(callback != nil && message.timeout >= 0) {
+    if(callback != nil && message.timeout > 0) {
+        message.msgid = [self uuid];
         [self.callbacks setObject:callback forKey:message.msgid];
-        DDLogVerbose(@"Message timeout is : %ld", message.timeout);
         //add a timeout handler
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (message.timeout * NSEC_PER_MSEC)), _notificationsQueue, ^() {
             
@@ -130,13 +133,18 @@ static const long defaultTimeout = 10;
                 
                 HMessage * timeoutResponse = [self buildResultWithActor:self.transport.options.jid ref:message.msgid status:RES_EXEC_TIMEOUT result:nil options:nil didFailWithError:nil];
                 
-                if(message.timeout > 0)
-                    callback(timeoutResponse);
+                callback(timeoutResponse);
             }
         });
     }
     
-    [self.transport send:message];
+    @try {
+        [self.transport send:message];
+    } @catch(NSException * e) {
+        DDLogError(@"Unhandled Exception happened while trying to send a message : %@", e);
+    }
+    
+   
 }
 
 #pragma mark - standard functions
@@ -146,7 +154,7 @@ static const long defaultTimeout = 10;
     }
     
     HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
-    msgOptions.timeout = defaultTimeout;
+    msgOptions.timeout = self.transport.options.timeout;
     
     HMessage *cmd = [self buildCommandWithActor:self.hnodeJid cmd:@"hgetsubscriptions" params:nil options:msgOptions didFailWithError:nil];
     
@@ -159,7 +167,7 @@ static const long defaultTimeout = 10;
     }
     
     HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
-    msgOptions.timeout = defaultTimeout;
+    msgOptions.timeout = self.transport.options.timeout;
     
     HMessage *cmd = [self buildCommandWithActor:actor cmd:@"hsubscribe" params:nil options:msgOptions didFailWithError:nil];
     
@@ -173,7 +181,7 @@ static const long defaultTimeout = 10;
     }
     
     HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
-    msgOptions.timeout = defaultTimeout;
+    msgOptions.timeout = self.transport.options.timeout;
 
     NSDictionary * params = nil;
     
@@ -192,11 +200,11 @@ static const long defaultTimeout = 10;
     }
     
     if(!convid || convid.length <= 0) {
-        [self errorNotification:RES_MISSING_ATTR errorMsg:@"Missing convid" refMsg:@"-1" timeout:defaultTimeout withBlock:callback];
+        [self errorNotification:RES_MISSING_ATTR errorMsg:@"Missing convid" refMsg:@"-1" timeout:self.transport.options.timeout withBlock:callback];
     }
     
     HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
-    msgOptions.timeout = defaultTimeout;
+    msgOptions.timeout = self.transport.options.timeout;
     
     NSDictionary * params = [NSDictionary dictionaryWithObject:convid forKey:@"convid"];
     
@@ -212,11 +220,11 @@ static const long defaultTimeout = 10;
     }
     
     if(!status || status.length <= 0) {
-        [self errorNotification:RES_MISSING_ATTR errorMsg:@"Missing status" refMsg:@"-1" timeout:defaultTimeout withBlock:callback];
+        [self errorNotification:RES_MISSING_ATTR errorMsg:@"Missing status" refMsg:@"-1" timeout:self.transport.options.timeout withBlock:callback];
     }
     
     HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
-    msgOptions.timeout = defaultTimeout;
+    msgOptions.timeout = self.transport.options.timeout;
     
     NSDictionary * params = [NSDictionary dictionaryWithObject:status forKey:@"status"];
     
@@ -232,7 +240,7 @@ static const long defaultTimeout = 10;
     }
     
     HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
-    msgOptions.timeout = defaultTimeout;
+    msgOptions.timeout = self.transport.options.timeout;
     
     HMessage *cmd = [self buildCommandWithActor:self.hnodeJid cmd:@"hrelevantmessages" params:nil options:msgOptions didFailWithError:nil];
     
@@ -246,7 +254,7 @@ static const long defaultTimeout = 10;
     }
     
     HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
-    msgOptions.timeout = defaultTimeout;
+    msgOptions.timeout = self.transport.options.timeout;
     
     HMessage *cmd = [self buildCommandWithActor:self.hnodeJid cmd:@"hunsubscribe" params:nil options:msgOptions didFailWithError:nil];
     
@@ -281,7 +289,12 @@ static const long defaultTimeout = 10;
         if(msgOptions.author.length > 0) msg.author = msgOptions.author;
         if(msgOptions.published != nil) msg.published = msgOptions.published;
         if(msgOptions.headers != nil) msg.headers = msgOptions.headers;
-        msg.timeout = msgOptions.timeout;
+        if(msgOptions.timeout > 0) msg.timeout = msgOptions.timeout;
+        
+        if(msgOptions.relevanceOffset >= 0) {
+            NSDate * relevance = [NSDate dateWithTimeIntervalSinceNow:(msgOptions.relevanceOffset/1000)];
+            msg.relevance = relevance;
+        }
     }
     
     return msg;

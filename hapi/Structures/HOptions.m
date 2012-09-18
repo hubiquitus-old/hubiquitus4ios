@@ -35,6 +35,7 @@
     self = [super init];
     if (self) {
         self.transport = @"socketio";
+        self.timeout = 30000;
     }
     
     return self;
@@ -64,4 +65,25 @@
     [self setObject:endpoints forKey:@"endpoints"];
 }
 
+/**
+ * Connection endpoints (ie : http://localhost:8080/)
+ * Only for socketio
+ */
+/**
+ * timeout in ms
+ */
+- (long)timeout {
+    NSNumber * timeout = [self objectForKey:@"timeout" withClass:[NSNumber class]];
+    if(timeout == nil)
+        return 0;
+    
+    return [timeout longValue];
+}
+
+- (void)setTimeout:(long)timeout {
+    if(timeout > 0)
+        [self setObject:[NSNumber numberWithLong:timeout] forKey:@"timeout"];
+    else
+        [self setObject:nil forKey:@"timeout"];
+}
 @end

@@ -27,7 +27,7 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
-@property (weak, nonatomic) UIControl<UITextInput> *activeField;
+@property (weak, nonatomic) UIView<UITextInput> *activeField;
 @property (weak, nonatomic) IBOutlet UIImageView *connector;
 
 @property (weak, nonatomic) IBOutlet UITextView *messageContent;

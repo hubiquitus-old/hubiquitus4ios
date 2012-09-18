@@ -24,5 +24,6 @@
 
 @property (nonatomic, strong) NSString * transport;
 @property (nonatomic, strong) NSArray * endpoints;
+@property (nonatomic) long timeout; 
 
 @end

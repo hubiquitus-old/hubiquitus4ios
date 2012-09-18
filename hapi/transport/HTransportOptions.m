@@ -53,6 +53,7 @@
     if(self) {
         self.transport = options.transport;
         self.endpoints = options.endpoints;
+        self.timeout = options.timeout;
     }
     
     return self;

@@ -149,6 +149,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     msgOpts.priority = [appDelegate.messageOptionsController.priority.text intValue];
     msgOpts.author = appDelegate.messageOptionsController.author.text;
     msgOpts.timeout = [appDelegate.messageOptionsController.timeout.text intValue];
+    msgOpts.persistent = appDelegate.messageOptionsController.persistent.on;
     
     NSDictionary * params = [self.params_result_value.text JSONValue];
     HMessage * msg = [hClient buildCommandWithActor:appDelegate.messageOptionsController.actor.text cmd:self.cmd_status_unit.text params:params options:msgOpts didFailWithError:&error];
@@ -169,6 +170,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     msgOpts.priority = [appDelegate.messageOptionsController.priority.text intValue];
     msgOpts.author = appDelegate.messageOptionsController.author.text;
     msgOpts.timeout = [appDelegate.messageOptionsController.timeout.text intValue];
+    msgOpts.persistent = appDelegate.messageOptionsController.persistent.on;
     
     
     NSDictionary * result = [self.params_result_value.text JSONValue];
@@ -189,6 +191,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     msgOpts.priority = [appDelegate.messageOptionsController.priority.text intValue];
     msgOpts.author = appDelegate.messageOptionsController.author.text;
     msgOpts.timeout = [appDelegate.messageOptionsController.timeout.text intValue];
+    msgOpts.persistent = appDelegate.messageOptionsController.persistent.on;
     
     HMessage * msg = [hClient buildMeasureWithActor:appDelegate.messageOptionsController.actor.text value:self.params_result_value.text unit:self.cmd_status_unit.text options:msgOpts didFailWithError:&error];
     
@@ -207,6 +210,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     msgOpts.priority = [appDelegate.messageOptionsController.priority.text intValue];
     msgOpts.author = appDelegate.messageOptionsController.author.text;
     msgOpts.timeout = [appDelegate.messageOptionsController.timeout.text intValue];
+    msgOpts.persistent = appDelegate.messageOptionsController.persistent.on;
     
     HMessage * msg = [hClient buildAckWithActor:appDelegate.messageOptionsController.actor.text ref:appDelegate.messageOptionsController.ref.text ack:self.alert_ack.text options:msgOpts didFailWithError:&error] ;
     
@@ -225,6 +229,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     msgOpts.priority = [appDelegate.messageOptionsController.priority.text intValue];
     msgOpts.author = appDelegate.messageOptionsController.author.text;
     msgOpts.timeout = [appDelegate.messageOptionsController.timeout.text intValue];
+    msgOpts.persistent = appDelegate.messageOptionsController.persistent.on;
     
     HMessage * msg = [hClient buildAlertWithActor:appDelegate.messageOptionsController.actor.text alert:self.alert_ack.text options:msgOpts didFailWithError:&error];
     
@@ -243,6 +248,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     msgOpts.priority = [appDelegate.messageOptionsController.priority.text intValue];
     msgOpts.author = appDelegate.messageOptionsController.author.text;
     msgOpts.timeout = [appDelegate.messageOptionsController.timeout.text intValue];
+    msgOpts.persistent = appDelegate.messageOptionsController.persistent.on;
     
     HMessage * msg = [hClient buildConvStateWithActor:appDelegate.messageOptionsController.actor.text convid:self.convstate_convid.text status:self.cmd_status_unit.text option:msgOpts didFailWithError:&error];
     

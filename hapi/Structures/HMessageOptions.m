@@ -31,5 +31,16 @@
 @implementation HMessageOptions
 @synthesize author, convid, headers, location;
 @synthesize persistent, priority, published, ref, relevance, timeout;
+@synthesize relevanceOffset;
+
+- (id)init {
+    self = [super init];
+    if(self) {
+        relevanceOffset = -1;
+        timeout = -1;
+    }
+    
+    return self;
+}
 
 @end
