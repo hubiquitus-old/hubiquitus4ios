@@ -22,8 +22,7 @@
 #import "AppDelegate.h"
 #import "DDLog.h"
 #import "HOptions.h"
-
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+#import "HLogLevel.h"
 
 @interface ConnectionController ()
 

@@ -26,6 +26,7 @@
 #import "DDFileLogger.h"
 #import "HUtils.h"
 #import "HSocketioTransport.h"
+#import "HLogLevel.h"
 
 #if ! __has_feature(objc_arc)
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
@@ -36,8 +37,6 @@
  * @version 0.5.0
  * Transport. Call the chosen transport layer and manage autoreconnect
  */
-
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 @interface HTransport () {
 @private
@@ -94,6 +93,12 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         }
         
         [self notifyStatus:self.status withErrorCode:errorCode errorMsg:@"Already connected or trying to connect"];
+        return;
+    }
+    
+    //Check if we have a transport
+    if (someOptions.transport.length <= 0) {
+        [self notifyStatus:self.status withErrorCode:TECH_ERROR errorMsg:@"No valid endpoint. Endpoint should follow pattern : http://domain:port"];
         return;
     }
     
@@ -175,15 +180,27 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  */
 - (void)tryToConnectDisconnect {
     DDLogVerbose(@"Auto connect system in progress : autoConnect %d, connection status : %d, transportLayer status %d", self.autoConnect, self.status, self.transportLayer.status);
-    if(!self.autoConnect && transportLayer.status == CONNECTED) {
-        [self.transportLayer disconnect]; //well make sure we disconnect
-    } else if(self.autoConnect && transportLayer.status == DISCONNECTED) {
-        [self.transportLayer connectWithOptions:self.options];
-    } else if(!autoConnect && transportLayer.status == DISCONNECTED) {
-        [self stopTimer];
-    } else if(autoConnect && transportLayer.status == CONNECTED) {
-        [self stopTimer];
+    @try {
+        if(!self.autoConnect && transportLayer.status == CONNECTED) {
+            [self.transportLayer disconnect]; //well make sure we disconnect
+        } else if(self.autoConnect && transportLayer.status == DISCONNECTED) {
+            [self.transportLayer connectWithOptions:self.options];
+        } else if(!autoConnect && transportLayer.status == DISCONNECTED) {
+            [self stopTimer];
+        } else if(autoConnect && transportLayer.status == CONNECTED) {
+            [self stopTimer];
+        }
+    } @catch (NSException * err) {
+        DDLogError(@"Fatal error while trying to connect : %@. Aborting", err);
+        self.autoConnect = NO;
+        if (self.transportLayer.status == CONNECTED || self.transportLayer.status == CONNECTING || self.transportLayer.status == DISCONNECTING) {
+            [self.transportLayer disconnect];
+            
+            [self notifyStatus:DISCONNECTED withErrorCode:TECH_ERROR errorMsg:[NSString stringWithFormat:@"Fatal error occured while trying to connect : %@", err]];
+        }
     }
+    
+    
 }
 
 #pragma mark - autoConnect
