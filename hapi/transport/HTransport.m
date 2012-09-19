@@ -96,6 +96,12 @@
         return;
     }
     
+    //Check if we have a transport
+    if (someOptions.transport.length <= 0) {
+        [self notifyStatus:self.status withErrorCode:TECH_ERROR errorMsg:@"No valid endpoint. Endpoint should follow pattern : http://domain:port"];
+        return;
+    }
+    
     //check if it's a jid
     if(!isJid(someOptions.jid)) {
         [self notifyStatus:self.status withErrorCode:JID_MALFORMAT errorMsg:@"Publisher malformated. Should follow pattern user@domain/resource"];
@@ -174,15 +180,27 @@
  */
 - (void)tryToConnectDisconnect {
     DDLogVerbose(@"Auto connect system in progress : autoConnect %d, connection status : %d, transportLayer status %d", self.autoConnect, self.status, self.transportLayer.status);
-    if(!self.autoConnect && transportLayer.status == CONNECTED) {
-        [self.transportLayer disconnect]; //well make sure we disconnect
-    } else if(self.autoConnect && transportLayer.status == DISCONNECTED) {
-        [self.transportLayer connectWithOptions:self.options];
-    } else if(!autoConnect && transportLayer.status == DISCONNECTED) {
-        [self stopTimer];
-    } else if(autoConnect && transportLayer.status == CONNECTED) {
-        [self stopTimer];
+    @try {
+        if(!self.autoConnect && transportLayer.status == CONNECTED) {
+            [self.transportLayer disconnect]; //well make sure we disconnect
+        } else if(self.autoConnect && transportLayer.status == DISCONNECTED) {
+            [self.transportLayer connectWithOptions:self.options];
+        } else if(!autoConnect && transportLayer.status == DISCONNECTED) {
+            [self stopTimer];
+        } else if(autoConnect && transportLayer.status == CONNECTED) {
+            [self stopTimer];
+        }
+    } @catch (NSException * err) {
+        DDLogError(@"Fatal error while trying to connect : %@. Aborting", err);
+        self.autoConnect = NO;
+        if (self.transportLayer.status == CONNECTED || self.transportLayer.status == CONNECTING || self.transportLayer.status == DISCONNECTING) {
+            [self.transportLayer disconnect];
+            
+            [self notifyStatus:DISCONNECTED withErrorCode:TECH_ERROR errorMsg:[NSString stringWithFormat:@"Fatal error occured while trying to connect : %@", err]];
+        }
     }
+    
+    
 }
 
 #pragma mark - autoConnect
