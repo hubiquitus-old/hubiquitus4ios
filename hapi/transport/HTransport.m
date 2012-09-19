@@ -26,6 +26,7 @@
 #import "DDFileLogger.h"
 #import "HUtils.h"
 #import "HSocketioTransport.h"
+#import "HLogLevel.h"
 
 #if ! __has_feature(objc_arc)
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
@@ -36,8 +37,6 @@
  * @version 0.5.0
  * Transport. Call the chosen transport layer and manage autoreconnect
  */
-
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 @interface HTransport () {
 @private

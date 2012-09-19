@@ -28,13 +28,13 @@
 #import "HResult.h"
 #import "ErrorCode.h"
 #import "HNativeObjectsCategories.h"
+#import "HLogLevel.h"
 
 #if ! __has_feature(objc_arc)
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
 #endif
 
 static const NSString * hNodeName = @"hnode";
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 @interface HClient () {
     dispatch_queue_t _notificationsQueue; /** queue used to sequentially notify client of a status or a message */

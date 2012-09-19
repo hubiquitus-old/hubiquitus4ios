@@ -107,6 +107,7 @@
 		11ADA518160247C200CF4A10 /* HCommand.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HCommand.m; sourceTree = "<group>"; };
 		11ADA519160247C200CF4A10 /* HResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HResult.h; sourceTree = "<group>"; };
 		11ADA51A160247C200CF4A10 /* HResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HResult.m; sourceTree = "<group>"; };
+		11BF3EEC160A25BB002C062C /* HLogLevel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLogLevel.h; sourceTree = "<group>"; };
 		C5138BFB160280BF00829B44 /* HMessageOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMessageOptions.h; sourceTree = "<group>"; };
 		C5138BFC160280BF00829B44 /* HMessageOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMessageOptions.m; sourceTree = "<group>"; };
 		C5138C0116029DE000829B44 /* IncomingMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncomingMessageController.m; sourceTree = "<group>"; };
@@ -352,6 +353,7 @@
 		C57490DB16013B0400B80BC4 /* hapi */ = {
 			isa = PBXGroup;
 			children = (
+				11BF3EEC160A25BB002C062C /* HLogLevel.h */,
 				C57490DC16013B0400B80BC4 /* Categories */,
 				C57490EE16013B0400B80BC4 /* HClient.h */,
 				C57490EF16013B0400B80BC4 /* HClient.m */,

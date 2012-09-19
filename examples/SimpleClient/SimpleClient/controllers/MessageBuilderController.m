@@ -25,8 +25,7 @@
 #import "SBJson.h"
 #import "HNativeObjectsCategories.h"
 #import "HClient.h"
-
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+#import "HLogLevel.h"
 
 @interface MessageBuilderController ()
 

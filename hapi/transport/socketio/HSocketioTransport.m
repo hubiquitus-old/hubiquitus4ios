@@ -21,6 +21,7 @@
 #import "DDLog.h"
 #import "Status.h"
 #import "ErrorCode.h"
+#import "HLogLevel.h"
 
 #if ! __has_feature(objc_arc)
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
@@ -31,8 +32,6 @@
  * @version 0.5.0
  * Socket.io transport layer
  */
-
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 @interface HSocketioTransport() {
     Status _status;

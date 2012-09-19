@@ -24,8 +24,7 @@
 #import "HOptions.h"
 #import "SBJson.h"
 #import "HNativeObjectsCategories.h"
-
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+#import "HLogLevel.h"
 
 @interface FunctionsController () {
     void(^_cb)(HMessage* response);
