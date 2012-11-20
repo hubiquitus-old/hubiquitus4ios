@@ -27,7 +27,6 @@
 #import "SocketIO.h"
 
 #import "WebSocket.h"
-#import "SBJson.h"
 
 #define DEBUG_LOGS 0
 #define HANDSHAKE_URL @"http://%@:%d/socket.io/1/?t=%d%@"
@@ -161,7 +160,8 @@
 - (void) sendJSON:(NSDictionary *)data withAcknowledge:(SocketIOCallback)function
 {
     SocketIOPacket *packet = [[SocketIOPacket alloc] initWithType:@"json"];
-    packet.data = [data JSONRepresentation];
+    NSError * error = nil;
+    packet.data =  [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:data options:kNilOptions error:&error] encoding:NSUTF8StringEncoding];
     packet.pId = [self addAcknowledge:function];
     [self send:packet];
 }
@@ -176,9 +176,10 @@
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObject:eventName forKey:@"name"];
     if (data != nil) // do not require arguments
         [dict setObject:data forKey:@"args"];
+    NSError * error = nil;
     
     SocketIOPacket *packet = [[SocketIOPacket alloc] initWithType:@"event"];
-    packet.data = [dict JSONRepresentation];
+    packet.data = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:&error] encoding:NSUTF8StringEncoding];
     packet.pId = [self addAcknowledge:function];
     if (function) 
     {
@@ -188,8 +189,9 @@
 }
 
 - (void)sendAcknowledgement:(NSString *)pId withArgs:(NSArray *)data {
+    NSError * error = nil;
     SocketIOPacket *packet = [[SocketIOPacket alloc] initWithType:@"ack"];
-    packet.data = [data JSONRepresentation];
+    packet.data = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:data options:kNilOptions error:&error] encoding:NSUTF8StringEncoding];
     packet.pId = pId;
     packet.ack = @"data";
 
@@ -430,7 +432,8 @@
                     id argsData = nil;
                     if (argsStr && ![argsStr isEqualToString:@""])
                     {
-                        argsData = [argsStr JSONValue];
+                        NSError * error = nil;
+                        argsData = [NSJSONSerialization JSONObjectWithData:[argsStr dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
                         if ([argsData count] > 0)
                         {
                             argsData = [argsData objectAtIndex:0];
@@ -780,7 +783,8 @@
 
 - (id) dataAsJSON
 {
-    return [self.data JSONValue];
+    NSError * error = nil;
+    return [NSJSONSerialization JSONObjectWithData:[self.data dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
 }
 
 - (NSNumber *) typeAsNumber

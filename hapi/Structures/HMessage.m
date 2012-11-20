@@ -1,24 +1,29 @@
 /*
  * Copyright (c) Novedia Group 2012.
  *
- *     This file is part of Hubiquitus.
+ *    This file is part of Hubiquitus
  *
- *     Hubiquitus is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU General Public License as published by
- *     the Free Software Foundation, either version 3 of the License, or
- *     (at your option) any later version.
+ *    Permission is hereby granted, free of charge, to any person obtaining a copy
+ *    of this software and associated documentation files (the "Software"), to deal
+ *    in the Software without restriction, including without limitation the rights
+ *    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+ *    of the Software, and to permit persons to whom the Software is furnished to do so,
+ *    subject to the following conditions:
  *
- *     Hubiquitus is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *     GNU General Public License for more details.
+ *    The above copyright notice and this permission notice shall be included in all copies
+ *    or substantial portions of the Software.
  *
- *     You should have received a copy of the GNU General Public License
- *     along with Hubiquitus.  If not, see <http://www.gnu.org/licenses/>.
+ *    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+ *    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+ *    PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+ *    FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ *    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ *    You should have received a copy of the MIT License along with Hubiquitus.
+ *    If not, see <http://opensource.org/licenses/mit-license.php>.
  */
 
 #import "HMessage.h"
-#import "HNativeObjectsCategories.h"
 
 /**
  * @version 0.5.0
@@ -100,7 +105,8 @@
 }
 
 - (void)setPriority:(Priority)priority {
-    if(priority >= 0)
+    int priorityAsInt = priority;
+    if(priorityAsInt >= 0)
         [self setObject:[NSNumber numberWithInt:priority] forKey:@"priority"];
     else
         [self setObject:nil forKey:@"priority"];
@@ -186,11 +192,11 @@
 
 /** payload */
  
-- (id<HObj>)payload {
+- (id)payload {
     return [self objectForKey:@"payload" withClass:[NSObject class]];
 }
 
-- (void)setPayload:(id<HObj>)payload {
+- (void)setPayload:(id)payload {
     [self setObject:payload forKey:@"payload"];
 }
 
@@ -230,8 +236,7 @@
     HCommand *cmd = nil;
     NSDictionary * cmdAsDictionary = [self objectForKey:@"payload" withClass:[NSDictionary class]];
     if (cmdAsDictionary != nil) {
-        cmd = [[HCommand alloc] init];
-        cmd.nativeObj = cmdAsDictionary;
+        cmd = [[HCommand alloc] initWithDictionary:cmdAsDictionary];
     }
     
     return cmd;
@@ -245,8 +250,7 @@
     HResult *result = nil;
     NSDictionary * resultAsDictionary = [self objectForKey:@"payload" withClass:[NSDictionary class]];
     if (resultAsDictionary != nil) {
-        result = [[HResult alloc] init];
-        result.nativeObj = resultAsDictionary;
+        result = [[HResult alloc] initWithDictionary:resultAsDictionary];
     }
     
     return result;
@@ -260,8 +264,7 @@
     HAck *ack = nil;
     NSDictionary * ackAsDictionary = [self objectForKey:@"payload" withClass:[NSDictionary class]];
     if (ackAsDictionary != nil) {
-        ack = [[HAck alloc] init];
-        ack.nativeObj = ackAsDictionary;
+        ack = [[HAck alloc] initWithDictionary:ackAsDictionary];
     }
     
     return ack;
@@ -275,8 +278,7 @@
     HAlert *alert = nil;
     NSDictionary * alertAsDictionary = [self objectForKey:@"payload" withClass:[NSDictionary class]];
     if (alertAsDictionary != nil) {
-        alert = [[HAlert alloc] init];
-        alert.nativeObj = alertAsDictionary;
+        alert = [[HAlert alloc] initWithDictionary:alertAsDictionary];
     }
     
     return alert;
@@ -290,8 +292,7 @@
     HConvState *convState = nil;
     NSDictionary * convStateAsDictionary = [self objectForKey:@"payload" withClass:[NSDictionary class]];
     if (convStateAsDictionary != nil) {
-        convState = [[HConvState alloc] init];
-        convState.nativeObj = convStateAsDictionary;
+        convState = [[HConvState alloc] initWithDictionary:convStateAsDictionary];
     }
     
     return convState;
@@ -305,8 +306,7 @@
     HMeasure *measure = nil;
     NSDictionary * measureAsDictionary = [self objectForKey:@"payload" withClass:[NSDictionary class]];
     if (measureAsDictionary != nil) {
-        measure = [[HMeasure alloc] init];
-        measure.nativeObj = measureAsDictionary;
+        measure = [[HMeasure alloc] initWithDictionary:measureAsDictionary];
     }
     
     return measure;

@@ -1,20 +1,26 @@
 /*
  * Copyright (c) Novedia Group 2012.
  *
- *     This file is part of Hubiquitus.
+ *    This file is part of Hubiquitus
  *
- *     Hubiquitus is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU General Public License as published by
- *     the Free Software Foundation, either version 3 of the License, or
- *     (at your option) any later version.
+ *    Permission is hereby granted, free of charge, to any person obtaining a copy
+ *    of this software and associated documentation files (the "Software"), to deal
+ *    in the Software without restriction, including without limitation the rights
+ *    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+ *    of the Software, and to permit persons to whom the Software is furnished to do so,
+ *    subject to the following conditions:
  *
- *     Hubiquitus is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *     GNU General Public License for more details.
+ *    The above copyright notice and this permission notice shall be included in all copies
+ *    or substantial portions of the Software.
  *
- *     You should have received a copy of the GNU General Public License
- *     along with Hubiquitus.  If not, see <http://www.gnu.org/licenses/>.
+ *    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+ *    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+ *    PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+ *    FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ *    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ *    You should have received a copy of the MIT License along with Hubiquitus.
+ *    If not, see <http://opensource.org/licenses/mit-license.php>.
  */
 
 #import "MessageBuilderController.h"
@@ -22,8 +28,6 @@
 #import "AppDelegate.h"
 #import "DDLog.h"
 #import "HOptions.h"
-#import "SBJson.h"
-#import "HNativeObjectsCategories.h"
 #import "HClient.h"
 #import "HLogLevel.h"
 
@@ -140,7 +144,6 @@
 
 - (IBAction)buildCmd:(id)sender {
     AppDelegate *appDelegate = (AppDelegate *)[ [UIApplication sharedApplication] delegate];
-    NSError * error;
     
     HMessageOptions * msgOpts = [[HMessageOptions alloc] init];
     msgOpts.convid = appDelegate.messageOptionsController.convid.text;
@@ -150,18 +153,17 @@
     msgOpts.timeout = [appDelegate.messageOptionsController.timeout.text intValue];
     msgOpts.persistent = appDelegate.messageOptionsController.persistent.on;
     
-    NSDictionary * params = [self.params_result_value.text JSONValue];
+    NSError * error = nil;
+    NSDictionary * params = [NSJSONSerialization JSONObjectWithData:[self.params_result_value.text dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
     HMessage * msg = [hClient buildCommandWithActor:appDelegate.messageOptionsController.actor.text cmd:self.cmd_status_unit.text params:params options:msgOpts didFailWithError:&error];
     
     self.errors.text = [error description];
     
-    appDelegate.messageSenderController.messageContent.text = [msg JSONRepresentation];
+    appDelegate.messageSenderController.messageContent.text = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:msg options:kNilOptions error:&error] encoding:NSUTF8StringEncoding] ;
 }
 
 - (IBAction)buildResult:(id)sender {
     AppDelegate *appDelegate = (AppDelegate *)[ [UIApplication sharedApplication] delegate];
-    NSError * error;
-    
     
     HMessageOptions * msgOpts = [[HMessageOptions alloc] init];
     msgOpts.convid = appDelegate.messageOptionsController.convid.text;
@@ -171,13 +173,13 @@
     msgOpts.timeout = [appDelegate.messageOptionsController.timeout.text intValue];
     msgOpts.persistent = appDelegate.messageOptionsController.persistent.on;
     
-    
-    NSDictionary * result = [self.params_result_value.text JSONValue];
+    NSError * error = nil;
+    NSDictionary * result = [NSJSONSerialization JSONObjectWithData:[self.params_result_value.text dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
     HMessage * msg = [hClient buildResultWithActor:appDelegate.messageOptionsController.actor.text ref:appDelegate.messageOptionsController.ref.text status:[self.cmd_status_unit.text intValue] result:result options:msgOpts didFailWithError:&error];
     
     self.errors.text = [error description];
     
-    appDelegate.messageSenderController.messageContent.text = [msg JSONRepresentation];
+    appDelegate.messageSenderController.messageContent.text = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:msg options:kNilOptions error:&error] encoding:NSUTF8StringEncoding];
 }
 
 - (IBAction)buildMeasure:(id)sender {
@@ -196,7 +198,7 @@
     
     self.errors.text = [error description];
     
-    appDelegate.messageSenderController.messageContent.text = [msg JSONRepresentation];
+    appDelegate.messageSenderController.messageContent.text = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:msg options:kNilOptions error:&error] encoding:NSUTF8StringEncoding];
 }
 
 - (IBAction)buildAck:(id)sender {
@@ -215,7 +217,7 @@
     
     self.errors.text = [error description];
     
-    appDelegate.messageSenderController.messageContent.text = [msg JSONRepresentation];
+    appDelegate.messageSenderController.messageContent.text = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:msg options:kNilOptions error:&error] encoding:NSUTF8StringEncoding];
 }
 
 - (IBAction)buildAlert:(id)sender {
@@ -234,7 +236,7 @@
     
     self.errors.text = [error description];
     
-    appDelegate.messageSenderController.messageContent.text = [msg JSONRepresentation];
+    appDelegate.messageSenderController.messageContent.text = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:msg options:kNilOptions error:&error] encoding:NSUTF8StringEncoding];
 }
 
 - (IBAction)buildConvstate:(id)sender {
@@ -253,7 +255,7 @@
     
     self.errors.text = [error description];
     
-    appDelegate.messageSenderController.messageContent.text = [msg JSONRepresentation];
+    appDelegate.messageSenderController.messageContent.text = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:msg options:kNilOptions error:&error] encoding:NSUTF8StringEncoding];
 }
 
 
