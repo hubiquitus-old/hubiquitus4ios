@@ -22,7 +22,6 @@
 #import "AppDelegate.h"
 #import "DDLog.h"
 #import "HOptions.h"
-#import "SBJson.h"
 #import "HLogLevel.h"
 
 @interface IncomingMessageController ()

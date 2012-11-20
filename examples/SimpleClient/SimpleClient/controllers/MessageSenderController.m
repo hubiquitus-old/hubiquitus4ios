@@ -22,7 +22,6 @@
 #import "AppDelegate.h"
 #import "DDLog.h"
 #import "HOptions.h"
-#import "SBJson.h"
 #import "HLogLevel.h"
 
 @interface MessageSenderController ()
@@ -126,12 +125,15 @@
 - (IBAction)send:(id)sender {
     AppDelegate *appDelegate = (AppDelegate *)[ [UIApplication sharedApplication] delegate];
     
-    HMessage * msg = [[HMessage alloc] initWithDictionary:[self.messageContent.text JSONValue]];
+    NSError * error = nil;
+    
+    HMessage * msg =  [[HMessage alloc] initWithDictionary:[NSJSONSerialization JSONObjectWithData:[self.messageContent.text dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error]];
     
     [hClient send:msg withBlock:^(HMessage* response) {
         DDLogVerbose(@"Response message : %@", response);
         dispatch_async(dispatch_get_main_queue(), ^() {
-            appDelegate.incomingMessageController.onMessageContent.text = [NSString stringWithFormat:@"%@ \n Callback : %@",appDelegate.incomingMessageController.onMessageContent.text, [response JSONRepresentation]];
+            NSError * error = nil;
+            appDelegate.incomingMessageController.onMessageContent.text = [NSString stringWithFormat:@"%@ \n Callback : %@",appDelegate.incomingMessageController.onMessageContent.text, [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:response options:kNilOptions error:&error] encoding:NSUTF8StringEncoding]];
         });
     }];
 }

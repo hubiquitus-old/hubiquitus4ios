@@ -22,7 +22,6 @@
 #import "AppDelegate.h"
 #import "DDLog.h"
 #import "HOptions.h"
-#import "SBJson.h"
 #import "HLogLevel.h"
 
 @interface FunctionsController () {
@@ -59,7 +58,8 @@
     _cb = ^(HMessage* response) {
         DDLogVerbose(@"Response message : %@", response);
         dispatch_async(dispatch_get_main_queue(), ^() {
-            appDelegate.incomingMessageController.onMessageContent.text = [NSString stringWithFormat:@"%@ \n Callback : %@",appDelegate.incomingMessageController.onMessageContent.text, [response JSONRepresentation]];
+            NSError * error = nil;
+            appDelegate.incomingMessageController.onMessageContent.text = [NSString stringWithFormat:@"%@ \n Callback : %@",appDelegate.incomingMessageController.onMessageContent.text, [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:response options:kNilOptions error:&error] encoding:NSUTF8StringEncoding]];
         });
     };
     

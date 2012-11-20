@@ -22,7 +22,6 @@
 #import "AppDelegate.h"
 #import "DDLog.h"
 #import "HOptions.h"
-#import "SBJson.h"
 #import "HClient.h"
 #import "HLogLevel.h"
 
@@ -139,7 +138,6 @@
 
 - (IBAction)buildCmd:(id)sender {
     AppDelegate *appDelegate = (AppDelegate *)[ [UIApplication sharedApplication] delegate];
-    NSError * error;
     
     HMessageOptions * msgOpts = [[HMessageOptions alloc] init];
     msgOpts.convid = appDelegate.messageOptionsController.convid.text;
@@ -149,18 +147,17 @@
     msgOpts.timeout = [appDelegate.messageOptionsController.timeout.text intValue];
     msgOpts.persistent = appDelegate.messageOptionsController.persistent.on;
     
-    NSDictionary * params = [self.params_result_value.text JSONValue];
+    NSError * error = nil;
+    NSDictionary * params = [NSJSONSerialization JSONObjectWithData:[self.params_result_value.text dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
     HMessage * msg = [hClient buildCommandWithActor:appDelegate.messageOptionsController.actor.text cmd:self.cmd_status_unit.text params:params options:msgOpts didFailWithError:&error];
     
     self.errors.text = [error description];
     
-    appDelegate.messageSenderController.messageContent.text = [msg JSONRepresentation];
+    appDelegate.messageSenderController.messageContent.text = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:msg options:kNilOptions error:&error] encoding:NSUTF8StringEncoding] ;
 }
 
 - (IBAction)buildResult:(id)sender {
     AppDelegate *appDelegate = (AppDelegate *)[ [UIApplication sharedApplication] delegate];
-    NSError * error;
-    
     
     HMessageOptions * msgOpts = [[HMessageOptions alloc] init];
     msgOpts.convid = appDelegate.messageOptionsController.convid.text;
@@ -170,13 +167,13 @@
     msgOpts.timeout = [appDelegate.messageOptionsController.timeout.text intValue];
     msgOpts.persistent = appDelegate.messageOptionsController.persistent.on;
     
-    
-    NSDictionary * result = [self.params_result_value.text JSONValue];
+    NSError * error = nil;
+    NSDictionary * result = [NSJSONSerialization JSONObjectWithData:[self.params_result_value.text dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
     HMessage * msg = [hClient buildResultWithActor:appDelegate.messageOptionsController.actor.text ref:appDelegate.messageOptionsController.ref.text status:[self.cmd_status_unit.text intValue] result:result options:msgOpts didFailWithError:&error];
     
     self.errors.text = [error description];
     
-    appDelegate.messageSenderController.messageContent.text = [msg JSONRepresentation];
+    appDelegate.messageSenderController.messageContent.text = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:msg options:kNilOptions error:&error] encoding:NSUTF8StringEncoding];
 }
 
 - (IBAction)buildMeasure:(id)sender {
@@ -195,7 +192,7 @@
     
     self.errors.text = [error description];
     
-    appDelegate.messageSenderController.messageContent.text = [msg JSONRepresentation];
+    appDelegate.messageSenderController.messageContent.text = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:msg options:kNilOptions error:&error] encoding:NSUTF8StringEncoding];
 }
 
 - (IBAction)buildAck:(id)sender {
@@ -214,7 +211,7 @@
     
     self.errors.text = [error description];
     
-    appDelegate.messageSenderController.messageContent.text = [msg JSONRepresentation];
+    appDelegate.messageSenderController.messageContent.text = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:msg options:kNilOptions error:&error] encoding:NSUTF8StringEncoding];
 }
 
 - (IBAction)buildAlert:(id)sender {
@@ -233,7 +230,7 @@
     
     self.errors.text = [error description];
     
-    appDelegate.messageSenderController.messageContent.text = [msg JSONRepresentation];
+    appDelegate.messageSenderController.messageContent.text = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:msg options:kNilOptions error:&error] encoding:NSUTF8StringEncoding];
 }
 
 - (IBAction)buildConvstate:(id)sender {
@@ -252,7 +249,7 @@
     
     self.errors.text = [error description];
     
-    appDelegate.messageSenderController.messageContent.text = [msg JSONRepresentation];
+    appDelegate.messageSenderController.messageContent.text = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:msg options:kNilOptions error:&error] encoding:NSUTF8StringEncoding];
 }
 
 

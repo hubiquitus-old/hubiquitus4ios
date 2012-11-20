@@ -19,7 +19,6 @@
 
 #import <Foundation/Foundation.h>
 #import "NSDate+ISO8601.h"
-#import "SBJson.h"
 #import "ISO8601DateFormatter.h"
 
 #if ! __has_feature(objc_arc)

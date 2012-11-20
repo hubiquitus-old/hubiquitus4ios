@@ -22,7 +22,6 @@
 #import "SimpleClientViewController.h"
 #import "ConnectionController.h"
 #import "IncomingMessageController.h"
-#import "SBJson.h"
 #import "IncomingMessageController.h"
 #import "MessageOptionsController.h"
 #import "MessageBuilderController.h"
@@ -80,7 +79,8 @@
         dispatch_async(dispatch_get_main_queue(), ^() {
             //update connection view
             IncomingMessageController * msgController = [[weakSelf viewControllers] objectAtIndex:2];
-            msgController.onMessageContent.text = [NSString stringWithFormat:@"%@ \n OnMessage : %@",msgController.onMessageContent.text, [message JSONRepresentation]];
+            NSError * error = nil;
+            msgController.onMessageContent.text = [NSString stringWithFormat:@"%@ \n OnMessage : %@",msgController.onMessageContent.text, [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:message options:kNilOptions error:&error] encoding:NSUTF8StringEncoding]];
         });
     };
 
