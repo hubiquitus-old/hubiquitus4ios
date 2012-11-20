@@ -26,6 +26,7 @@
 		C5145F6516067E1A00D77C41 /* MessageSenderController.m in Resources */ = {isa = PBXBuildFile; fileRef = C5145F6416067E1900D77C41 /* MessageSenderController.m */; };
 		C5145F661606836D00D77C41 /* MessageBuilderController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5145F6016067DF600D77C41 /* MessageBuilderController.m */; };
 		C5145F671606837200D77C41 /* MessageSenderController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5145F6416067E1900D77C41 /* MessageSenderController.m */; };
+		C5150EF0165C404C007698B2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5150EEF165C404B007698B2 /* Default-568h@2x.png */; };
 		C574909E16013A0700B80BC4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C574909D16013A0700B80BC4 /* UIKit.framework */; };
 		C57490A016013A0700B80BC4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C574909F16013A0700B80BC4 /* Foundation.framework */; };
 		C57490A216013A0700B80BC4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C57490A116013A0700B80BC4 /* CoreGraphics.framework */; };
@@ -102,6 +103,7 @@
 		C5145F6016067DF600D77C41 /* MessageBuilderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageBuilderController.m; sourceTree = "<group>"; };
 		C5145F6216067E0900D77C41 /* FunctionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FunctionsController.m; sourceTree = "<group>"; };
 		C5145F6416067E1900D77C41 /* MessageSenderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageSenderController.m; sourceTree = "<group>"; };
+		C5150EEF165C404B007698B2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		C574909916013A0700B80BC4 /* SimpleClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C574909D16013A0700B80BC4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C574909F16013A0700B80BC4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -194,6 +196,7 @@
 		C574908E16013A0700B80BC4 = {
 			isa = PBXGroup;
 			children = (
+				C5150EEF165C404B007698B2 /* Default-568h@2x.png */,
 				C57490A316013A0700B80BC4 /* SimpleClient */,
 				C574909C16013A0700B80BC4 /* Frameworks */,
 				C574909A16013A0700B80BC4 /* Products */,
@@ -510,6 +513,7 @@
 				C5145F5C16067DB500D77C41 /* MessageBuilderController.h in Resources */,
 				C5145F6116067DF600D77C41 /* MessageBuilderController.m in Resources */,
 				C5145F6516067E1A00D77C41 /* MessageSenderController.m in Resources */,
+				C5150EF0165C404C007698B2 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

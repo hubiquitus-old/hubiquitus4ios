@@ -193,7 +193,7 @@ static const NSString * hNodeName = @"hnode";
     if(quantity != nil)
         params = [NSDictionary dictionaryWithObject:quantity forKey:@"nbLastMsg"];
     
-    HMessage *cmd = [self buildCommandWithActor:self.hnodeJid cmd:@"hgetlastmessages" params:params options:msgOptions didFailWithError:nil];
+    HMessage *cmd = [self buildCommandWithActor:actor cmd:@"hgetlastmessages" params:params options:msgOptions didFailWithError:nil];
     
     [self send:cmd withBlock:callback];
 }
@@ -213,7 +213,7 @@ static const NSString * hNodeName = @"hnode";
     
     NSDictionary * params = [NSDictionary dictionaryWithObject:convid forKey:@"convid"];
     
-    HMessage *cmd = [self buildCommandWithActor:self.hnodeJid cmd:@"hgetthread" params:params options:msgOptions didFailWithError:nil];
+    HMessage *cmd = [self buildCommandWithActor:actor cmd:@"hgetthread" params:params options:msgOptions didFailWithError:nil];
     
     [self send:cmd withBlock:callback];
 }
@@ -233,7 +233,7 @@ static const NSString * hNodeName = @"hnode";
     
     NSDictionary * params = [NSDictionary dictionaryWithObject:status forKey:@"status"];
     
-    HMessage *cmd = [self buildCommandWithActor:self.hnodeJid cmd:@"hgetthreads" params:params options:msgOptions didFailWithError:nil];
+    HMessage *cmd = [self buildCommandWithActor:actor cmd:@"hgetthreads" params:params options:msgOptions didFailWithError:nil];
     
     [self send:cmd withBlock:callback];
 }
@@ -247,12 +247,12 @@ static const NSString * hNodeName = @"hnode";
     HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
     msgOptions.timeout = self.transport.options.timeout;
     
-    HMessage *cmd = [self buildCommandWithActor:self.hnodeJid cmd:@"hrelevantmessages" params:nil options:msgOptions didFailWithError:nil];
+    HMessage *cmd = [self buildCommandWithActor:actor cmd:@"hrelevantmessages" params:nil options:msgOptions didFailWithError:nil];
     
     [self send:cmd withBlock:callback];
 }
 
-- (void)unscribeFromActor:(NSString *)actor withBlock:(void (^)(HMessage *))callback {
+- (void)unsubscribeFromActor:(NSString *)actor withBlock:(void (^)(HMessage *))callback {
     
     if (callback == nil) {
         return;
@@ -261,7 +261,34 @@ static const NSString * hNodeName = @"hnode";
     HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
     msgOptions.timeout = self.transport.options.timeout;
     
-    HMessage *cmd = [self buildCommandWithActor:self.hnodeJid cmd:@"hunsubscribe" params:nil options:msgOptions didFailWithError:nil];
+    HMessage *cmd = [self buildCommandWithActor:actor cmd:@"hunsubscribe" params:nil options:msgOptions didFailWithError:nil];
+    
+    [self send:cmd withBlock:callback];
+}
+
+- (void)setFilter:(NSDictionary *)filter withBlock:(void (^)(HMessage *))callback {
+    if (callback == nil) {
+        return;
+    }
+    
+    HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
+    msgOptions.timeout = self.transport.options.timeout;
+    
+    HMessage *cmd = [self buildCommandWithActor:self.hnodeJid cmd:@"hsetfilter" params:filter options:msgOptions didFailWithError:nil];
+    
+    [self send:cmd withBlock:callback];
+}
+
+- (void)setFilterWithString:(NSString *)filter withBlock:(void (^)(HMessage *))callback {
+    if (callback == nil) {
+        return;
+    }
+    
+    HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
+    msgOptions.timeout = self.transport.options.timeout;
+    NSDictionary * filterAsDictionnary = [NSJSONSerialization JSONObjectWithData:[filter dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:nil];
+    
+    HMessage *cmd = [self buildCommandWithActor:self.hnodeJid cmd:@"hsetfilter" params:filterAsDictionnary options:msgOptions didFailWithError:nil];
     
     [self send:cmd withBlock:callback];
 }
@@ -285,9 +312,11 @@ static const NSString * hNodeName = @"hnode";
         msg.publisher = self.transport.options.jid;
     
     if(msgOptions) {
+        int priorityAsInt = msgOptions.priority;
+        
         if(msgOptions.ref.length > 0) msg.ref = msgOptions.ref;
         if(msgOptions.convid.length > 0) msg.convid = msgOptions.convid;
-        if(msgOptions.priority >= 0) msg.priority = msgOptions.priority;
+        if(priorityAsInt >= 0) msg.priority = msgOptions.priority;
         if(msgOptions.relevance != nil) msg.relevance = msgOptions.relevance;
         if(msgOptions.persistent) msg.persistent = msgOptions.persistent;
         if(msgOptions.location != nil) msg.location = msgOptions.location;
@@ -324,7 +353,9 @@ static const NSString * hNodeName = @"hnode";
 
 - (HMessage *)buildResultWithActor:(NSString *)actor ref:(NSString *)ref status:(ResultStatus)status result:(id)result options:(HMessageOptions *)msgOptions didFailWithError:(NSError **)error {
     
-    if(status < 0) {
+    int statusAsInt = status;
+    
+    if(statusAsInt < 0) {
         if(error)
             *error = [NSError errorWithDomain:@"hBuilders" code:RES_MISSING_ATTR userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Missing status", NSLocalizedDescriptionKey, nil]];
         return nil;

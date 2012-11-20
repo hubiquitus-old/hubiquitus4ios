@@ -104,7 +104,7 @@
 }
 
 - (IBAction)unsubscribe:(id)sender {
-    [hClient unscribeFromActor:self.actor.text withBlock:_cb];
+    [hClient unsubscribeFromActor:self.actor.text withBlock:_cb];
 }
 
 - (IBAction)getLastMessages:(id)sender {

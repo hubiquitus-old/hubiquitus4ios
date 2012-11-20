@@ -105,7 +105,8 @@
 }
 
 - (void)setPriority:(Priority)priority {
-    if(priority >= 0)
+    int priorityAsInt = priority;
+    if(priorityAsInt >= 0)
         [self setObject:[NSNumber numberWithInt:priority] forKey:@"priority"];
     else
         [self setObject:nil forKey:@"priority"];

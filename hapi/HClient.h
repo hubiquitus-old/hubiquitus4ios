@@ -45,7 +45,7 @@
 
 - (void)subscribeToActor:(NSString*)actor withBlock:(void(^)(HMessage*))callback;
 
-- (void)unscribeFromActor:(NSString*)actor withBlock:(void(^)(HMessage*))callback;
+- (void)unsubscribeFromActor:(NSString*)actor withBlock:(void(^)(HMessage*))callback;
 
 - (void)getLastMessagesFromActor:(NSString*)actor quantity:(NSNumber*)quantity withBlock:(void(^)(HMessage*))callback;
 
@@ -55,6 +55,9 @@
 
 - (void)getRelevantMessagesFromActor:(NSString*)actor withBlock:(void(^)(HMessage*))callback;
 
+- (void)setFilter:(NSDictionary*)filter withBlock:(void(^)(HMessage*))callback;
+
+- (void)setFilterWithString:(NSString *)filter withBlock:(void (^)(HMessage *))callback;
 
 
 - (HMessage*)buildMessageWithActor:(NSString*)actor type:(NSString*)type payload:(id)payload options:(HMessageOptions*)msgOptions didFailWithError:(NSError**)error;
