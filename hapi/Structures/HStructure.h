@@ -18,15 +18,10 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "HObj.h"
+#import "NSDate+ISO8601.h"
 
-@interface HStructure : NSObject<HObj>
-@property (nonatomic, strong) NSMutableDictionary * obj;
+@interface HStructure : NSMutableDictionary
 
 - (id)objectForKey:(id)aKey withClass:(__unsafe_unretained Class)aClass;
-- (void)setObject:(id<HObj>)object forKey:(id)aKey;
-
-- (NSString *)description;
-- (BOOL)isEqual:(id)object;
 
 @end

@@ -18,7 +18,6 @@
  */
 
 #import "HResult.h"
-#import "HNativeObjectsCategories.h"
 
 /**
  * @version 0.5.0
@@ -46,11 +45,11 @@
 /**
  * Result of the commande
  */
-- (id<HObj>)result {
+- (id)result {
     return [self objectForKey:@"result" withClass:[NSObject class]];
 }
 
-- (void)setResult:(id<HObj>)result {
+- (void)setResult:(id)result {
     [self setObject:result forKey:@"result"];
 }
 

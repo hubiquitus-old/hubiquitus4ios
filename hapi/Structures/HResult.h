@@ -24,7 +24,7 @@
 @interface HResult : HStructure
 
 @property (nonatomic) ResultStatus status;
-@property (nonatomic, strong) id<HObj> result;
+@property (nonatomic, strong) id result;
 @property (nonatomic, strong) NSDictionary * resultAsDictionary;
 @property (nonatomic, strong) NSArray * resultAsArray;
 @property (nonatomic, strong) NSNumber * resultAsNumber;

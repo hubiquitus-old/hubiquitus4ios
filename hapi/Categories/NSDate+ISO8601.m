@@ -45,7 +45,7 @@
 /**
  * NSDate from a ISO8601 date
  */
--(NSDate *) dateFromISO8601:(NSString *) str {
++(NSDate *) dateFromISO8601:(NSString *) str {
     ISO8601DateFormatter * iso8601 = [[ISO8601DateFormatter alloc] init];
     iso8601.includeTime = YES;
     return [iso8601 dateFromString:str];

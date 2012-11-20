@@ -27,7 +27,6 @@
 #import "HAlert.h"
 #import "HResult.h"
 #import "ErrorCode.h"
-#import "HNativeObjectsCategories.h"
 #import "HLogLevel.h"
 
 #if ! __has_feature(objc_arc)
@@ -262,7 +261,7 @@ static const NSString * hNodeName = @"hnode";
 }
 
 #pragma mark - builders
-- (HMessage *)buildMessageWithActor:(NSString *)actor type:(NSString *)type payload:(id<HObj>)payload options:(HMessageOptions *)msgOptions didFailWithError:(NSError **)error {
+- (HMessage *)buildMessageWithActor:(NSString *)actor type:(NSString *)type payload:(id)payload options:(HMessageOptions *)msgOptions didFailWithError:(NSError **)error {
     HMessage * msg = nil;
     
     if(actor == nil || [actor length] <= 0) {
@@ -317,7 +316,7 @@ static const NSString * hNodeName = @"hnode";
     return msg;
 }
 
-- (HMessage *)buildResultWithActor:(NSString *)actor ref:(NSString *)ref status:(ResultStatus)status result:(id<HObj>)result options:(HMessageOptions *)msgOptions didFailWithError:(NSError **)error {
+- (HMessage *)buildResultWithActor:(NSString *)actor ref:(NSString *)ref status:(ResultStatus)status result:(id)result options:(HMessageOptions *)msgOptions didFailWithError:(NSError **)error {
     
     if(status < 0) {
         if(error)

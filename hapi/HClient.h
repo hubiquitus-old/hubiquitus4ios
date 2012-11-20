@@ -24,7 +24,6 @@
 #import "HTransport.h"
 #import "HMessage.h"
 #import "HMessageOptions.h"
-#import "HNativeObjectsCategories.h"
 
 @interface HClient : NSObject <HTransportDelegate>
 @property (nonatomic, readonly) Status status;
@@ -52,11 +51,11 @@
 
 
 
-- (HMessage*)buildMessageWithActor:(NSString*)actor type:(NSString*)type payload:(id<HObj>)payload options:(HMessageOptions*)msgOptions didFailWithError:(NSError**)error;
+- (HMessage*)buildMessageWithActor:(NSString*)actor type:(NSString*)type payload:(id)payload options:(HMessageOptions*)msgOptions didFailWithError:(NSError**)error;
 
 - (HMessage*)buildCommandWithActor:(NSString*)actor cmd:(NSString*)cmd params:(NSDictionary*)params options:(HMessageOptions*)msgOptions didFailWithError:(NSError**)error;
 
-- (HMessage*)buildResultWithActor:(NSString*)actor ref:(NSString*)ref status:(ResultStatus)status result:(id<HObj>)result options:(HMessageOptions *)msgOptions didFailWithError:(NSError**)error;
+- (HMessage*)buildResultWithActor:(NSString*)actor ref:(NSString*)ref status:(ResultStatus)status result:(id)result options:(HMessageOptions *)msgOptions didFailWithError:(NSError**)error;
 
 - (HMessage*)buildConvStateWithActor:(NSString*)actor convid:(NSString*)convid status:(NSString*)status option:(HMessageOptions*)msgOptions didFailWithError:(NSError**)error;
 

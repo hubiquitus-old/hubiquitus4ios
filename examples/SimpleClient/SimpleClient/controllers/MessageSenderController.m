@@ -23,7 +23,6 @@
 #import "DDLog.h"
 #import "HOptions.h"
 #import "SBJson.h"
-#import "HNativeObjectsCategories.h"
 #import "HLogLevel.h"
 
 @interface MessageSenderController ()
@@ -127,8 +126,7 @@
 - (IBAction)send:(id)sender {
     AppDelegate *appDelegate = (AppDelegate *)[ [UIApplication sharedApplication] delegate];
     
-    HMessage * msg = [[HMessage alloc] init];
-    msg.nativeObj = [self.messageContent.text JSONValue];
+    HMessage * msg = [[HMessage alloc] initWithDictionary:[self.messageContent.text JSONValue]];
     
     [hClient send:msg withBlock:^(HMessage* response) {
         DDLogVerbose(@"Response message : %@", response);

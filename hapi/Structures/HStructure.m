@@ -18,15 +18,12 @@
  */
 
 #import "HStructure.h"
-#import "ISO8601DateFormatter.h"
 
 /**
  * @version 0.5.0
- * Base class for hAPI native structures
+ * Base class for hAPI structures
  * Implements helper functions
- * All hAPI native structures are implemented as getters and setter on a dictionary (obj)
- * Equal is based on dictionary content comparison
- * Description is based on dictionary description
+ * All hAPI structures inherits NSMutableDictionary
  */
 
 #if ! __has_feature(objc_arc)
@@ -34,20 +31,16 @@
 #endif
 
 @interface HStructure ()
-@property (nonatomic, strong) ISO8601DateFormatter * isoDateFormatter;
-
+@property (nonatomic, strong) NSMutableDictionary * container;
 @end
 
 
 @implementation HStructure
-@synthesize obj;
-@synthesize isoDateFormatter;
 
 - (id)init {
     self = [super init];
-    if (self) {
-        self.isoDateFormatter = [[ISO8601DateFormatter alloc] init];
-        obj = [NSMutableDictionary dictionary];
+    if(self) {
+        self.container = [[NSMutableDictionary alloc] init];
     }
     
     return self;
@@ -59,39 +52,61 @@
  * @param aClass - value Class expected
  */
 - (id)objectForKey:(id)aKey withClass:(__unsafe_unretained Class)aClass {
-    id<HObj> object = nil;
-    if (self.nativeObj && [self.nativeObj isKindOfClass:[NSDictionary class]] && (object = [self.nativeObj objectForKey:aKey])) {
-        if([object.nativeObj isKindOfClass:aClass]) {
+    id object = nil;
+    if ((object = [self.container objectForKey:aKey])) {
+        if([object isKindOfClass:aClass]) {
             return object;
-        } else if([aClass isSubclassOfClass:[NSDate class]] && [object.nativeObj isKindOfClass:[NSString class]]) {
-            return [isoDateFormatter dateFromString:object.nativeObj];
+        } else if([aClass isSubclassOfClass:[NSDate class]] && [object isKindOfClass:[NSString class]]) {
+            return  [NSDate dateFromISO8601:object];
         }
     }
     return nil;
 }
 
-/**
- * Convenient function to set obj dictionnary key
- */
-- (void)setObject:(id<HObj>)object forKey:(id)aKey {
+#pragma mark - overrides
+
+- (void)setObject:(id)object forKey:(id)aKey {
     if(object != nil)
-        [self.obj setObject:object.nativeObj forKey:aKey];
-    else
-        [self.obj removeObjectForKey:aKey];
+        if([object isKindOfClass:[NSDate class]])
+            [self.container setObject:[object toISO8601] forKey:aKey];
+        else
+            [self.container setObject:object forKey:aKey];
+        else
+            [self.container removeObjectForKey:aKey];
 }
 
-#pragma mark - HObj protocol
-
-- (id)nativeObj {
-    return obj;
+- (void)removeObjectForKey:(id)aKey {
+    [self.container removeObjectForKey:aKey];
 }
 
-- (void)setNativeObj:(id)aNativeObj {
-    if ([aNativeObj isKindOfClass:[NSDictionary class]]) {
-        obj = [NSMutableDictionary dictionaryWithDictionary:aNativeObj];
-    } else {
-        obj = [NSMutableDictionary dictionary];
+- (id)initWithObjects:(NSArray *)objects forKeys:(NSArray *)keys {
+    self = [super init];
+    if(self) {
+        self.container = [[NSMutableDictionary alloc] initWithObjects:objects forKeys:keys];
     }
+    
+    return self;
+}
+
+- (id)initWithDictionary:(NSDictionary *)otherDictionary {
+    self = [super init];
+    if(self) {
+        self.container = [[NSMutableDictionary alloc] initWithDictionary:otherDictionary];
+    }
+    
+    return self;
+}
+
+- (NSUInteger)count {
+    return [self.container count];
+}
+
+- (id)objectForKey:(id)aKey {
+    return [self.container objectForKey:aKey];
+}
+
+- (NSEnumerator *)keyEnumerator {
+    return [self.container keyEnumerator];
 }
 
 #pragma mark - NSObject protocol
@@ -100,20 +115,14 @@
  * description of dictionary content
  */
 - (NSString *)description {
-    return [self.nativeObj description];
+    return [self.container description];
 }
 
 /**
  * compairs class and dictionary contents
  */
 - (BOOL)isEqual:(id)object {
-    if ([object isKindOfClass:[HStructure class]]) {
-        NSDictionary * dict = object;
-        if ([dict isEqualToDictionary:self.nativeObj]) {
-            return true;
-        }
-    }
-    return false;
+    return [self.container isEqual:object];
 }
 
 @end

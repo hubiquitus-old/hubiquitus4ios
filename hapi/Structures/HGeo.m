@@ -18,7 +18,6 @@
  */
 
 #import "hGeo.h"
-#import "HNativeObjectsCategories.h"
 
 /**
  * @version 0.5.0

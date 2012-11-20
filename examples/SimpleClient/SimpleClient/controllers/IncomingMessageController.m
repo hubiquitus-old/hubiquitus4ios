@@ -23,7 +23,6 @@
 #import "DDLog.h"
 #import "HOptions.h"
 #import "SBJson.h"
-#import "HNativeObjectsCategories.h"
 #import "HLogLevel.h"
 
 @interface IncomingMessageController ()

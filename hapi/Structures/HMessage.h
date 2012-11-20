@@ -23,7 +23,6 @@
 #import "ErrorCode.h"
 #import "Priority.h"
 #import "HLocation.h"
-#import "HObj.h"
 #import "HCommand.h"
 #import "HResult.h"
 #import "HAck.h"
@@ -47,7 +46,7 @@
 @property (nonatomic, strong) NSDate * published;
 @property (nonatomic, strong) NSDictionary * headers;
 
-@property (nonatomic, strong) id<HObj> payload;
+@property (nonatomic, strong) id payload;
 @property (nonatomic, strong) NSDictionary * payloadAsDictionnary;
 @property (nonatomic, strong) NSArray * payloadAsArray;
 @property (nonatomic, strong) NSNumber * payloadAsNumber;

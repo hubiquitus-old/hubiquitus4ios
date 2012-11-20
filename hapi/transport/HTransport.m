@@ -158,7 +158,7 @@
 - (void)send:(HMessage *)message {
     DDLogVerbose(@"sending message : %@", message);
     if(self.status == CONNECTED) {
-        [self.transportLayer send:message.nativeObj];
+        [self.transportLayer send:message];
     } else {
         if([self.delegate respondsToSelector:@selector(errorNotification:errorMsg:refMsg:)]) {
             [self errorNotification:NOT_CONNECTED errorMsg:[NSString stringWithFormat:@"cannot send message while status is : %d",self.status] refMsg:message.ref];
@@ -299,8 +299,7 @@
 - (void)messageNotification:(NSDictionary *)message {
     DDLogVerbose(@"Message received : %@", message);
     if([self.delegate respondsToSelector:@selector(messageNotification:)]) {
-        HMessage * hMsg = [[HMessage alloc] init];
-        hMsg.nativeObj = message;
+        HMessage * hMsg = [[HMessage alloc] initWithDictionary:message];
         [self.delegate messageNotification:hMsg];
     }
 }

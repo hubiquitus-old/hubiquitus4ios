@@ -22,7 +22,7 @@
 @interface NSDate (ISO8601)
 
 - (NSString *) toISO8601;
-- (NSDate *) dateFromISO8601:(NSString *) str;
++ (NSDate *) dateFromISO8601:(NSString *) str;
 
 @end
 

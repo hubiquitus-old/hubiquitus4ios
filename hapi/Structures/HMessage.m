@@ -18,7 +18,6 @@
  */
 
 #import "HMessage.h"
-#import "HNativeObjectsCategories.h"
 
 /**
  * @version 0.5.0
@@ -186,11 +185,11 @@
 
 /** payload */
  
-- (id<HObj>)payload {
+- (id)payload {
     return [self objectForKey:@"payload" withClass:[NSObject class]];
 }
 
-- (void)setPayload:(id<HObj>)payload {
+- (void)setPayload:(id)payload {
     [self setObject:payload forKey:@"payload"];
 }
 
@@ -230,8 +229,7 @@
     HCommand *cmd = nil;
     NSDictionary * cmdAsDictionary = [self objectForKey:@"payload" withClass:[NSDictionary class]];
     if (cmdAsDictionary != nil) {
-        cmd = [[HCommand alloc] init];
-        cmd.nativeObj = cmdAsDictionary;
+        cmd = [[HCommand alloc] initWithDictionary:cmdAsDictionary];
     }
     
     return cmd;
@@ -245,8 +243,7 @@
     HResult *result = nil;
     NSDictionary * resultAsDictionary = [self objectForKey:@"payload" withClass:[NSDictionary class]];
     if (resultAsDictionary != nil) {
-        result = [[HResult alloc] init];
-        result.nativeObj = resultAsDictionary;
+        result = [[HResult alloc] initWithDictionary:resultAsDictionary];
     }
     
     return result;
@@ -260,8 +257,7 @@
     HAck *ack = nil;
     NSDictionary * ackAsDictionary = [self objectForKey:@"payload" withClass:[NSDictionary class]];
     if (ackAsDictionary != nil) {
-        ack = [[HAck alloc] init];
-        ack.nativeObj = ackAsDictionary;
+        ack = [[HAck alloc] initWithDictionary:ackAsDictionary];
     }
     
     return ack;
@@ -275,8 +271,7 @@
     HAlert *alert = nil;
     NSDictionary * alertAsDictionary = [self objectForKey:@"payload" withClass:[NSDictionary class]];
     if (alertAsDictionary != nil) {
-        alert = [[HAlert alloc] init];
-        alert.nativeObj = alertAsDictionary;
+        alert = [[HAlert alloc] initWithDictionary:alertAsDictionary];
     }
     
     return alert;
@@ -290,8 +285,7 @@
     HConvState *convState = nil;
     NSDictionary * convStateAsDictionary = [self objectForKey:@"payload" withClass:[NSDictionary class]];
     if (convStateAsDictionary != nil) {
-        convState = [[HConvState alloc] init];
-        convState.nativeObj = convStateAsDictionary;
+        convState = [[HConvState alloc] initWithDictionary:convStateAsDictionary];
     }
     
     return convState;
@@ -305,8 +299,7 @@
     HMeasure *measure = nil;
     NSDictionary * measureAsDictionary = [self objectForKey:@"payload" withClass:[NSDictionary class]];
     if (measureAsDictionary != nil) {
-        measure = [[HMeasure alloc] init];
-        measure.nativeObj = measureAsDictionary;
+        measure = [[HMeasure alloc] initWithDictionary:measureAsDictionary];
     }
     
     return measure;

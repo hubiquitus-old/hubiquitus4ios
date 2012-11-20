@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		115C0E8416034364007F09B3 /* NSObject+SBJSon.m in Sources */ = {isa = PBXBuildFile; fileRef = 115C0E831603431F007F09B3 /* NSObject+SBJSon.m */; };
 		11ADA514160242EC00CF4A10 /* HGeo.m in Sources */ = {isa = PBXBuildFile; fileRef = 11782E8616023BF000783E5A /* HGeo.m */; };
 		11ADA515160242ED00CF4A10 /* HLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 11782E8816023BF100783E5A /* HLocation.m */; };
 		11ADA516160242EF00CF4A10 /* HMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 11782E8A16023BF200783E5A /* HMessage.m */; };
@@ -39,14 +38,7 @@
 		C57490D516013AC000B80BC4 /* hub_connecting.png in Resources */ = {isa = PBXBuildFile; fileRef = C57490D016013AC000B80BC4 /* hub_connecting.png */; };
 		C57490D616013AC000B80BC4 /* hub_disconnected.png in Resources */ = {isa = PBXBuildFile; fileRef = C57490D116013AC000B80BC4 /* hub_disconnected.png */; };
 		C57490DA16013AD600B80BC4 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C57490D816013AD600B80BC4 /* MainStoryboard.storyboard */; };
-		C574910A16013B0400B80BC4 /* NSArray+HObj.m in Sources */ = {isa = PBXBuildFile; fileRef = C57490DF16013B0400B80BC4 /* NSArray+HObj.m */; };
-		C574910B16013B0400B80BC4 /* NSDate+HObj.m in Sources */ = {isa = PBXBuildFile; fileRef = C57490E116013B0400B80BC4 /* NSDate+HObj.m */; };
 		C574910C16013B0400B80BC4 /* NSDate+ISO8601.m in Sources */ = {isa = PBXBuildFile; fileRef = C57490E316013B0400B80BC4 /* NSDate+ISO8601.m */; };
-		C574910D16013B0400B80BC4 /* NSDate+SBJSon.m in Sources */ = {isa = PBXBuildFile; fileRef = C57490E516013B0400B80BC4 /* NSDate+SBJSon.m */; };
-		C574910E16013B0400B80BC4 /* NSDictionary+HObj.m in Sources */ = {isa = PBXBuildFile; fileRef = C57490E716013B0400B80BC4 /* NSDictionary+HObj.m */; };
-		C574910F16013B0400B80BC4 /* NSNull+HObj.m in Sources */ = {isa = PBXBuildFile; fileRef = C57490E916013B0400B80BC4 /* NSNull+HObj.m */; };
-		C574911016013B0400B80BC4 /* NSNumber+HObj.m in Sources */ = {isa = PBXBuildFile; fileRef = C57490EB16013B0400B80BC4 /* NSNumber+HObj.m */; };
-		C574911116013B0400B80BC4 /* NSString+HObj.m in Sources */ = {isa = PBXBuildFile; fileRef = C57490ED16013B0400B80BC4 /* NSString+HObj.m */; };
 		C574911216013B0400B80BC4 /* HClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C57490EF16013B0400B80BC4 /* HClient.m */; };
 		C574911316013B0400B80BC4 /* HOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = C57490F416013B0400B80BC4 /* HOptions.m */; };
 		C574911416013B0400B80BC4 /* HStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = C57490F616013B0400B80BC4 /* HStatus.m */; };
@@ -93,8 +85,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		115C0E821603431F007F09B3 /* NSObject+SBJSon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSon.h"; sourceTree = "<group>"; };
-		115C0E831603431F007F09B3 /* NSObject+SBJSon.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSon.m"; sourceTree = "<group>"; };
 		11782E8316021BB200783E5A /* SimpleClientViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleClientViewController.h; sourceTree = "<group>"; };
 		11782E8516023BF000783E5A /* HGeo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGeo.h; sourceTree = "<group>"; };
 		11782E8616023BF000783E5A /* HGeo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HGeo.m; sourceTree = "<group>"; };
@@ -146,27 +136,11 @@
 		C57490D016013AC000B80BC4 /* hub_connecting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hub_connecting.png; sourceTree = "<group>"; };
 		C57490D116013AC000B80BC4 /* hub_disconnected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hub_disconnected.png; sourceTree = "<group>"; };
 		C57490D916013AD600B80BC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		C57490DD16013B0400B80BC4 /* HNativeObjectsCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNativeObjectsCategories.h; sourceTree = "<group>"; };
-		C57490DE16013B0400B80BC4 /* NSArray+HObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+HObj.h"; sourceTree = "<group>"; };
-		C57490DF16013B0400B80BC4 /* NSArray+HObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+HObj.m"; sourceTree = "<group>"; };
-		C57490E016013B0400B80BC4 /* NSDate+HObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+HObj.h"; sourceTree = "<group>"; };
-		C57490E116013B0400B80BC4 /* NSDate+HObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+HObj.m"; sourceTree = "<group>"; };
 		C57490E216013B0400B80BC4 /* NSDate+ISO8601.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+ISO8601.h"; sourceTree = "<group>"; };
 		C57490E316013B0400B80BC4 /* NSDate+ISO8601.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+ISO8601.m"; sourceTree = "<group>"; };
-		C57490E416013B0400B80BC4 /* NSDate+SBJSon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+SBJSon.h"; sourceTree = "<group>"; };
-		C57490E516013B0400B80BC4 /* NSDate+SBJSon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+SBJSon.m"; sourceTree = "<group>"; };
-		C57490E616013B0400B80BC4 /* NSDictionary+HObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+HObj.h"; sourceTree = "<group>"; };
-		C57490E716013B0400B80BC4 /* NSDictionary+HObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+HObj.m"; sourceTree = "<group>"; };
-		C57490E816013B0400B80BC4 /* NSNull+HObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+HObj.h"; sourceTree = "<group>"; };
-		C57490E916013B0400B80BC4 /* NSNull+HObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+HObj.m"; sourceTree = "<group>"; };
-		C57490EA16013B0400B80BC4 /* NSNumber+HObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+HObj.h"; sourceTree = "<group>"; };
-		C57490EB16013B0400B80BC4 /* NSNumber+HObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+HObj.m"; sourceTree = "<group>"; };
-		C57490EC16013B0400B80BC4 /* NSString+HObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HObj.h"; sourceTree = "<group>"; };
-		C57490ED16013B0400B80BC4 /* NSString+HObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HObj.m"; sourceTree = "<group>"; };
 		C57490EE16013B0400B80BC4 /* HClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HClient.h; sourceTree = "<group>"; };
 		C57490EF16013B0400B80BC4 /* HClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HClient.m; sourceTree = "<group>"; };
 		C57490F116013B0400B80BC4 /* ErrorCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorCode.h; sourceTree = "<group>"; };
-		C57490F216013B0400B80BC4 /* HObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HObj.h; sourceTree = "<group>"; };
 		C57490F316013B0400B80BC4 /* HOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HOptions.h; sourceTree = "<group>"; };
 		C57490F416013B0400B80BC4 /* HOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HOptions.m; sourceTree = "<group>"; };
 		C57490F516013B0400B80BC4 /* HStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HStatus.h; sourceTree = "<group>"; };
@@ -368,25 +342,8 @@
 		C57490DC16013B0400B80BC4 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				115C0E821603431F007F09B3 /* NSObject+SBJSon.h */,
-				115C0E831603431F007F09B3 /* NSObject+SBJSon.m */,
-				C57490DD16013B0400B80BC4 /* HNativeObjectsCategories.h */,
-				C57490DE16013B0400B80BC4 /* NSArray+HObj.h */,
-				C57490DF16013B0400B80BC4 /* NSArray+HObj.m */,
-				C57490E016013B0400B80BC4 /* NSDate+HObj.h */,
-				C57490E116013B0400B80BC4 /* NSDate+HObj.m */,
 				C57490E216013B0400B80BC4 /* NSDate+ISO8601.h */,
 				C57490E316013B0400B80BC4 /* NSDate+ISO8601.m */,
-				C57490E416013B0400B80BC4 /* NSDate+SBJSon.h */,
-				C57490E516013B0400B80BC4 /* NSDate+SBJSon.m */,
-				C57490E616013B0400B80BC4 /* NSDictionary+HObj.h */,
-				C57490E716013B0400B80BC4 /* NSDictionary+HObj.m */,
-				C57490E816013B0400B80BC4 /* NSNull+HObj.h */,
-				C57490E916013B0400B80BC4 /* NSNull+HObj.m */,
-				C57490EA16013B0400B80BC4 /* NSNumber+HObj.h */,
-				C57490EB16013B0400B80BC4 /* NSNumber+HObj.m */,
-				C57490EC16013B0400B80BC4 /* NSString+HObj.h */,
-				C57490ED16013B0400B80BC4 /* NSString+HObj.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -413,7 +370,6 @@
 				11782E8916023BF100783E5A /* HMessage.h */,
 				11782E8A16023BF200783E5A /* HMessage.m */,
 				C57490F116013B0400B80BC4 /* ErrorCode.h */,
-				C57490F216013B0400B80BC4 /* HObj.h */,
 				C57490F316013B0400B80BC4 /* HOptions.h */,
 				C57490F416013B0400B80BC4 /* HOptions.m */,
 				C57490F516013B0400B80BC4 /* HStatus.h */,
@@ -661,24 +617,17 @@
 				C57490AA16013A0700B80BC4 /* main.m in Sources */,
 				C57490AE16013A0700B80BC4 /* AppDelegate.m in Sources */,
 				C57490D316013AC000B80BC4 /* TabBarController.m in Sources */,
-				C574910A16013B0400B80BC4 /* NSArray+HObj.m in Sources */,
-				C574910B16013B0400B80BC4 /* NSDate+HObj.m in Sources */,
 				C574910C16013B0400B80BC4 /* NSDate+ISO8601.m in Sources */,
 				C5145F5216065EFB00D77C41 /* HAck.m in Sources */,
 				C5138C0216029DE000829B44 /* IncomingMessageController.m in Sources */,
 				C57490D216013AC000B80BC4 /* ConnectionController.m in Sources */,
 				C5145F6316067E0900D77C41 /* FunctionsController.m in Sources */,
-				C574910D16013B0400B80BC4 /* NSDate+SBJSon.m in Sources */,
 				C5145F671606837200D77C41 /* MessageSenderController.m in Sources */,
 				C5145F661606836D00D77C41 /* MessageBuilderController.m in Sources */,
 				C5145F5F16067DE200D77C41 /* MessageOptionsController.m in Sources */,
 				C5145F5416065F0700D77C41 /* HConvState.m in Sources */,
 				C5145F5316065F0100D77C41 /* HAlert.m in Sources */,
 				C5145F5516065F0900D77C41 /* HMeasure.m in Sources */,
-				C574910E16013B0400B80BC4 /* NSDictionary+HObj.m in Sources */,
-				C574910F16013B0400B80BC4 /* NSNull+HObj.m in Sources */,
-				C574911016013B0400B80BC4 /* NSNumber+HObj.m in Sources */,
-				C574911116013B0400B80BC4 /* NSString+HObj.m in Sources */,
 				C574911216013B0400B80BC4 /* HClient.m in Sources */,
 				C574911316013B0400B80BC4 /* HOptions.m in Sources */,
 				C574911416013B0400B80BC4 /* HStatus.m in Sources */,
@@ -713,7 +662,6 @@
 				C574916E16013B1200B80BC4 /* SBJsonTokeniser.m in Sources */,
 				11ADA51B160247CB00CF4A10 /* HCommand.m in Sources */,
 				11ADA51C160247CD00CF4A10 /* HResult.m in Sources */,
-				115C0E8416034364007F09B3 /* NSObject+SBJSon.m in Sources */,
 				C574916F16013B1200B80BC4 /* SBJsonUTF8Stream.m in Sources */,
 				C574917016013B1200B80BC4 /* SBJsonWriter.m in Sources */,
 				C574917616013B1200B80BC4 /* SocketIO.m in Sources */,
