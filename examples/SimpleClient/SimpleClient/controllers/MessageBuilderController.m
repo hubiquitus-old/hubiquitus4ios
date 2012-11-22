@@ -148,13 +148,14 @@
     HMessageOptions * msgOpts = [[HMessageOptions alloc] init];
     msgOpts.convid = appDelegate.messageOptionsController.convid.text;
     msgOpts.ref = appDelegate.messageOptionsController.ref.text;
-    msgOpts.priority = [appDelegate.messageOptionsController.priority.text intValue];
+    if(appDelegate.messageOptionsController.priority.text.length > 0)
+        msgOpts.priority = [appDelegate.messageOptionsController.priority.text intValue];
     msgOpts.author = appDelegate.messageOptionsController.author.text;
     msgOpts.timeout = [appDelegate.messageOptionsController.timeout.text intValue];
     msgOpts.persistent = appDelegate.messageOptionsController.persistent.on;
     
     NSError * error = nil;
-    NSDictionary * params = [NSJSONSerialization JSONObjectWithData:[self.params_result_value.text dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+    NSDictionary * params = [NSJSONSerialization JSONObjectWithData:[self.params_result_value.text dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:nil];
     HMessage * msg = [hClient buildCommandWithActor:appDelegate.messageOptionsController.actor.text cmd:self.cmd_status_unit.text params:params options:msgOpts didFailWithError:&error];
     
     self.errors.text = [error description];
@@ -168,13 +169,14 @@
     HMessageOptions * msgOpts = [[HMessageOptions alloc] init];
     msgOpts.convid = appDelegate.messageOptionsController.convid.text;
     msgOpts.ref = appDelegate.messageOptionsController.ref.text;
-    msgOpts.priority = [appDelegate.messageOptionsController.priority.text intValue];
+    if(appDelegate.messageOptionsController.priority.text.length > 0)
+        msgOpts.priority = [appDelegate.messageOptionsController.priority.text intValue];
     msgOpts.author = appDelegate.messageOptionsController.author.text;
     msgOpts.timeout = [appDelegate.messageOptionsController.timeout.text intValue];
     msgOpts.persistent = appDelegate.messageOptionsController.persistent.on;
     
     NSError * error = nil;
-    NSDictionary * result = [NSJSONSerialization JSONObjectWithData:[self.params_result_value.text dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+    NSDictionary * result = [NSJSONSerialization JSONObjectWithData:[self.params_result_value.text dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:nil];
     HMessage * msg = [hClient buildResultWithActor:appDelegate.messageOptionsController.actor.text ref:appDelegate.messageOptionsController.ref.text status:[self.cmd_status_unit.text intValue] result:result options:msgOpts didFailWithError:&error];
     
     self.errors.text = [error description];
@@ -189,7 +191,8 @@
     HMessageOptions * msgOpts = [[HMessageOptions alloc] init];
     msgOpts.convid = appDelegate.messageOptionsController.convid.text;
     msgOpts.ref = appDelegate.messageOptionsController.ref.text;
-    msgOpts.priority = [appDelegate.messageOptionsController.priority.text intValue];
+    if(appDelegate.messageOptionsController.priority.text.length > 0)
+        msgOpts.priority = [appDelegate.messageOptionsController.priority.text intValue];
     msgOpts.author = appDelegate.messageOptionsController.author.text;
     msgOpts.timeout = [appDelegate.messageOptionsController.timeout.text intValue];
     msgOpts.persistent = appDelegate.messageOptionsController.persistent.on;
@@ -208,7 +211,8 @@
     HMessageOptions * msgOpts = [[HMessageOptions alloc] init];
     msgOpts.convid = appDelegate.messageOptionsController.convid.text;
     msgOpts.ref = appDelegate.messageOptionsController.ref.text;
-    msgOpts.priority = [appDelegate.messageOptionsController.priority.text intValue];
+    if(appDelegate.messageOptionsController.priority.text.length > 0)
+        msgOpts.priority = [appDelegate.messageOptionsController.priority.text intValue];
     msgOpts.author = appDelegate.messageOptionsController.author.text;
     msgOpts.timeout = [appDelegate.messageOptionsController.timeout.text intValue];
     msgOpts.persistent = appDelegate.messageOptionsController.persistent.on;
@@ -227,7 +231,8 @@
     HMessageOptions * msgOpts = [[HMessageOptions alloc] init];
     msgOpts.convid = appDelegate.messageOptionsController.convid.text;
     msgOpts.ref = appDelegate.messageOptionsController.ref.text;
-    msgOpts.priority = [appDelegate.messageOptionsController.priority.text intValue];
+    if(appDelegate.messageOptionsController.priority.text.length > 0)
+        msgOpts.priority = [appDelegate.messageOptionsController.priority.text intValue];
     msgOpts.author = appDelegate.messageOptionsController.author.text;
     msgOpts.timeout = [appDelegate.messageOptionsController.timeout.text intValue];
     msgOpts.persistent = appDelegate.messageOptionsController.persistent.on;
@@ -246,7 +251,8 @@
     HMessageOptions * msgOpts = [[HMessageOptions alloc] init];
     msgOpts.convid = appDelegate.messageOptionsController.convid.text;
     msgOpts.ref = appDelegate.messageOptionsController.ref.text;
-    msgOpts.priority = [appDelegate.messageOptionsController.priority.text intValue];
+    if(appDelegate.messageOptionsController.priority.text.length > 0)
+        msgOpts.priority = [appDelegate.messageOptionsController.priority.text intValue];
     msgOpts.author = appDelegate.messageOptionsController.author.text;
     msgOpts.timeout = [appDelegate.messageOptionsController.timeout.text intValue];
     msgOpts.persistent = appDelegate.messageOptionsController.persistent.on;

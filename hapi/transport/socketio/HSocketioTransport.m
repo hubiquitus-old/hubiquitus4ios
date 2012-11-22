@@ -65,7 +65,7 @@
 }
 
 /**
- * if we are disconnected, try fir to attach if possible
+ * if we are disconnected, try fire to attach if possible
  * if not connect
  */
 - (void)connectWithOptions:(HTransportOptions *)someOptions {
@@ -133,8 +133,7 @@
         if([packet.name isEqualToString:@"hMessage"]) {
             if([self.delegate respondsToSelector:@selector(messageNotification:)]) {
                 [self.delegate messageNotification:arg];
-            }
-            
+            } 
         } else if([packet.name isEqualToString:@"hStatus"]) {
             int aStatus = [[arg objectForKey:@"status"] integerValue];
             int errorCode = [[arg objectForKey:@"errorCode"] integerValue];
@@ -147,6 +146,10 @@
                 if([self.delegate respondsToSelector:@selector(statusNotification:withErrorCode:errorMsg:)]) {
                     [self.delegate statusNotification:aStatus withErrorCode:errorCode errorMsg:errorMsg];
                 }
+            }
+        } else if([packet.name isEqualToString:@"attrs"]) {
+            if([self.delegate respondsToSelector:@selector(attrsNotification:)]) {
+                [self.delegate attrsNotification:arg];
             }
         }
     }

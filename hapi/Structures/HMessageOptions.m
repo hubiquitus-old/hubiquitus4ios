@@ -44,6 +44,7 @@
     if(self) {
         relevanceOffset = -1;
         timeout = -1;
+        priority = -1;
     }
     
     return self;

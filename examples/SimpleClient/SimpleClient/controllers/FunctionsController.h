@@ -55,5 +55,6 @@
 - (IBAction)getThread:(id)sender;
 - (IBAction)getThreads:(id)sender;
 - (IBAction)getRelevantMessages:(id)sender;
+- (IBAction)setFilter:(id)sender;
 
 @end
