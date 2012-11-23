@@ -107,6 +107,14 @@ static const NSString * hNodeName = @"hnode";
     return self.transport.status;
 }
 
+- (NSString *)fulljid {
+    return self.transport.fulljid;
+}
+
+- (NSString *)resource {
+    return self.transport.resource;
+}
+
 - (void)send:(HMessage *)message withBlock:(void (^)(HMessage *))callback {
     DDLogVerbose(@"trying to send message %@ through hAPI", message);
     if(!message) {
@@ -159,7 +167,7 @@ static const NSString * hNodeName = @"hnode";
     }
     
     HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
-    msgOptions.timeout = self.transport.options.timeout;
+    msgOptions.timeout = self.transport.options.msgTimeout;
     
     HMessage *cmd = [self buildCommandWithActor:self.hnodeJid cmd:@"hgetsubscriptions" params:nil options:msgOptions didFailWithError:nil];
     
@@ -172,7 +180,7 @@ static const NSString * hNodeName = @"hnode";
     }
     
     HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
-    msgOptions.timeout = self.transport.options.timeout;
+    msgOptions.timeout = self.transport.options.msgTimeout;
     
     HMessage *cmd = [self buildCommandWithActor:actor cmd:@"hsubscribe" params:nil options:msgOptions didFailWithError:nil];
     
@@ -186,7 +194,7 @@ static const NSString * hNodeName = @"hnode";
     }
     
     HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
-    msgOptions.timeout = self.transport.options.timeout;
+    msgOptions.timeout = self.transport.options.msgTimeout;
 
     NSDictionary * params = nil;
     
@@ -205,11 +213,11 @@ static const NSString * hNodeName = @"hnode";
     }
     
     if(!convid || convid.length <= 0) {
-        [self errorNotification:RES_MISSING_ATTR errorMsg:@"Missing convid" refMsg:@"-1" timeout:self.transport.options.timeout withBlock:callback];
+        [self errorNotification:RES_MISSING_ATTR errorMsg:@"Missing convid" refMsg:@"-1" timeout:self.transport.options.msgTimeout withBlock:callback];
     }
     
     HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
-    msgOptions.timeout = self.transport.options.timeout;
+    msgOptions.timeout = self.transport.options.msgTimeout;
     
     NSDictionary * params = [NSDictionary dictionaryWithObject:convid forKey:@"convid"];
     
@@ -225,11 +233,11 @@ static const NSString * hNodeName = @"hnode";
     }
     
     if(!status || status.length <= 0) {
-        [self errorNotification:RES_MISSING_ATTR errorMsg:@"Missing status" refMsg:@"-1" timeout:self.transport.options.timeout withBlock:callback];
+        [self errorNotification:RES_MISSING_ATTR errorMsg:@"Missing status" refMsg:@"-1" timeout:self.transport.options.msgTimeout withBlock:callback];
     }
     
     HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
-    msgOptions.timeout = self.transport.options.timeout;
+    msgOptions.timeout = self.transport.options.msgTimeout;
     
     NSDictionary * params = [NSDictionary dictionaryWithObject:status forKey:@"status"];
     
@@ -245,7 +253,7 @@ static const NSString * hNodeName = @"hnode";
     }
     
     HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
-    msgOptions.timeout = self.transport.options.timeout;
+    msgOptions.timeout = self.transport.options.msgTimeout;
     
     HMessage *cmd = [self buildCommandWithActor:actor cmd:@"hrelevantmessages" params:nil options:msgOptions didFailWithError:nil];
     
@@ -259,7 +267,7 @@ static const NSString * hNodeName = @"hnode";
     }
     
     HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
-    msgOptions.timeout = self.transport.options.timeout;
+    msgOptions.timeout = self.transport.options.msgTimeout;
     
     HMessage *cmd = [self buildCommandWithActor:actor cmd:@"hunsubscribe" params:nil options:msgOptions didFailWithError:nil];
     
@@ -271,10 +279,14 @@ static const NSString * hNodeName = @"hnode";
         return;
     }
     
-    HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
-    msgOptions.timeout = self.transport.options.timeout;
+    if(!filter) {
+        [self errorNotification:RES_MISSING_ATTR errorMsg:@"Missing filter" refMsg:@"-1" timeout:self.transport.options.msgTimeout withBlock:callback];
+    }
     
-    HMessage *cmd = [self buildCommandWithActor:self.hnodeJid cmd:@"hsetfilter" params:filter options:msgOptions didFailWithError:nil];
+    HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
+    msgOptions.timeout = self.transport.options.msgTimeout;
+    
+    HMessage *cmd = [self buildCommandWithActor:@"session" cmd:@"hsetfilter" params:filter options:msgOptions didFailWithError:nil];
     
     [self send:cmd withBlock:callback];
 }
@@ -285,10 +297,10 @@ static const NSString * hNodeName = @"hnode";
     }
     
     HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
-    msgOptions.timeout = self.transport.options.timeout;
+    msgOptions.timeout = self.transport.options.msgTimeout;
     NSDictionary * filterAsDictionnary = [NSJSONSerialization JSONObjectWithData:[filter dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:nil];
     
-    HMessage *cmd = [self buildCommandWithActor:self.hnodeJid cmd:@"hsetfilter" params:filterAsDictionnary options:msgOptions didFailWithError:nil];
+    HMessage *cmd = [self buildCommandWithActor:@"session" cmd:@"hsetfilter" params:filterAsDictionnary options:msgOptions didFailWithError:nil];
     
     [self send:cmd withBlock:callback];
 }

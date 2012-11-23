@@ -1,1 +1,1 @@
-static int ddLogLevel = LOG_LEVEL_INFO;
+static int ddLogLevel = LOG_LEVEL_VERBOSE;

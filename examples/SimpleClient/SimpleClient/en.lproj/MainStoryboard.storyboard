@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="c08-ua-R9a">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="c08-ua-R9a">
     <dependencies>
-        <deployment defaultVersion="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
         <!--Message Options Controller - Options-->
         <scene sceneID="cHs-3i-u1d">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oeY-Hk-j2c" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="C9J-UF-Z37" customClass="MessageOptionsController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cMA-5k-eKO" customClass="UIControl">
                         <rect key="frame" x="0.0" y="20" width="320" height="411"/>
@@ -131,13 +130,13 @@
                         <outlet property="timeout" destination="Ine-Rp-1sQ" id="HzD-Vb-jYD"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oeY-Hk-j2c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="891" y="-43"/>
         </scene>
         <!--Connection Controller - Connection-->
         <scene sceneID="QU6-19-oEC">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3QW-v1-end" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="Connection" id="qbN-js-6V1" customClass="ConnectionController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6NE-eS-11A" customClass="UIControl">
                         <rect key="frame" x="0.0" y="20" width="320" height="411"/>
@@ -286,13 +285,13 @@
                         <outlet property="scrollView" destination="oXb-26-15e" id="mAB-FA-CIn"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3QW-v1-end" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="536" y="-385"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="wja-Kr-C9L">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Pod-uv-xH8" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tabBarController definesPresentationContext="YES" id="c08-ua-R9a" customClass="TabBarController" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="sFX-JI-RLT">
@@ -309,13 +308,13 @@
                         <segue destination="GBj-71-y9g" kind="relationship" relationship="viewControllers" id="qHs-g4-UuT"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pod-uv-xH8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="65" y="134"/>
         </scene>
         <!--Message Sender Controller - Sender-->
         <scene sceneID="Vuz-Rh-hTm">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="o0c-Xn-Inj" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="6SQ-oG-QIk" customClass="MessageSenderController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="arV-NX-ktt" customClass="UIControl">
                         <rect key="frame" x="0.0" y="20" width="320" height="411"/>
@@ -392,13 +391,13 @@
                         <outlet property="scrollView" destination="mbp-lY-1bt" id="8qF-9n-Oh8"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o0c-Xn-Inj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="885" y="560"/>
         </scene>
         <!--Message Builder Controller - Builders-->
         <scene sceneID="BVx-gK-eZf">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pYs-cx-2gi" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Xx3-qk-u2u" customClass="MessageBuilderController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="svf-3o-dB4" customClass="UIControl">
                         <rect key="frame" x="0.0" y="20" width="320" height="411"/>
@@ -596,13 +595,13 @@
                         <outlet property="scrollView" destination="dAS-qu-PVD" id="emX-cx-V9F"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pYs-cx-2gi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="496" y="742"/>
         </scene>
         <!--Functions Controller - Functions-->
         <scene sceneID="uVT-qD-N1G">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Lke-FL-vB5" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="GBj-71-y9g" customClass="FunctionsController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Yhj-5y-FGH" customClass="UIControl">
                         <rect key="frame" x="0.0" y="20" width="320" height="411"/>
@@ -666,6 +665,21 @@
                                         </state>
                                         <connections>
                                             <action selector="getSubscriptions:" destination="GBj-71-y9g" eventType="touchUpInside" id="4PD-93-qpT"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ou6-AR-cOd">
+                                        <rect key="frame" x="8" y="244" width="104" height="33"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="filter">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="setFilter:" destination="GBj-71-y9g" eventType="touchUpInside" id="LYd-HW-neO"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="DEC-uM-KIt">
@@ -746,7 +760,7 @@
                                             <outlet property="delegate" destination="GBj-71-y9g" id="E6L-XQ-KYb"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="convid" minimumFontSize="17" id="D8v-2k-A7O">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="convid/filter" minimumFontSize="17" id="D8v-2k-A7O">
                                         <rect key="frame" x="20" y="146" width="280" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -783,13 +797,13 @@
                         <outlet property="scrollView" destination="WNH-3w-9ya" id="9By-U0-DF0"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lke-FL-vB5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="81" y="885"/>
         </scene>
         <!--Incoming Message Controller - Incoming-->
         <scene sceneID="IHj-HR-WYi">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wMR-Yh-tCS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="zzE-9j-tGA" customClass="IncomingMessageController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QZf-ri-Y69" customClass="UIControl">
                         <rect key="frame" x="0.0" y="20" width="320" height="411"/>
@@ -858,6 +872,7 @@
                         <outlet property="scrollView" destination="aOH-6x-liQ" id="WyK-8B-zuI"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wMR-Yh-tCS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="885" y="1161"/>
         </scene>
@@ -892,6 +907,7 @@
                 <relationship kind="action" name="getThread:"/>
                 <relationship kind="action" name="getThreads:"/>
                 <relationship kind="action" name="hideKeyboard:"/>
+                <relationship kind="action" name="setFilter:"/>
                 <relationship kind="action" name="subscribe:"/>
                 <relationship kind="action" name="unsubscribe:"/>
                 <relationship kind="outlet" name="actor" candidateClass="UITextField"/>

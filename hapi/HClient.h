@@ -35,6 +35,8 @@
 @property (nonatomic, readonly) Status status;
 @property (nonatomic, strong) void(^onStatus)(HStatus*);
 @property (nonatomic, strong) void(^onMessage)(HMessage*);
+@property (nonatomic, readonly) NSString * fulljid;
+@property (nonatomic, readonly) NSString * resource;
 
 - (void)connectWithPublisher:(NSString*)publisher password:(NSString*)password options:(HOptions*)options;
 - (void)disconnect;

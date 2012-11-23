@@ -26,7 +26,6 @@
 #import <Foundation/Foundation.h>
 #import "HTransportLayer.h"
 #import "HStatus.h"
-//#import "HMessage.h"
 #import "HOptions.h"
 #import "HTransportOptions.h"
 #import "HMessage.h"
@@ -49,6 +48,8 @@
 @property (nonatomic, readonly) Status status;
 @property (nonatomic) int autoConnectDelay;
 @property (nonatomic, strong) HTransportOptions * options;
+@property (nonatomic, strong) NSString * fulljid;
+@property (nonatomic, strong) NSString * resource;
 
 - (id)initWith:(id<HTransportDelegate>)delegate;
 

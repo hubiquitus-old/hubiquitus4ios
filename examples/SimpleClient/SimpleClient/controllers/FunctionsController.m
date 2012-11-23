@@ -108,7 +108,10 @@
 }
 
 - (IBAction)getLastMessages:(id)sender {
-    [hClient getLastMessagesFromActor:self.actor.text quantity:[NSNumber numberWithInt:[self.nbLastMsg.text intValue]] withBlock:_cb];
+    if(self.nbLastMsg.text && self.nbLastMsg.text.length > 0)
+        [hClient getLastMessagesFromActor:self.actor.text quantity:[NSNumber numberWithInt:[self.nbLastMsg.text intValue]] withBlock:_cb];
+    else
+        [hClient getLastMessagesFromActor:self.actor.text quantity:nil withBlock:_cb];
 }
 
 - (IBAction)getThread:(id)sender {
@@ -121,6 +124,10 @@
 
 - (IBAction)getRelevantMessages:(id)sender {
     [hClient getRelevantMessagesFromActor:self.actor.text withBlock:_cb];
+}
+
+- (IBAction)setFilter:(id)sender {
+    [hClient setFilterWithString:self.convid.text withBlock:_cb];
 }
 
 #pragma mark - common views setup

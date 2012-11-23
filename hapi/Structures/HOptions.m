@@ -40,7 +40,8 @@
     self = [super init];
     if (self) {
         self.transport = @"socketio";
-        self.timeout = 30000;
+        self.timeout = 15000;
+        self.msgTimeout = 30000;
     }
     
     return self;
@@ -91,4 +92,23 @@
     else
         [self setObject:nil forKey:@"timeout"];
 }
+
+/**
+ * timeout in ms
+ */
+- (long)msgTimeout {
+    NSNumber * timeout = [self objectForKey:@"msgTimeout" withClass:[NSNumber class]];
+    if(timeout == nil)
+        return 0;
+    
+    return [timeout longValue];
+}
+
+- (void)setMsgTimeout:(long)msgTimeout {
+    if(msgTimeout > 0)
+        [self setObject:[NSNumber numberWithLong:msgTimeout] forKey:@"msgTimeout"];
+    else
+        [self setObject:nil forKey:@"msgTimeout"];
+}
+
 @end

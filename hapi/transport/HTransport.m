@@ -71,6 +71,8 @@
 @synthesize reachability, autoConnect;
 @synthesize options;
 @synthesize transportLayer;
+@synthesize fulljid;
+@synthesize resource;
 
 - (id)initWith:(id<HTransportDelegate>)aDelegate {
     self = [super init];
@@ -293,13 +295,21 @@
 #pragma mark - Transport layer delegate
 
 - (void)statusNotification:(Status)aStatus withErrorCode:(ErrorCode)anErrorCode errorMsg:(NSString *)anErrorMsg {
-    _status = aStatus;
     
     //if credentials are refused, we disconnect and stop auto connect system
     if(aStatus == AUTH_FAILED)
         [self disconnect];
     
-    [self notifyStatus:aStatus withErrorCode:anErrorCode errorMsg:anErrorMsg];
+    if(aStatus == DISCONNECTED) {
+        self.fulljid = nil;
+        self.resource = nil;
+    }
+    
+    if(aStatus != CONNECTED || (aStatus == CONNECTED && fulljid)) {
+        _status = aStatus;
+        [self notifyStatus:aStatus withErrorCode:anErrorCode errorMsg:anErrorMsg];
+    }
+        
 }
 
 - (void)messageNotification:(NSDictionary *)message {
@@ -314,6 +324,20 @@
     DDLogVerbose(@"Error happened : errorCode %d, errorMsg %@, ref %@",resultStatus, errorMsg, ref);
     if([self.delegate respondsToSelector:@selector(errorNotification:errorMsg:refMsg:)]) {
         [self.delegate errorNotification:resultStatus errorMsg:errorMsg refMsg:ref];
+    }
+}
+
+- (void)attrsNotification:(NSDictionary *)attr {
+    DDLogVerbose(@"Attr received : %@", attr);
+    if(attr) {
+        self.fulljid = [attr objectForKey:@"publisher"];
+        if([attr objectForKey:@"publisher"])
+            self.resource = [splitJid(fulljid) objectForKey:@"resource"];
+        
+        if(_status == CONNECTING && self.transportLayer.status == CONNECTED) {
+            _status = CONNECTED;
+            [self notifyStatus:CONNECTED withErrorCode:0 errorMsg:nil];
+        }
     }
 }
 

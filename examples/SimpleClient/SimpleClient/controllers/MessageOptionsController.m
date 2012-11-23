@@ -64,6 +64,8 @@
     
     [self registerForKeyboardNotifications];
     [self createGestureRecognizers];
+    
+    self.persistent.on = false;
 	// Do any additional setup after loading the view.
 }
 

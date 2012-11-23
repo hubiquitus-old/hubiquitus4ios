@@ -56,6 +56,11 @@
  */
 - (void)errorNotification:(ResultStatus)resultStatus errorMsg:(NSString*)errorMsg refMsg:(NSString*)ref;
 
+/**
+ * Notify an attr formated into a json string reprensentation
+ */
+- (void)attrsNotification:(NSDictionary*)attr;
+
 @end
 
 
