@@ -33,17 +33,17 @@
  */
 
 @interface HTransportOptions () {
-    NSString * _jid;
-    NSString * _jidDomain;
-    NSString * _jidUsername;
-    NSString * _jidResource;
+    NSString * _login;
+    NSString * _urnDomain;
+    NSString * _urnUsername;
+    NSString * _urnResource;
 }
 
 @end
 
 @implementation HTransportOptions
-@synthesize password, jid = _jid;
-@synthesize jidDomain = _jidDomain, jidResource = _jidResource, jidUsername = _jidUsername;
+@synthesize password, login = _login;
+@synthesize urnDomain = _urnDomain, urnResource = _urnResource, urnUsername = _urnUsername;
 
 /**
  * Randomly choose an endpoint from the endpoints
@@ -65,13 +65,6 @@
     return self;
 }
 
-- (void)setJid:(NSString *)jid {
-    _jid = jid;
-    NSDictionary * jidComponents =  splitJid(jid);
-    _jidDomain = [jidComponents objectForKey:@"domain"];
-    _jidUsername = [jidComponents objectForKey:@"username"];
-    _jidResource = [jidComponents objectForKey:@"resource"];
-}
 
 @end
 

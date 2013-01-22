@@ -108,7 +108,7 @@
  * Should be called after connection
  */
 - (void)authenticate {
-    NSDictionary * credentials = [NSDictionary dictionaryWithObjectsAndKeys:self.options.jid, @"publisher", self.options.password, @"password", [[NSDate date] toISO8601],@"sent", nil];
+    NSDictionary * credentials = [NSDictionary dictionaryWithObjectsAndKeys:self.options.login, @"login", self.options.password, @"password", [[NSDate date] toISO8601],@"sent", nil];
     [self.socketio sendEvent:@"hConnect" withData:credentials];
 }
 

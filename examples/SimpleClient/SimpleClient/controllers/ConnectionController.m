@@ -89,7 +89,7 @@
     HOptions *options = [[HOptions alloc] init];
     options.endpoints = [endpoints.text componentsSeparatedByString:@","];
     
-    [self.hClient connectWithPublisher:publisher.text password:password.text options:options];
+    [self.hClient connectWithLogin:publisher.text password:password.text options:options];
 }
 
 - (IBAction)disconnect:(id)sender {

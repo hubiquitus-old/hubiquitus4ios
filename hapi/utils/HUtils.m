@@ -55,28 +55,28 @@ id pickRandomValue(NSArray * array) {
 @end
 
 /**
- * return the parts of a jid or null if invalid jid (valid jid : username@domain[/resource])
+ * return the parts of a urn or null if invalid urn (valid urn : urn:domain:username[/resource])
  * key returned are : username, domain, resource
  */
-NSDictionary * splitJid(NSString * jid) {
+NSDictionary * splitUrn(NSString * urn) {
     NSDictionary * result = nil;
-    if(jid != nil) {
-        NSString * regexPattern = @"^(?:([^@/<>'\"]+)@)([^@/<>'\"]+)(?:/([^/<>'\"]*))?$";
+    if(urn != nil) {
+        NSString * regexPattern = @"^urn:([a-z0-9]{1}[a-z0-9\\-]{1,31}):([a-z0-9_,:=@;!'%/#\\(\\)\\+\\-\\.\\$\\*\\?]+)\\/{1}?(.+$)";
         
         NSRegularExpression * regex = [NSRegularExpression regularExpressionWithPattern:regexPattern options:0 error:nil];
-        NSArray * matches = [regex matchesInString:jid options:0 range:NSMakeRange(0, [jid length])];
-        
+        NSArray * matches = [regex matchesInString:urn options:0 range:NSMakeRange(0, [urn length])];
+
         for (NSTextCheckingResult * match in matches) {
-            
+
             if(result == nil && match.numberOfRanges >= 3) {
-                NSString * username = [jid substringWithRange:[match rangeAtIndex:1]];
-                NSString * domain = [jid substringWithRange:[match rangeAtIndex:2]];
+                NSString * username = [urn substringWithRange:[match rangeAtIndex:2]];
+                NSString * domain = [urn substringWithRange:[match rangeAtIndex:1]];
                 NSString * resource = nil;
-                
+
                 if(match.numberOfRanges >= 4 && [match rangeAtIndex:3].length > 0) {
-                    resource = [jid substringWithRange:[match rangeAtIndex:3]];
+                    resource = [urn substringWithRange:[match rangeAtIndex:3]];
                 }
-                
+
                 result = [NSDictionary dictionaryWithObjectsAndKeys:username, @"username",
                           domain, @"domain",
                           resource, @"resource", nil];
@@ -87,9 +87,9 @@ NSDictionary * splitJid(NSString * jid) {
     return result;
 }
 
-BOOL isJid(NSString * jid) {
-    NSDictionary * splitedJid = splitJid(jid);
-    if([splitedJid objectForKey:@"username"] == nil || [splitedJid objectForKey:@"domain"] == nil) 
+BOOL isUrn(NSString * urn) {
+    NSDictionary * splitedUrn = splitUrn(urn);
+    if([splitedUrn objectForKey:@"username"] == nil || [splitedUrn objectForKey:@"domain"] == nil)
         return false;
     else 
         return true;

@@ -79,19 +79,19 @@ static const NSString * hNodeName = @"hnode";
 }
 
 - (NSString *)hnodeJid {
-    return [NSString stringWithFormat:@"%@@%@", hNodeName, self.transport.options.jidDomain];
+    return [NSString stringWithFormat:@"%@@%@", hNodeName, self.transport.options.urnDomain];
 }
 
 /**
  * Called to connect to hNode
  * This will only be called if disconnect. If not, it will return a hStatus with error code ALREADY_CONNECTED
  */
-- (void)connectWithPublisher:(NSString *)publisher password:(NSString *)password options:(HOptions *)options {
+- (void)connectWithLogin:(NSString *)login password:(NSString *)password options:(HOptions *)options {
     if (!options)
         options = [[HOptions alloc] init];
     
     HTransportOptions * transportOpts = [[HTransportOptions alloc] initWithOptions:options];
-    transportOpts.jid = publisher;
+    transportOpts.login = login;
     transportOpts.password = password;
     [self.transport connectWithOptions:transportOpts];
 }
@@ -107,8 +107,8 @@ static const NSString * hNodeName = @"hnode";
     return self.transport.status;
 }
 
-- (NSString *)fulljid {
-    return self.transport.fulljid;
+- (NSString *)fullurn {
+    return self.transport.fullurn;
 }
 
 - (NSString *)resource {
@@ -129,7 +129,7 @@ static const NSString * hNodeName = @"hnode";
     
     message.sent = [NSDate date];
     message.msgid = @""; //msgid is set only if there is a timeout
-    message.publisher = self.transport.options.jid;
+    message.publisher = self.transport.fullurn;
     
     if(callback == nil || message.timeout < 0) {
         message.timeout = 0;
@@ -144,7 +144,7 @@ static const NSString * hNodeName = @"hnode";
             if([callbacks objectForKey:message.msgid]) {
                 [callbacks removeObjectForKey:message.msgid];
                 
-                HMessage * timeoutResponse = [self buildResultWithActor:self.transport.options.jid ref:message.msgid status:RES_EXEC_TIMEOUT result:nil options:nil didFailWithError:nil];
+                HMessage * timeoutResponse = [self buildResultWithActor:self.transport.fullurn ref:message.msgid status:RES_EXEC_TIMEOUT result:nil options:nil didFailWithError:nil];
                 
                 callback(timeoutResponse);
             }
@@ -321,7 +321,7 @@ static const NSString * hNodeName = @"hnode";
     msg.payload = payload;
     
     if(self.transport.options)
-        msg.publisher = self.transport.options.jid;
+        msg.publisher = self.transport.fullurn;
     
     if(msgOptions) {
         int priorityAsInt = msgOptions.priority;
@@ -495,7 +495,7 @@ static const NSString * hNodeName = @"hnode";
 }
 
 - (void)errorNotification:(ResultStatus)resultStatus errorMsg:(NSString *)errorMsg refMsg:(NSString *)ref {
-    HMessage *msg = [self buildResultWithActor:self.transport.options.jid ref:ref status:resultStatus result:errorMsg options:nil didFailWithError:nil];
+    HMessage *msg = [self buildResultWithActor:self.transport.fullurn ref:ref status:resultStatus result:errorMsg options:nil didFailWithError:nil];
     
     //check if there is callback because if there is not and it's an error, it means that a timeout of <0 was set
     NSArray * refComponents = [ref componentsSeparatedByString:@"#"];
@@ -510,7 +510,7 @@ static const NSString * hNodeName = @"hnode";
 
 - (void)errorNotification:(ResultStatus)resultStatus errorMsg:(NSString *)errorMsg refMsg:(NSString *)ref timeout:(long)timeout withBlock:(void(^)(HMessage*))callback {
     NSError *error = nil;
-    HMessage *msg = [self buildResultWithActor:self.transport.options.jid ref:ref status:resultStatus result:errorMsg options:nil didFailWithError:&error];
+    HMessage *msg = [self buildResultWithActor:self.transport.fullurn ref:ref status:resultStatus result:errorMsg options:nil didFailWithError:&error];
     
     [self notifyMessage:msg withBlock:callback timeout:timeout];
 }

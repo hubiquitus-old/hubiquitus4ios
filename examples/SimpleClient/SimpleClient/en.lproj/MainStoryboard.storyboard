@@ -157,7 +157,7 @@
                                 <rect key="frame" x="0.0" y="34" width="320" height="377"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="u1@localhost" borderStyle="roundedRect" placeholder="publisher (ie : u1@localhost)" minimumFontSize="17" id="jRY-Vr-YGv">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="urn:localhost:u1" borderStyle="roundedRect" placeholder="publisher (ie : urn:localhost:u1)" minimumFontSize="17" id="jRY-Vr-YGv">
                                         <rect key="frame" x="19" y="49" width="280" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -166,7 +166,7 @@
                                             <outlet property="delegate" destination="qbN-js-6V1" id="U2n-R6-2j5"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="u1" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" id="4Kw-Xo-VSW">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="urn:localhost:u1" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" id="4Kw-Xo-VSW">
                                         <rect key="frame" x="20" y="97" width="280" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -880,105 +880,6 @@
     <resources>
         <image name="hub_disconnected.png" width="28" height="29"/>
     </resources>
-    <classes>
-        <class className="ConnectionController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ConnectionController.h"/>
-            <relationships>
-                <relationship kind="action" name="connect:"/>
-                <relationship kind="action" name="disconnect:"/>
-                <relationship kind="action" name="hideKeyboard:"/>
-                <relationship kind="outlet" name="connStatus" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="connector" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="endpoints" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="errorCode" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="errorMsg" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="password" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="publisher" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="FunctionsController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FunctionsController.h"/>
-            <relationships>
-                <relationship kind="action" name="clear:"/>
-                <relationship kind="action" name="getLastMessages:"/>
-                <relationship kind="action" name="getRelevantMessages:"/>
-                <relationship kind="action" name="getSubscriptions:"/>
-                <relationship kind="action" name="getThread:"/>
-                <relationship kind="action" name="getThreads:"/>
-                <relationship kind="action" name="hideKeyboard:"/>
-                <relationship kind="action" name="setFilter:"/>
-                <relationship kind="action" name="subscribe:"/>
-                <relationship kind="action" name="unsubscribe:"/>
-                <relationship kind="outlet" name="actor" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="connector" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="convid" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="convstate" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="nbLastMsg" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="IncomingMessageController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IncomingMessageController.h"/>
-            <relationships>
-                <relationship kind="action" name="clear:"/>
-                <relationship kind="action" name="hideKeyboard:"/>
-                <relationship kind="outlet" name="connector" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="onMessageContent" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="MessageBuilderController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MessageBuilderController.h"/>
-            <relationships>
-                <relationship kind="action" name="buildAck:"/>
-                <relationship kind="action" name="buildAlert:"/>
-                <relationship kind="action" name="buildCmd:"/>
-                <relationship kind="action" name="buildConvstate:"/>
-                <relationship kind="action" name="buildMeasure:"/>
-                <relationship kind="action" name="buildResult:"/>
-                <relationship kind="action" name="clear:"/>
-                <relationship kind="action" name="hideKeyboard:"/>
-                <relationship kind="outlet" name="alert_ack" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="cmd_status_unit" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="connector" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="convstate_convid" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="errors" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="params_result_value" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="MessageOptionsController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MessageOptionsController.h"/>
-            <relationships>
-                <relationship kind="action" name="clear:"/>
-                <relationship kind="action" name="hideKeyboard:"/>
-                <relationship kind="outlet" name="actor" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="author" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="connector" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="convid" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="persistent" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="priority" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="ref" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="timeout" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="MessageSenderController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MessageSenderController.h"/>
-            <relationships>
-                <relationship kind="action" name="clear:"/>
-                <relationship kind="action" name="hideKeyboard:"/>
-                <relationship kind="action" name="send:"/>
-                <relationship kind="outlet" name="connector" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="messageContent" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="TabBarController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TabBarController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

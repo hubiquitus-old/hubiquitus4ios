@@ -50,7 +50,7 @@
 
 /**
  * actor
- * Should be a jid
+ * Should be a urn
  */
 - (NSString*)actor {
     return [self objectForKey:@"actor" withClass:[NSString class]];
@@ -72,7 +72,7 @@
 }
 
 /**
- * reference a message jid
+ * reference a message with is msgid
  */
 - (NSString*)ref {
     return [self objectForKey:@"ref" withClass:[NSString class]];
@@ -158,7 +158,7 @@
 }
 
 /**
- * Publisher of the message. Should be a jid. Filled by the hAPI
+ * Publisher of the message. Should be a urn. Filled by the hAPI
  */
 - (NSString*)publisher {
     return [self objectForKey:@"publisher" withClass:[NSString class]];

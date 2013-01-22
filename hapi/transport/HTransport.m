@@ -71,7 +71,7 @@
 @synthesize reachability, autoConnect;
 @synthesize options;
 @synthesize transportLayer;
-@synthesize fulljid;
+@synthesize fullurn;
 @synthesize resource;
 
 - (id)initWith:(id<HTransportDelegate>)aDelegate {
@@ -110,12 +110,6 @@
         return;
     }
     
-    //check if it's a jid
-    if(!isJid(someOptions.jid)) {
-        [self notifyStatus:self.status withErrorCode:JID_MALFORMAT errorMsg:@"Publisher malformated. Should follow pattern user@domain/resource"];
-        return;
-    }
-    
     //finally we can try to connect
     self.options = someOptions;
     
@@ -147,14 +141,15 @@
     self.autoConnect = NO;
     
     if(self.status != DISCONNECTING && self.status != DISCONNECTED) {
-        //start auto connect system
+        /*/start auto connect system
         @synchronized(self) {
             if (_connectTimer != NULL && !_autoConnectTimerEnabled) {
                 DDLogVerbose(@"Starting auto connect system to disconnect");
                 _autoConnectTimerEnabled = YES;
                 dispatch_resume(_connectTimer);
             }
-        }
+        }*/
+        [self stopTimer];
     } else {
         if (self.status == DISCONNECTED) {
             [self notifyStatus:self.status withErrorCode:NOT_CONNECTED errorMsg:nil];
@@ -301,11 +296,11 @@
         [self disconnect];
     
     if(aStatus == DISCONNECTED) {
-        self.fulljid = nil;
+        self.fullurn = nil;
         self.resource = nil;
     }
     
-    if(aStatus != CONNECTED || (aStatus == CONNECTED && fulljid)) {
+    if(aStatus != CONNECTED || (aStatus == CONNECTED && fullurn)) {
         _status = aStatus;
         [self notifyStatus:aStatus withErrorCode:anErrorCode errorMsg:anErrorMsg];
     }
@@ -330,9 +325,9 @@
 - (void)attrsNotification:(NSDictionary *)attr {
     DDLogVerbose(@"Attr received : %@", attr);
     if(attr) {
-        self.fulljid = [attr objectForKey:@"publisher"];
+        self.fullurn = [attr objectForKey:@"publisher"];
         if([attr objectForKey:@"publisher"])
-            self.resource = [splitJid(fulljid) objectForKey:@"resource"];
+            self.resource = [splitUrn(fullurn) objectForKey:@"resource"];
         
         if(_status == CONNECTING && self.transportLayer.status == CONNECTED) {
             _status = CONNECTED;
