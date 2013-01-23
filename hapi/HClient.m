@@ -34,6 +34,7 @@
 #import "HResult.h"
 #import "ErrorCode.h"
 #import "HLogLevel.h"
+#import "NSDate+timestampMS.h"
 
 #if ! __has_feature(objc_arc)
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
@@ -128,7 +129,7 @@ static const NSString * hNodeName = @"hnode";
         return;
     }
     
-    message.sent = [NSDate date];
+    message.sent = [[NSDate date] toTimestampMS];
     message.msgid = @""; //msgid is set only if there is a timeout
     message.publisher = self.transport.fullurn;
     
@@ -341,7 +342,7 @@ static const NSString * hNodeName = @"hnode";
         if(msgOptions.timeout > 0) msg.timeout = msgOptions.timeout;
         
         if(msgOptions.relevanceOffset >= 0) {
-            NSDate * relevance = [NSDate dateWithTimeIntervalSinceNow:(msgOptions.relevanceOffset/1000)];
+            NSNumber * relevance = [NSNumber numberWithLongLong:([[[NSDate date] toTimestampMS] longLongValue] + msgOptions.relevanceOffset)];
             msg.relevance = relevance;
         }
     }

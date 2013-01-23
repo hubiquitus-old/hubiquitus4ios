@@ -24,36 +24,11 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "NSDate+ISO8601.h"
-#import "ISO8601DateFormatter.h"
 
-#if ! __has_feature(objc_arc)
-#warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
-#endif
+@interface NSDate (timestampMS)
 
-/**
- * @version 0.4.0
- * Add support to format date as ISO8601 (Json dates)
- */
-
-@implementation NSDate (ISO8601)
-
-/**
- * Representation of the date as ISO8601 date
- */
--(NSString *) toISO8601 {
-    ISO8601DateFormatter * iso8601 = [[ISO8601DateFormatter alloc] init];
-    iso8601.includeTime = YES;
-    return [iso8601 stringFromDate:self];
-}
-
-/**
- * NSDate from a ISO8601 date
- */
-+(NSDate *) dateFromISO8601:(NSString *) str {
-    ISO8601DateFormatter * iso8601 = [[ISO8601DateFormatter alloc] init];
-    iso8601.includeTime = YES;
-    return [iso8601 dateFromString:str];
-}
+- (NSNumber *) toTimestampMS;
++ (NSDate *) dateFromTimestampMS:(NSNumber *) time;
 
 @end
+
