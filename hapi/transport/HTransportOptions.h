@@ -34,6 +34,7 @@
 
 @property (nonatomic, strong) NSString * login;
 @property (nonatomic, strong) NSString * password;
+@property (nonatomic, strong) NSDictionary * context;
 @property (readonly, nonatomic) NSURL * endpoint;
 @property (readonly, nonatomic) NSString * urnDomain;
 @property (readonly, nonatomic) NSString * urnUsername;

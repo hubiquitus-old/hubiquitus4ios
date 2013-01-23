@@ -86,13 +86,14 @@ static const NSString * hNodeName = @"hnode";
  * Called to connect to hNode
  * This will only be called if disconnect. If not, it will return a hStatus with error code ALREADY_CONNECTED
  */
-- (void)connectWithLogin:(NSString *)login password:(NSString *)password options:(HOptions *)options {
+- (void)connectWithLogin:(NSString *)login password:(NSString *)password options:(HOptions *)options context:(NSDictionary *)context{
     if (!options)
         options = [[HOptions alloc] init];
     
     HTransportOptions * transportOpts = [[HTransportOptions alloc] initWithOptions:options];
     transportOpts.login = login;
     transportOpts.password = password;
+    transportOpts.context = context;
     [self.transport connectWithOptions:transportOpts];
 }
 

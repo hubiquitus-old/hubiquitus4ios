@@ -42,7 +42,7 @@
 @end
 
 @implementation HTransportOptions
-@synthesize password, login = _login;
+@synthesize password, login = _login, context;
 @synthesize urnDomain = _urnDomain, urnResource = _urnResource, urnUsername = _urnUsername;
 
 /**

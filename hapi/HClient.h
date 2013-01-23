@@ -38,7 +38,7 @@
 @property (nonatomic, readonly) NSString * fullurn;
 @property (nonatomic, readonly) NSString * resource;
 
-- (void)connectWithLogin:(NSString*)login password:(NSString*)password options:(HOptions*)options;
+- (void)connectWithLogin:(NSString*)login password:(NSString*)password options:(HOptions*)options context:(NSDictionary*)context;
 
 - (void)disconnect;
 
