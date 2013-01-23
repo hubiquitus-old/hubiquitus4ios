@@ -141,15 +141,14 @@
     self.autoConnect = NO;
     
     if(self.status != DISCONNECTING && self.status != DISCONNECTED) {
-        /*/start auto connect system
+        //start auto connect system
         @synchronized(self) {
             if (_connectTimer != NULL && !_autoConnectTimerEnabled) {
                 DDLogVerbose(@"Starting auto connect system to disconnect");
                 _autoConnectTimerEnabled = YES;
                 dispatch_resume(_connectTimer);
             }
-        }*/
-        [self stopTimer];
+        }
     } else {
         if (self.status == DISCONNECTED) {
             [self notifyStatus:self.status withErrorCode:NOT_CONNECTED errorMsg:nil];
