@@ -61,7 +61,7 @@ id pickRandomValue(NSArray * array) {
 NSDictionary * splitUrn(NSString * urn) {
     NSDictionary * result = nil;
     if(urn != nil) {
-        NSString * regexPattern = @"^urn:([a-z0-9]{1}[a-z0-9\\-]{1,31}):([a-z0-9_,:=@;!'%/#\\(\\)\\+\\-\\.\\$\\*\\?]+)\\/{1}?(.+$)";
+        NSString * regexPattern = @"^urn:([a-zA-Z0-9]{1}[a-zA-Z0-9\\-.]+):([a-zA-Z0-9_,=@;!'%/#\\(\\)\\+\\-\\.\\$\\*\\?]+)\\/{1}?(.+$)";
         
         NSRegularExpression * regex = [NSRegularExpression regularExpressionWithPattern:regexPattern options:0 error:nil];
         NSArray * matches = [regex matchesInString:urn options:0 range:NSMakeRange(0, [urn length])];
