@@ -76,7 +76,22 @@
             
             //update connection view
             ConnectionController * connController = [[weakSelf viewControllers] objectAtIndex:0];
-            connController.connStatus.text = [NSString stringWithFormat:@"%d",status.status];
+            NSString * labelStatus = nil;
+            switch (status.status) {
+                case 1:
+                    labelStatus = @"Connecting";
+                    break;
+                case 2:
+                    labelStatus = @"Connected";
+                    break;
+                case 5:
+                    labelStatus = @"Disconnecting";
+                    break;
+                case 6:
+                    labelStatus = @"Disconnected";
+                    break;
+            }
+            connController.connStatus.text = [NSString stringWithFormat:@"%@",labelStatus];
             connController.errorCode.text = [NSString stringWithFormat:@"%d",status.errorCode];
             connController.errorMsg.text = status.errorMsg;
         });
