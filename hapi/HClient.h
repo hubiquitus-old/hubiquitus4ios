@@ -35,6 +35,7 @@
 @property (nonatomic, readonly) Status status;
 @property (nonatomic, strong) void(^onStatus)(HStatus*);
 @property (nonatomic, strong) void(^onMessage)(HMessage*);
+@property (nonatomic, strong) NSDictionary * session_filter;
 @property (nonatomic, readonly) NSString * fullurn;
 @property (nonatomic, readonly) NSString * resource;
 
@@ -65,7 +66,7 @@
 
 - (HMessage*)buildMessageWithActor:(NSString*)actor type:(NSString*)type payload:(id)payload options:(HMessageOptions*)msgOptions didFailWithError:(NSError**)error;
 
-- (HMessage*)buildCommandWithActor:(NSString*)actor cmd:(NSString*)cmd params:(NSDictionary*)params options:(HMessageOptions*)msgOptions didFailWithError:(NSError**)error;
+- (HMessage*)buildCommandWithActor:(NSString*)actor cmd:(NSString*)cmd params:(NSDictionary*)params filter:(NSDictionary*)filter options:(HMessageOptions*)msgOptions didFailWithError:(NSError**)error;
 
 - (HMessage*)buildResultWithActor:(NSString*)actor ref:(NSString*)ref status:(ResultStatus)status result:(id)result options:(HMessageOptions *)msgOptions didFailWithError:(NSError**)error;
 

@@ -47,7 +47,6 @@ static const NSString * hNodeName = @"hnode";
 }
 @property (nonatomic, strong) HTransport * transport;
 @property (nonatomic, strong) NSMutableDictionary * callbacks;
-@property (nonatomic, readonly) NSString * hnodeJid;
 
 @end
 
@@ -63,6 +62,7 @@ static const NSString * hNodeName = @"hnode";
 @synthesize onStatus, onMessage;
 @synthesize callbacks;
 @synthesize transport;
+@synthesize session_filter;
 
 - (id)init {
     self = [super init];
@@ -70,6 +70,7 @@ static const NSString * hNodeName = @"hnode";
         _notificationsQueue = dispatch_queue_create("HClient.notifications.queue", NULL);
         self.transport = [[HTransport alloc] initWith:self];
         self.callbacks = [NSMutableDictionary dictionary];
+        self.session_filter = [NSDictionary dictionary];
     }
     
     return self;
@@ -79,9 +80,6 @@ static const NSString * hNodeName = @"hnode";
     dispatch_release(_notificationsQueue);
 }
 
-- (NSString *)hnodeJid {
-    return [NSString stringWithFormat:@"%@@%@", hNodeName, self.transport.options.urnDomain];
-}
 
 /**
  * Called to connect to hNode
@@ -171,7 +169,7 @@ static const NSString * hNodeName = @"hnode";
     HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
     msgOptions.timeout = self.transport.options.msgTimeout;
     
-    HMessage *cmd = [self buildCommandWithActor:@"session" cmd:@"hGetSubscriptions" params:nil options:msgOptions didFailWithError:nil];
+    HMessage *cmd = [self buildCommandWithActor:@"session" cmd:@"hGetSubscriptions" params:nil filter:nil options:msgOptions didFailWithError:nil];
     
     [self send:cmd withBlock:callback];
 }
@@ -184,7 +182,7 @@ static const NSString * hNodeName = @"hnode";
     HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
     msgOptions.timeout = self.transport.options.msgTimeout;
     
-    HMessage *cmd = [self buildCommandWithActor:actor cmd:@"hSubscribe" params:nil options:msgOptions didFailWithError:nil];
+    HMessage *cmd = [self buildCommandWithActor:actor cmd:@"hSubscribe" params:nil filter:nil options:msgOptions didFailWithError:nil];
     
     [self send:cmd withBlock:callback];
 }
@@ -203,7 +201,7 @@ static const NSString * hNodeName = @"hnode";
     if(quantity != nil)
         params = [NSDictionary dictionaryWithObject:quantity forKey:@"nbLastMsg"];
     
-    HMessage *cmd = [self buildCommandWithActor:actor cmd:@"hGetLastMessages" params:params options:msgOptions didFailWithError:nil];
+    HMessage *cmd = [self buildCommandWithActor:actor cmd:@"hGetLastMessages" params:params filter:self.session_filter options:msgOptions didFailWithError:nil];
     
     [self send:cmd withBlock:callback];
 }
@@ -223,7 +221,7 @@ static const NSString * hNodeName = @"hnode";
     
     NSDictionary * params = [NSDictionary dictionaryWithObject:convid forKey:@"convid"];
     
-    HMessage *cmd = [self buildCommandWithActor:actor cmd:@"hGetThread" params:params options:msgOptions didFailWithError:nil];
+    HMessage *cmd = [self buildCommandWithActor:actor cmd:@"hGetThread" params:params filter:self.session_filter options:msgOptions didFailWithError:nil];
     
     [self send:cmd withBlock:callback];
 }
@@ -243,7 +241,7 @@ static const NSString * hNodeName = @"hnode";
     
     NSDictionary * params = [NSDictionary dictionaryWithObject:status forKey:@"status"];
     
-    HMessage *cmd = [self buildCommandWithActor:actor cmd:@"hGetThreads" params:params options:msgOptions didFailWithError:nil];
+    HMessage *cmd = [self buildCommandWithActor:actor cmd:@"hGetThreads" params:params filter:self.session_filter options:msgOptions didFailWithError:nil];
     
     [self send:cmd withBlock:callback];
 }
@@ -257,7 +255,7 @@ static const NSString * hNodeName = @"hnode";
     HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
     msgOptions.timeout = self.transport.options.msgTimeout;
     
-    HMessage *cmd = [self buildCommandWithActor:actor cmd:@"hRelevantMessages" params:nil options:msgOptions didFailWithError:nil];
+    HMessage *cmd = [self buildCommandWithActor:actor cmd:@"hRelevantMessages" params:nil filter:self.session_filter options:msgOptions didFailWithError:nil];
     
     [self send:cmd withBlock:callback];
 }
@@ -273,7 +271,7 @@ static const NSString * hNodeName = @"hnode";
     
     NSDictionary * channelToUnsub = [NSDictionary dictionaryWithObject:actor forKey:@"channel"];
     
-    HMessage *cmd = [self buildCommandWithActor:@"session" cmd:@"hUnsubscribe" params:channelToUnsub options:msgOptions didFailWithError:nil];
+    HMessage *cmd = [self buildCommandWithActor:@"session" cmd:@"hUnsubscribe" params:channelToUnsub filter:nil options:msgOptions didFailWithError:nil];
 
     [self send:cmd withBlock:callback];
 }
@@ -289,8 +287,9 @@ static const NSString * hNodeName = @"hnode";
     
     HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
     msgOptions.timeout = self.transport.options.msgTimeout;
+    self.session_filter = filter;
     
-    HMessage *cmd = [self buildCommandWithActor:@"session" cmd:@"hSetfilter" params:filter options:msgOptions didFailWithError:nil];
+    HMessage *cmd = [self buildCommandWithActor:@"session" cmd:@"hSetfilter" params:filter filter:nil options:msgOptions didFailWithError:nil];
     
     [self send:cmd withBlock:callback];
 }
@@ -302,9 +301,12 @@ static const NSString * hNodeName = @"hnode";
     
     HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
     msgOptions.timeout = self.transport.options.msgTimeout;
+    DDLogVerbose(@"Filter string : %@", filter);
+    DDLogVerbose(@"Filter data : %@,", [filter dataUsingEncoding:NSUTF8StringEncoding]);
     NSDictionary * filterAsDictionnary = [NSJSONSerialization JSONObjectWithData:[filter dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:nil];
-    
-    HMessage *cmd = [self buildCommandWithActor:@"session" cmd:@"hSetFilter" params:filterAsDictionnary options:msgOptions didFailWithError:nil];
+    self.session_filter = filterAsDictionnary;
+    DDLogVerbose(@"Filter json: %@", filterAsDictionnary);
+    HMessage *cmd = [self buildCommandWithActor:@"session" cmd:@"hSetFilter" params:filterAsDictionnary filter:nil options:msgOptions didFailWithError:nil];
     
     [self send:cmd withBlock:callback];
 }
@@ -350,7 +352,7 @@ static const NSString * hNodeName = @"hnode";
     return msg;
 }
 
-- (HMessage *)buildCommandWithActor:(NSString *)actor cmd:(NSString *)cmd params:(NSDictionary *)params options:(HMessageOptions *)msgOptions didFailWithError:(NSError **)error {
+- (HMessage *)buildCommandWithActor:(NSString *)actor cmd:(NSString *)cmd params:(NSDictionary *)params filter:(NSDictionary *)filter options:(HMessageOptions *)msgOptions didFailWithError:(NSError **)error {
     
     if(cmd == nil || [cmd length] <= 0) {
         if(error)
@@ -361,7 +363,8 @@ static const NSString * hNodeName = @"hnode";
     HCommand * hCommmand = [[HCommand alloc] init];
     hCommmand.cmd = cmd;
     hCommmand.params = params;
-    
+    hCommmand.filter = filter;
+
     HMessage *msg = [self buildMessageWithActor:actor type:@"hCommand" payload:hCommmand options:msgOptions didFailWithError:error];
     
     return msg;
