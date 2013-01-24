@@ -30,5 +30,6 @@
 
 @property (nonatomic, strong) NSString * cmd;
 @property (nonatomic, strong) NSDictionary * params;
+@property (nonatomic, strong) NSDictionary * filter;
 
 @end

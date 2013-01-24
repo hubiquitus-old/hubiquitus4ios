@@ -58,4 +58,16 @@
     [self setObject:params forKey:@"params"];
 }
 
+/**
+ * Command parameters
+ */
+- (NSDictionary*)filter {
+    return [self objectForKey:@"filter" withClass:[NSString class]];
+}
+
+- (void)setFilter:(NSString*)filter {
+    [self setObject:filter forKey:@"filter"];
+}
+
+
 @end
