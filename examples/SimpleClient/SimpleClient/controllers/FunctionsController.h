@@ -51,10 +51,6 @@
 - (IBAction)getSubscriptions:(id)sender;
 - (IBAction)subscribe:(id)sender;
 - (IBAction)unsubscribe:(id)sender;
-- (IBAction)getLastMessages:(id)sender;
-- (IBAction)getThread:(id)sender;
-- (IBAction)getThreads:(id)sender;
-- (IBAction)getRelevantMessages:(id)sender;
 - (IBAction)setFilter:(id)sender;
 
 @end
