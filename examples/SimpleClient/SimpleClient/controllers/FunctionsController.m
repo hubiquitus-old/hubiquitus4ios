@@ -107,25 +107,6 @@
     [hClient unsubscribeFromActor:self.actor.text withBlock:_cb];
 }
 
-- (IBAction)getLastMessages:(id)sender {
-    if(self.nbLastMsg.text && self.nbLastMsg.text.length > 0)
-        [hClient getLastMessagesFromActor:self.actor.text quantity:[NSNumber numberWithInt:[self.nbLastMsg.text intValue]] withBlock:_cb];
-    else
-        [hClient getLastMessagesFromActor:self.actor.text quantity:nil withBlock:_cb];
-}
-
-- (IBAction)getThread:(id)sender {
-    [hClient getThreadFromActor:self.actor.text withConvid:self.convid.text block:_cb];
-}
-
-- (IBAction)getThreads:(id)sender {
-    [hClient getThreadsFromActor:self.actor.text withStatus:self.convstate.text block:_cb];
-}
-
-- (IBAction)getRelevantMessages:(id)sender {
-    [hClient getRelevantMessagesFromActor:self.actor.text withBlock:_cb];
-}
-
 - (IBAction)setFilter:(id)sender {
     [hClient setFilterWithString:self.convid.text withBlock:_cb];
 }
