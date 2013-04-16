@@ -66,7 +66,6 @@
     appDelegate.messageSenderController = [[weakSelf viewControllers] objectAtIndex:3];
     
     hClient.onStatus = ^(HStatus *status) {
-        NSLog(@"Fullurn : %@, resource : %@", hClient.fullurn, hClient.resource);
         dispatch_async(dispatch_get_main_queue(), ^() {
             UIViewController *selectedViewController = [weakSelf selectedViewController];
             if([selectedViewController conformsToProtocol:@protocol(SimpleClientViewController)]) {

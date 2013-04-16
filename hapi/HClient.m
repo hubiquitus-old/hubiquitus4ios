@@ -40,7 +40,6 @@
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
 #endif
 
-static const NSString * hNodeName = @"hnode";
 
 @interface HClient () {
     dispatch_queue_t _notificationsQueue; /** queue used to sequentially notify client of a status or a message */
@@ -116,7 +115,6 @@ static const NSString * hNodeName = @"hnode";
 }
 
 - (void)send:(HMessage *)message withBlock:(void (^)(HMessage *))callback {
-    DDLogVerbose(@"trying to send message %@ through hAPI", message);
     if(!message) {
         [self errorNotification:RES_MISSING_ATTR errorMsg:@"Nil message" refMsg:@"-1" timeout:0 withBlock:callback];
         return;
@@ -559,7 +557,7 @@ static const NSString * hNodeName = @"hnode";
         //find the callback if there is one
         NSArray * refComponents = [aMessage.ref componentsSeparatedByString:@"#"];
         void(^callback)(HMessage*);
-        if([refComponents count] == 2) {
+        if([refComponents count] >= 2) {
             callback = [callbacks objectForKey:[refComponents objectAtIndex:0]];
         }
         
