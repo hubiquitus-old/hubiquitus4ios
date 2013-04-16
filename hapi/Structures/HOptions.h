@@ -30,7 +30,8 @@
 
 @property (nonatomic, strong) NSString * transport;
 @property (nonatomic, strong) NSArray * endpoints;
+@property (nonatomic, strong) id(^authCB)(NSString * login);
 @property (nonatomic) long msgTimeout;
-@property (nonatomic) long timeout; 
+@property (nonatomic) long timeout;
 
 @end

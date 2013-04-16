@@ -108,6 +108,13 @@
  * Should be called after connection
  */
 - (void)authenticate {
+    NSDictionary * connexionData = self.options.authCB(self.options.login);
+    if([connexionData objectForKey:@"password"] == nil){
+        self.options.login = [connexionData objectForKey:@"login"];
+    } else {
+        self.options.login = [connexionData objectForKey:@"login"];
+        self.options.password = [connexionData objectForKey:@"password"];
+    }
     NSDictionary * credentials = [NSDictionary dictionaryWithObjectsAndKeys:self.options.login, @"login", self.options.password, @"password", [[NSDate date] toTimestampMS],@"sent", self.options.context, @"context", nil];
     [self.socketio sendEvent:@"hConnect" withData:credentials];
 }

@@ -60,6 +60,7 @@
         self.transport = options.transport;
         self.endpoints = options.endpoints;
         self.timeout = options.timeout;
+        self.authCB = options.authCB;
     }
     
     return self;

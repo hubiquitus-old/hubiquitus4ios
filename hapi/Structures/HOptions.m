@@ -26,7 +26,7 @@
 #import "HOptions.h"
 
 /**
- * @version 0.5.0
+ * @version 0.6.1
  * hAPI options
  */
 
@@ -42,6 +42,9 @@
         self.transport = @"socketio";
         self.timeout = 15000;
         self.msgTimeout = 30000;
+        self.authCB = ^(NSString* login){
+            return [NSDictionary dictionaryWithObjectsAndKeys:login, @"login", nil, @"password", nil];
+        };
     }
     
     return self;
@@ -71,10 +74,6 @@
     [self setObject:endpoints forKey:@"endpoints"];
 }
 
-/**
- * Connection endpoints (ie : http://localhost:8080/)
- * Only for socketio
- */
 /**
  * timeout in ms
  */
