@@ -22,7 +22,7 @@ Once connected it is also possible to execute other commands:
 [hClient subscribeToActor:self.actor.text withBlock:_cb]; //Channel to subscribe to using current credentials.
 [hClient unsubscribeFromActor:self.actor.text withBlock:_cb]; //Channel to unsubscribe.
 [hClient send:msg withBlock:^(HMessage* response) callback]; //Sent an hMessage.
-[self.hClient disconnect]; //Disconnects from the Server.
+[hClient disconnect]; //Disconnects from the Server.
 ```
 Note: a list of all available operations is in [Functions](https://github.com/hubiquitus/hubiquitus4js/tree/master/docs/Functions)
 
