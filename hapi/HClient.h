@@ -51,14 +51,6 @@
 
 - (void)unsubscribeFromActor:(NSString*)actor withBlock:(void(^)(HMessage*))callback;
 
-- (void)getLastMessagesFromActor:(NSString*)actor quantity:(NSNumber*)quantity withBlock:(void(^)(HMessage*))callback;
-
-- (void)getThreadFromActor:(NSString*)actor withConvid:(NSString*)convid block:(void(^)(HMessage*))callback;
-
-- (void)getThreadsFromActor:(NSString*)actor withStatus:(NSString*)status block:(void(^)(HMessage*))callback;
-
-- (void)getRelevantMessagesFromActor:(NSString*)actor withBlock:(void(^)(HMessage*))callback;
-
 - (void)setFilter:(NSDictionary*)filter withBlock:(void(^)(HMessage*))callback;
 
 - (void)setFilterWithString:(NSString *)filter withBlock:(void (^)(HMessage *))callback;
