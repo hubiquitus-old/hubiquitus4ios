@@ -23,55 +23,11 @@
  *    If not, see <http://opensource.org/licenses/mit-license.php>.
  */
 
-#import "HStatus.h"
-
 /**
  * @version 0.5.0
- * hStatus - notification on connection status
+ * Connection error codes. See HStatus.status
  */
 
-#if ! __has_feature(objc_arc)
-#warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
-#endif
+#import "ErrorCode.h"
 
-@implementation HStatus
-
-/**
- * Connection status
- * See status for possible values
- */
-- (Status)status {
-    NSNumber * statusCode = [self objectForKey:@"status" withClass:[NSNumber class]];
-    return [statusCode intValue];
-}
-
-- (void)setStatus:(Status)aStatus {
-    [self setObject:[NSNumber numberWithInt:aStatus] forKey:@"status"];
-}
-
-/**
- * Error code in case of an error .(By default : 0 = NO_ERROR)
- * See ErrorCode for possible values
- */
-- (int)errorCode {
-    NSNumber * code = [self objectForKey:@"errorCode" withClass:[NSNumber class]];
-    return [code intValue];
-}
-
-- (void)setErrorCode:(int)errorCode {
-    [self setObject:[NSNumber numberWithInt:errorCode] forKey:@"errorCode"];
-}
-
-/**
- * In case of an error, a description on what happened on lower levels.
- * Should only be used for debug purpose
- */
-- (NSString *)errorMsg {
-    return [self objectForKey:@"errorMsg" withClass:[NSString class]];
-}
-
-- (void)setErrorMsg:(NSString *)errorMsg {
-    [self setObject:errorMsg forKey:@"errorMsg"];
-}
-
-@end
+const _Error hError = {0, 1, 2, 3, 5, 6, 7, 8};

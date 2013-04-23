@@ -31,7 +31,7 @@
 @interface HStatus : HStructure
 
 @property (nonatomic) Status status;
-@property (nonatomic) ErrorCode errorCode;
+@property (nonatomic) int errorCode;
 @property (nonatomic, strong) NSString * errorMsg;
 
 @end

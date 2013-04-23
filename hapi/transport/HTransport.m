@@ -95,9 +95,9 @@
 - (void)connectWithOptions:(HTransportOptions*)someOptions {   
     //check if we are not connected
     if(self.status != DISCONNECTED && self.status != DISCONNECTING) {
-        ErrorCode errorCode = ALREADY_CONNECTED;
+        int errorCode = hError.ALREADY_CONNECTED;
         if (self.status == CONNECTING) {
-            errorCode = CONN_PROGRESS;
+            errorCode = hError.CONN_PROGRESS;
         }
         
         [self notifyStatus:self.status withErrorCode:errorCode errorMsg:@"Already connected or trying to connect"];
@@ -106,7 +106,7 @@
     
     //Check if we have a transport
     if (someOptions.transport.length <= 0) {
-        [self notifyStatus:self.status withErrorCode:TECH_ERROR errorMsg:@"No valid endpoint. Endpoint should follow pattern : http://domain:port"];
+        [self notifyStatus:self.status withErrorCode:hError.TECH_ERROR errorMsg:@"No valid endpoint. Endpoint should follow pattern : http://domain:port"];
         return;
     }
     
@@ -151,7 +151,7 @@
         }
     } else {
         if (self.status == DISCONNECTED) {
-            [self notifyStatus:self.status withErrorCode:NOT_CONNECTED errorMsg:nil];
+            [self notifyStatus:self.status withErrorCode:hError.NOT_CONNECTED errorMsg:nil];
         }
     }
     
@@ -163,7 +163,7 @@
         [self.transportLayer send:message];
     } else {
         if([self.delegate respondsToSelector:@selector(errorNotification:errorMsg:refMsg:)]) {
-            [self errorNotification:NOT_CONNECTED errorMsg:[NSString stringWithFormat:@"cannot send message while status is : %d",self.status] refMsg:message.ref];
+            [self errorNotification:hError.NOT_CONNECTED errorMsg:[NSString stringWithFormat:@"cannot send message while status is : %d",self.status] refMsg:message.ref];
         }
     }
 }
@@ -198,7 +198,7 @@
         if (self.transportLayer.status == CONNECTED || self.transportLayer.status == CONNECTING || self.transportLayer.status == DISCONNECTING) {
             [self.transportLayer disconnect];
             
-            [self notifyStatus:DISCONNECTED withErrorCode:TECH_ERROR errorMsg:[NSString stringWithFormat:@"Fatal error occured while trying to connect : %@", err]];
+            [self notifyStatus:DISCONNECTED withErrorCode:hError.TECH_ERROR errorMsg:[NSString stringWithFormat:@"Fatal error occured while trying to connect : %@", err]];
         }
     }
     
@@ -288,10 +288,10 @@
 
 #pragma mark - Transport layer delegate
 
-- (void)statusNotification:(Status)aStatus withErrorCode:(ErrorCode)anErrorCode errorMsg:(NSString *)anErrorMsg {
+- (void)statusNotification:(Status)aStatus withErrorCode:(int)anErrorCode errorMsg:(NSString *)anErrorMsg {
     
     //if credentials are refused, we disconnect and stop auto connect system
-    if(aStatus == AUTH_FAILED)
+    if(aStatus == hError.AUTH_FAILED)
         [self disconnect];
     
     if(aStatus == DISCONNECTED) {
@@ -340,7 +340,7 @@
 /**
  * notify the delegate of a status update
  */
-- (void)notifyStatus:(Status)aStatus withErrorCode:(ErrorCode)anErrorCode errorMsg:(NSString *)anErrorMsg {
+- (void)notifyStatus:(Status)aStatus withErrorCode:(int)anErrorCode errorMsg:(NSString *)anErrorMsg {
     HStatus * hStatus = [[HStatus alloc] init];
     hStatus.status = aStatus;
     hStatus.errorCode = anErrorCode;

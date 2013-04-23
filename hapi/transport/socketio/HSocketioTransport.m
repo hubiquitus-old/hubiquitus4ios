@@ -73,7 +73,7 @@
         _status = CONNECTING;
         
         if([self.delegate respondsToSelector:@selector(statusNotification:withErrorCode:errorMsg:)]) {
-            [self.delegate statusNotification:CONNECTING withErrorCode:NO_ERROR errorMsg:nil];
+            [self.delegate statusNotification:CONNECTING withErrorCode:hError.NO_ERROR errorMsg:nil];
         }
         self.options = someOptions;
         NSURL *endpoint = self.options.endpoint;
@@ -86,7 +86,7 @@
         _status = DISCONNECTING;
         
         if([self.delegate respondsToSelector:@selector(statusNotification:withErrorCode:errorMsg:)]) {
-            [self.delegate statusNotification:DISCONNECTING withErrorCode:NO_ERROR errorMsg:nil];
+            [self.delegate statusNotification:DISCONNECTING withErrorCode:hError.NO_ERROR errorMsg:nil];
         }
         
         [self.socketio disconnect];
@@ -98,7 +98,7 @@
         [self.socketio sendEvent:@"hMessage" withData:message]; 
     } else {
         if([self.delegate respondsToSelector:@selector(errorNotification:errorMsg:)]) {
-            [self.delegate errorNotification:NOT_CONNECTED errorMsg:nil refMsg:[message objectForKey:@"msgid"]];
+            [self.delegate errorNotification:hError.NOT_CONNECTED errorMsg:nil refMsg:[message objectForKey:@"msgid"]];
         }
     }
 }
@@ -130,7 +130,7 @@
     _status = DISCONNECTED;
     
     if([self.delegate respondsToSelector:@selector(statusNotification:withErrorCode:errorMsg:)]) {
-        [self.delegate statusNotification:DISCONNECTED withErrorCode:NO_ERROR errorMsg:nil];
+        [self.delegate statusNotification:DISCONNECTED withErrorCode:hError.NO_ERROR errorMsg:nil];
     }
 }
 
@@ -167,7 +167,7 @@
     _status = DISCONNECTED;
     
     if([self.delegate respondsToSelector:@selector(statusNotification:withErrorCode:errorMsg:)]) {
-        [self.delegate statusNotification:DISCONNECTED withErrorCode:TECH_ERROR errorMsg:@"SocketIO handshake failed"];
+        [self.delegate statusNotification:DISCONNECTED withErrorCode:hError.TECH_ERROR errorMsg:@"SocketIO handshake failed"];
     }
 }
 

@@ -28,13 +28,15 @@
  * Connection error codes. See HStatus.status
  */
 
-typedef enum {
-    NO_ERROR = 0,
-    URN_MALFORMAT = 1,
-    CONN_TIMEOUT = 2,
-    AUTH_FAILED = 3,
-    ALREADY_CONNECTED = 5,
-    TECH_ERROR = 6,
-    NOT_CONNECTED = 7,
-    CONN_PROGRESS = 8
-} ErrorCode;
+typedef struct {
+    const int NO_ERROR;
+    const int URN_MALFORMAT;
+    const int CONN_TIMEOUT;
+    const int AUTH_FAILED;
+    const int ALREADY_CONNECTED;
+    const int TECH_ERROR;
+    const int NOT_CONNECTED;
+    const int CONN_PROGRESS;
+} _Error;
+
+extern const _Error hError;
