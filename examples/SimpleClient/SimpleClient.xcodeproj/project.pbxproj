@@ -12,6 +12,7 @@
 		11ADA516160242EF00CF4A10 /* HMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 11782E8A16023BF200783E5A /* HMessage.m */; };
 		11ADA51B160247CB00CF4A10 /* HCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 11ADA518160247C200CF4A10 /* HCommand.m */; };
 		11ADA51C160247CD00CF4A10 /* HResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 11ADA51A160247C200CF4A10 /* HResult.m */; };
+		368FCEBE1726DB5500D16CE0 /* ErrorCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 368FCEBD1726DB5500D16CE0 /* ErrorCode.m */; };
 		C5138BFD160280BF00829B44 /* HMessageOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = C5138BFC160280BF00829B44 /* HMessageOptions.m */; };
 		C5138C0216029DE000829B44 /* IncomingMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5138C0116029DE000829B44 /* IncomingMessageController.m */; };
 		C5145F5216065EFB00D77C41 /* HAck.m in Sources */ = {isa = PBXBuildFile; fileRef = C5145F4A1606598A00D77C41 /* HAck.m */; };
@@ -82,6 +83,7 @@
 		11ADA519160247C200CF4A10 /* HResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HResult.h; sourceTree = "<group>"; };
 		11ADA51A160247C200CF4A10 /* HResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HResult.m; sourceTree = "<group>"; };
 		11BF3EEC160A25BB002C062C /* HLogLevel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLogLevel.h; sourceTree = "<group>"; };
+		368FCEBD1726DB5500D16CE0 /* ErrorCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorCode.m; sourceTree = "<group>"; };
 		C5138BFB160280BF00829B44 /* HMessageOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMessageOptions.h; sourceTree = "<group>"; };
 		C5138BFC160280BF00829B44 /* HMessageOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMessageOptions.m; sourceTree = "<group>"; };
 		C5138C0116029DE000829B44 /* IncomingMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncomingMessageController.m; sourceTree = "<group>"; };
@@ -306,6 +308,8 @@
 		C57490F016013B0400B80BC4 /* Structures */ = {
 			isa = PBXGroup;
 			children = (
+				C57490F116013B0400B80BC4 /* ErrorCode.h */,
+				368FCEBD1726DB5500D16CE0 /* ErrorCode.m */,
 				C5145F491606598A00D77C41 /* HAck.h */,
 				C5145F4A1606598A00D77C41 /* HAck.m */,
 				C5145F4B1606598A00D77C41 /* HAlert.h */,
@@ -324,7 +328,6 @@
 				11782E8816023BF100783E5A /* HLocation.m */,
 				11782E8916023BF100783E5A /* HMessage.h */,
 				11782E8A16023BF200783E5A /* HMessage.m */,
-				C57490F116013B0400B80BC4 /* ErrorCode.h */,
 				C57490F316013B0400B80BC4 /* HOptions.h */,
 				C57490F416013B0400B80BC4 /* HOptions.m */,
 				C57490F516013B0400B80BC4 /* HStatus.h */,
@@ -558,6 +561,7 @@
 				11ADA51C160247CD00CF4A10 /* HResult.m in Sources */,
 				C574917616013B1200B80BC4 /* SocketIO.m in Sources */,
 				C5138BFD160280BF00829B44 /* HMessageOptions.m in Sources */,
+				368FCEBE1726DB5500D16CE0 /* ErrorCode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
