@@ -51,10 +51,10 @@
  * Command parameters
  */
 - (NSDictionary*)params {
-    return [self objectForKey:@"params" withClass:[NSString class]];
+    return [self objectForKey:@"params" withClass:[NSDictionary class]];
 }
 
-- (void)setParams:(NSString*)params {
+- (void)setParams:(NSDictionary*)params {
     [self setObject:params forKey:@"params"];
 }
 
@@ -62,10 +62,10 @@
  * Command parameters
  */
 - (NSDictionary*)filter {
-    return [self objectForKey:@"filter" withClass:[NSString class]];
+    return [self objectForKey:@"filter" withClass:[NSDictionary class]];
 }
 
-- (void)setFilter:(NSString*)filter {
+- (void)setFilter:(NSDictionary*)filter {
     [self setObject:filter forKey:@"filter"];
 }
 
