@@ -40,7 +40,7 @@
 		C57490D516013AC000B80BC4 /* hub_connecting.png in Resources */ = {isa = PBXBuildFile; fileRef = C57490D016013AC000B80BC4 /* hub_connecting.png */; };
 		C57490D616013AC000B80BC4 /* hub_disconnected.png in Resources */ = {isa = PBXBuildFile; fileRef = C57490D116013AC000B80BC4 /* hub_disconnected.png */; };
 		C57490DA16013AD600B80BC4 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C57490D816013AD600B80BC4 /* MainStoryboard.storyboard */; };
-		C574910C16013B0400B80BC4 /* NSDate+timestampMS.m in Sources */ = {isa = PBXBuildFile; fileRef = C57490E316013B0400B80BC4 /* NSDate+timestampMS.m */; };
+		C574910C16013B0400B80BC4 /* NSDate+timestamp.m in Sources */ = {isa = PBXBuildFile; fileRef = C57490E316013B0400B80BC4 /* NSDate+timestamp.m */; };
 		C574911216013B0400B80BC4 /* HClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C57490EF16013B0400B80BC4 /* HClient.m */; };
 		C574911316013B0400B80BC4 /* HOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = C57490F416013B0400B80BC4 /* HOptions.m */; };
 		C574911416013B0400B80BC4 /* HStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = C57490F616013B0400B80BC4 /* HStatus.m */; };
@@ -123,8 +123,8 @@
 		C57490D016013AC000B80BC4 /* hub_connecting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hub_connecting.png; sourceTree = "<group>"; };
 		C57490D116013AC000B80BC4 /* hub_disconnected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hub_disconnected.png; sourceTree = "<group>"; };
 		C57490D916013AD600B80BC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		C57490E216013B0400B80BC4 /* NSDate+timestampMS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+timestampMS.h"; sourceTree = "<group>"; };
-		C57490E316013B0400B80BC4 /* NSDate+timestampMS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+timestampMS.m"; sourceTree = "<group>"; };
+		C57490E216013B0400B80BC4 /* NSDate+timestamp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+timestamp.h"; sourceTree = "<group>"; };
+		C57490E316013B0400B80BC4 /* NSDate+timestamp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+timestamp.m"; sourceTree = "<group>"; };
 		C57490EE16013B0400B80BC4 /* HClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HClient.h; sourceTree = "<group>"; };
 		C57490EF16013B0400B80BC4 /* HClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HClient.m; sourceTree = "<group>"; };
 		C57490F116013B0400B80BC4 /* ErrorCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorCode.h; sourceTree = "<group>"; };
@@ -299,8 +299,8 @@
 		C57490DC16013B0400B80BC4 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				C57490E216013B0400B80BC4 /* NSDate+timestampMS.h */,
-				C57490E316013B0400B80BC4 /* NSDate+timestampMS.m */,
+				C57490E216013B0400B80BC4 /* NSDate+timestamp.h */,
+				C57490E316013B0400B80BC4 /* NSDate+timestamp.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -525,7 +525,7 @@
 				C57490AA16013A0700B80BC4 /* main.m in Sources */,
 				C57490AE16013A0700B80BC4 /* AppDelegate.m in Sources */,
 				C57490D316013AC000B80BC4 /* TabBarController.m in Sources */,
-				C574910C16013B0400B80BC4 /* NSDate+timestampMS.m in Sources */,
+				C574910C16013B0400B80BC4 /* NSDate+timestamp.m in Sources */,
 				C5145F5216065EFB00D77C41 /* HAck.m in Sources */,
 				C5138C0216029DE000829B44 /* IncomingMessageController.m in Sources */,
 				C57490D216013AC000B80BC4 /* ConnectionController.m in Sources */,

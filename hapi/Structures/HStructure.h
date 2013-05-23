@@ -24,7 +24,7 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "NSDate+timestampMS.h"
+#import "NSDate+timestamp.h"
 
 @interface HStructure : NSMutableDictionary
 

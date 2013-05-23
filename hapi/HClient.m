@@ -34,7 +34,7 @@
 #import "HResult.h"
 #import "ErrorCode.h"
 #import "HLogLevel.h"
-#import "NSDate+timestampMS.h"
+#import "NSDate+timestamp.h"
 
 #if ! __has_feature(objc_arc)
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
@@ -125,7 +125,7 @@
         return;
     }
     
-    message.sent = [[NSDate date] toTimestampMS];
+    message.sent = [[NSDate date] toTimestampInMs];
     message.msgid = @""; //msgid is set only if there is a timeout
     message.publisher = self.transport.fullurn;
     
@@ -269,7 +269,7 @@
         if(msgOptions.timeout > 0) msg.timeout = msgOptions.timeout;
         
         if(msgOptions.relevanceOffset >= 0) {
-            NSNumber * relevance = [NSNumber numberWithLongLong:([[[NSDate date] toTimestampMS] longLongValue] + msgOptions.relevanceOffset)];
+            NSNumber * relevance = [NSNumber numberWithLongLong:([[[NSDate date] toTimestampInMs] longLongValue] + msgOptions.relevanceOffset)];
             msg.relevance = relevance;
         }
     }

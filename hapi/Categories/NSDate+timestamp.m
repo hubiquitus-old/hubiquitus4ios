@@ -24,11 +24,31 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "NSDate+timestamp.h"
 
-@interface NSDate (timestampMS)
+#if ! __has_feature(objc_arc)
+#warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
+#endif
 
-- (NSNumber *) toTimestampMS;
-+ (NSDate *) dateFromTimestampMS:(NSNumber *) time;
+/**
+ * @version 0.4.0
+ * Add support to format date as milliseconds timestamp
+ */
+
+@implementation NSDate (timestamp)
+
+/**
+ * Representation of the date as ISO8601 date
+ */
+-(NSNumber *) toTimestampInMs {
+    return [NSNumber numberWithLongLong:(long long)(round([[NSDate date] timeIntervalSince1970]*1000))];
+}
+
+/**
+ * NSDate from a milliseconds timestamp date
+ */
++(NSDate *) dateWithTimestampInMs:(NSNumber *)time {
+    return [[NSDate date] initWithTimeIntervalSince1970:[time longLongValue]/1000];
+}
 
 @end
-

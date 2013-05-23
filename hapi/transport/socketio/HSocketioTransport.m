@@ -28,7 +28,7 @@
 #import "Status.h"
 #import "ErrorCode.h"
 #import "HLogLevel.h"
-#import "NSDate+timestampMS.h"
+#import "NSDate+timestamp.h"
 
 #if ! __has_feature(objc_arc)
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
@@ -115,7 +115,7 @@
         self.options.login = [connexionData objectForKey:@"login"];
         self.options.password = [connexionData objectForKey:@"password"];
     }
-    NSDictionary * credentials = [NSDictionary dictionaryWithObjectsAndKeys:self.options.login, @"login", self.options.password, @"password", [[NSDate date] toTimestampMS],@"sent", self.options.context, @"context", nil];
+    NSDictionary * credentials = [NSDictionary dictionaryWithObjectsAndKeys:self.options.login, @"login", self.options.password, @"password", [[NSDate date] toTimestampInMs],@"sent", self.options.context, @"context", nil];
     [self.socketio sendEvent:@"hConnect" withData:credentials];
 }
 

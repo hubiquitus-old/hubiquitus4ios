@@ -63,7 +63,7 @@
         if([object isKindOfClass:aClass]) {
             return object;
         } else if([aClass isSubclassOfClass:[NSNumber class]] && [object isKindOfClass:[NSNumber class]]) {
-            return  [NSDate dateFromTimestampMS:object];
+            return  [NSDate dateWithTimestampInMs:object];
         }
     }
     return nil;
