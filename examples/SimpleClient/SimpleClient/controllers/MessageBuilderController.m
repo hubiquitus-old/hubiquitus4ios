@@ -156,7 +156,7 @@
     
     NSError * error = nil;
     NSDictionary * params = [NSJSONSerialization JSONObjectWithData:[self.params_result_value.text dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:nil];
-    HMessage * msg = [hClient buildCommandWithActor:appDelegate.messageOptionsController.actor.text cmd:self.cmd_status_unit.text params:params options:msgOpts didFailWithError:&error];
+    HMessage * msg = [hClient buildCommandWithActor:appDelegate.messageOptionsController.actor.text cmd:self.cmd_status_unit.text params:params filter:nil options:msgOpts didFailWithError:&error];
     
     self.errors.text = [error description];
     

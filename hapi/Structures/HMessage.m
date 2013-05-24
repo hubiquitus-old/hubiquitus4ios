@@ -50,7 +50,7 @@
 
 /**
  * actor
- * Should be a jid
+ * Should be a urn
  */
 - (NSString*)actor {
     return [self objectForKey:@"actor" withClass:[NSString class]];
@@ -72,7 +72,7 @@
 }
 
 /**
- * reference a message jid
+ * reference a message with is msgid
  */
 - (NSString*)ref {
     return [self objectForKey:@"ref" withClass:[NSString class]];
@@ -115,11 +115,11 @@
 /**
  * Date until which, the message is relevant
  */
-- (NSDate*)relevance {
-    return [self objectForKey:@"relevance" withClass:[NSDate class]];
+- (NSNumber*)relevance {
+    return [self objectForKey:@"relevance" withClass:[NSNumber class]];
 }
 
-- (void)setRelevance:(NSDate*)relevance {
+- (void)setRelevance:(NSNumber*)relevance {
     [self setObject:relevance forKey:@"relevance"];
 }
 
@@ -158,7 +158,7 @@
 }
 
 /**
- * Publisher of the message. Should be a jid. Filled by the hAPI
+ * Publisher of the message. Should be a urn. Filled by the hAPI
  */
 - (NSString*)publisher {
     return [self objectForKey:@"publisher" withClass:[NSString class]];
@@ -171,11 +171,11 @@
 /**
  * Message publication date
  */
-- (NSDate*)published {
-    return [self objectForKey:@"published" withClass:[NSDate class]];
+- (NSNumber*)published {
+    return [self objectForKey:@"published" withClass:[NSNumber class]];
 }
 
-- (void)setPublished:(NSDate*)published {
+- (void)setPublished:(NSNumber*)published {
     [self setObject:published forKey:@"published"];
 }
 
@@ -186,7 +186,7 @@
     return [self objectForKey:@"headers" withClass:[NSDictionary class]];
 }
 
-- (void)setHeaders:(NSDate*)headers {
+- (void)setHeaders:(NSDictionary*)headers {
     [self setObject:headers forKey:@"headers"];
 }
 
@@ -337,11 +337,11 @@
 /**
  * Message sending time
  */
-- (NSDate*)sent {
-    return [self objectForKey:@"sent" withClass:[NSDate class]];
+- (NSNumber*)sent {
+    return [self objectForKey:@"sent" withClass:[NSNumber class]];
 }
 
-- (void)setSent:(NSDate*)sent {
+- (void)setSent:(NSNumber*)sent {
     [self setObject:sent forKey:@"sent"];
 }
 @end

@@ -34,19 +34,18 @@
 #import "HResult.h"
 #import "ErrorCode.h"
 #import "HLogLevel.h"
+#import "NSDate+timestamp.h"
 
 #if ! __has_feature(objc_arc)
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
 #endif
 
-static const NSString * hNodeName = @"hnode";
 
 @interface HClient () {
     dispatch_queue_t _notificationsQueue; /** queue used to sequentially notify client of a status or a message */
 }
 @property (nonatomic, strong) HTransport * transport;
 @property (nonatomic, strong) NSMutableDictionary * callbacks;
-@property (nonatomic, readonly) NSString * hnodeJid;
 
 @end
 
@@ -62,6 +61,7 @@ static const NSString * hNodeName = @"hnode";
 @synthesize onStatus, onMessage;
 @synthesize callbacks;
 @synthesize transport;
+@synthesize session_filter;
 
 - (id)init {
     self = [super init];
@@ -69,6 +69,7 @@ static const NSString * hNodeName = @"hnode";
         _notificationsQueue = dispatch_queue_create("HClient.notifications.queue", NULL);
         self.transport = [[HTransport alloc] initWith:self];
         self.callbacks = [NSMutableDictionary dictionary];
+        self.session_filter = [NSDictionary dictionary];
     }
     
     return self;
@@ -78,21 +79,19 @@ static const NSString * hNodeName = @"hnode";
     dispatch_release(_notificationsQueue);
 }
 
-- (NSString *)hnodeJid {
-    return [NSString stringWithFormat:@"%@@%@", hNodeName, self.transport.options.jidDomain];
-}
 
 /**
  * Called to connect to hNode
  * This will only be called if disconnect. If not, it will return a hStatus with error code ALREADY_CONNECTED
  */
-- (void)connectWithPublisher:(NSString *)publisher password:(NSString *)password options:(HOptions *)options {
+- (void)connectWithLogin:(NSString *)login password:(NSString *)password options:(HOptions *)options context:(NSDictionary *)context{
     if (!options)
         options = [[HOptions alloc] init];
     
     HTransportOptions * transportOpts = [[HTransportOptions alloc] initWithOptions:options];
-    transportOpts.jid = publisher;
+    transportOpts.login = login;
     transportOpts.password = password;
+    transportOpts.context = context;
     [self.transport connectWithOptions:transportOpts];
 }
 
@@ -107,8 +106,8 @@ static const NSString * hNodeName = @"hnode";
     return self.transport.status;
 }
 
-- (NSString *)fulljid {
-    return self.transport.fulljid;
+- (NSString *)fullurn {
+    return self.transport.fullurn;
 }
 
 - (NSString *)resource {
@@ -116,7 +115,6 @@ static const NSString * hNodeName = @"hnode";
 }
 
 - (void)send:(HMessage *)message withBlock:(void (^)(HMessage *))callback {
-    DDLogVerbose(@"trying to send message %@ through hAPI", message);
     if(!message) {
         [self errorNotification:RES_MISSING_ATTR errorMsg:@"Nil message" refMsg:@"-1" timeout:0 withBlock:callback];
         return;
@@ -127,9 +125,9 @@ static const NSString * hNodeName = @"hnode";
         return;
     }
     
-    message.sent = [NSDate date];
+    message.sent = [[NSDate date] toTimestampInMs];
     message.msgid = @""; //msgid is set only if there is a timeout
-    message.publisher = self.transport.options.jid;
+    message.publisher = self.transport.fullurn;
     
     if(callback == nil || message.timeout < 0) {
         message.timeout = 0;
@@ -144,7 +142,7 @@ static const NSString * hNodeName = @"hnode";
             if([callbacks objectForKey:message.msgid]) {
                 [callbacks removeObjectForKey:message.msgid];
                 
-                HMessage * timeoutResponse = [self buildResultWithActor:self.transport.options.jid ref:message.msgid status:RES_EXEC_TIMEOUT result:nil options:nil didFailWithError:nil];
+                HMessage * timeoutResponse = [self buildResultWithActor:self.transport.fullurn ref:message.msgid status:RES_EXEC_TIMEOUT result:nil options:nil didFailWithError:nil];
                 
                 callback(timeoutResponse);
             }
@@ -169,7 +167,7 @@ static const NSString * hNodeName = @"hnode";
     HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
     msgOptions.timeout = self.transport.options.msgTimeout;
     
-    HMessage *cmd = [self buildCommandWithActor:self.hnodeJid cmd:@"hgetsubscriptions" params:nil options:msgOptions didFailWithError:nil];
+    HMessage *cmd = [self buildCommandWithActor:@"session" cmd:@"hGetSubscriptions" params:nil filter:nil options:msgOptions didFailWithError:nil];
     
     [self send:cmd withBlock:callback];
 }
@@ -182,80 +180,7 @@ static const NSString * hNodeName = @"hnode";
     HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
     msgOptions.timeout = self.transport.options.msgTimeout;
     
-    HMessage *cmd = [self buildCommandWithActor:actor cmd:@"hsubscribe" params:nil options:msgOptions didFailWithError:nil];
-    
-    [self send:cmd withBlock:callback];
-}
-
-- (void)getLastMessagesFromActor:(NSString *)actor quantity:(NSNumber *)quantity withBlock:(void (^)(HMessage *))callback {
-    
-    if (callback == nil) {
-        return;
-    }
-    
-    HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
-    msgOptions.timeout = self.transport.options.msgTimeout;
-
-    NSDictionary * params = nil;
-    
-    if(quantity != nil)
-        params = [NSDictionary dictionaryWithObject:quantity forKey:@"nbLastMsg"];
-    
-    HMessage *cmd = [self buildCommandWithActor:actor cmd:@"hgetlastmessages" params:params options:msgOptions didFailWithError:nil];
-    
-    [self send:cmd withBlock:callback];
-}
-
-- (void)getThreadFromActor:(NSString *)actor withConvid:(NSString *)convid block:(void (^)(HMessage *))callback {
-    
-    if (callback == nil) {
-        return;
-    }
-    
-    if(!convid || convid.length <= 0) {
-        [self errorNotification:RES_MISSING_ATTR errorMsg:@"Missing convid" refMsg:@"-1" timeout:self.transport.options.msgTimeout withBlock:callback];
-    }
-    
-    HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
-    msgOptions.timeout = self.transport.options.msgTimeout;
-    
-    NSDictionary * params = [NSDictionary dictionaryWithObject:convid forKey:@"convid"];
-    
-    HMessage *cmd = [self buildCommandWithActor:actor cmd:@"hgetthread" params:params options:msgOptions didFailWithError:nil];
-    
-    [self send:cmd withBlock:callback];
-}
-
-- (void)getThreadsFromActor:(NSString *)actor withStatus:(NSString *)status block:(void (^)(HMessage *))callback {
-    
-    if (callback == nil) {
-        return;
-    }
-    
-    if(!status || status.length <= 0) {
-        [self errorNotification:RES_MISSING_ATTR errorMsg:@"Missing status" refMsg:@"-1" timeout:self.transport.options.msgTimeout withBlock:callback];
-    }
-    
-    HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
-    msgOptions.timeout = self.transport.options.msgTimeout;
-    
-    NSDictionary * params = [NSDictionary dictionaryWithObject:status forKey:@"status"];
-    
-    HMessage *cmd = [self buildCommandWithActor:actor cmd:@"hgetthreads" params:params options:msgOptions didFailWithError:nil];
-    
-    [self send:cmd withBlock:callback];
-}
-
-- (void)getRelevantMessagesFromActor:(NSString *)actor withBlock:(void (^)(HMessage *))callback {
-    
-    if (callback == nil) {
-        return;
-    }
-    
-    HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
-    msgOptions.timeout = self.transport.options.msgTimeout;
-    
-    HMessage *cmd = [self buildCommandWithActor:actor cmd:@"hrelevantmessages" params:nil options:msgOptions didFailWithError:nil];
+    HMessage *cmd = [self buildCommandWithActor:actor cmd:@"hSubscribe" params:nil filter:nil options:msgOptions didFailWithError:nil];
     
     [self send:cmd withBlock:callback];
 }
@@ -269,8 +194,10 @@ static const NSString * hNodeName = @"hnode";
     HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
     msgOptions.timeout = self.transport.options.msgTimeout;
     
-    HMessage *cmd = [self buildCommandWithActor:actor cmd:@"hunsubscribe" params:nil options:msgOptions didFailWithError:nil];
+    NSDictionary * channelToUnsub = [NSDictionary dictionaryWithObject:actor forKey:@"channel"];
     
+    HMessage *cmd = [self buildCommandWithActor:@"session" cmd:@"hUnsubscribe" params:channelToUnsub filter:nil options:msgOptions didFailWithError:nil];
+
     [self send:cmd withBlock:callback];
 }
 
@@ -285,8 +212,9 @@ static const NSString * hNodeName = @"hnode";
     
     HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
     msgOptions.timeout = self.transport.options.msgTimeout;
+    self.session_filter = filter;
     
-    HMessage *cmd = [self buildCommandWithActor:@"session" cmd:@"hsetfilter" params:filter options:msgOptions didFailWithError:nil];
+    HMessage *cmd = [self buildCommandWithActor:@"session" cmd:@"hSetfilter" params:filter filter:nil options:msgOptions didFailWithError:nil];
     
     [self send:cmd withBlock:callback];
 }
@@ -298,9 +226,12 @@ static const NSString * hNodeName = @"hnode";
     
     HMessageOptions * msgOptions = [[HMessageOptions alloc] init];
     msgOptions.timeout = self.transport.options.msgTimeout;
+    DDLogVerbose(@"Filter string : %@", filter);
+    DDLogVerbose(@"Filter data : %@,", [filter dataUsingEncoding:NSUTF8StringEncoding]);
     NSDictionary * filterAsDictionnary = [NSJSONSerialization JSONObjectWithData:[filter dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:nil];
-    
-    HMessage *cmd = [self buildCommandWithActor:@"session" cmd:@"hsetfilter" params:filterAsDictionnary options:msgOptions didFailWithError:nil];
+    self.session_filter = filterAsDictionnary;
+    DDLogVerbose(@"Filter json: %@", filterAsDictionnary);
+    HMessage *cmd = [self buildCommandWithActor:@"session" cmd:@"hSetFilter" params:filterAsDictionnary filter:nil options:msgOptions didFailWithError:nil];
     
     [self send:cmd withBlock:callback];
 }
@@ -321,7 +252,7 @@ static const NSString * hNodeName = @"hnode";
     msg.payload = payload;
     
     if(self.transport.options)
-        msg.publisher = self.transport.options.jid;
+        msg.publisher = self.transport.fullurn;
     
     if(msgOptions) {
         int priorityAsInt = msgOptions.priority;
@@ -338,7 +269,7 @@ static const NSString * hNodeName = @"hnode";
         if(msgOptions.timeout > 0) msg.timeout = msgOptions.timeout;
         
         if(msgOptions.relevanceOffset >= 0) {
-            NSDate * relevance = [NSDate dateWithTimeIntervalSinceNow:(msgOptions.relevanceOffset/1000)];
+            NSNumber * relevance = [NSNumber numberWithLongLong:([[[NSDate date] toTimestampInMs] longLongValue] + msgOptions.relevanceOffset)];
             msg.relevance = relevance;
         }
     }
@@ -346,7 +277,7 @@ static const NSString * hNodeName = @"hnode";
     return msg;
 }
 
-- (HMessage *)buildCommandWithActor:(NSString *)actor cmd:(NSString *)cmd params:(NSDictionary *)params options:(HMessageOptions *)msgOptions didFailWithError:(NSError **)error {
+- (HMessage *)buildCommandWithActor:(NSString *)actor cmd:(NSString *)cmd params:(NSDictionary *)params filter:(NSDictionary *)filter options:(HMessageOptions *)msgOptions didFailWithError:(NSError **)error {
     
     if(cmd == nil || [cmd length] <= 0) {
         if(error)
@@ -357,7 +288,8 @@ static const NSString * hNodeName = @"hnode";
     HCommand * hCommmand = [[HCommand alloc] init];
     hCommmand.cmd = cmd;
     hCommmand.params = params;
-    
+    hCommmand.filter = filter;
+
     HMessage *msg = [self buildMessageWithActor:actor type:@"hCommand" payload:hCommmand options:msgOptions didFailWithError:error];
     
     return msg;
@@ -495,7 +427,7 @@ static const NSString * hNodeName = @"hnode";
 }
 
 - (void)errorNotification:(ResultStatus)resultStatus errorMsg:(NSString *)errorMsg refMsg:(NSString *)ref {
-    HMessage *msg = [self buildResultWithActor:self.transport.options.jid ref:ref status:resultStatus result:errorMsg options:nil didFailWithError:nil];
+    HMessage *msg = [self buildResultWithActor:self.transport.fullurn ref:ref status:resultStatus result:errorMsg options:nil didFailWithError:nil];
     
     //check if there is callback because if there is not and it's an error, it means that a timeout of <0 was set
     NSArray * refComponents = [ref componentsSeparatedByString:@"#"];
@@ -510,7 +442,7 @@ static const NSString * hNodeName = @"hnode";
 
 - (void)errorNotification:(ResultStatus)resultStatus errorMsg:(NSString *)errorMsg refMsg:(NSString *)ref timeout:(long)timeout withBlock:(void(^)(HMessage*))callback {
     NSError *error = nil;
-    HMessage *msg = [self buildResultWithActor:self.transport.options.jid ref:ref status:resultStatus result:errorMsg options:nil didFailWithError:&error];
+    HMessage *msg = [self buildResultWithActor:self.transport.fullurn ref:ref status:resultStatus result:errorMsg options:nil didFailWithError:&error];
     
     [self notifyMessage:msg withBlock:callback timeout:timeout];
 }
@@ -552,7 +484,7 @@ static const NSString * hNodeName = @"hnode";
         //find the callback if there is one
         NSArray * refComponents = [aMessage.ref componentsSeparatedByString:@"#"];
         void(^callback)(HMessage*);
-        if([refComponents count] == 2) {
+        if([refComponents count] >= 2) {
             callback = [callbacks objectForKey:[refComponents objectAtIndex:0]];
         }
         

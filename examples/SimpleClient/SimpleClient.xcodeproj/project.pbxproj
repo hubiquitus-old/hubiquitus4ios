@@ -12,6 +12,7 @@
 		11ADA516160242EF00CF4A10 /* HMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 11782E8A16023BF200783E5A /* HMessage.m */; };
 		11ADA51B160247CB00CF4A10 /* HCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 11ADA518160247C200CF4A10 /* HCommand.m */; };
 		11ADA51C160247CD00CF4A10 /* HResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 11ADA51A160247C200CF4A10 /* HResult.m */; };
+		368FCEBE1726DB5500D16CE0 /* ErrorCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 368FCEBD1726DB5500D16CE0 /* ErrorCode.m */; };
 		C5138BFD160280BF00829B44 /* HMessageOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = C5138BFC160280BF00829B44 /* HMessageOptions.m */; };
 		C5138C0216029DE000829B44 /* IncomingMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5138C0116029DE000829B44 /* IncomingMessageController.m */; };
 		C5145F5216065EFB00D77C41 /* HAck.m in Sources */ = {isa = PBXBuildFile; fileRef = C5145F4A1606598A00D77C41 /* HAck.m */; };
@@ -39,7 +40,7 @@
 		C57490D516013AC000B80BC4 /* hub_connecting.png in Resources */ = {isa = PBXBuildFile; fileRef = C57490D016013AC000B80BC4 /* hub_connecting.png */; };
 		C57490D616013AC000B80BC4 /* hub_disconnected.png in Resources */ = {isa = PBXBuildFile; fileRef = C57490D116013AC000B80BC4 /* hub_disconnected.png */; };
 		C57490DA16013AD600B80BC4 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C57490D816013AD600B80BC4 /* MainStoryboard.storyboard */; };
-		C574910C16013B0400B80BC4 /* NSDate+ISO8601.m in Sources */ = {isa = PBXBuildFile; fileRef = C57490E316013B0400B80BC4 /* NSDate+ISO8601.m */; };
+		C574910C16013B0400B80BC4 /* NSDate+timestamp.m in Sources */ = {isa = PBXBuildFile; fileRef = C57490E316013B0400B80BC4 /* NSDate+timestamp.m */; };
 		C574911216013B0400B80BC4 /* HClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C57490EF16013B0400B80BC4 /* HClient.m */; };
 		C574911316013B0400B80BC4 /* HOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = C57490F416013B0400B80BC4 /* HOptions.m */; };
 		C574911416013B0400B80BC4 /* HStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = C57490F616013B0400B80BC4 /* HStatus.m */; };
@@ -49,7 +50,6 @@
 		C574911816013B0400B80BC4 /* HTransportOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = C574910116013B0400B80BC4 /* HTransportOptions.m */; };
 		C574911916013B0400B80BC4 /* HSocketioTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = C574910416013B0400B80BC4 /* HSocketioTransport.m */; };
 		C574911A16013B0400B80BC4 /* HUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C574910716013B0400B80BC4 /* HUtils.m */; };
-		C574911B16013B0400B80BC4 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C574910916013B0400B80BC4 /* ISO8601DateFormatter.m */; };
 		C574915916013B1200B80BC4 /* README in Resources */ = {isa = PBXBuildFile; fileRef = C574911E16013B1200B80BC4 /* README */; };
 		C574915A16013B1200B80BC4 /* WebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = C574912016013B1200B80BC4 /* WebSocket.m */; };
 		C574915B16013B1200B80BC4 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = C574912316013B1200B80BC4 /* GCDAsyncSocket.m */; };
@@ -83,6 +83,7 @@
 		11ADA519160247C200CF4A10 /* HResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HResult.h; sourceTree = "<group>"; };
 		11ADA51A160247C200CF4A10 /* HResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HResult.m; sourceTree = "<group>"; };
 		11BF3EEC160A25BB002C062C /* HLogLevel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLogLevel.h; sourceTree = "<group>"; };
+		368FCEBD1726DB5500D16CE0 /* ErrorCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorCode.m; sourceTree = "<group>"; };
 		C5138BFB160280BF00829B44 /* HMessageOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMessageOptions.h; sourceTree = "<group>"; };
 		C5138BFC160280BF00829B44 /* HMessageOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMessageOptions.m; sourceTree = "<group>"; };
 		C5138C0116029DE000829B44 /* IncomingMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncomingMessageController.m; sourceTree = "<group>"; };
@@ -122,8 +123,8 @@
 		C57490D016013AC000B80BC4 /* hub_connecting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hub_connecting.png; sourceTree = "<group>"; };
 		C57490D116013AC000B80BC4 /* hub_disconnected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hub_disconnected.png; sourceTree = "<group>"; };
 		C57490D916013AD600B80BC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		C57490E216013B0400B80BC4 /* NSDate+ISO8601.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+ISO8601.h"; sourceTree = "<group>"; };
-		C57490E316013B0400B80BC4 /* NSDate+ISO8601.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+ISO8601.m"; sourceTree = "<group>"; };
+		C57490E216013B0400B80BC4 /* NSDate+timestamp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+timestamp.h"; sourceTree = "<group>"; };
+		C57490E316013B0400B80BC4 /* NSDate+timestamp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+timestamp.m"; sourceTree = "<group>"; };
 		C57490EE16013B0400B80BC4 /* HClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HClient.h; sourceTree = "<group>"; };
 		C57490EF16013B0400B80BC4 /* HClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HClient.m; sourceTree = "<group>"; };
 		C57490F116013B0400B80BC4 /* ErrorCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorCode.h; sourceTree = "<group>"; };
@@ -145,8 +146,6 @@
 		C574910416013B0400B80BC4 /* HSocketioTransport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSocketioTransport.m; sourceTree = "<group>"; };
 		C574910616013B0400B80BC4 /* HUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUtils.h; sourceTree = "<group>"; };
 		C574910716013B0400B80BC4 /* HUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUtils.m; sourceTree = "<group>"; };
-		C574910816013B0400B80BC4 /* ISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISO8601DateFormatter.h; sourceTree = "<group>"; };
-		C574910916013B0400B80BC4 /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
 		C574911E16013B1200B80BC4 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		C574911F16013B1200B80BC4 /* WebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebSocket.h; sourceTree = "<group>"; };
 		C574912016013B1200B80BC4 /* WebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebSocket.m; sourceTree = "<group>"; };
@@ -300,8 +299,8 @@
 		C57490DC16013B0400B80BC4 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				C57490E216013B0400B80BC4 /* NSDate+ISO8601.h */,
-				C57490E316013B0400B80BC4 /* NSDate+ISO8601.m */,
+				C57490E216013B0400B80BC4 /* NSDate+timestamp.h */,
+				C57490E316013B0400B80BC4 /* NSDate+timestamp.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -309,6 +308,8 @@
 		C57490F016013B0400B80BC4 /* Structures */ = {
 			isa = PBXGroup;
 			children = (
+				C57490F116013B0400B80BC4 /* ErrorCode.h */,
+				368FCEBD1726DB5500D16CE0 /* ErrorCode.m */,
 				C5145F491606598A00D77C41 /* HAck.h */,
 				C5145F4A1606598A00D77C41 /* HAck.m */,
 				C5145F4B1606598A00D77C41 /* HAlert.h */,
@@ -327,7 +328,6 @@
 				11782E8816023BF100783E5A /* HLocation.m */,
 				11782E8916023BF100783E5A /* HMessage.h */,
 				11782E8A16023BF200783E5A /* HMessage.m */,
-				C57490F116013B0400B80BC4 /* ErrorCode.h */,
 				C57490F316013B0400B80BC4 /* HOptions.h */,
 				C57490F416013B0400B80BC4 /* HOptions.m */,
 				C57490F516013B0400B80BC4 /* HStatus.h */,
@@ -371,8 +371,6 @@
 			children = (
 				C574910616013B0400B80BC4 /* HUtils.h */,
 				C574910716013B0400B80BC4 /* HUtils.m */,
-				C574910816013B0400B80BC4 /* ISO8601DateFormatter.h */,
-				C574910916013B0400B80BC4 /* ISO8601DateFormatter.m */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -475,7 +473,7 @@
 		C574909016013A0700B80BC4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0440;
+				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = Hubiquitus;
 			};
 			buildConfigurationList = C574909316013A0700B80BC4 /* Build configuration list for PBXProject "SimpleClient" */;
@@ -527,7 +525,7 @@
 				C57490AA16013A0700B80BC4 /* main.m in Sources */,
 				C57490AE16013A0700B80BC4 /* AppDelegate.m in Sources */,
 				C57490D316013AC000B80BC4 /* TabBarController.m in Sources */,
-				C574910C16013B0400B80BC4 /* NSDate+ISO8601.m in Sources */,
+				C574910C16013B0400B80BC4 /* NSDate+timestamp.m in Sources */,
 				C5145F5216065EFB00D77C41 /* HAck.m in Sources */,
 				C5138C0216029DE000829B44 /* IncomingMessageController.m in Sources */,
 				C57490D216013AC000B80BC4 /* ConnectionController.m in Sources */,
@@ -547,7 +545,6 @@
 				C574911816013B0400B80BC4 /* HTransportOptions.m in Sources */,
 				C574911916013B0400B80BC4 /* HSocketioTransport.m in Sources */,
 				C574911A16013B0400B80BC4 /* HUtils.m in Sources */,
-				C574911B16013B0400B80BC4 /* ISO8601DateFormatter.m in Sources */,
 				C574915A16013B1200B80BC4 /* WebSocket.m in Sources */,
 				C574915B16013B1200B80BC4 /* GCDAsyncSocket.m in Sources */,
 				C574915C16013B1200B80BC4 /* DDAbstractDatabaseLogger.m in Sources */,
@@ -564,6 +561,7 @@
 				11ADA51C160247CD00CF4A10 /* HResult.m in Sources */,
 				C574917616013B1200B80BC4 /* SocketIO.m in Sources */,
 				C5138BFD160280BF00829B44 /* HMessageOptions.m in Sources */,
+				368FCEBE1726DB5500D16CE0 /* ErrorCode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,6 +594,9 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -623,6 +624,9 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;

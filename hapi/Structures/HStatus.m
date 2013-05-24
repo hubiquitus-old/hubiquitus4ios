@@ -53,12 +53,12 @@
  * Error code in case of an error .(By default : 0 = NO_ERROR)
  * See ErrorCode for possible values
  */
-- (ErrorCode)errorCode {
+- (int)errorCode {
     NSNumber * code = [self objectForKey:@"errorCode" withClass:[NSNumber class]];
     return [code intValue];
 }
 
-- (void)setErrorCode:(ErrorCode)errorCode {
+- (void)setErrorCode:(int)errorCode {
     [self setObject:[NSNumber numberWithInt:errorCode] forKey:@"errorCode"];
 }
 

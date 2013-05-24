@@ -44,12 +44,12 @@
 @property (nonatomic, strong) NSString * ref;
 @property (nonatomic, strong) NSString * type;
 @property (nonatomic) Priority priority;
-@property (nonatomic, strong) NSDate * relevance;
+@property (nonatomic, strong) NSNumber * relevance;
 @property (nonatomic) BOOL persistent;
 @property (nonatomic, strong) HLocation * location;
 @property (nonatomic, strong) NSString * author;
 @property (nonatomic, strong) NSString * publisher;
-@property (nonatomic, strong) NSDate * published;
+@property (nonatomic, strong) NSNumber * published;
 @property (nonatomic, strong) NSDictionary * headers;
 
 @property (nonatomic, strong) id payload;
@@ -65,6 +65,6 @@
 @property (nonatomic, strong) HAlert * payloadAsAlert;
 
 @property (nonatomic) long timeout;
-@property (nonatomic, strong) NSDate * sent;
+@property (nonatomic, strong) NSNumber * sent;
 
 @end
