@@ -90,7 +90,6 @@
                 NSString *hMessage = [response JSONString];
                 
                 NSString * messageString = [NSString stringWithFormat:@"var fn = %@; fn(%@);", jsCb, hMessage];
-                NSLog(@"Callback String : %@", messageString);
                 [weakSelf.commandDelegate evalJs:messageString];
             });
         }
@@ -109,7 +108,6 @@
                 NSString *hMessage = [response JSONString];
                 
                 NSString * messageString = [NSString stringWithFormat:@"var fn = %@; fn(%@);", jsCb, hMessage];
-                NSLog(@"Callback String : %@", messageString);
                 [weakSelf.commandDelegate evalJs:messageString];
             });
         }
@@ -128,7 +126,6 @@
                 NSString *hMessage = [response JSONString];
                 
                 NSString * messageString = [NSString stringWithFormat:@"var fn = %@; fn(%@);", jsCb, hMessage];
-                NSLog(@"Callback String : %@", messageString);
                 [weakSelf.commandDelegate evalJs:messageString];
             });
         }
@@ -140,10 +137,6 @@
     __weak HApiPhoneGapPlugin *weakSelf = self;
     NSDictionary * args = [command.arguments objectAtIndex:0];
     NSString * jsCb = [args objectForKey:@"callback"];
-    NSLog(@"SETFILTER %@", [args objectForKey:@"filter"]);
-    if ([[args objectForKey:@"filter"] isMemberOfClass:[NSString class]]){
-        NSLog(@"HHHHEEERRRREEEEE");
-    }
     
     [hClient setFilterWithString:[args objectForKey:@"filter"] withBlock:^(HMessage * response) {
         if (jsCb != nil){
@@ -151,7 +144,6 @@
                 NSString *hMessage = [response JSONString];
                 
                 NSString * messageString = [NSString stringWithFormat:@"var fn = %@; fn(%@);", jsCb, hMessage];
-                NSLog(@"Callback String : %@", messageString);
                 [weakSelf.commandDelegate evalJs:messageString];
             });
         }
@@ -170,7 +162,6 @@
                 NSString *hMessage = [response JSONString];
                 
                 NSString * messageString = [NSString stringWithFormat:@"var fn = %@; fn(%@);", jsCb, hMessage];
-                NSLog(@"Callback String : %@", messageString);
                 [weakSelf.commandDelegate evalJs:messageString];
             });
         }
