@@ -32,12 +32,13 @@
 
 @interface HTransportOptions : HOptions
 
-@property (nonatomic, strong) NSString * jid;
+@property (nonatomic, strong) NSString * login;
 @property (nonatomic, strong) NSString * password;
+@property (nonatomic, strong) NSDictionary * context;
 @property (readonly, nonatomic) NSURL * endpoint;
-@property (readonly, nonatomic) NSString * jidDomain;
-@property (readonly, nonatomic) NSString * jidUsername;
-@property (readonly, nonatomic) NSString * jidResource;
+@property (readonly, nonatomic) NSString * urnDomain;
+@property (readonly, nonatomic) NSString * urnUsername;
+@property (readonly, nonatomic) NSString * urnResource;
 
 - initWithOptions:(HOptions*)options;
 

@@ -1,0 +1,93 @@
+
+<!-- Copyright (c) Novedia Group 2012.
+ ~
+ ~    This file is part of Hubiquitus
+ ~
+ ~    Permission is hereby granted, free of charge, to any person obtaining a copy
+ ~    of this software and associated documentation files (the "Software"), to deal
+ ~    in the Software without restriction, including without limitation the rights
+ ~    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+ ~    of the Software, and to permit persons to whom the Software is furnished to do so,
+ ~    subject to the following conditions:
+ ~
+ ~    The above copyright notice and this permission notice shall be included in all copies
+ ~    or substantial portions of the Software.
+ ~
+ ~    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+ ~    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+ ~    PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+ ~    FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ ~    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ ~
+ ~    You should have received a copy of the MIT License along with Hubiquitus.
+ ~    If not, see <http://opensource.org/licenses/mit-license.php>.
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="utf-8">
+
+<!-- Imports necessary for hAPI -->
+<script type="text/javascript" src='js/libs/cordova-2.6.0.js'></script>
+<!--script type="text/javascript" src='../../../../hapiPhoneGapPlugin/HClientPhoneGap/'></script-->
+<script data-main="js/HClientPhoneGap/hClient.js"
+	src='js/HClientPhoneGap/require.js'></script>
+<script type="text/javascript" src='js/main.js'></script>
+<!-- Your script -->
+
+
+</head>
+
+<body style="font-size: 12px;" padding= 0; margin= 0; text-align=center >
+	<form style="padding: 0; margin: 0;">
+		Login: <input type="text" id="username" value="urn:localhost:u1" /><br />
+		Password: <input type="password" id="password" value="urn:localhost:u1" /><br />
+		Channel ID: <input type="text" id="actor" value="urn:localhost:channel" /><br />
+		Message: <input type="text" id="message" value="hello all !!" /><br />
+        ConvID: <input type="text" id="convid" value="" /><br/>
+        ConvStatus: <input type="text" id="convstatus" value=""/><br/>
+        Filter: <input type="text" id="filter" value=""/><br/>
+        RelevanceOffset: <input type="number" id="relevanceoffset"/><br/>
+        Timeout: <input type="number" id="timeout"/><br/>
+	</form>
+
+	<form style="padding: 0; margin: 0;">
+		<input type="radio" name="transport" value="socketio" checked/>Socket.IO <br />
+
+		Endpoint: <input type="text" id="endpoint" value="http://localhost:8080" /><br />
+	</form>
+
+	<h4 style="padding: 0; margin: 0; text-align: center;">Controls</h4>
+	<button type="button" onclick="connect()" style="padding: 0; margin: 0;">Connect</button>
+	<button type="button" onclick="disconnect()" style="padding: 0; margin: 0;">Disconnect</button>
+	<button type="button" onclick="send()" style="padding: 0; margin: 0;">Send</button>
+	<button type="button" onclick="subscribe()" style="padding: 0; margin: 0">Subscribe</button>
+	<button type="button" onclick="unsubscribe()" style="padding: 0; margin: 0;">Unsubscribe</button>
+    <button type="button" onclick="pub_convstate()" style="padding: 0;margin: 0;">PubConvState</button>
+	<button type="button" onclick="get_subscriptions()" style="padding: 0; margin: 0;">Get Subscriptions</button>
+    <button type="button" onclick="set_filter()" style="padding: 0;margin: 0;">SetFilter</button>
+	<button type="button" onclick="build_test()" style="padding: 0; margin: 0;">BuilderTest</button>
+	<button type="button" onclick="build_alert()" style="padding: 0; margin: 0;">Build Alert</button>
+	<button type="button" onclick="build_convstate()" style="padding: 0; margin: 0;">Build Convstate</button>
+	<button type="button" onclick="build_ack()" style="padding: 0; margin: 0;">Build ack</button>
+	<button type="button" onclick="clear_divs()" style="padding: 0; margin: 0;">Clear</button>
+	<br />
+
+	<input type="checkbox" id="hMessagePersistent" /> Persistent
+	<br />
+
+	<div style="">
+		<div id="statusTitle">Status : </div>
+		<div id="status" style="margin-bottom:5px"></div>
+		<div id="messagetitle">onMessages : </div>
+		<div id="hMessage" style="margin-bottom:5px"></div>
+        <div id="callbacktitle">callback : </div>
+        <div id="callback"></div>
+
+	</div>
+	</div>
+</body>
+
+</html>

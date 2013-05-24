@@ -44,7 +44,7 @@
 /**
  * Notify a connexion status update
  */
-- (void)statusNotification:(Status)status withErrorCode:(ErrorCode)errorCode errorMsg:(NSString*)errorMsg;
+- (void)statusNotification:(Status)status withErrorCode:(int)errorCode errorMsg:(NSString*)errorMsg;
 
 /**
  * Notify an hMessage formated into a json string reprensentation

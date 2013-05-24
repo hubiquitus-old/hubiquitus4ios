@@ -39,7 +39,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *actor;
 @property (weak, nonatomic) IBOutlet UITextField *convstate;
 @property (weak, nonatomic) IBOutlet UITextField *convid;
-@property (weak, nonatomic) IBOutlet UITextField *nbLastMsg;
 
 - (IBAction)hideKeyboard:(id)sender;
 - (void)registerForKeyboardNotifications;
@@ -51,10 +50,6 @@
 - (IBAction)getSubscriptions:(id)sender;
 - (IBAction)subscribe:(id)sender;
 - (IBAction)unsubscribe:(id)sender;
-- (IBAction)getLastMessages:(id)sender;
-- (IBAction)getThread:(id)sender;
-- (IBAction)getThreads:(id)sender;
-- (IBAction)getRelevantMessages:(id)sender;
 - (IBAction)setFilter:(id)sender;
 
 @end

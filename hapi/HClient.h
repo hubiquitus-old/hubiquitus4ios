@@ -35,10 +35,12 @@
 @property (nonatomic, readonly) Status status;
 @property (nonatomic, strong) void(^onStatus)(HStatus*);
 @property (nonatomic, strong) void(^onMessage)(HMessage*);
-@property (nonatomic, readonly) NSString * fulljid;
+@property (nonatomic, strong) NSDictionary * session_filter;
+@property (nonatomic, readonly) NSString * fullurn;
 @property (nonatomic, readonly) NSString * resource;
 
-- (void)connectWithPublisher:(NSString*)publisher password:(NSString*)password options:(HOptions*)options;
+- (void)connectWithLogin:(NSString*)login password:(NSString*)password options:(HOptions*)options context:(NSDictionary*)context;
+
 - (void)disconnect;
 
 - (void)send:(HMessage*)message withBlock:(void(^)(HMessage*))callback;
@@ -49,14 +51,6 @@
 
 - (void)unsubscribeFromActor:(NSString*)actor withBlock:(void(^)(HMessage*))callback;
 
-- (void)getLastMessagesFromActor:(NSString*)actor quantity:(NSNumber*)quantity withBlock:(void(^)(HMessage*))callback;
-
-- (void)getThreadFromActor:(NSString*)actor withConvid:(NSString*)convid block:(void(^)(HMessage*))callback;
-
-- (void)getThreadsFromActor:(NSString*)actor withStatus:(NSString*)status block:(void(^)(HMessage*))callback;
-
-- (void)getRelevantMessagesFromActor:(NSString*)actor withBlock:(void(^)(HMessage*))callback;
-
 - (void)setFilter:(NSDictionary*)filter withBlock:(void(^)(HMessage*))callback;
 
 - (void)setFilterWithString:(NSString *)filter withBlock:(void (^)(HMessage *))callback;
@@ -64,7 +58,7 @@
 
 - (HMessage*)buildMessageWithActor:(NSString*)actor type:(NSString*)type payload:(id)payload options:(HMessageOptions*)msgOptions didFailWithError:(NSError**)error;
 
-- (HMessage*)buildCommandWithActor:(NSString*)actor cmd:(NSString*)cmd params:(NSDictionary*)params options:(HMessageOptions*)msgOptions didFailWithError:(NSError**)error;
+- (HMessage*)buildCommandWithActor:(NSString*)actor cmd:(NSString*)cmd params:(NSDictionary*)params filter:(NSDictionary*)filter options:(HMessageOptions*)msgOptions didFailWithError:(NSError**)error;
 
 - (HMessage*)buildResultWithActor:(NSString*)actor ref:(NSString*)ref status:(ResultStatus)status result:(id)result options:(HMessageOptions *)msgOptions didFailWithError:(NSError**)error;
 

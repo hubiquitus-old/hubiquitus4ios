@@ -28,7 +28,7 @@
 #import "Status.h"
 #import "ErrorCode.h"
 #import "HLogLevel.h"
-#import "NSDate+ISO8601.h"
+#import "NSDate+timestamp.h"
 
 #if ! __has_feature(objc_arc)
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
@@ -73,7 +73,7 @@
         _status = CONNECTING;
         
         if([self.delegate respondsToSelector:@selector(statusNotification:withErrorCode:errorMsg:)]) {
-            [self.delegate statusNotification:CONNECTING withErrorCode:NO_ERROR errorMsg:nil];
+            [self.delegate statusNotification:CONNECTING withErrorCode:hError.NO_ERROR errorMsg:nil];
         }
         self.options = someOptions;
         NSURL *endpoint = self.options.endpoint;
@@ -86,7 +86,7 @@
         _status = DISCONNECTING;
         
         if([self.delegate respondsToSelector:@selector(statusNotification:withErrorCode:errorMsg:)]) {
-            [self.delegate statusNotification:DISCONNECTING withErrorCode:NO_ERROR errorMsg:nil];
+            [self.delegate statusNotification:DISCONNECTING withErrorCode:hError.NO_ERROR errorMsg:nil];
         }
         
         [self.socketio disconnect];
@@ -98,7 +98,7 @@
         [self.socketio sendEvent:@"hMessage" withData:message]; 
     } else {
         if([self.delegate respondsToSelector:@selector(errorNotification:errorMsg:)]) {
-            [self.delegate errorNotification:NOT_CONNECTED errorMsg:nil refMsg:[message objectForKey:@"msgid"]];
+            [self.delegate errorNotification:hError.NOT_CONNECTED errorMsg:nil refMsg:[message objectForKey:@"msgid"]];
         }
     }
 }
@@ -108,7 +108,14 @@
  * Should be called after connection
  */
 - (void)authenticate {
-    NSDictionary * credentials = [NSDictionary dictionaryWithObjectsAndKeys:self.options.jid, @"publisher", self.options.password, @"password", [[NSDate date] toISO8601],@"sent", nil];
+    NSDictionary * connexionData = self.options.authCB(self.options.login);
+    if([connexionData objectForKey:@"password"] == nil){
+        self.options.login = [connexionData objectForKey:@"login"];
+    } else {
+        self.options.login = [connexionData objectForKey:@"login"];
+        self.options.password = [connexionData objectForKey:@"password"];
+    }
+    NSDictionary * credentials = [NSDictionary dictionaryWithObjectsAndKeys:self.options.login, @"login", self.options.password, @"password", [[NSDate date] toTimestampInMs],@"sent", self.options.context, @"context", nil];
     [self.socketio sendEvent:@"hConnect" withData:credentials];
 }
 
@@ -123,7 +130,7 @@
     _status = DISCONNECTED;
     
     if([self.delegate respondsToSelector:@selector(statusNotification:withErrorCode:errorMsg:)]) {
-        [self.delegate statusNotification:DISCONNECTED withErrorCode:NO_ERROR errorMsg:nil];
+        [self.delegate statusNotification:DISCONNECTED withErrorCode:hError.NO_ERROR errorMsg:nil];
     }
 }
 
@@ -160,7 +167,7 @@
     _status = DISCONNECTED;
     
     if([self.delegate respondsToSelector:@selector(statusNotification:withErrorCode:errorMsg:)]) {
-        [self.delegate statusNotification:DISCONNECTED withErrorCode:TECH_ERROR errorMsg:@"SocketIO handshake failed"];
+        [self.delegate statusNotification:DISCONNECTED withErrorCode:hError.TECH_ERROR errorMsg:@"SocketIO handshake failed"];
     }
 }
 

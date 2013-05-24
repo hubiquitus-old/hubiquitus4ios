@@ -32,5 +32,5 @@ id pickRandomValue(NSArray * array);
 - (NSString *)description;
 @end
 
-NSDictionary * splitJid(NSString * jid);
-BOOL isJid(NSString * jid);
+NSDictionary * splitUrn(NSString * urn);
+BOOL isUrn(NSString * urn);

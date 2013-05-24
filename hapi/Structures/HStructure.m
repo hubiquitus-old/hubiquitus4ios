@@ -62,8 +62,8 @@
     if ((object = [self.container objectForKey:aKey])) {
         if([object isKindOfClass:aClass]) {
             return object;
-        } else if([aClass isSubclassOfClass:[NSDate class]] && [object isKindOfClass:[NSString class]]) {
-            return  [NSDate dateFromISO8601:object];
+        } else if([aClass isSubclassOfClass:[NSNumber class]] && [object isKindOfClass:[NSNumber class]]) {
+            return  [NSDate dateWithTimestampInMs:object];
         }
     }
     return nil;
@@ -73,12 +73,7 @@
 
 - (void)setObject:(id)object forKey:(id)aKey {
     if(object != nil)
-        if([object isKindOfClass:[NSDate class]])
-            [self.container setObject:[object toISO8601] forKey:aKey];
-        else
-            [self.container setObject:object forKey:aKey];
-        else
-            [self.container removeObjectForKey:aKey];
+        [self.container setObject:object forKey:aKey];
 }
 
 - (void)removeObjectForKey:(id)aKey {

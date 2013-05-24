@@ -31,13 +31,13 @@
 @property (nonatomic, strong) NSString * ref;
 @property (nonatomic, strong) NSString * convid;
 @property (nonatomic) Priority priority;
-@property (nonatomic, strong) NSDate * relevance;
+@property (nonatomic, strong) NSNumber * relevance;
 @property (nonatomic) long relevanceOffset;
 @property (nonatomic) BOOL persistent;
 @property (nonatomic, strong) HLocation * location;
 @property (nonatomic, strong) NSString * author;
 @property (nonatomic, strong) NSDictionary * headers;
-@property (nonatomic, strong) NSDate * published;
+@property (nonatomic, strong) NSNumber * published;
 @property (nonatomic) long timeout;
 
 @end
