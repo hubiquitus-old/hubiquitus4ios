@@ -110,6 +110,10 @@
     return self.transport.fullurn;
 }
 
+- (NSString *)bareurn {
+    return [self.transport.fullurn componentsSeparatedByString: @"/"][0];
+}
+
 - (NSString *)resource {
     return self.transport.resource;
 }
@@ -262,6 +266,7 @@
         if(priorityAsInt >= 0) msg.priority = msgOptions.priority;
         if(msgOptions.relevance != nil) msg.relevance = msgOptions.relevance;
         if(msgOptions.persistent) msg.persistent = msgOptions.persistent;
+        else msg.persistent = FALSE;
         if(msgOptions.location != nil) msg.location = msgOptions.location;
         if(msgOptions.author.length > 0) msg.author = msgOptions.author;
         if(msgOptions.published != nil) msg.published = msgOptions.published;

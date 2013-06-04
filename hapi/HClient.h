@@ -37,6 +37,7 @@
 @property (nonatomic, strong) void(^onMessage)(HMessage*);
 @property (nonatomic, strong) NSDictionary * session_filter;
 @property (nonatomic, readonly) NSString * fullurn;
+@property (nonatomic, readonly) NSString * bareurn;
 @property (nonatomic, readonly) NSString * resource;
 
 - (void)connectWithLogin:(NSString*)login password:(NSString*)password options:(HOptions*)options context:(NSDictionary*)context;
