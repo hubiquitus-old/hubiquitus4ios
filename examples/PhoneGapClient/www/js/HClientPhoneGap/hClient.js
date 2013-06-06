@@ -136,49 +136,6 @@ define(
 
             },
 
-            buildMeasure:function (actor, value, unit, options) {
-                if (!value)
-                    throw new Error('missing value');
-                else if (!unit)
-                    throw new Error('missing unit');
-
-                return this.buildMessage(actor, 'hMeasure', {unit:unit, value:value}, options);
-            },
-
-            buildAlert:function (actor, alert, options) {
-                if (!alert)
-                    throw new Error('missing alert');
-
-                return this.buildMessage(actor, 'hAlert', {alert:alert}, options);
-            },
-
-            buildAck:function (actor, ref, ack, options) {
-                if (!ref)
-                    throw new Error('missing ref');
-                else if (!ack)
-                    throw new Error('missing ack');
-                else if (!/recv|read/i.test(ack))
-                    throw new Error('ack does not match "recv" or "read"');
-                if (!options)
-                    options = {};
-                options.ref = ref;
-
-                return this.buildMessage(actor, 'hAck', {ack:ack}, options);
-            },
-
-            buildConvState:function (actor, convid, status, options) {
-                if (!convid)
-                    throw new Error('missing convid');
-                else if (!status)
-                    throw new Error('missing status');
-                if (!options)
-                    options = {};
-
-                options.convid = convid;
-
-                return this.buildMessage(actor, 'hConvState', {status:status}, options);
-            },
-
             buildCommand:function (actor, cmd, params, filter, options) {
                 if (!actor)
                     throw new Error('missing actor');

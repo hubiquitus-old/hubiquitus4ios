@@ -37,6 +37,7 @@
 @property (nonatomic, strong) void(^onMessage)(HMessage*);
 @property (nonatomic, strong) NSDictionary * session_filter;
 @property (nonatomic, readonly) NSString * fullurn;
+@property (nonatomic, readonly) NSString * bareurn;
 @property (nonatomic, readonly) NSString * resource;
 
 - (void)connectWithLogin:(NSString*)login password:(NSString*)password options:(HOptions*)options context:(NSDictionary*)context;
@@ -61,13 +62,5 @@
 - (HMessage*)buildCommandWithActor:(NSString*)actor cmd:(NSString*)cmd params:(NSDictionary*)params filter:(NSDictionary*)filter options:(HMessageOptions*)msgOptions didFailWithError:(NSError**)error;
 
 - (HMessage*)buildResultWithActor:(NSString*)actor ref:(NSString*)ref status:(ResultStatus)status result:(id)result options:(HMessageOptions *)msgOptions didFailWithError:(NSError**)error;
-
-- (HMessage*)buildConvStateWithActor:(NSString*)actor convid:(NSString*)convid status:(NSString*)status option:(HMessageOptions*)msgOptions didFailWithError:(NSError**)error;
-
-- (HMessage*)buildAlertWithActor:(NSString*)actor alert:(NSString*)alert options:(HMessageOptions*)msgOptions didFailWithError:(NSError**)error;
-
-- (HMessage*)buildAckWithActor:(NSString*)actor ref:(NSString*)ref ack:(NSString*)ack options:(HMessageOptions*)msgOptions didFailWithError:(NSError**)error;
-
-- (HMessage*)buildMeasureWithActor:(NSString*)actor value:(NSString*)value unit:(NSString*)unit options:(HMessageOptions*)msgOptions didFailWithError:(NSError**)error;
 
 @end

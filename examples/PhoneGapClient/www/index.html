@@ -46,8 +46,6 @@
 		Password: <input type="password" id="password" value="urn:localhost:u1" /><br />
 		Channel ID: <input type="text" id="actor" value="urn:localhost:channel" /><br />
 		Message: <input type="text" id="message" value="hello all !!" /><br />
-        ConvID: <input type="text" id="convid" value="" /><br/>
-        ConvStatus: <input type="text" id="convstatus" value=""/><br/>
         Filter: <input type="text" id="filter" value=""/><br/>
         RelevanceOffset: <input type="number" id="relevanceoffset"/><br/>
         Timeout: <input type="number" id="timeout"/><br/>
@@ -65,13 +63,9 @@
 	<button type="button" onclick="send()" style="padding: 0; margin: 0;">Send</button>
 	<button type="button" onclick="subscribe()" style="padding: 0; margin: 0">Subscribe</button>
 	<button type="button" onclick="unsubscribe()" style="padding: 0; margin: 0;">Unsubscribe</button>
-    <button type="button" onclick="pub_convstate()" style="padding: 0;margin: 0;">PubConvState</button>
 	<button type="button" onclick="get_subscriptions()" style="padding: 0; margin: 0;">Get Subscriptions</button>
     <button type="button" onclick="set_filter()" style="padding: 0;margin: 0;">SetFilter</button>
 	<button type="button" onclick="build_test()" style="padding: 0; margin: 0;">BuilderTest</button>
-	<button type="button" onclick="build_alert()" style="padding: 0; margin: 0;">Build Alert</button>
-	<button type="button" onclick="build_convstate()" style="padding: 0; margin: 0;">Build Convstate</button>
-	<button type="button" onclick="build_ack()" style="padding: 0; margin: 0;">Build ack</button>
 	<button type="button" onclick="clear_divs()" style="padding: 0; margin: 0;">Clear</button>
 	<br />
 
