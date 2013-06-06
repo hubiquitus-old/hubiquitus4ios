@@ -37,8 +37,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *connector;
 @property (weak, nonatomic) IBOutlet UITextField *cmd_status_unit;
 @property (weak, nonatomic) IBOutlet UITextField *params_result_value;
-@property (weak, nonatomic) IBOutlet UITextField *alert_ack;
-@property (weak, nonatomic) IBOutlet UITextField *convstate_convid;
 @property (weak, nonatomic) IBOutlet UITextField *errors;
 
 
@@ -49,10 +47,6 @@
 
 - (IBAction)buildCmd:(id)sender;
 - (IBAction)buildResult:(id)sender;
-- (IBAction)buildMeasure:(id)sender;
-- (IBAction)buildAck:(id)sender;
-- (IBAction)buildAlert:(id)sender;
-- (IBAction)buildConvstate:(id)sender;
 
 - (IBAction)clear:(id)sender;
 

@@ -80,19 +80,6 @@ function unsubscribe(){
     window.plugins.hClient.unsubscribe(actor, cb)
 }
 
-function pub_convstate(){
-    var actor = document.getElementById('actor').value;
-    var convid = document.getElementById('convid').value;
-    var convstate = document.getElementById('convstatus').value;
-    var msgOption = {
-        persistent:document.getElementById('hMessagePersistent').checked,
-        timeout: 3000
-    };
-    var cb = function(hMessage){callback(hMessage)}
-    var convstatemsg = window.plugins.hClient.buildConvState(actor, convid, convstate, msgOption);
-    window.plugins.hClient.send(convstatemsg,cb);
-}
-
 function set_filter(){
     var filter = document.getElementById('filter').value;
     var cb = function(hMessage){callback(hMessage)}
@@ -118,74 +105,10 @@ function build_test(){
         relevanceOffset: '120000',
         ref: 'msgidref123'
     }
-    console.log('build_measure: ');
-    console.log('-----> ' + JSON.stringify(window.plugins.hClient.buildMeasure('urn:localhost:u1', 'value123','unit123',options)));
-    console.log('build_alert: ');
-    console.log('-----> ' + JSON.stringify(window.plugins.hClient.buildAlert('urn:localhost:u1','alert123',options)));
-    console.log('build_ack: ');
-    console.log('-----> ' + JSON.stringify(window.plugins.hClient.buildAck('urn:localhost:u1','ref123','read',options)));
-    console.log('build_convstate: ');
-    console.log('-----> ' + JSON.stringify(window.plugins.hClient.buildConvState('urn:localhost:u1','convid123','status123',options)));
     console.log('build_command: ');
     console.log('-----> ' + JSON.stringify(window.plugins.hClient.buildCommand('urn:localhost:u1','cmd123',{params:'params123'},options)));
     console.log('build_result: ');
     console.log('-----> ' + JSON.stringify(window.plugins.hClient.buildResult('urn:localhost:u1', 'ref123', 0, {result:'result123'},options)));
-}
-
-
-function build_measure(){
-    var value = prompt('Value:');
-    var unit = prompt('Unit:');
-    var actor = prompt('Channel:');
-    var hMessage = window.plugins.hClient.buildMeasure(actor, value, unit, {
-        persistent: !!document.getElementById("hMessagePersistent").checked
-    });
-    var fct = function (hMessage) {onMessage(hMessage)};
-    if(hMessage)
-    	document.getElementById("resultsDiv").innerHTML = JSON.stringify(hMessage);
-    if(document.getElementById("sendBuiltMessage").checked)
-        window.plugins.hClient.send(hMessage, fct);
-}
-
-function build_alert(){
-    var alert = prompt('Alert:');
-    var actor = prompt('Channel:');
-    var hMessage = window.plugins.hClient.buildAlert(actor, alert, {
-        persistent: !!document.getElementById("hMessagePersistent").checked
-    });
-    var fct = function (hMessage) {onMessage(hMessage)};
-    if(hMessage)
-    	document.getElementById("resultsDiv").innerHTML = JSON.stringify(hMessage);
-    if(document.getElementById("sendBuiltMessage").checked)
-        window.plugins.hClient.send(hMessage, fct);
-}
-
-function build_ack(){
-    var ackID = prompt('AckID:');
-    var ack= prompt('Ack (recv|read):');
-    var actor = prompt('Channel:');
-    var hMessage = window.plugins.hClient.buildAck(actor, ackID, ack, {
-        persistent: !!document.getElementById("hMessagePersistent").checked
-    });
-    var fct = function (hMessage) {onMessage(hMessage)};
-    if(hMessage)
-    	document.getElementById("resultsDiv").innerHTML = JSON.stringify(hMessage);
-    if(document.getElementById("sendBuiltMessage").checked)
-        window.plugins.hClient.send(hMessage, fct);
-}
-
-function build_convstate(){
-    var status = prompt('status:');
-    var convid = prompt('conversation id:');
-    var actor = prompt('channel:');
-    var hMessage = window.plugins.hClient.buildConvState(actor, convid, status, {
-        persistent: !!document.getElementById("hMessagePersistent").checked
-    });
-    var fct = function (hMessage) {onMessage(hMessage)};
-    if(hMessage)
-    	document.getElementById("resultsDiv").innerHTML = JSON.stringify(hMessage);
-    if(document.getElementById("sendBuiltMessage").checked)
-        window.plugins.hClient.send(hMessage, fct);
 }
 
 function onStatus(hStatus){
