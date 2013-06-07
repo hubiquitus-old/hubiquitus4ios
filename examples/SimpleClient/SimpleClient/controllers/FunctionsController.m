@@ -41,7 +41,6 @@
 @synthesize activeField;
 @synthesize connector;
 @synthesize actor;
-@synthesize convstate;
 @synthesize convid;
 @synthesize hClient;
 
@@ -89,7 +88,6 @@
     self.convid.text = @"";
     self.actor.text = @"";
     self.convstate.text = @"";
-    
 }
 
 - (IBAction)getSubscriptions:(id)sender {

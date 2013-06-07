@@ -41,8 +41,6 @@
 @synthesize connector;
 @synthesize cmd_status_unit;
 @synthesize params_result_value;
-@synthesize alert_ack;
-@synthesize convstate_convid;
 @synthesize errors;
 @synthesize hClient;
 
@@ -73,8 +71,6 @@
     [self setConnector:nil];
     [self setCmd_status_unit:nil];
     [self setParams_result_value:nil];
-    [self setAlert_ack:nil];
-    [self setConvstate_convid:nil];
     [self setErrors:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -83,8 +79,6 @@
 - (IBAction)clear:(id)sender {
     self.cmd_status_unit.text = @"";
     self.params_result_value.text = @"";
-    self.alert_ack.text = @"";
-    self.convstate_convid.text = @"";
     self.errors.text = @"";
     
 }
@@ -178,86 +172,6 @@
     NSError * error = nil;
     NSDictionary * result = [NSJSONSerialization JSONObjectWithData:[self.params_result_value.text dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:nil];
     HMessage * msg = [hClient buildResultWithActor:appDelegate.messageOptionsController.actor.text ref:appDelegate.messageOptionsController.ref.text status:[self.cmd_status_unit.text intValue] result:result options:msgOpts didFailWithError:&error];
-    
-    self.errors.text = [error description];
-    
-    appDelegate.messageSenderController.messageContent.text = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:msg options:kNilOptions error:&error] encoding:NSUTF8StringEncoding];
-}
-
-- (IBAction)buildMeasure:(id)sender {
-    AppDelegate *appDelegate = (AppDelegate *)[ [UIApplication sharedApplication] delegate];
-    NSError * error;
-    
-    HMessageOptions * msgOpts = [[HMessageOptions alloc] init];
-    msgOpts.convid = appDelegate.messageOptionsController.convid.text;
-    msgOpts.ref = appDelegate.messageOptionsController.ref.text;
-    if(appDelegate.messageOptionsController.priority.text.length > 0)
-        msgOpts.priority = [appDelegate.messageOptionsController.priority.text intValue];
-    msgOpts.author = appDelegate.messageOptionsController.author.text;
-    msgOpts.timeout = [appDelegate.messageOptionsController.timeout.text intValue];
-    msgOpts.persistent = appDelegate.messageOptionsController.persistent.on;
-    
-    HMessage * msg = [hClient buildMeasureWithActor:appDelegate.messageOptionsController.actor.text value:self.params_result_value.text unit:self.cmd_status_unit.text options:msgOpts didFailWithError:&error];
-    
-    self.errors.text = [error description];
-    
-    appDelegate.messageSenderController.messageContent.text = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:msg options:kNilOptions error:&error] encoding:NSUTF8StringEncoding];
-}
-
-- (IBAction)buildAck:(id)sender {
-    AppDelegate *appDelegate = (AppDelegate *)[ [UIApplication sharedApplication] delegate];
-    NSError * error;
-    
-    HMessageOptions * msgOpts = [[HMessageOptions alloc] init];
-    msgOpts.convid = appDelegate.messageOptionsController.convid.text;
-    msgOpts.ref = appDelegate.messageOptionsController.ref.text;
-    if(appDelegate.messageOptionsController.priority.text.length > 0)
-        msgOpts.priority = [appDelegate.messageOptionsController.priority.text intValue];
-    msgOpts.author = appDelegate.messageOptionsController.author.text;
-    msgOpts.timeout = [appDelegate.messageOptionsController.timeout.text intValue];
-    msgOpts.persistent = appDelegate.messageOptionsController.persistent.on;
-    
-    HMessage * msg = [hClient buildAckWithActor:appDelegate.messageOptionsController.actor.text ref:appDelegate.messageOptionsController.ref.text ack:self.alert_ack.text options:msgOpts didFailWithError:&error] ;
-    
-    self.errors.text = [error description];
-    
-    appDelegate.messageSenderController.messageContent.text = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:msg options:kNilOptions error:&error] encoding:NSUTF8StringEncoding];
-}
-
-- (IBAction)buildAlert:(id)sender {
-    AppDelegate *appDelegate = (AppDelegate *)[ [UIApplication sharedApplication] delegate];
-    NSError * error;
-    
-    HMessageOptions * msgOpts = [[HMessageOptions alloc] init];
-    msgOpts.convid = appDelegate.messageOptionsController.convid.text;
-    msgOpts.ref = appDelegate.messageOptionsController.ref.text;
-    if(appDelegate.messageOptionsController.priority.text.length > 0)
-        msgOpts.priority = [appDelegate.messageOptionsController.priority.text intValue];
-    msgOpts.author = appDelegate.messageOptionsController.author.text;
-    msgOpts.timeout = [appDelegate.messageOptionsController.timeout.text intValue];
-    msgOpts.persistent = appDelegate.messageOptionsController.persistent.on;
-    
-    HMessage * msg = [hClient buildAlertWithActor:appDelegate.messageOptionsController.actor.text alert:self.alert_ack.text options:msgOpts didFailWithError:&error];
-    
-    self.errors.text = [error description];
-    
-    appDelegate.messageSenderController.messageContent.text = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:msg options:kNilOptions error:&error] encoding:NSUTF8StringEncoding];
-}
-
-- (IBAction)buildConvstate:(id)sender {
-    AppDelegate *appDelegate = (AppDelegate *)[ [UIApplication sharedApplication] delegate];
-    NSError * error;
-    
-    HMessageOptions * msgOpts = [[HMessageOptions alloc] init];
-    msgOpts.convid = appDelegate.messageOptionsController.convid.text;
-    msgOpts.ref = appDelegate.messageOptionsController.ref.text;
-    if(appDelegate.messageOptionsController.priority.text.length > 0)
-        msgOpts.priority = [appDelegate.messageOptionsController.priority.text intValue];
-    msgOpts.author = appDelegate.messageOptionsController.author.text;
-    msgOpts.timeout = [appDelegate.messageOptionsController.timeout.text intValue];
-    msgOpts.persistent = appDelegate.messageOptionsController.persistent.on;
-    
-    HMessage * msg = [hClient buildConvStateWithActor:appDelegate.messageOptionsController.actor.text convid:self.convstate_convid.text status:self.cmd_status_unit.text option:msgOpts didFailWithError:&error];
     
     self.errors.text = [error description];
     

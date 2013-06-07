@@ -59,10 +59,6 @@
 @property (nonatomic, strong) NSString * payloadAsString;
 @property (nonatomic, strong) HCommand * payloadAsCommand;
 @property (nonatomic, strong) HResult * payloadAsResult;
-@property (nonatomic, strong) HAck * payloadAsAck;
-@property (nonatomic, strong) HConvState * payloadAsConvState;
-@property (nonatomic, strong) HMeasure * payloadAsMeasure;
-@property (nonatomic, strong) HAlert * payloadAsAlert;
 
 @property (nonatomic) long timeout;
 @property (nonatomic, strong) NSNumber * sent;

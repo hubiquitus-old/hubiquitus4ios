@@ -110,6 +110,10 @@
     return self.transport.fullurn;
 }
 
+- (NSString *)bareurn {
+    return [self.transport.fullurn componentsSeparatedByString: @"/"][0];
+}
+
 - (NSString *)resource {
     return self.transport.resource;
 }
@@ -262,6 +266,7 @@
         if(priorityAsInt >= 0) msg.priority = msgOptions.priority;
         if(msgOptions.relevance != nil) msg.relevance = msgOptions.relevance;
         if(msgOptions.persistent) msg.persistent = msgOptions.persistent;
+        else msg.persistent = FALSE;
         if(msgOptions.location != nil) msg.location = msgOptions.location;
         if(msgOptions.author.length > 0) msg.author = msgOptions.author;
         if(msgOptions.published != nil) msg.published = msgOptions.published;
@@ -316,99 +321,6 @@
     hResult.result = result;
     
     HMessage * msg = [self buildMessageWithActor:actor type:@"hResult" payload:hResult options:msgOptions didFailWithError:error];
-    
-    return msg;
-}
-
-- (HMessage *)buildAlertWithActor:(NSString *)actor alert:(NSString *)alert options:(HMessageOptions *)msgOptions didFailWithError:(NSError *__autoreleasing *)error {
-    
-    if(alert == nil || [alert length] <= 0) {
-        if(error)
-            *error = [NSError errorWithDomain:@"hBuilders" code:RES_MISSING_ATTR userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Missing alert", NSLocalizedDescriptionKey, nil]];
-        return nil;
-    }
-    
-    HAlert * hAlert = [[HAlert alloc] init];
-    hAlert.alert = alert;
-    
-    HMessage * msg = [self buildMessageWithActor:actor type:@"hAlert" payload:hAlert options:msgOptions didFailWithError:error];
-    
-    return msg;
-}
-
-- (HMessage *)buildConvStateWithActor:(NSString *)actor convid:(NSString *)convid status:(NSString *)status option:(HMessageOptions *)msgOptions didFailWithError:(NSError *__autoreleasing *)error {
-    
-    if(convid == nil || [convid length] <= 0) {
-        if(error)
-            *error = [NSError errorWithDomain:@"hBuilders" code:RES_MISSING_ATTR userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Missing convid", NSLocalizedDescriptionKey, nil]];
-        return nil;
-    }
-    
-    if(status == nil || [status length] <= 0) {
-        if(error)
-            *error = [NSError errorWithDomain:@"hBuilders" code:RES_MISSING_ATTR userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Missing status", NSLocalizedDescriptionKey, nil]];
-        return nil;
-    }
-    
-    HConvState * hConvState = [[HConvState alloc] init];
-    hConvState.status = status;
-    
-    if(msgOptions == nil)
-        msgOptions = [[HMessageOptions alloc] init];
-    
-    msgOptions.convid = convid;
-    
-    HMessage * msg = [self buildMessageWithActor:actor type:@"hConvState" payload:hConvState options:msgOptions didFailWithError:error];
-    
-    return msg;
-}
-
-- (HMessage *)buildAckWithActor:(NSString *)actor ref:(NSString *)ref ack:(NSString *)ack options:(HMessageOptions *)msgOptions didFailWithError:(NSError *__autoreleasing *)error {
-    
-    if(ref == nil || [ref length] <= 0) {
-        if(error)
-            *error = [NSError errorWithDomain:@"hBuilders" code:RES_MISSING_ATTR userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Missing ref", NSLocalizedDescriptionKey, nil]];
-        return nil;
-    }
-    
-    if(ack == nil || [ack length] <= 0) {
-        if(error)
-            *error = [NSError errorWithDomain:@"hBuilders" code:RES_MISSING_ATTR userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Missing ack", NSLocalizedDescriptionKey, nil]];
-        return nil;
-    }
-    
-    HAck * hAck = [[HAck alloc] init];
-    hAck.ack = ack;
-    
-    if(msgOptions == nil)
-        msgOptions = [[HMessageOptions alloc] init];
-    
-    msgOptions.ref = ref;
-    
-    HMessage * msg = [self buildMessageWithActor:actor type:@"hAck" payload:hAck options:msgOptions didFailWithError:error];
-    
-    return msg;
-}
-
-- (HMessage *)buildMeasureWithActor:(NSString *)actor value:(NSString *)value unit:(NSString *)unit options:(HMessageOptions *)msgOptions didFailWithError:(NSError *__autoreleasing *)error {
-    
-    if(value == nil || [value length] <= 0) {
-        if(error)
-            *error = [NSError errorWithDomain:@"hBuilders" code:RES_MISSING_ATTR userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Missing value", NSLocalizedDescriptionKey, nil]];
-        return nil;
-    }
-    
-    if(unit == nil || [unit length] <= 0) {
-        if(error)
-            *error = [NSError errorWithDomain:@"hBuilders" code:RES_MISSING_ATTR userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Missing unit", NSLocalizedDescriptionKey, nil]];
-        return nil;
-    }
-    
-    HMeasure * hMeasure = [[HMeasure alloc] init];
-    hMeasure.value = value;
-    hMeasure.unit = unit;
-    
-    HMessage * msg = [self buildMessageWithActor:actor type:@"hMeasure" payload:hMeasure options:msgOptions didFailWithError:error];
     
     return msg;
 }

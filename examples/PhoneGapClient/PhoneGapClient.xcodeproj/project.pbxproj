@@ -42,7 +42,7 @@
 		30E5649213A7FCAF007403D8 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E5649113A7FCAF007403D8 /* CoreMedia.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30FC414816E50CA1004E6F35 /* icon-72@2x.png */; };
 		365C6CF617218B69006AA4B7 /* HApiPhoneGapPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 365C6CF517218B69006AA4B7 /* HApiPhoneGapPlugin.m */; };
-		3681D16317252BF3008E757D /* NSDate+timestampMS.m in Sources */ = {isa = PBXBuildFile; fileRef = 3681D12817252BF3008E757D /* NSDate+timestampMS.m */; };
+		3681D16317252BF3008E757D /* NSDate+timestamp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3681D12817252BF3008E757D /* NSDate+timestamp.m */; };
 		3681D16917252BF3008E757D /* HClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3681D13417252BF3008E757D /* HClient.m */; };
 		3681D16A17252BF3008E757D /* HAck.m in Sources */ = {isa = PBXBuildFile; fileRef = 3681D13917252BF3008E757D /* HAck.m */; };
 		3681D16B17252BF3008E757D /* HAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 3681D13B17252BF3008E757D /* HAlert.m */; };
@@ -142,8 +142,8 @@
 		32CA4F630368D1EE00C91783 /* PhoneGapClient-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PhoneGapClient-Prefix.pch"; sourceTree = "<group>"; };
 		365C6CF417218B69006AA4B7 /* HApiPhoneGapPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HApiPhoneGapPlugin.h; sourceTree = "<group>"; };
 		365C6CF517218B69006AA4B7 /* HApiPhoneGapPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HApiPhoneGapPlugin.m; sourceTree = "<group>"; };
-		3681D12717252BF3008E757D /* NSDate+timestampMS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+timestampMS.h"; sourceTree = "<group>"; };
-		3681D12817252BF3008E757D /* NSDate+timestampMS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+timestampMS.m"; sourceTree = "<group>"; };
+		3681D12717252BF3008E757D /* NSDate+timestamp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+timestamp.h"; sourceTree = "<group>"; };
+		3681D12817252BF3008E757D /* NSDate+timestamp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+timestamp.m"; sourceTree = "<group>"; };
 		3681D13317252BF3008E757D /* HClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HClient.h; sourceTree = "<group>"; };
 		3681D13417252BF3008E757D /* HClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HClient.m; sourceTree = "<group>"; };
 		3681D13517252BF3008E757D /* HLogLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLogLevel.h; sourceTree = "<group>"; };
@@ -428,8 +428,8 @@
 		3681D12317252BF3008E757D /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				3681D12717252BF3008E757D /* NSDate+timestampMS.h */,
-				3681D12817252BF3008E757D /* NSDate+timestampMS.m */,
+				3681D12717252BF3008E757D /* NSDate+timestamp.h */,
+				3681D12817252BF3008E757D /* NSDate+timestamp.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -703,7 +703,7 @@
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
 				365C6CF617218B69006AA4B7 /* HApiPhoneGapPlugin.m in Sources */,
-				3681D16317252BF3008E757D /* NSDate+timestampMS.m in Sources */,
+				3681D16317252BF3008E757D /* NSDate+timestamp.m in Sources */,
 				3681D16917252BF3008E757D /* HClient.m in Sources */,
 				3681D16A17252BF3008E757D /* HAck.m in Sources */,
 				3681D16B17252BF3008E757D /* HAlert.m in Sources */,
@@ -797,6 +797,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "PhoneGapClient/PhoneGapClient-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "";
 				PRODUCT_NAME = PhoneGapClient;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -814,6 +815,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "PhoneGapClient/PhoneGapClient-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "";
 				PRODUCT_NAME = PhoneGapClient;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
